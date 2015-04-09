@@ -91,7 +91,7 @@
                         </div><div class="tp-caption sfb hidden-xs" data-x="690" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1000" data-start="1700" data-easing="Power4.easeOut">
                             <a href="<?php echo site_url('start/firststep?type=avertebrata');?>" class="btn btn-primary inverse btn-lg">Avertebrata</a>
                         </div>
-                        <div class="tp-caption sfr hidden-xs" data-x="870" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1500" data-start="1900" data-easing="Power4.easeOut">
+                        <div class="tp-caption sfr hidden-xs" data-x="840" data-y="center" data-hoffset="0" data-voffset="85" data-speed="1500" data-start="1900" data-easing="Power4.easeOut">
                             <a href="#getApp" class="btn btn-default btn-lg">Cara Penggunaan</a>
                         </div>
 

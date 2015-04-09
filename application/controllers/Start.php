@@ -84,5 +84,10 @@ class Start extends Base {
 	//get the result
 	public function result(){
 		echo 'This is the results';
+		$Data = array 
+		(
+			'title'=>'Hasil Akhir',
+			);
+		$this->basePublicView('result',$Data);
 	}
 }

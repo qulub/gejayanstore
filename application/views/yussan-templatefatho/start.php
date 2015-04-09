@@ -49,11 +49,15 @@
                         $max = array_keys($this->session->userdata('morfologi'), max($this->session->userdata('morfologi')));
                         $max = $max[0]['kode'];
                         $viewmorfologi=$this->M_hewan->relatedMorfologi($max);
+                        if(!empty($viewmorfologi)){
                         ?>
                         <?php foreach($viewmorfologi as $vm)://halaman pertama?>
                             <div style="margin-bottom:10px;" class="col-lg-12"><button name="<?php echo $vm['kd_ciri_morfologi']?>" type="submit" data-toggle="<?php echo $vm['desk_morf']?>" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary"><?php echo $vm['nm_ciri_morfologi']?></button></div>
                         <?php endforeach; ?>
-                        <?php } ?>
+                    <?php }else{//limit view morfologi
+                        redirect(site_url('start/result'));
+                        } ?>    
+                    <?php } ?>
                     </div>
                 </form>
             </div>            
