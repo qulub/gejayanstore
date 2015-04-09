@@ -26,8 +26,8 @@ class Start extends Base {
 	}
 	public function index()
 	{	
-		$sess = $this->session->userdata('morfologi');
-		if(empty($sess)){redirect(site_url());}
+		$Sess = $this->session->userdata('morfologi');
+		if(empty($Sess)){redirect(site_url());}		
 		// print_r($this->session->userdata('morfologi'));
 		$Data = array 
 		(
@@ -68,6 +68,7 @@ class Start extends Base {
 	}
 	//proses tambah session
 	public function nextstep(){
+		$this->load->model('M_DeterminasiDikotomi');
 		//get kode ciri morfologi
 		reset($_POST);
 		$first_key = key($_POST);//angka pertama
@@ -78,12 +79,49 @@ class Start extends Base {
 		array_push($SessionData['morfologi'], $morfdata);
 		//membersihkan sistem
 		$this->session->set_userdata($SessionData);
+		//perhitungan determinasi dikotomi
+		//start perhitungan determinasi  dikotomi
+		$TotalSess = count($this->session->userdata('morfologi'));
+		switch ($TotalSess) {
+			case '3'://2 kondisi
+				$a = $Sess[1]['kode'];
+				$b = $Sess[2]['kode'];
+				break;
+			case '4'://3 kondisi
+				$a = $Sess[1]['kode'];
+				$b = $Sess[2]['kode'];
+				$c = $Sess[3]['kode'];
+				break;		
+			case '5'://4 kondisi
+				$a = $Sess[1]['kode'];
+				$b = $Sess[2]['kode'];
+				$c = $Sess[3]['kode'];
+				$d = $Sess[4]['kode'];
+				break;
+			case '6'://5 kondisi
+				$a = $Sess[1]['kode'];
+				$b = $Sess[2]['kode'];
+				$c = $Sess[3]['kode'];
+				$d = $Sess[4]['kode'];
+				$e = $Sess[5]['kode'];
+				break;
+			case '7'://6 kondisi
+				$a = $Sess[1]['kode'];
+				$b = $Sess[2]['kode'];
+				$c = $Sess[3]['kode'];
+				$d = $Sess[4]['kode'];
+				$e = $Sess[5]['kode'];
+				$f = $Sess[5]['kode'];
+				break;
+		}
+		//end of perhitungan determinasi dikotomi
+		// print_r($this->session->userdata['morfologi']);
 		//kembali kehalaman start
 		redirect(site_url('start'));//ke halaman start
 	}
 	//get the result
 	public function result(){
-		echo 'This is the results';
+		print_r($this->session->userdata('morfologi'));
 		$Data = array 
 		(
 			'title'=>'Hasil Akhir',

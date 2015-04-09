@@ -12,9 +12,9 @@
   <div class="wrapper">    
       <section id="about"> 
           <ol class="breadcrumb">
-           <li><strong>Klasifikasi</strong></li>
-           <?php 
-           $session = $this->session->userdata('morfologi');
+             <li><strong>Klasifikasi</strong></li>
+             <?php 
+             $session = $this->session->userdata('morfologi');
            $CountSession = count($session);//jumlah session yang menjadi step sekarang
            foreach($session as $s):
             if($s['kode']==0){
@@ -47,40 +47,41 @@
                     } else {
                         //get biggest index session morfologi
                         $max = array_keys($this->session->userdata('morfologi'), max($this->session->userdata('morfologi')));
-                        $max = $max[0]['kode'];
-                        $viewmorfologi=$this->M_hewan->relatedMorfologi($max);
+                        $max = $max[0];
+                        $kode = $this->session->userdata['morfologi'][$max]['kode'];
+                        $viewmorfologi=$this->M_hewan->relatedMorfologi($kode);
                         if(!empty($viewmorfologi)){
-                        ?>
-                        <?php foreach($viewmorfologi as $vm)://halaman pertama?>
-                            <div style="margin-bottom:10px;" class="col-lg-12"><button name="<?php echo $vm['kd_ciri_morfologi']?>" type="submit" data-toggle="<?php echo $vm['desk_morf']?>" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary"><?php echo $vm['nm_ciri_morfologi']?></button></div>
-                        <?php endforeach; ?>
+                            ?>
+                            <?php foreach($viewmorfologi as $vm)://halaman pertama?>
+                                <div style="margin-bottom:10px;" class="col-lg-12"><button name="<?php echo $vm['kd_ciri_morfologi']?>" type="submit" data-toggle="<?php echo $vm['desk_morf']?>" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary"><?php echo $vm['nm_ciri_morfologi']?></button></div>
+                            <?php endforeach; ?>
                     <?php }else{//limit view morfologi
                         redirect(site_url('start/result'));
-                        } ?>    
+                    } ?>    
                     <?php } ?>
-                    </div>
-                </form>
-            </div>            
-        </div>
-    </section>
+                </div>
+            </form>
+        </div>            
+    </div>
+</section>
 
 
-    <footer>
-        <div class="container">
-            <a href="#" class="scrollpoint sp-effect3">
-                <img src="<?php echo base_url('resource')?>/assets/img/freeze/logo.png" alt="" class="logo">
-            </a>
-            <div class="social">
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-twitter fa-lg"></i></a>
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-google-plus fa-lg"></i></a>
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
-            </div>
-            <div class="rights">
-                <p>Copyright &copy; 2014</p>
-                <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
-            </div>
+<footer>
+    <div class="container">
+        <a href="#" class="scrollpoint sp-effect3">
+            <img src="<?php echo base_url('resource')?>/assets/img/freeze/logo.png" alt="" class="logo">
+        </a>
+        <div class="social">
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-twitter fa-lg"></i></a>
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-google-plus fa-lg"></i></a>
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
         </div>
-    </footer>
+        <div class="rights">
+            <p>Copyright &copy; 2014</p>
+            <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
+        </div>
+    </div>
+</footer>
 
 
 
