@@ -16,7 +16,8 @@ class Base extends CI_Controller {
 	}
 	//hanya admin yang boleh masuk
 	function onlyAdmin(){
-		if(empty($this->session->userdata('AdminLogin'))){
+		$sess = $this->session->userdata('AdminLogin');
+		if(empty($sess)){
 			redirect(site_url('manage'));//jika admin tidak login, kembali ke halaman login
 		}
 	}
