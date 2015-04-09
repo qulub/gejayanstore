@@ -47,7 +47,7 @@
                     } else {
                         //get biggest index session morfologi
                         $max = array_keys($this->session->userdata('morfologi'), max($this->session->userdata('morfologi')));
-                        $max = $max[0];
+                        $max = $max[0]['kode'];
                         $viewmorfologi=$this->M_hewan->relatedMorfologi($max);
                         ?>
                         <?php foreach($viewmorfologi as $vm)://halaman pertama?>

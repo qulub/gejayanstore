@@ -26,7 +26,8 @@ class Start extends Base {
 	}
 	public function index()
 	{	
-		if(empty($this->session->userdata('morfologi'))){redirect(site_url());}
+		$sess = $this->session->userdata('morfologi');
+		if(empty($sess)){redirect(site_url());}
 		// print_r($this->session->userdata('morfologi'));
 		$Data = array 
 		(
