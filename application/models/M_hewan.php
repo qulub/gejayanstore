@@ -45,10 +45,10 @@ class M_hewan extends CI_Model
 		$query = $this->db->get('ciri_morfologi');
 		if($query->num_rows()>0) 
 		{
-			return false;
+			return true;
 		}else
 		{	
-			return true;
+			return false;
 		}
 	}
 }

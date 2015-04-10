@@ -96,11 +96,11 @@ class Start extends Base
 			array_push($SessionData['result'], $resultarray);
 			$this->session->set_userdata($SessionData);
 			print_r($this->session->userdata('result'));
-			redirect(site_url('start/result'));//ke halaman start
+			redirect(site_url('start/result/'.$first_key));//ke halaman start
 		}else 
 		{
 		//end of pencocok key dengan db
-			
+
 		//perhitungan determinasi dikotomi
 		//start perhitungan determinasi  dikotomi
 			$TotalSess = count($this->session->userdata('morfologi'));
@@ -178,6 +178,7 @@ class Start extends Base
 	//get the result
 public function result()
 {
+	$this->load->model('M_hewan');
 	//print_r($this->session->userdata('morfologi'));
 	$Data = array 
 	(
