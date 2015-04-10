@@ -22,6 +22,7 @@ class Publik extends Base {
 	public function index()
 	{	
 		$SessionData['morfologi'] = array();
+		$SessionData['result'] = array();
 		//membersihkan sistem
 		$this->session->set_userdata($SessionData);
 		$Data = array 

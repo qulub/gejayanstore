@@ -11,41 +11,67 @@
 
   <div class="wrapper">    
       <section id="about"> 
-
-        <div class="container">                
+          <?php 
+          $view = $this->session->userdata('result');
+          ?>
+          <div class="container">                
             <div class="section-heading scrollpoint sp-effect3">
                 <h1>Hasil Akhir</h1>
                 <div class="divider"></div>
                 <p>Berikut adalah hasil berhitungan dari sistem pakar</p>
-                <p><a href="<?php echo site_url();?>">Kembali Kehalaman Utama</a></p>          
+                <p><a href="<?php echo site_url('');?>">Kembali Kehalaman Utama</a></p>          
             </div>
+            <?php
+            //$isCompleted =$this->m_Hewan->isCompleted($kdciri);
+            ?>
             <div class="row">
-                <form method="POST" action="<?php echo site_url('start/nextstep');?>">
-                    <div class="col-lg-12">
-                        <div style="margin-bottom:10px;" class="col-lg-12"><button type="submit" data-toggle="tolltip" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary">Tombol</button></div> 
-                    </div>
-                </form>
-            </div>            
-        </div>
-    </section>
+               <form method="POST" action="<?php echo site_url('start');?>">
+                <div class="col-lg-12">
+                    <br/>
+                    <div style="margin-bottom:10px;" class="col-lg-12"><button type="submit" data-toggle="tolltip" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary">Lanjut</button></div> 
+                </div>
+            </form>
+            <?php foreach($view as $v):
+            $view = $this->M_hewan->detailHewan($v['kode']);
+            ?>
+            <div class="row">
+                <div class="col-md-4">
+                    <h1><?php echo $view['nm_hewan'];?></h1>
+                    <img src="<?php echo base_url('resource/images/'.$view['gambar_hewan']);?>" style="width:100%">
+                </div>
+                <div class="col-md-8">
+                    <h1>Keterangan</h1>
+                    <p><?php echo $view['definisi'];?></p>
+                </div>
+            </div>
+            <hr/>
+        <?php endforeach; ?>
+        <form method="POST" action="<?php echo site_url('start');?>">
+            <div class="col-lg-12">
+                <br/>
+                <div style="margin-bottom:10px;" class="col-lg-12"><button type="submit" data-toggle="tolltip" title="deskripsi mata satu" style="width:100%" class="btn btn-lg btn-primary">Lanjut</button></div> 
+            </div>
+        </form>
+    </div>
+</section>
 
 
-    <footer>
-        <div class="container">
-            <a href="#" class="scrollpoint sp-effect3">
-                <img src="<?php echo base_url('resource')?>/assets/img/freeze/logo.png" alt="" class="logo">
-            </a>
-            <div class="social">
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-twitter fa-lg"></i></a>
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-google-plus fa-lg"></i></a>
-                <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
-            </div>
-            <div class="rights">
-                <p>Copyright &copy; 2014</p>
-                <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
-            </div>
+<footer>
+    <div class="container">
+        <a href="#" class="scrollpoint sp-effect3">
+            <img src="<?php echo base_url('resource')?>/assets/img/freeze/logo.png" alt="" class="logo">
+        </a>
+        <div class="social">
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-twitter fa-lg"></i></a>
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-google-plus fa-lg"></i></a>
+            <a href="#" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
         </div>
-    </footer>
+        <div class="rights">
+            <p>Copyright &copy; 2014</p>
+            <p>Template by <a href="http://www.scoopthemes.com" target="_blank">ScoopThemes</a></p>
+        </div>
+    </div>
+</footer>
 
 
 
