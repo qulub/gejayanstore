@@ -1284,6 +1284,17 @@ p.para{
 	color: #555555;
 	font-family: 'Source Sans Pro', sans-serif;
 }
+
+/*gejayan store custom*/
+.list-item{
+
+}
+.list-item h3{height:70px;overflow:hidden}
+.list-item h2,.toko-item h2{color:rgb(64, 196, 178);}
+striped.discon{color:#C8335A;}
+striped.strip{color:#C7C7C7;text-decoration:line-through}
+.toko-item h3{height:30px;overflow:hidden}
+
 /* end tabs */
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {

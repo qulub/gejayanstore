@@ -13,7 +13,7 @@ class Home extends Base {
 	{	
 		$Data = array 
 		(
-			'title'=>'Gejayan Center'
+			'title'=>''
 			);
 		$this->basePublicView('home',$Data);
 	}
