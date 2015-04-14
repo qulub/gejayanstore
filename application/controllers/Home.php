@@ -13,7 +13,8 @@ class Home extends Base {
 	{	
 		$Data = array 
 		(
-			'title'=>''
+			'title'=>'',
+			'listproduk'=>$this->M_produk->listProduk(9,0),
 			);
 		$this->basePublicView('home',$Data);
 	}
