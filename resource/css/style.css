@@ -1218,7 +1218,8 @@ p.para{
     background: #fff;
 	position: relative;
     width: 100%;
-	min-height: 450px;
+	
+    min-height: 200px;
 	z-index: 5;
 	border: 1px solid rgb(223, 223, 223);
     box-shadow: 0 -2px 3px -2px rgba(0,0,0,0.2), 0 2px 2px rgba(0,0,0,0.1);
@@ -1286,14 +1287,16 @@ p.para{
 }
 
 /*gejayan store custom*/
-.list-item{
-
-}
+.block-title{padding:5px;color: #3CC395;font-size: 2em;border-bottom: 2px solid #3CC395;}
+.bold{font-weight: bold;}
 .list-item h3{height:70px;overflow:hidden}
 .list-item h2,.toko-item h2{color:rgb(64, 196, 178);}
 striped.discon{color:#C8335A;}
 striped.strip{color:#C7C7C7;text-decoration:line-through}
 .toko-item h3{height:30px;overflow:hidden}
+/*toko*/
+.toko-title{color:#fff;}
+.toko-title h2{font-size: 40px;padding:20px;}
 
 /* end tabs */
 /***** Media Quries *****/

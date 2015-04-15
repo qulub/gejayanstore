@@ -22,7 +22,7 @@
                             ?>
                             <div style="width:100%;height:270px;background-image:url('<?php echo base_url('resource/images/produk/'.date('m-Y',strtotime($lp['tglPost'])).'/'.$gambar)?>');background-size:cover"></div>
                             <h3><?php echo $lp['judul']?></h3>
-                            <a href="<?php echo site_url('toko/'.str_replace(' ', '-',strtolower($lp['toko'])))?>"><h2><?php echo $lp['toko']?> - update : <?php echo date('d/m/Y',strtotime($lp['tglEdit']));?></h2></a>
+                            <a href="<?php echo site_url('toko/v/'.$lp['idToko'].'/'.str_replace(' ', '-',strtolower($lp['toko'])))?>"><h2><?php echo $lp['toko']?> - update : <?php echo date('d/m/Y',strtotime($lp['tglEdit']));?></h2></a>
                             <div class="price">
                                 <h4>
                                     <striped class="discon">Diskon <?php echo $lp['diskon']?>%</striped> <br/>
@@ -61,10 +61,13 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
+                <?php foreach($listtoko as $lt):?>
                 <div class="toko-item grid1_of_3">
-                    <a href="details.html">
-                        <h3>Blackbery Jumle Store</h3>
-                        <a href="#"><h2>Jl Gejayan No 56 - update : 5/01/2015</h2></a>
+                    <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
+                        <h3><?php echo $lt['namaToko']?></h3>
+                        <h2><?php echo $lt['alamatToko']?> - update : <?php echo date('d/m/Y',strtotime($lt['alamatToko']))?>
+                        <br/>Buka <?php echo $lt['jamBuka'];?> - <?php echo $lt['jamTutup'];?> | Libur </h2>
+                        <br/>
                         <div class="price">
                             <h4>
                                 <span style="margin-left:0">lihat toko</span>
@@ -72,7 +75,8 @@
                         </div>
                         <span class="b_btm"></span>
                     </a>
-                </div>           
+                </div>  
+                <?php endforeach;?>         
                 <div class="clear"></div>
             </div>  
             <!-- end grids_of_3 -->

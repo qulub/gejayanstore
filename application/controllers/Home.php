@@ -15,6 +15,7 @@ class Home extends Base {
 		(
 			'title'=>'',
 			'listproduk'=>$this->M_produk->listProduk(9,0),
+			'listtoko'=>$this->M_toko->listToko(9,0),
 			);
 		$this->basePublicView('home',$Data);
 	}

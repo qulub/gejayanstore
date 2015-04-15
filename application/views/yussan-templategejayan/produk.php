@@ -39,7 +39,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <div class="wrap">
 	<div class="header">
 		<div class="logo">
-			<a href="index.html"><img src="<?php echo base_url('resource');?>/images/logo.png" alt=""/> </a>
+			<a href="<?php echo site_url();?>"><img src="<?php echo base_url('resource');?>/images/logo.png" alt=""/> </a>
 		</div>
 		<div class="h_icon">
 		<ul class="icon1 sub-icon1">

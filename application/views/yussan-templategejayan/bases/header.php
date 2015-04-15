@@ -71,7 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="wrap">
             <div class="header">
                 <div class="logo">
-                    <a href="index.html"><img src="<?php echo base_url('resource')?>/images/logo.png" alt=""/> </a>
+                    <a href="<?php echo site_url();?>"><img src="<?php echo base_url('resource')?>/images/logo.png" alt=""/> </a>
                 </div>
                 <div class="h_icon">
                     <ul class="icon1 sub-icon1">
@@ -132,7 +132,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </div>
 </div>
 <!-- start slider -->
-<?php if(uri_string() == site_url())://only show on homepage?>
+<?php 
+$recent = site_url($this->uri->uri_string());
+$site = site_url();
+?>
+<?php if($recent==$site)://only show on homepage?>
 <?php $this->load->view('yussan-templategejayan/bases/slider-produkpopuler')?> 
 <?php endif;?>
 <!----start-cursual---->
