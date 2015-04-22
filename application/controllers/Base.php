@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Base extends CI_Controller 
+class Base extends CI_Controller
 {
 	private $TemplateDir;
 	//construct
@@ -22,5 +22,14 @@ class Base extends CI_Controller
 		$TemplateDir = 'yussan-templatefatho/manage';//view template root directort
 		$Data['ChildView'] = $ChildView;
 		$this->load->view($this->TemplateDir.'/bases/BaseView', $Data);
+	}
+	//get main picture
+	function getMainPicture($iditem)
+	{
+		$picture=$this->M_produk->getGambarProduk($iditem);
+		$item=$this->M_produk->getProduk($idItem);
+		$dir = date('m-Y',strtotime($item['tglPost']));
+		$location = base_url('resource/images/'.$dir.'/');
+		return $location.$picture['gambar']; 
 	}
 }

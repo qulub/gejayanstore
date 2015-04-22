@@ -1,4 +1,4 @@
-<?php 
+<?php
 class M_produk extends CI_Model
 {
 	public function __construct()
@@ -49,10 +49,10 @@ class M_produk extends CI_Model
 	//show produk by id produk
  	public function getProduk($idproduk)
  	{
- 		$sql = "SELECT item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+ 		$sql = "SELECT item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,habisPromo,
  		SubKategoriItem.namaSubKategori AS 'subkategori',
  		kategoriItem.namaKategori AS 'kategori',
- 		toko.namaToko as 'toko'
+ 		toko.idToko AS 'idToko',toko.namaToko as 'toko'
  		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
  		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
  		INNER JOIN toko ON toko.idToko = item.idToko

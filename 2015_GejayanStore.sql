@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2015 at 01:49 
+-- Generation Time: Apr 22, 2015 at 06:51 
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -72,7 +72,16 @@ CREATE TABLE IF NOT EXISTS `gambar` (
 `idGambar` int(11) NOT NULL,
   `idItem` int(11) NOT NULL,
   `gambar` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `gambar`
+--
+
+INSERT INTO `gambar` (`idGambar`, `idItem`, `gambar`) VALUES
+(1, 1, 'jewerly1.jpg'),
+(2, 1, 'jewerly2.jpg'),
+(3, 1, 'jewerly3.jpg');
 
 -- --------------------------------------------------------
 
@@ -82,14 +91,24 @@ CREATE TABLE IF NOT EXISTS `gambar` (
 
 CREATE TABLE IF NOT EXISTS `item` (
 `idItem` int(11) NOT NULL,
+  `tglPost` datetime NOT NULL,
+  `tglEdit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `habisPromo` datetime NOT NULL,
   `Judul` varchar(200) NOT NULL,
   `Deskripsi` varchar(500) NOT NULL,
   `idToko` int(11) NOT NULL,
-  `idSubKategori` int(11) NOT NULL,
+  `idSubKategori` int(11) DEFAULT NULL,
   `harga` int(11) NOT NULL,
-  `diskon` int(11) NOT NULL,
-  `stok` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `diskon` float NOT NULL,
+  `views` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`idItem`, `tglPost`, `tglEdit`, `habisPromo`, `Judul`, `Deskripsi`, `idToko`, `idSubKategori`, `harga`, `diskon`, `views`) VALUES
+(1, '2015-04-14 03:29:00', '2015-04-22 15:31:46', '2015-05-01 00:00:00', 'Berlian Safir Merak Perak', 'Berlian Safir Merak Perak yang pernah digunakan oleh artis Hollywood Bellian Morgan', 1, 5, 24000000, 0.5, 234);
 
 -- --------------------------------------------------------
 
@@ -111,29 +130,6 @@ CREATE TABLE IF NOT EXISTS `kategoriItem` (
 INSERT INTO `kategoriItem` (`idKategoriItem`, `namaKategori`, `deskripsiKategori`, `jenis`) VALUES
 (1, 'fashion', 'berbagai macam barang fashion untuk wanita maupun pria', 'barang'),
 (2, 'rumah tangga', 'berbagai macam barang kebutuhan rumah tanggal bisa ditemukan dikategori ini', 'barang');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kategoriToko`
---
-
-CREATE TABLE IF NOT EXISTS `kategoriToko` (
-`idKategoriToko` int(11) NOT NULL,
-  `namaKategori` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `kategoriToko`
---
-
-INSERT INTO `kategoriToko` (`idKategoriToko`, `namaKategori`) VALUES
-(1, 'Super market'),
-(2, 'Mini market'),
-(3, 'Furniture'),
-(4, 'Alat Tulis'),
-(5, 'Elektronik'),
-(6, 'Harian');
 
 -- --------------------------------------------------------
 
@@ -183,7 +179,18 @@ CREATE TABLE IF NOT EXISTS `SubKategoriItem` (
 `idSubKategori` int(11) NOT NULL,
   `idKategoriItem` int(11) NOT NULL,
   `namaSubKategori` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `SubKategoriItem`
+--
+
+INSERT INTO `SubKategoriItem` (`idSubKategori`, `idKategoriItem`, `namaSubKategori`) VALUES
+(1, 1, 'semua fashion'),
+(2, 1, 'kosmetik'),
+(3, 1, 'pakaian'),
+(4, 2, 'semua perlengkapan rumah tangga'),
+(5, 1, 'perhiasan');
 
 -- --------------------------------------------------------
 
@@ -197,7 +204,6 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `namaToko` varchar(100) NOT NULL,
   `alamatToko` varchar(500) NOT NULL,
   `koordinat` varchar(500) NOT NULL,
-  `idKategoriToko` int(11) NOT NULL,
   `avatar` varchar(500) NOT NULL,
   `jamBuka` time NOT NULL,
   `jamTutup` time NOT NULL,
@@ -210,8 +216,8 @@ CREATE TABLE IF NOT EXISTS `toko` (
 -- Dumping data for table `toko`
 --
 
-INSERT INTO `toko` (`idToko`, `idPemilik`, `namaToko`, `alamatToko`, `koordinat`, `idKategoriToko`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `email`, `updateData`) VALUES
-(1, 1, 'Yussan Solution', 'Jl Gejayan 23A', '', 6, '', '08:00:00', '22:00:00', '085645777298', 'yussan@kompetisiindonesia.com', '2015-04-12 00:00:00');
+INSERT INTO `toko` (`idToko`, `idPemilik`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `email`, `updateData`) VALUES
+(1, 1, 'Yussan Luxury', 'Jl Gejayan 23A', '', 'jwerly.png', '08:00:00', '22:00:00', '085645777298', 'yussan@kompetisiindonesia.com', '2015-04-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -257,19 +263,13 @@ ALTER TABLE `gambar`
 -- Indexes for table `item`
 --
 ALTER TABLE `item`
- ADD PRIMARY KEY (`idItem`), ADD KEY `idToko` (`idToko`,`idSubKategori`);
+ ADD PRIMARY KEY (`idItem`), ADD UNIQUE KEY `Judul` (`Judul`), ADD KEY `idToko` (`idToko`,`idSubKategori`), ADD KEY `idSubKategori` (`idSubKategori`);
 
 --
 -- Indexes for table `kategoriItem`
 --
 ALTER TABLE `kategoriItem`
  ADD PRIMARY KEY (`idKategoriItem`);
-
---
--- Indexes for table `kategoriToko`
---
-ALTER TABLE `kategoriToko`
- ADD PRIMARY KEY (`idKategoriToko`);
 
 --
 -- Indexes for table `pelanggan`
@@ -293,7 +293,7 @@ ALTER TABLE `SubKategoriItem`
 -- Indexes for table `toko`
 --
 ALTER TABLE `toko`
- ADD PRIMARY KEY (`idToko`), ADD UNIQUE KEY `koordinat` (`koordinat`), ADD KEY `idKategori` (`idKategoriToko`), ADD KEY `idPemilik` (`idPemilik`);
+ ADD PRIMARY KEY (`idToko`), ADD UNIQUE KEY `koordinat` (`koordinat`), ADD UNIQUE KEY `namaToko` (`namaToko`), ADD KEY `idPemilik` (`idPemilik`);
 
 --
 -- Indexes for table `tokoFavorite`
@@ -319,22 +319,17 @@ MODIFY `idDiskusi` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `gambar`
 --
 ALTER TABLE `gambar`
-MODIFY `idGambar` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idGambar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `kategoriItem`
 --
 ALTER TABLE `kategoriItem`
 MODIFY `idKategoriItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
---
--- AUTO_INCREMENT for table `kategoriToko`
---
-ALTER TABLE `kategoriToko`
-MODIFY `idKategoriToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
@@ -349,7 +344,7 @@ MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
 ALTER TABLE `SubKategoriItem`
-MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `toko`
 --
@@ -382,7 +377,8 @@ ADD CONSTRAINT `gambar_ibfk_1` FOREIGN KEY (`idItem`) REFERENCES `item` (`idItem
 -- Constraints for table `item`
 --
 ALTER TABLE `item`
-ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`idToko`) REFERENCES `toko` (`idToko`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`idToko`) REFERENCES `toko` (`idToko`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `item_ibfk_2` FOREIGN KEY (`idSubKategori`) REFERENCES `SubKategoriItem` (`idSubKategori`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
 -- Constraints for table `SubKategoriItem`
@@ -394,7 +390,6 @@ ADD CONSTRAINT `SubKategoriItem_ibfk_1` FOREIGN KEY (`idKategoriItem`) REFERENCE
 -- Constraints for table `toko`
 --
 ALTER TABLE `toko`
-ADD CONSTRAINT `toko_ibfk_1` FOREIGN KEY (`idKategoriToko`) REFERENCES `kategoriToko` (`idKategoriToko`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `toko_ibfk_2` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

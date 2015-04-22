@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once('application/controllers/Base.php');
 class Produk extends Base {
-	
+
 	//construct
 	public function __construct()
 	{
@@ -15,13 +15,15 @@ class Produk extends Base {
 	}
 	//single produk
 	public function v()
-	{	
+	{
 		$idItem=$this->uri->segment(3);//iditem
 		$produk = $this->M_produk->getProduk($idItem);//get detail produk
-		$Data = array 
+		$toko = $this->M_toko->detailToko($produk['idToko']);
+		$Data = array
 		(
 			'title'=>$produk['judul'],
-			'view'=>$produk
+			'view'=>$produk,
+			'toko'=>$toko
 			);
 		$this->load->view('yussan-templategejayan/produk',$Data);
 	}
