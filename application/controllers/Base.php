@@ -30,6 +30,30 @@ class Base extends CI_Controller
 		$item=$this->M_produk->getProduk($idItem);
 		$dir = date('m-Y',strtotime($item['tglPost']));
 		$location = base_url('resource/images/'.$dir.'/');
-		return $location.$picture['gambar']; 
+		return $location.$picture['gambar'];
+	}
+	//apakah masa promo toko sudah habis
+	function itemPromoRunsOut($iditem)
+	{
+		$this->load->model('m_produk');
+		$item = $this->m_produk->getProduk($iditem);
+		$today = date_create(date('Y-m-d'));
+		$last = date_create(date('Y-m-d', strtotime($item['habisPromo'])));
+		$diff=date_diff($today,$last);
+		$diff = $diff->format("%r%a");
+		return $diff;
+	}
+	//apakah masa promo barang sudah habis
+	function ShopPromoRunsOut($idtoko)
+	{
+		$this->load->model('m_toko');
+		$toko = $this->m_toko->detailToko($idtoko);
+		$today = date_create(date('Y-m-d'));
+		$last = date_create(date('Y-m-d', strtotime($toko['habisMasa'])));
+		$diff=date_diff($today,$last);
+		$diff = $diff->format("%r%a");
+		// print_r($diff);
+		// $diff = $diff->d
+		return $diff;
 	}
 }

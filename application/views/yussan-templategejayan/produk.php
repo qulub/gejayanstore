@@ -14,7 +14,15 @@ $mainpic = $location.'/'.$picture['gambar'];
 ?>
 <html>
 <head>
-   <title>The Aditii Website Template | Details :: w3layouts</title>
+   <title>
+      <?php
+      if(!empty($title)){
+           echo $title.' | Gejayan Store';
+      }else{
+           echo 'Gejayan Store';
+      }
+      ?>
+   </title>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
@@ -201,7 +209,7 @@ $mainpic = $location.'/'.$picture['gambar'];
                                        <h5>
                                           <striped class="discon">Diskon <?php echo $view['diskon']?>%
                                              <br/>
-                                             <small style="font-size:15px">diskon berlaku sampai <?php echo $view['habisPromo']?></small>
+                                             <small style="font-size:15px">diskon berlaku sampai <?php echo date('d-m-Y', strtotime($view['habisPromo']))?> / <?php echo $sisa;?> hari lagi</small>
                                              </striped> <br/>
                                           <?php if($view['diskon'] > 0):?>
                                              <striped class="strip">Rp<?php echo number_format($view['harga']);?>,-</striped>
@@ -243,16 +251,8 @@ $mainpic = $location.'/'.$picture['gambar'];
 
                                     <div style="min-height:300px;poverflow-x:hidden" class="content">
                                        <div class="content-1">
-                                          <p class="para top"><span>LOREM IPSUM</span> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-                                          <ul>
-                                             <li>Research</li>
-                                             <li>Design and Development</li>
-                                             <li>Porting and Optimization</li>
-                                             <li>System integration</li>
-                                             <li>Verification, Validation and Testing</li>
-                                             <li>Maintenance and Support</li>
-                                          </ul>
-                                          <div class="clear"></div>
+                                          <p><?php echo nl2br($toko['tentangToko']);?></p>
+
                                        </div>
                                        <div class="content-2">
                                           <p class="para"><span>WELCOME </span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
@@ -281,7 +281,7 @@ $mainpic = $location.'/'.$picture['gambar'];
                               <!-- start sidebar -->
                               <div class="left_sidebar">
                                  <div class="sellers">
-                                    <h4>Best Sellers</h4>
+                                    <h4>Promo Lain</h4>
                                     <div class="single-nav">
                                        <ul>
                                           <li><a href="#">Always free from repetition</a></li>
@@ -290,30 +290,23 @@ $mainpic = $location.'/'.$picture['gambar'];
                                           <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
                                           <li><a href="#">Always free from repetition</a></li>
                                           <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
+                                       </ul>
+                                    </div>
+                                    <h4>Promo Toko Lain</h4>
+                                    <div class="single-nav">
+                                       <ul>
                                           <li><a href="#">Always free from repetition</a></li>
                                           <li><a href="#">Always free from repetition</a></li>
                                           <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
                                           <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
+                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
                                        </ul>
                                     </div>
                                     <div class="banner-wrap bottom_banner color_link">
                                        <a href="#" class="main_link">
                                           <figure><img src="<?php echo base_url('resource');?>/images/delivery.png" alt=""></figure>
                                           <h5><span>Free Shipping</span><br> on orders over $99.</h5><p>This offer is valid on all our store items.</p></a>
-                                       </div>
-                                       <div class="brands">
-                                          <h1>Brands</h1>
-                                          <div class="field">
-                                             <select class="select1">
-                                                <option>Please Select</option>
-                                                <option>Lorem ipsum dolor sit amet</option>
-                                                <option>Lorem ipsum dolor sit amet</option>
-                                                <option>Lorem ipsum dolor sit amet</option>
-                                             </select>
-                                          </div>
                                        </div>
                                     </div>
                                  </div>

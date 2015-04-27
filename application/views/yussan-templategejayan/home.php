@@ -1,15 +1,15 @@
 <!-- start main1 -->
 <!-- produk terbaru -->
 <div class="main_bg1">
-    <div class="wrap">  
+    <div class="wrap">
         <div class="main1">
-            <h2>update produk</h2>
+            <h2>update promo</h2>
         </div>
     </div>
 </div>
 <!-- start main -->
 <div class="main_bg">
-    <div class="wrap">  
+    <div class="wrap">
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
@@ -35,21 +35,21 @@
                             </div>
                             <span class="b_btm"></span>
                         </a>
-                    </div>    
-                <?php endforeach;?>       
+                    </div>
+                <?php endforeach;?>
                 <div class="clear"></div>
-            </div>  
+            </div>
             <!-- end grids_of_3 -->
         </div>
     </div>
     <div class="wrap">
-        <a href="#"><div class="price"><h4><span>Tampilkan Semua Produk</span></h4></div></a>
+        <a href="#"><div class="price"><h4><span>Tampilkan Semua Promo</span></h4></div></a>
     </div>
-</div>  
+</div>
 <!-- end of produk terbaru -->
 <!-- update toko -->
 <div class="main_bg1">
-    <div class="wrap">  
+    <div class="wrap">
         <div class="main1">
             <h2>update toko</h2>
         </div>
@@ -57,28 +57,24 @@
 </div>
 <!-- start main -->
 <div class="main_bg">
-    <div class="wrap">  
+    <div class="wrap">
         <div class="main">
             <!-- start grids_of_3 -->
-            <div class="grids_of_3">
+            <div class="grids_of_4">
                 <?php foreach($listtoko as $lt):?>
-                <div class="toko-item grid1_of_3">
+                <div class="toko-item grid1_of_4">
                     <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
-                        <h3><?php echo $lt['namaToko']?></h3>
-                        <h2><?php echo $lt['alamatToko']?> - update : <?php echo date('d/m/Y',strtotime($lt['alamatToko']))?>
+                        <img src="<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>" alt="" />
+                        <center><h3><?php echo $lt['namaToko']?></h3></center>
+                        <!-- <h2><?php echo $lt['alamatToko']?> - update : <?php echo date('d/m/Y',strtotime($lt['alamatToko']))?>
                         <br/>Buka <?php echo $lt['jamBuka'];?> - <?php echo $lt['jamTutup'];?> | Libur </h2>
-                        <br/>
-                        <div class="price">
-                            <h4>
-                                <span style="margin-left:0">lihat toko</span>
-                            </h4>
-                        </div>
+                        <br/> -->
                         <span class="b_btm"></span>
                     </a>
-                </div>  
-                <?php endforeach;?>         
+                </div>
+                <?php endforeach;?>
                 <div class="clear"></div>
-            </div>  
+            </div>
             <!-- end grids_of_3 -->
         </div>
     </div>
