@@ -17,9 +17,9 @@ $mainpic = $location.'/'.$picture['gambar'];
    <title>
       <?php
       if(!empty($title)){
-           echo $title.' | Gejayan Store';
+         echo $title.' | Gejayan Store';
       }else{
-           echo 'Gejayan Store';
+         echo 'Gejayan Store';
       }
       ?>
    </title>
@@ -45,7 +45,30 @@ $mainpic = $location.'/'.$picture['gambar'];
          event.preventDefault();
          $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
       });
+      <?php
+      $referrer = $this->agent->referrer();
+      $recent = $this->uri->uri_string();
+      if($referrer!='' OR $referrer!=$recent):
+         echo 'addViews();';
+      endif;
+      ?>
    });
+   function addViews()
+   {
+      var id = '<?php echo $this->uri->segment(3);?>';
+      var url = '<?php echo site_url('ajax/addViews');?>';
+      $.ajax({
+         url:url,
+         data:{iditem:id},
+         type:'POST',
+         success:function(){
+
+         },
+         error:function(){
+            alert('error');
+         }
+      });
+   }
    </script>
 </head>
 <body>
@@ -81,68 +104,67 @@ $mainpic = $location.'/'.$picture['gambar'];
          <div class="header_sub">
             <div class="h_menu">
                <ul>
-                  <li class="active"><a href="index.html">Home</a></li> |
-                  <li><a href="sale.html">sale</a></li> |
-                  <li><a href="handbags.html">handbags</a></li> |
-                  <li><a href="accessories.html">accessories</a></li> |
-                  <li><a href="wallets.html">wallets</a></li> |
-                  <li><a href="sale.html">sale</a></li> |
-                  <li><a href="index.html">mens store</a></li> |
-                  <li><a href="shoes.html">shoes</a></li> |
-                  <li><a href="sale.html">vintage</a></li> |
-                  <li><a href="service.html">services</a></li> |
-                  <li><a href="contact.html">Contact us</a></li>
-               </ul>
-            </div>
-            <div class="top-nav">
-               <nav class="nav">
-                  <a href="#" id="w3-menu-trigger"> </a>
-                  <ul class="nav-list" style="">
-                     <li class="nav-item"><a class="active" href="index.html">Home</a></li>
-                     <li class="nav-item"><a href="sale.html">Sale</a></li>
-                     <li class="nav-item"><a href="handbags.html">Handbags</a></li>
-                     <li class="nav-item"><a href="accessories.html">Accessories</a></li>
-                     <li class="nav-item"><a href="shoes.html">Shoes</a></li>
-                     <li class="nav-item"><a href="service.html">Services</a></li>
-                     <li class="nav-item"><a href="contact.html">Contact</a></li>
-                  </ul>
-               </nav>
-               <div class="search_box">
-                  <form>
-                     <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
-                  </form>
-               </div>
-               <div class="clear"> </div>
-               <script src="<?php echo base_url('resource');?>/js/responsive.menu.js"></script>
-            </div>
-            <div class="clear"></div>
+                  <li class="active"><a href="<?php echo site_url();?>">Home</a></li> |
+                  <?php
+                  $categories = $this->M_category->showCategories(7);
+                  foreach($categories as $c):?>
+                  <li><a href="sale.html"><?php echo $c['namaKategori']?></a></li> |
+               <?php endforeach;?>
+            </ul>
          </div>
+         <div class="top-nav">
+            <nav class="nav">
+               <a href="#" id="w3-menu-trigger"> </a>
+               <ul class="nav-list" style="">
+                  <li class="nav-item"><a class="active" href="index.html">Home</a></li>
+                  <li class="nav-item"><a href="sale.html">Sale</a></li>
+                  <li class="nav-item"><a href="handbags.html">Handbags</a></li>
+                  <li class="nav-item"><a href="accessories.html">Accessories</a></li>
+                  <li class="nav-item"><a href="shoes.html">Shoes</a></li>
+                  <li class="nav-item"><a href="service.html">Services</a></li>
+                  <li class="nav-item"><a href="contact.html">Contact</a></li>
+               </ul>
+            </nav>
+            <div class="search_box">
+               <form>
+                  <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}"><input type="submit" value="">
+               </form>
+            </div>
+            <div class="clear"> </div>
+            <script src="<?php echo base_url('resource');?>/js/responsive.menu.js"></script>
+         </div>
+         <div class="clear"></div>
       </div>
    </div>
-   <!-- start main -->
-   <div class="main_bg">
-      <div class="wrap">
-         <div class="main">
-            <!-- start content -->
-            <div class="single">
-               <!-- start span1_of_1 -->
-               <div class="left_content">
-                  <div class="span1_of_1">
-                     <!-- start product_slider -->
-                     <div class="product-view">
-                        <div class="product-essential">
-                           <div class="product-img-box">
-                              <div class="product-image">
-                                 <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="<?php echo base_url('resource');?>/images/0001-2.jpg" title="Women Shorts" alt="Women Shorts">
-                                    <img style="height:100%" src="<?php echo $mainpic;?>" alt="Women Shorts" title="Women Shorts" />
-                                 </a>
-                              </div>
-                              <div class="more-views" style="float:left;">
-                                 <div class="more-views-container">
-                                    <ul>
+</div>
+<!-- start main -->
+<div class="main_bg">
+   <div class="wrap">
+      <div class="main">
+         <!-- start content -->
+         <div class="single">
+            <!-- start span1_of_1 -->
+            <div class="left_content">
+               <div class="span1_of_1">
+                  <!-- start product_slider -->
+                  <div class="product-view">
+                     <div class="product-essential">
+                        <div class="product-img-box">
+                           <div class="product-image">
+                              <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="<?php echo base_url('resource');?>/images/0001-2.jpg" title="Women Shorts" alt="Women Shorts">
+                                 <img style="height:100%" src="<?php echo $mainpic;?>" alt="Women Shorts" title="Women Shorts" />
+                              </a>
+                           </div>
+                           <div class="more-views" style="float:left;">
+                              <div class="more-views-container">
+                                 <ul>
+                                    <li>
+                                       <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
+                                          <img src="<?php echo base_url('resource');?>/images/0001-2.jpg" src_main="<?php echo base_url('resource');?>/images/0001-2.jpg"  title="" alt="" /></a>
+                                       </li>
                                        <li>
                                           <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-                                             <img src="<?php echo base_url('resource');?>/images/0001-2.jpg" src_main="<?php echo base_url('resource');?>/images/0001-2.jpg"  title="" alt="" /></a>
+                                             <img src="" src_main=""  title="" alt="" /></a>
                                           </li>
                                           <li>
                                              <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
@@ -150,260 +172,269 @@ $mainpic = $location.'/'.$picture['gambar'];
                                              </li>
                                              <li>
                                                 <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-                                                   <img src="" src_main=""  title="" alt="" /></a>
+                                                   <img src="" src_main="" title="" alt="" /></a>
                                                 </li>
                                                 <li>
                                                    <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
                                                       <img src="" src_main="" title="" alt="" /></a>
                                                    </li>
-                                                   <li>
-                                                      <a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-                                                         <img src="" src_main="" title="" alt="" /></a>
-                                                      </li>
-                                                   </ul>
-                                                </div>
+                                                </ul>
                                              </div>
-                                             <script type="text/javascript">
-                                             // var prodGallery = jQblvg.parseJSON('{"prod_1":{"main":{"orig":"<?php echo $mainpic;?>","main":"<?php echo base_url('resource');?>/images/large/0001-2.jpg","thumb":"<?php echo base_url('resource');?>/images/small/0001-2.jpg","label":""},"gallery":{"item_0":{"orig":"images/0001-2.jpg","main":"images/large/0001-2.jpg","thumb":"images/small/0001-2.jpg","label":""},"item_1":{"orig":"images/0001-1.jpg","main":"images/large/0001-1.jpg","thumb":"images/small/0001-1.jpg","label":""},"item_2":{"orig":"images/0001-5.jpg","main":"images/large/0001-5.jpg","thumb":"images/small/0001-5.jpg","label":""},"item_3":{"orig":"images/0001-3.jpg","main":"images/large/0001-3.jpg","thumb":"images/small/0001-3.jpg","label":""},"item_4":{"orig":"images/0001-4.jpg","main":"images/large/0001-4.jpg","thumb":"images/small/0001-4.jpg","label":""}},"type":"simple","video":false}}'),
-                                             //     gallery_elmnt = jQblvg('.product-img-box'),
-                                             //     galleryObj = new Object(),
-                                             //     gallery_conf = new Object();
-                                             //     gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt=""><img src="" src_main="" width="64" height="85" title="" alt="" /></a>';
-                                             //     gallery_conf.animspeed = 200;
-                                             // jQblvg(document).ready(function() {
-                                             //     galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
-                                             //         jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
-                                             //     jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect : 'none',
-                                             //                              nextEffect : 'none',
-                                             //                              closeBtn : true,
-                                             //                              arrows : true,
-                                             //                              nextClick : true,
-                                             //                              helpers: {
-                                             //                                thumbs : {
-                                             //                                    width: 64,
-                                             //                                    height: 85,
-                                             //                                    position: 'bottom'
-                                             //                                }
-                                             //                              }
-                                             //                              });
-                                             //     jQblvg('#wrap').css('z-index', '100');
-                                             //             jQblvg('.more-views-container').elScroll({type: 'vertical', elqty: 4, btn_pos: 'border', scroll_speed: 400 });
-                                             //
-                                             // });
-                                             //
-                                             // function initGallery(a,b,element) {
-                                             //     galleryObj[a] = new prodViewGalleryForm(prods, b, gallery_elmnt, gallery_conf, '.product-image', '.more-views', '');
-                                             // };
-                                             </script>
                                           </div>
-                                       </div>
-                                    </div>
-                                    <!-- end product_slider -->
-                                 </div>
-                                 <br/><br/>
-                                 <!-- start span1_of_1 -->
-                                 <div class="span1_of_1_des">
-                                    <div class="desc1">
-                                       <h3><?php echo $view['judul'];?> </h3>
-                                       <p><?php echo $view['deskripsi'];?></p>
-                                       <h5>
-                                          <striped class="discon">Diskon <?php echo $view['diskon']?>%
-                                             <br/>
-                                             <small style="font-size:15px">diskon berlaku sampai <?php echo date('d-m-Y', strtotime($view['habisPromo']))?> / <?php echo $sisa;?> hari lagi</small>
-                                             </striped> <br/>
-                                          <?php if($view['diskon'] > 0):?>
-                                             <striped class="strip">Rp<?php echo number_format($view['harga']);?>,-</striped>
-                                          <?php endif;?>
-                                          Rp<?php echo number_format($view['harga']-($view['harga']*($view['diskon']/100)));?>,-
-                                       </h5>
-                                       <div class="available">
-                                          <div class="btn_form">
-                                             <form>
-                                                <input type="submit" value="Masukan Daftar Belanja" title="" />
-                                             </form>
-                                          </div>
-                                          <div class="clear"></div>
-                                       </div>
-                                       <div class="share-desc">
-                                          <div class="share">
-                                             <h4>Share Product :</h4>
-                                             <ul class="share_nav">
-                                                <li><a href="#"><img src="<?php echo base_url('resource');?>/images/facebook.png" title="facebook"></a></li>
-                                                <li><a href="#"><img src="<?php echo base_url('resource');?>/images/twitter.png" title="Twiiter"></a></li>
-                                                <li><a href="#"><img src="<?php echo base_url('resource');?>/images/rss.png" title="Rss"></a></li>
-                                                <li><a href="#"><img src="<?php echo base_url('resource');?>/images/gpluse.png" title="Google+"></a></li>
-                                             </ul>
-                                          </div>
-                                          <div class="clear"></div>
+                                          <script type="text/javascript">
+                                          // var prodGallery = jQblvg.parseJSON('{"prod_1":{"main":{"orig":"<?php echo $mainpic;?>","main":"<?php echo base_url('resource');?>/images/large/0001-2.jpg","thumb":"<?php echo base_url('resource');?>/images/small/0001-2.jpg","label":""},"gallery":{"item_0":{"orig":"images/0001-2.jpg","main":"images/large/0001-2.jpg","thumb":"images/small/0001-2.jpg","label":""},"item_1":{"orig":"images/0001-1.jpg","main":"images/large/0001-1.jpg","thumb":"images/small/0001-1.jpg","label":""},"item_2":{"orig":"images/0001-5.jpg","main":"images/large/0001-5.jpg","thumb":"images/small/0001-5.jpg","label":""},"item_3":{"orig":"images/0001-3.jpg","main":"images/large/0001-3.jpg","thumb":"images/small/0001-3.jpg","label":""},"item_4":{"orig":"images/0001-4.jpg","main":"images/large/0001-4.jpg","thumb":"images/small/0001-4.jpg","label":""}},"type":"simple","video":false}}'),
+                                          //     gallery_elmnt = jQblvg('.product-img-box'),
+                                          //     galleryObj = new Object(),
+                                          //     gallery_conf = new Object();
+                                          //     gallery_conf.moreviewitem = '<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt=""><img src="" src_main="" width="64" height="85" title="" alt="" /></a>';
+                                          //     gallery_conf.animspeed = 200;
+                                          // jQblvg(document).ready(function() {
+                                          //     galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
+                                          //         jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
+                                          //     jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect : 'none',
+                                          //                              nextEffect : 'none',
+                                          //                              closeBtn : true,
+                                          //                              arrows : true,
+                                          //                              nextClick : true,
+                                          //                              helpers: {
+                                          //                                thumbs : {
+                                          //                                    width: 64,
+                                          //                                    height: 85,
+                                          //                                    position: 'bottom'
+                                          //                                }
+                                          //                              }
+                                          //                              });
+                                          //     jQblvg('#wrap').css('z-index', '100');
+                                          //             jQblvg('.more-views-container').elScroll({type: 'vertical', elqty: 4, btn_pos: 'border', scroll_speed: 400 });
+                                          //
+                                          // });
+                                          //
+                                          // function initGallery(a,b,element) {
+                                          //     galleryObj[a] = new prodViewGalleryForm(prods, b, gallery_elmnt, gallery_conf, '.product-image', '.more-views', '');
+                                          // };
+                                          </script>
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="clear"></div>
-                                 <!-- start tabs -->
-                                 <section class="tabs">
-                                    <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
-                                    <label for="tab-1" class="tab-label-1">Tentang Toko</label>
-
-                                    <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
-                                    <label for="tab-2" class="tab-label-2">Peta Toko</label>
-
-                                    <div class="clear-shadow"></div>
-
-                                    <div style="min-height:300px;poverflow-x:hidden" class="content">
-                                       <div class="content-1">
-                                          <p><?php echo nl2br($toko['tentangToko']);?></p>
-
+                                 <!-- end product_slider -->
+                              </div>
+                              <br/><br/>
+                              <!-- start span1_of_1 -->
+                              <div class="span1_of_1_des">
+                                 <div class="desc1">
+                                    <h3><?php echo $view['judul'];?> </h3>
+                                    <small style="font-size:9px"><?php echo $view['views'];?> views</small>
+                                    <p><?php echo nl2br($view['deskripsi']);?></p>
+                                    <h5>
+                                       <striped class="discon">Diskon <?php echo $view['diskon']?>%
+                                          <br/>
+                                          <small style="font-size:15px">diskon berlaku sampai <?php echo date('d-m-Y', strtotime($view['habisPromo']))?> / <?php echo $sisa;?> hari lagi</small>
+                                       </striped> <br/>
+                                       <?php if($view['diskon'] > 0):?>
+                                          <striped class="strip">Rp<?php echo number_format($view['harga']);?>,-</striped>
+                                       <?php endif;?>
+                                       Rp<?php echo number_format($view['harga']-($view['harga']*($view['diskon']/100)));?>,-
+                                    </h5>
+                                    <div class="available">
+                                       <div class="btn_form">
+                                          <form>
+                                             <input type="submit" value="Masukan Daftar Belanja" title="" />
+                                          </form>
                                        </div>
-                                       <div class="content-2">
-                                          <p class="para"><span>WELCOME </span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
-                                          <ul class="qua_nav">
-                                             <li>Multimedia Systems</li>
-                                             <li>Digital media adapters</li>
-                                             <li>Set top boxes for HDTV and IPTV Player applications on various Operating Systems and Hardware Platforms</li>
+                                       <div class="clear"></div>
+                                    </div>
+                                    <div class="share-desc">
+                                       <div class="share">
+                                          <h4>Share Product :</h4>
+                                          <ul class="share_nav">
+                                             <li><a href="#"><img src="<?php echo base_url('resource');?>/images/facebook.png" title="facebook"></a></li>
+                                             <li><a href="#"><img src="<?php echo base_url('resource');?>/images/twitter.png" title="Twiiter"></a></li>
+                                             <li><a href="#"><img src="<?php echo base_url('resource');?>/images/rss.png" title="Rss"></a></li>
+                                             <li><a href="#"><img src="<?php echo base_url('resource');?>/images/gpluse.png" title="Google+"></a></li>
                                           </ul>
                                        </div>
-                                       <div class="content-3">
-                                          <p class="para top"><span>LOREM IPSUM</span> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
-                                          <ul>
-                                             <li>Research</li>
-                                             <li>Design and Development</li>
-                                             <li>Porting and Optimization</li>
-                                             <li>System integration</li>
-                                             <li>Verification, Validation and Testing</li>
-                                             <li>Maintenance and Support</li>
-                                          </ul>
-                                          <div class="clear"></div>
-                                       </div>
+                                       <div class="clear"></div>
                                     </div>
-                                 </section>
-                                 <!-- end tabs -->
+                                 </div>
                               </div>
-                              <!-- start sidebar -->
-                              <div class="left_sidebar">
-                                 <div class="sellers">
-                                    <h4>Promo Lain</h4>
-                                    <div class="single-nav">
-                                       <ul>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+                              <div class="clear"></div>
+                              <!-- start tabs -->
+                              <section class="tabs">
+                                 <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
+                                 <label for="tab-1" class="tab-label-1">Tentang Toko</label>
+
+                                 <input id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
+                                 <label for="tab-2" class="tab-label-2">Peta Toko</label>
+
+                                 <div class="clear-shadow"></div>
+
+                                 <div style="min-height:300px;poverflow-x:hidden" class="content">
+                                    <div class="content-1">
+                                       <p><?php echo nl2br($toko['tentangToko']);?></p>
+
+                                    </div>
+                                    <div class="content-2">
+                                       <p class="para"><span>WELCOME </span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
+                                       <ul class="qua_nav">
+                                          <li>Multimedia Systems</li>
+                                          <li>Digital media adapters</li>
+                                          <li>Set top boxes for HDTV and IPTV Player applications on various Operating Systems and Hardware Platforms</li>
                                        </ul>
                                     </div>
-                                    <h4>Promo Toko Lain</h4>
-                                    <div class="single-nav">
+                                    <div class="content-3">
+                                       <p class="para top"><span>LOREM IPSUM</span> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined </p>
                                        <ul>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
-                                          <li><a href="#">Always free from repetition</a></li>
-                                          <li><a href="#">The standard chunk of Lorem Ipsum</a></li>
+                                          <li>Research</li>
+                                          <li>Design and Development</li>
+                                          <li>Porting and Optimization</li>
+                                          <li>System integration</li>
+                                          <li>Verification, Validation and Testing</li>
+                                          <li>Maintenance and Support</li>
                                        </ul>
-                                    </div>
-                                    <div class="banner-wrap bottom_banner color_link">
-                                       <a href="#" class="main_link">
-                                          <figure><img src="<?php echo base_url('resource');?>/images/delivery.png" alt=""></figure>
-                                          <h5><span>Free Shipping</span><br> on orders over $99.</h5><p>This offer is valid on all our store items.</p></a>
-                                       </div>
+                                       <div class="clear"></div>
                                     </div>
                                  </div>
-                                 <!-- end sidebar -->
-                                 <div class="clear"></div>
-                              </div>
-                              <!-- end content -->
+                              </section>
+                              <!-- end tabs -->
                            </div>
+                           <!-- start sidebar -->
+                           <div class="left_sidebar">
+                              <div class="sellers">
+                                 <h4>Promo Lain</h4>
+                                 <div class="single-nav">
+                                    <ul>
+                                       <?php foreach($promolain as $pl):
+                                          //hitung sisa promo
+                                          $today = date_create(date('Y-m-d'));
+                                          $last = date_create(date('Y-m-d', strtotime($pl['habisPromo'])));
+                                          $diff=date_diff($today,$last);
+                                          $diff = $diff->format("%r%a");
+                                          ?>
+                                          <li>
+                                             <a href="<?php echo site_url('produk/v/'.$pl['idItem'].'/'.strtolower(str_replace(' ','-',$pl['Judul'])));?>"><?php echo $pl['Judul'];?></a>
+                                             <p class="small-discon">Diskon <?php echo $pl['diskon']?>% s/d <?php echo $diff;?> hari</p>
+                                          </li>
+                                       <?php endforeach;?>
+                                    </ul>
+                                 </div>
+                                 <h4>Promo Toko Lain</h4>
+                                 <div class="single-nav">
+                                    <ul>
+                                       <?php foreach($promotokolain as $pl):
+                                          //hitung sisa promo
+                                          $today = date_create(date('Y-m-d'));
+                                          $last = date_create(date('Y-m-d', strtotime($pl['habisPromo'])));
+                                          $diff=date_diff($today,$last);
+                                          $diff = $diff->format("%r%a");
+                                          ?>
+                                          <li>
+                                             <a href="<?php echo site_url('produk/v/'.$pl['idItem'].'/'.strtolower(str_replace(' ','-',$pl['Judul'])));?>"><?php echo $pl['Judul'];?></a>
+                                             <p class="small-discon">Diskon <?php echo $pl['diskon']?>% s/d <?php echo $diff;?> hari</p>
+                                          </li>
+                                       <?php endforeach;?>
+                                    </ul>
+                                 </div>
+                                 <div class="banner-wrap bottom_banner color_link">
+                                    <a href="#" class="main_link">
+                                       <figure><img src="<?php echo base_url('resource');?>/images/delivery.png" alt=""></figure>
+                                       <h5><span>Free Shipping</span><br> on orders over $99.</h5><p>This offer is valid on all our store items.</p></a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- end sidebar -->
+                              <div class="clear"></div>
+                           </div>
+                           <!-- end content -->
                         </div>
                      </div>
-                     <!-- start footer -->
-                     <div class="footer_bg">
-                        <div class="wrap">
-                           <div class="footer">
-                              <!-- start grids_of_4 -->
-                              <div class="grids_of_4">
-                                 <div class="grid1_of_4">
-                                    <h4>featured sale</h4>
-                                    <ul class="f_nav">
-                                       <li><a href="#">alexis Hudson</a></li>
-                                       <li><a href="#">american apparel</a></li>
-                                       <li><a href="#">ben sherman</a></li>
-                                       <li><a href="#">big buddha</a></li>
-                                       <li><a href="#">channel</a></li>
-                                       <li><a href="#">christian audigier</a></li>
-                                       <li><a href="#">coach</a></li>
-                                       <li><a href="#">cole haan</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="grid1_of_4">
-                                    <h4>mens store</h4>
-                                    <ul class="f_nav">
-                                       <li><a href="#">alexis Hudson</a></li>
-                                       <li><a href="#">american apparel</a></li>
-                                       <li><a href="#">ben sherman</a></li>
-                                       <li><a href="#">big buddha</a></li>
-                                       <li><a href="#">channel</a></li>
-                                       <li><a href="#">christian audigier</a></li>
-                                       <li><a href="#">coach</a></li>
-                                       <li><a href="#">cole haan</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="grid1_of_4">
-                                    <h4>women store</h4>
-                                    <ul class="f_nav">
-                                       <li><a href="#">alexis Hudson</a></li>
-                                       <li><a href="#">american apparel</a></li>
-                                       <li><a href="#">ben sherman</a></li>
-                                       <li><a href="#">big buddha</a></li>
-                                       <li><a href="#">channel</a></li>
-                                       <li><a href="#">christian audigier</a></li>
-                                       <li><a href="#">coach</a></li>
-                                       <li><a href="#">cole haan</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="grid1_of_4">
-                                    <h4>quick links</h4>
-                                    <ul class="f_nav">
-                                       <li><a href="#">alexis Hudson</a></li>
-                                       <li><a href="#">american apparel</a></li>
-                                       <li><a href="#">ben sherman</a></li>
-                                       <li><a href="#">big buddha</a></li>
-                                       <li><a href="#">channel</a></li>
-                                       <li><a href="#">christian audigier</a></li>
-                                       <li><a href="#">coach</a></li>
-                                       <li><a href="#">cole haan</a></li>
-                                    </ul>
-                                 </div>
-                                 <div class="clear"></div>
+                  </div>
+                  <!-- start footer -->
+                  <div class="footer_bg">
+                     <div class="wrap">
+                        <div class="footer">
+                           <!-- start grids_of_4 -->
+                           <div class="grids_of_4">
+                              <div class="grid1_of_4">
+                                 <h4>featured sale</h4>
+                                 <ul class="f_nav">
+                                    <li><a href="#">alexis Hudson</a></li>
+                                    <li><a href="#">american apparel</a></li>
+                                    <li><a href="#">ben sherman</a></li>
+                                    <li><a href="#">big buddha</a></li>
+                                    <li><a href="#">channel</a></li>
+                                    <li><a href="#">christian audigier</a></li>
+                                    <li><a href="#">coach</a></li>
+                                    <li><a href="#">cole haan</a></li>
+                                 </ul>
                               </div>
-                           </div>
-                        </div>
-                     </div>
-                     <!-- start footer -->
-                     <div class="footer_bg1">
-                        <div class="wrap">
-                           <div class="footer">
-                              <!-- scroll_top_btn -->
-                              <script type="text/javascript">
-                              $(document).ready(function() {
-                                 var defaults = {
-                                    containerID: 'toTop', // fading element id
-                                    containerHoverID: 'toTopHover', // fading element hover id
-                                    scrollSpeed: 1200,
-                                    easingType: 'linear'
-                                 };
-                                 $().UItoTop({ easingType: 'easeOutQuart' });
-                              });
-                              </script>
-                              <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
-                              <!--end scroll_top_btn -->
-                              <div class="copy">
-                                 <p class="link">&copy;  All rights reserved | Template by&nbsp;&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></p>
+                              <div class="grid1_of_4">
+                                 <h4>mens store</h4>
+                                 <ul class="f_nav">
+                                    <li><a href="#">alexis Hudson</a></li>
+                                    <li><a href="#">american apparel</a></li>
+                                    <li><a href="#">ben sherman</a></li>
+                                    <li><a href="#">big buddha</a></li>
+                                    <li><a href="#">channel</a></li>
+                                    <li><a href="#">christian audigier</a></li>
+                                    <li><a href="#">coach</a></li>
+                                    <li><a href="#">cole haan</a></li>
+                                 </ul>
+                              </div>
+                              <div class="grid1_of_4">
+                                 <h4>women store</h4>
+                                 <ul class="f_nav">
+                                    <li><a href="#">alexis Hudson</a></li>
+                                    <li><a href="#">american apparel</a></li>
+                                    <li><a href="#">ben sherman</a></li>
+                                    <li><a href="#">big buddha</a></li>
+                                    <li><a href="#">channel</a></li>
+                                    <li><a href="#">christian audigier</a></li>
+                                    <li><a href="#">coach</a></li>
+                                    <li><a href="#">cole haan</a></li>
+                                 </ul>
+                              </div>
+                              <div class="grid1_of_4">
+                                 <h4>quick links</h4>
+                                 <ul class="f_nav">
+                                    <li><a href="#">alexis Hudson</a></li>
+                                    <li><a href="#">american apparel</a></li>
+                                    <li><a href="#">ben sherman</a></li>
+                                    <li><a href="#">big buddha</a></li>
+                                    <li><a href="#">channel</a></li>
+                                    <li><a href="#">christian audigier</a></li>
+                                    <li><a href="#">coach</a></li>
+                                    <li><a href="#">cole haan</a></li>
+                                 </ul>
                               </div>
                               <div class="clear"></div>
                            </div>
                         </div>
                      </div>
-                  </body>
-                  </html>
+                  </div>
+                  <!-- start footer -->
+                  <div class="footer_bg1">
+                     <div class="wrap">
+                        <div class="footer">
+                           <!-- scroll_top_btn -->
+                           <script type="text/javascript">
+                           $(document).ready(function() {
+                              var defaults = {
+                                 containerID: 'toTop', // fading element id
+                                 containerHoverID: 'toTopHover', // fading element hover id
+                                 scrollSpeed: 1200,
+                                 easingType: 'linear'
+                              };
+                              $().UItoTop({ easingType: 'easeOutQuart' });
+                           });
+                           </script>
+                           <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+                           <!--end scroll_top_btn -->
+                           <div class="copy">
+                              <p class="link">&copy;  All rights reserved | Template by&nbsp;&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></p>
+                           </div>
+                           <div class="clear"></div>
+                        </div>
+                     </div>
+                  </div>
+               </body>
+               </html>

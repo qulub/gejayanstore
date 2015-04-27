@@ -8,15 +8,23 @@
 <script type="text/javascript" src="<?php echo base_url('resource');?>/js/productviewgallery.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function($) {
-        $(".scroll").click(function(event){     
+        $(".scroll").click(function(event){
             event.preventDefault();
             $('html,body').animate({scrollTop:$(this.hash).offset().top},1200);
         });
+        alert('yus');
+        addViews();
     });
+
+    function addViews()
+    {
+      var $id = '<?php echo $this->uri->segment(3);?>';
+      alert($id);
+   }
 </script>
 <!-- start main -->
 <div class="main_bg">
-	<div class="wrap">	
+	<div class="wrap">
 		<div class="main">
 			<!-- start content -->
 			<div class="single">
@@ -32,7 +40,7 @@
 											<ul>
 												<li>
 													<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-														<img src="" src_main=""  title="" alt="" /></a>            
+														<img src="" src_main=""  title="" alt="" /></a>
 													</li>
 													<li>
 														<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
@@ -40,11 +48,11 @@
 														</li>
 														<li>
 															<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-																<img src="" src_main=""  title="" alt="" /></a> 
+																<img src="" src_main=""  title="" alt="" /></a>
 															</li>
 															<li>
 																<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
-																	<img src="" src_main="" title="" alt="" /></a>  
+																	<img src="" src_main="" title="" alt="" /></a>
 																</li>
 																<li>
 																	<a class="cs-fancybox-thumbs" data-fancybox-group="thumb" style="width:64px;height:85px;" href=""  title="" alt="">
@@ -53,7 +61,7 @@
 																</ul>
 															</div>
 														</div>
-														<div class="product-image"> 
+														<div class="product-image">
 															<a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="images/0001-2.jpg" title="Women Shorts" alt="Women Shorts">
 																<img src="<?php echo base_url('resource');?>/images/0001-2.jpg" alt="Women Shorts" title="Women Shorts" />
 															</a>
@@ -68,11 +76,11 @@
 															jQblvg(document).ready(function() {
 																galleryObj[1] = new prodViewGalleryForm(prodGallery, 'prod_1', gallery_elmnt, gallery_conf, '.product-image', '.more-views', 'http:');
 																jQblvg('.product-image .cs-fancybox-thumbs').absoluteClick();
-																jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect : 'none', 
+																jQblvg('.cs-fancybox-thumbs').fancybox({ prevEffect : 'none',
 																	nextEffect : 'none',
 																	closeBtn : true,
 																	arrows : true,
-																	nextClick : true, 
+																	nextClick : true,
 																	helpers: {
 																		thumbs : {
 																			width: 64,
@@ -192,7 +200,7 @@
 														<li><a href="#">The standard chunk of Lorem Ipsum</a></li>
 														<li><a href="#">Always free from repetition</a></li>
 														<li><a href="#">Always free from repetition</a></li>
-														<li><a href="#">Always free from repetition</a></li>			                    
+														<li><a href="#">Always free from repetition</a></li>
 													</ul>
 												</div>
 												<div class="banner-wrap bottom_banner color_link">
@@ -215,7 +223,7 @@
 											</div>
 											<!-- end sidebar -->
 											<div class="clear"></div>
-										</div>	
+										</div>
 										<!-- end content -->
 									</div>
 								</div>

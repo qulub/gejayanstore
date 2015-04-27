@@ -520,6 +520,11 @@ body {
 	width: 21.333%;
 	margin-left: 4.3333%;
 }
+.grid1_of_6{
+	float: left;
+	width: 45.333%;
+	margin-left: 4.3333%;
+}
 .grid1_of_4:first-child{
 	margin-left: 0;
 }
@@ -885,7 +890,7 @@ p.para{
 	font-family: 'bebas_neueregular';
 	color:#555555;
 	font-size:2em;
-	margin-bottom: 10px;
+	/* margin-bottom: 10px; */
 }
 .desc1 h5{
 	margin-top: 2%;
@@ -1290,15 +1295,20 @@ p.para{
 .block-title{padding:5px;color: #3CC395;font-size: 2em;border-bottom: 2px solid #3CC395;}
 .bold{font-weight: bold;}
 .list-item h3{height:70px;overflow:hidden}
-.list-item h2,.toko-item h2,.toko-item h3{color:rgb(64, 196, 178);}
+.list-item h2,.toko-item h2,.toko-item h3{color:rgb(64, 196, 178);font-size: 25px;}
 striped.discon{color:#C8335A;}
+.small-discon{color:#C8335A;padding: 0px 20px 10px 20px;}
 striped.strip{color:#C7C7C7;text-decoration:line-through}
 .toko-item h3{height:30px;overflow:hidden}
 /*toko*/
 .toko-title{color:#fff;}
 .toko-title h2{font-size: 40px;padding:20px;}
 .note{width:400px;margin:0 auto;background-color:softgray;border:1px rgb(221, 71, 71) solid;padding:10px;font-size:30px;color:rgb(221, 71, 71)}
+.item-image{width:100%;height:270px;background-size:contain;background-position:center;background-repeat:no-repeat}
 /* end tabs */
+/*kategori*/
+.list-mainkat{height:400px;}
+.list-mainkat .active a{color:#C8335A}
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
 	.wrap{

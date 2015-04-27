@@ -36,7 +36,9 @@ class Produk extends Base {
 			'title'=>$produk['judul'],
 			'view'=>$produk,
 			'toko'=>$toko,
-			'sisa'=>$itemro
+			'sisa'=>$itemro,
+			'promolain'=>$this->m_produk->othersPromo($produk['idToko'],true),
+			'promotokolain'=>$this->m_produk->othersPromo($produk['idToko'],false)
 		);
 		$this->load->view('yussan-templategejayan/produk',$Data);
 		//end of single

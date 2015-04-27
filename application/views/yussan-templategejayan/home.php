@@ -20,7 +20,7 @@
                             $gambar = $this->M_produk->getGambarProduk($lp['idItem']);
                             $gambar = $gambar['gambar'];
                             ?>
-                            <div style="width:100%;height:270px;background-image:url('<?php echo base_url('resource/images/produk/'.date('m-Y',strtotime($lp['tglPost'])).'/'.$gambar)?>');background-size:cover"></div>
+                            <div class="item-image" style="background-image:url('<?php echo base_url('resource/images/produk/'.date('m-Y',strtotime($lp['tglPost'])).'/'.$gambar)?>');"></div>
                             <h3><?php echo $lp['judul']?></h3>
                             <a href="<?php echo site_url('toko/v/'.$lp['idToko'].'/'.str_replace(' ', '-',strtolower($lp['toko'])))?>"><h2><?php echo $lp['toko']?> - update : <?php echo date('d/m/Y',strtotime($lp['tglEdit']));?></h2></a>
                             <div class="price">
@@ -66,11 +66,7 @@
                     <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
                         <img src="<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>" alt="" />
                         <center><h3><?php echo $lt['namaToko']?></h3></center>
-                        <!-- <h2><?php echo $lt['alamatToko']?> - update : <?php echo date('d/m/Y',strtotime($lt['alamatToko']))?>
-                        <br/>Buka <?php echo $lt['jamBuka'];?> - <?php echo $lt['jamTutup'];?> | Libur </h2>
-                        <br/> -->
-                        <span class="b_btm"></span>
-                    </a>
+                     </a>
                 </div>
                 <?php endforeach;?>
                 <div class="clear"></div>
