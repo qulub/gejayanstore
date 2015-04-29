@@ -79,19 +79,25 @@ $mainpic = $location.'/'.$picture['gambar'];
             <div class="logo">
                <a href="<?php echo site_url();?>"><img src="<?php echo base_url('resource');?>/images/logo.png" alt=""/> </a>
             </div>
-            <div class="h_icon">
-               <ul class="icon1 sub-icon1">
-                  <li><a class="active-icon c1" href="#"><i>$300</i></a>
+            <div style="width:auto" class="h_icon">
+               <ul class="icon1">
+                  <li class="sub-icon1" style="margin-right:5px"><a class="tambahtoko" href="<?php echo site_url('register/toko')?>">Tambah Toko</a>
                      <ul class="sub-icon1 list">
-                        <li><h3>shopping cart empty</h3><a href=""></a></li>
-                        <li><p>if items in your wishlit are missing, <a href="contact.html">contact us</a> to view them</p></li>
+                        <li><h3>Punya Toko Di Jalan Gejayan</h3><a href=""></a></li>
+                        <li><p>cukup dengan mengikuti....</p></li>
+                     </ul>
+                  </li>
+                  <li class="sub-icon1"><a class="tambahtoko" href="#">Login</a>
+                     <ul class="sub-icon1 list">
+                        <li><h3>Login</li>
+                        <li><p>klik untuk login sebagai pemilik toko atau pelanggan</p></li>
                      </ul>
                   </li>
                </ul>
             </div>
             <div class="h_search">
-               <form>
-                  <input type="text" value="">
+               <form action="<?php echo site_url('produk/cari')?>">
+                  <input name="q" type="text" value="<?php if(!empty($carion)){echo str_replace('-',' ',$this->uri->segment(3));}?>">
                   <input type="submit" value="">
                </form>
             </div>
@@ -223,7 +229,8 @@ $mainpic = $location.'/'.$picture['gambar'];
                               <div class="span1_of_1_des">
                                  <div class="desc1">
                                     <h3><?php echo $view['judul'];?> </h3>
-                                    <small style="font-size:9px"><?php echo $view['views'];?> views</small>
+                                    <small style="font-size:9px">Posted : <?php echo $view['tglPost'];?> | Update : <?php echo $view['tglEdit'];?> | <?php echo $view['views'];?> views</small>
+                                    <hr/ style="border:1px solid 1px">
                                     <p><?php echo nl2br($view['deskripsi']);?></p>
                                     <h5>
                                        <striped class="discon">Diskon <?php echo $view['diskon']?>%

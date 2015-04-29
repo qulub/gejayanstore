@@ -1,3 +1,4 @@
+<?php $this->load->view('yussan-templategejayan/bases/popular')?>
 <!-- produk terbaru -->
 <div class="main_bg1">
 	<div class="wrap toko-title">

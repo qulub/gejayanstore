@@ -52,6 +52,26 @@ public function promoHabis($note="")
 	'title'=>'Masa Promo Habis',
 	'note'=>$note
 );
-	$this->basePublicView('customnote',$data);
+$this->basePublicView('customnote',$data);
+}
+//cari produk
+public function cari()
+{
+	if(!empty($_GET['q']))
+	{
+		$keyword = str_replace(' ','-',$_GET['q']);
+		redirect(site_url('produk/cari/'.$keyword));
+	}else //after redirect
+	{
+		$keyword = str_replace('-',' ',$this->uri->segment(3));
+		$Data = array
+		(
+		'carion'=>TRUE,
+		'title'=>'Hasil Pencarian '.$keyword,
+		'listproduk'=>$this->M_produk->cariPromo($keyword,10,0),
+		);
+		//view
+		$this->basePublicView('promo/pencarian',$Data);
+	}
 }
 }

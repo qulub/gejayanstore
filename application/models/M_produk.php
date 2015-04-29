@@ -29,6 +29,31 @@ class M_produk extends CI_Model
 		if($query->row_array()>0){return $query->result_array();}
 		else{return array();}
 	}
+	//cari produk
+	public function cariPromo($keyword,$limit,$offset)
+	{
+		//pecah keyword
+		$keywordArray = explode(' ',$keyword);
+		$totalArray = count($keywordArray);
+		$searchSql = "";
+		for($i=0;$i<$totalArray;$i++){
+			$searchSql = $searchSql."item.judul LIKE '%".$keywordArray[$i]."%' OR ";
+		}
+		//search algorhtym
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		SubKategoriItem.namaSubKategori AS 'subkategori',
+		kategoriItem.namaKategori AS 'kategori',
+		toko.namaToko as 'toko'
+		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
+		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
+		INNER JOIN toko ON toko.idToko = item.idToko
+		WHERE ".$searchSql." item.deskripsi LIKE '%".$keyword."%'
+		ORDER BY item.tglPost DESC
+		LIMIT $offset,$limit";
+		$query=$this->db->query($sql);
+		if($query->row_array()>0){return $query->result_array();}
+		else{return array();}
+	}
 	//list prduk toko
 	public function listProdukToko($limit,$offset,$idtoko)
 	{
@@ -41,6 +66,23 @@ class M_produk extends CI_Model
 		INNER JOIN toko ON toko.idToko = item.idToko
 		WHERE item.idToko = $idtoko
 		ORDER BY item.tglPost DESC
+		LIMIT $offset,$limit";
+		$query=$this->db->query($sql);
+		if($query->row_array()>0){return $query->result_array();}
+		else{return array();}
+	}
+	//popular produk
+	public function popularProduk($limit,$offset)
+	{
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		SubKategoriItem.namaSubKategori AS 'subkategori',
+		kategoriItem.namaKategori AS 'kategori',
+		toko.namaToko as 'toko'
+		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
+		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
+		INNER JOIN toko ON toko.idToko = item.idToko
+		WHERE item.habisPromo >= CURDATE()
+		ORDER BY item.views DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
 		if($query->row_array()>0){return $query->result_array();}

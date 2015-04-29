@@ -3,6 +3,7 @@
       <?php if(!empty($script))echo $script;?>
    });
 </script>
+<?php $this->load->view('yussan-templategejayan/bases/popular')?>
 <div class="main_bg">
    <div class="wrap">
       <div class="main">
