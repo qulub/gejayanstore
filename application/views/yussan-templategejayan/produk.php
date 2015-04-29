@@ -357,66 +357,55 @@ $mainpic = $location.'/'.$picture['gambar'];
                   </div>
                   <!-- start footer -->
                   <div class="footer_bg">
-                     <div class="wrap">
-                        <div class="footer">
-                           <!-- start grids_of_4 -->
-                           <div class="grids_of_4">
-                              <div class="grid1_of_4">
-                                 <h4>featured sale</h4>
-                                 <ul class="f_nav">
-                                    <li><a href="#">alexis Hudson</a></li>
-                                    <li><a href="#">american apparel</a></li>
-                                    <li><a href="#">ben sherman</a></li>
-                                    <li><a href="#">big buddha</a></li>
-                                    <li><a href="#">channel</a></li>
-                                    <li><a href="#">christian audigier</a></li>
-                                    <li><a href="#">coach</a></li>
-                                    <li><a href="#">cole haan</a></li>
-                                 </ul>
+                      <div class="wrap">
+                          <div class="footer">
+                              <!-- start grids_of_4 -->
+                              <div style="height:20px" class="grids_of_12">
+                                 <div class="grid1_of_4">
+                                    <h4>Kategori Produk</h4>
+                                 </div>
                               </div>
-                              <div class="grid1_of_4">
-                                 <h4>mens store</h4>
-                                 <ul class="f_nav">
-                                    <li><a href="#">alexis Hudson</a></li>
-                                    <li><a href="#">american apparel</a></li>
-                                    <li><a href="#">ben sherman</a></li>
-                                    <li><a href="#">big buddha</a></li>
-                                    <li><a href="#">channel</a></li>
-                                    <li><a href="#">christian audigier</a></li>
-                                    <li><a href="#">coach</a></li>
-                                    <li><a href="#">cole haan</a></li>
-                                 </ul>
+                              <div class="grids_of_4">
+                                  <div class="grid1_of_4">
+                                      <ul class="f_nav">
+                                          <?php $kat1 = $this->M_produk->showProduk(7,0);?>
+                                          <?php foreach($kat1 as $k1):?>
+                                          <li><a href="<?php echo site_url('produk/kategori/'.str_replace(' ','-',$k1['namaKategori']))?>"><?php echo $k1['namaKategori']?></a></li>
+                                       <?php endforeach;?>
+                                      </ul>
+                                  </div>
+                                  <div class="grid1_of_4">
+                                     <ul class="f_nav">
+                                         <?php $kat2 = $this->M_produk->showProduk(7,8);?>
+                                         <?php foreach($kat2 as $k2):?>
+                                         <li><a href="<?php echo site_url('produk/kategori/'.str_replace(' ','-',$k2['namaKategori']))?>"><?php echo $k2['namaKategori']?></a></li>
+                                      <?php endforeach;?>
+                                     </ul>
+                                  </div>
+                                  <div class="grid1_of_4">
+                                     <ul class="f_nav">
+                                         <?php $kat3 = $this->M_produk->showProduk(7,15);?>
+                                         <?php foreach($kat3 as $k3):?>
+                                         <li><a href="<?php echo site_url('produk/kategori/'.str_replace(' ','-',$k3['namaKategori']))?>"><?php echo $k3['namaKategori']?></a></li>
+                                      <?php endforeach;?>
+                                     </ul>
+                                  </div>
+                                  <div class="grid1_of_4">
+                                      <ul class="f_nav">
+                                          <li><a href="">alexis Hudson</a></li>
+                                          <li><a href="">american apparel</a></li>
+                                          <li><a href="">ben sherman</a></li>
+                                          <li><a href="">big buddha</a></li>
+                                          <li><a href="">channel</a></li>
+                                          <li><a href="">christian audigier</a></li>
+                                          <li><a href="">coach</a></li>
+                                          <li><a href="">cole haan</a></li>
+                                      </ul>
+                                  </div>
+                                  <div class="clear"></div>
                               </div>
-                              <div class="grid1_of_4">
-                                 <h4>women store</h4>
-                                 <ul class="f_nav">
-                                    <li><a href="#">alexis Hudson</a></li>
-                                    <li><a href="#">american apparel</a></li>
-                                    <li><a href="#">ben sherman</a></li>
-                                    <li><a href="#">big buddha</a></li>
-                                    <li><a href="#">channel</a></li>
-                                    <li><a href="#">christian audigier</a></li>
-                                    <li><a href="#">coach</a></li>
-                                    <li><a href="#">cole haan</a></li>
-                                 </ul>
-                              </div>
-                              <div class="grid1_of_4">
-                                 <h4>quick links</h4>
-                                 <ul class="f_nav">
-                                    <li><a href="#">alexis Hudson</a></li>
-                                    <li><a href="#">american apparel</a></li>
-                                    <li><a href="#">ben sherman</a></li>
-                                    <li><a href="#">big buddha</a></li>
-                                    <li><a href="#">channel</a></li>
-                                    <li><a href="#">christian audigier</a></li>
-                                    <li><a href="#">coach</a></li>
-                                    <li><a href="#">cole haan</a></li>
-                                 </ul>
-                              </div>
-                              <div class="clear"></div>
-                           </div>
-                        </div>
-                     </div>
+                          </div>
+                      </div>
                   </div>
                   <!-- start footer -->
                   <div class="footer_bg1">

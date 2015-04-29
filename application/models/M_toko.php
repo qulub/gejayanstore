@@ -1,4 +1,4 @@
-<?php 
+<?php
 class M_toko extends CI_Model
 {
 	public function __construct()
@@ -13,6 +13,13 @@ class M_toko extends CI_Model
 		$this->db->limit($limit,$offset);//limit offset
 		$query = $this->db->get('toko');
 		return $query->result_array();
+	}
+	//count toko
+	public function countToko()
+	{
+		$this->db->order_by('updatedata','DESC');
+		$query = $this->db->get('toko');
+		return $query->num_rows();
 	}
 	//detail toko
 	public function detailToko($idtoko)

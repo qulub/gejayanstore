@@ -6,7 +6,7 @@ class M_produk extends CI_Model
 		parent::__construct();
 		//Do your magic here
 	}
-	//show all categori
+	//show all active produk
 	public function showProduk($limit,$offset)
 	{
 		$this->db->limit($limit,$offset);
@@ -23,11 +23,27 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
+		WHERE item.habisPromo >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
 		if($query->row_array()>0){return $query->result_array();}
 		else{return array();}
+	}
+	//count produk
+	public function countProduk()
+	{
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		SubKategoriItem.namaSubKategori AS 'subkategori',
+		kategoriItem.namaKategori AS 'kategori',
+		toko.namaToko as 'toko'
+		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
+		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
+		INNER JOIN toko ON toko.idToko = item.idToko
+		WHERE item.habisPromo >= CURDATE()
+		ORDER BY item.tglPost DESC";
+		$query=$this->db->query($sql);
+		return $query->num_rows();
 	}
 	//cari produk
 	public function cariPromo($keyword,$limit,$offset)
@@ -47,7 +63,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE ".$searchSql." item.deskripsi LIKE '%".$keyword."%'
+		WHERE ".$searchSql." item.deskripsi LIKE '%".$keyword."%' AND item.habisPromo >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
