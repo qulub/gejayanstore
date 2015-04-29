@@ -30,6 +30,23 @@ class M_produk extends CI_Model
 		if($query->row_array()>0){return $query->result_array();}
 		else{return array();}
 	}
+	//list prduk by main kategori
+	public function listProdukByMainKat($mainkat,$limit,$offset)
+	{
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		SubKategoriItem.namaSubKategori AS 'subkategori',
+		kategoriItem.namaKategori AS 'kategori',
+		toko.namaToko as 'toko'
+		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
+		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
+		INNER JOIN toko ON toko.idToko = item.idToko
+		WHERE item.habisPromo >= CURDATE()AND kategoriItem.namaKategori = '$mainkat'
+		ORDER BY item.tglPost DESC
+		LIMIT $offset,$limit";
+		$query=$this->db->query($sql);
+		if($query->row_array()>0){return $query->result_array();}
+		else{return array();}
+	}
 	//count produk
 	public function countProduk()
 	{

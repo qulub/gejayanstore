@@ -4,7 +4,7 @@
 <div class="main_bg1">
     <div class="wrap">
         <div class="main1">
-            <h2>Semua Promo</h2>
+            <h2><?php echo $title;?></h2>
         </div>
     </div>
 </div>
@@ -13,6 +13,7 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
+                <?php if(empty($view))echo 'Promo Tidak Ditemukan';?>
                 <?php foreach($view as $lp):?>
                     <div class="list-item grid1_of_3">
                         <a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>">

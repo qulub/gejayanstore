@@ -42,24 +42,25 @@ class Produk extends Base {
 	public function kategori()
 	{
 		$this->load->library('pagination');
+		$kategori = str_replace('-',' ',$this->uri->segment(3));
 		//start pagination
 		$Config = array(
 			'base_url'=>site_url('produk/semua'),
 			'total_rows'=>$this->M_produk->countProduk(),//total active produk
 			'per_page'=>12,
-			'uri_segment'=>3,
+			'uri_segment'=>4,
 			'num_link'=>9,
 		);
-		$Uri = $this->uri->segment(3);
+		$Uri = $this->uri->segment(4);
 		if(!$Uri)$Uri=0;
 		$link = $this->pagination->create_links();
 		if(!$link)$link=1;
 		$this->pagination->initialize($Config);
 		//end of pagination
 		$Data = array(
-			'title'=>'Semua Promo',
+			'title'=>'Kategori : '.$kategori,
 			'link'=>$link,
-			'view'=>$this->M_produk->listProduk($Config['per_page'],$Uri)
+			'view'=>$this->M_produk->listProdukByMainKat($kategori,$Config['per_page'],$Uri)
 		);
 		return $this->basePublicView('promo/semuaPromo',$Data);
 	}
