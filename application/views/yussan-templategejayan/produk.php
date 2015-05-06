@@ -116,6 +116,7 @@ $mainpic = $location.'/'.$picture['gambar'];
                   foreach($categories as $c):?>
                   <li><a href="sale.html"><?php echo $c['namaKategori']?></a></li> |
                <?php endforeach;?>
+               <li class="active"><a href="<?php echo site_url('kategori');?>">Semua</a></li>
             </ul>
          </div>
          <div class="top-nav">

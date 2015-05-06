@@ -4,24 +4,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Base extends CI_Controller
 {
 	private $TemplateDir;
+	private $AdminTemplateDir;
 	//construct
 	public function __construct()
 	{
 		parent::__construct();
 		$this->TemplateDir = 'yussan-templategejayan';
+		$this->AdminTemplateDir = 'admin-gs-1';
 	}
-	//base view untuk user biasa
-	function basePublicView($ChildView='',$Data='' )
+	//base view untuk public
+	function basepublicView($ChildView='',$Data='' )
 	{
 		$Data['ChildView'] = $ChildView;
 		$this->load->view($this->TemplateDir.'/bases/BaseView', $Data);
 	}
-	//base view untuk super user
-	function baseSuperViews()
+	//base view untuk Admin
+	function baseAdminView($ChildView='',$Data='' )
 	{
-		$TemplateDir = 'yussan-templatefatho/manage';//view template root directort
 		$Data['ChildView'] = $ChildView;
-		$this->load->view($this->TemplateDir.'/bases/BaseView', $Data);
+		$this->load->view($this->AdminTemplateDir.'/bases/BaseView', $Data);
 	}
 	//get main picture
 	function getMainPicture($iditem)

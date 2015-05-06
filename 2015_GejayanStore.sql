@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2015 at 06:51 
+-- Generation Time: May 06, 2015 at 06:18 
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `gambar` (
 `idGambar` int(11) NOT NULL,
   `idItem` int(11) NOT NULL,
   `gambar` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gambar`
@@ -81,7 +81,8 @@ CREATE TABLE IF NOT EXISTS `gambar` (
 INSERT INTO `gambar` (`idGambar`, `idItem`, `gambar`) VALUES
 (1, 1, 'jewerly1.jpg'),
 (2, 1, 'jewerly2.jpg'),
-(3, 1, 'jewerly3.jpg');
+(3, 1, 'jewerly3.jpg'),
+(4, 2, 'silverring.jpg');
 
 -- --------------------------------------------------------
 
@@ -101,14 +102,15 @@ CREATE TABLE IF NOT EXISTS `item` (
   `harga` int(11) NOT NULL,
   `diskon` float NOT NULL,
   `views` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `item`
 --
 
 INSERT INTO `item` (`idItem`, `tglPost`, `tglEdit`, `habisPromo`, `Judul`, `Deskripsi`, `idToko`, `idSubKategori`, `harga`, `diskon`, `views`) VALUES
-(1, '2015-04-14 03:29:00', '2015-04-22 15:31:46', '2015-05-01 00:00:00', 'Berlian Safir Merak Perak', 'Berlian Safir Merak Perak yang pernah digunakan oleh artis Hollywood Bellian Morgan', 1, 5, 24000000, 0.5, 234);
+(1, '2015-04-14 03:29:00', '2015-04-30 07:06:10', '2015-05-09 00:00:00', 'Berlian Safir Merak Perak', 'Berlian Safir Merak Perak yang pernah digunakan oleh artis Hollywood Bellian Morgan', 1, 5, 24000000, 0.5, 275),
+(2, '2015-04-27 00:00:00', '2015-04-30 07:02:11', '2015-05-15 00:00:00', 'Silver Ring ala Lady Diana', 'Model yang sama digunaksan oleh Lady Diana ketika dilamar oleh Princcess Harry. Kini bisa didapatkan di Toko Yus dengan harga yang sangat Miring.\r\n\r\nBarang yang kemi jual adalah 100 terbuat dari berlian safir Africa.', 1, 5, 4000000, 12, 23);
 
 -- --------------------------------------------------------
 
@@ -201,6 +203,7 @@ INSERT INTO `SubKategoriItem` (`idSubKategori`, `idKategoriItem`, `namaSubKatego
 CREATE TABLE IF NOT EXISTS `toko` (
 `idToko` int(11) NOT NULL,
   `idPemilik` int(11) NOT NULL,
+  `habisMasa` datetime NOT NULL,
   `namaToko` varchar(100) NOT NULL,
   `alamatToko` varchar(500) NOT NULL,
   `koordinat` varchar(500) NOT NULL,
@@ -209,6 +212,7 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `jamTutup` time NOT NULL,
   `telp` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `tentangToko` text NOT NULL,
   `updateData` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
@@ -216,8 +220,8 @@ CREATE TABLE IF NOT EXISTS `toko` (
 -- Dumping data for table `toko`
 --
 
-INSERT INTO `toko` (`idToko`, `idPemilik`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `email`, `updateData`) VALUES
-(1, 1, 'Yussan Luxury', 'Jl Gejayan 23A', '', 'jwerly.png', '08:00:00', '22:00:00', '085645777298', 'yussan@kompetisiindonesia.com', '2015-04-12 00:00:00');
+INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `email`, `tentangToko`, `updateData`) VALUES
+(1, 1, '2015-05-02 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', 'jwerly.png', '08:00:00', '22:00:00', '085645777298', 'yussan@kompetisiindonesia.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -319,12 +323,12 @@ MODIFY `idDiskusi` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `gambar`
 --
 ALTER TABLE `gambar`
-MODIFY `idGambar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `idGambar` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `kategoriItem`
 --
