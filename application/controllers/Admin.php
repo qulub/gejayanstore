@@ -8,7 +8,7 @@ class Admin extends Base {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('M_admin','M_penjual'));
+		$this->load->model(array('M_admin','M_penjual','M_toko','M_produk'));
 		//is admin lgged in
 		$session = $this->adminLoggedIn();
 		if($session==FALSE && $this->uri->uri_string() != 'admin'){redirect(site_url('admin'));}
@@ -73,7 +73,7 @@ class Admin extends Base {
 		//do search
 		if(!empty($_GET['q']))
 		{
-			redirect(site_url('admin/penjual/'.str_replace(' ','-',$_GET['q'])));
+			redirect(site_url('admin/penjual/search/'.str_replace(' ','-',$_GET['q'])));
 		}
 		///pagination setup
 		$this->load->library('pagination');
@@ -117,7 +117,8 @@ class Admin extends Base {
 		'count'=>$CountPenjual,
 		'view'=>$Penjual,
 		'link'=>$this->pagination->create_links(),
-		'script'=>$Script
+		'script'=>$Script,
+		'action'=>site_url('admin/penjual'),
 	);
 	$this->baseAdminView('penjual/list',$Data);
 }
@@ -134,13 +135,24 @@ public function actionpenjual()
 			$this->db->where('idPemilik',$penjual['idPemilik']);
 			$data = array('status'=>$status);
 			$this->db->update('pemilikToko',$data);
+			return redirect($this->agent->referrer());
 			break;
-
+		case 'manage'://detail penjual
+			$Idpenjual = $this->uri->segment(4);
+			$Penjual = $this->M_penjual->detPenjual($Idpenjual);
+			$Data = array
+			(
+				'title'=>$Penjual['namaPemilik'],
+				'penjual'=>$Penjual,
+				'toko'=>$this->M_toko->detailToko($Penjual['idToko']),
+				'promosi'=>$this->M_produk->listProdukToko(100,0,$Penjual['idToko']),
+			);
+			return $this->baseAdminView('penjual/manage',$Data);
+			break;
 		default:
 			# code...
 			break;
 	}
-	return redirect($this->agent->referrer());
 }
 //manajemen toko
 public function toko()

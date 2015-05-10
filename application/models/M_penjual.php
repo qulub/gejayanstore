@@ -18,7 +18,8 @@ class M_penjual extends CI_Model
 	//get detail penjual
 	public function detPenjual($idpenjual)
 	{
-		$this->db->where('idPemilik',$idpenjual);
+		$this->db->where('pemilikToko.idPemilik',$idpenjual);
+		$this->db->join('toko','toko.idPemilik=pemilikToko.IdPemilik');
 		return $this->db->get('pemilikToko')->row_array();
 	}
 }
