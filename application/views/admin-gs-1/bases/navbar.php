@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+        <a class="navbar-brand" href="index.html">GejayanStore Admin</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -239,7 +239,7 @@
                     <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Promosi<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Promosi Produk<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="flot.html">Promo Aktif</a>
@@ -254,14 +254,14 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Penjual</a>
+                    <a href="<?php echo site_url('admin/penjual');?>"><i class="fa fa-edit fa-fw"></i> Penjual</a>
                 </li>
                 <li>
-                <a href="#"><i class="fa fa-wrench fa-fw"></i> Member<span class="fa arrow"></span></a>
+                <a href="<?php echo site_url('admin/member');?>"><i class="fa fa-wrench fa-fw"></i> Member<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="panels-wells.html">Member Aktif</a>
-                            <a href="panels-wells.html">Member Banned</a>
+                            <a href="<?php echo site_url('admin/member/sort/active');?>">Member Aktif</a>
+                            <a href="<?php echo site_url('admin/member/sort/banned');?>">Member Banned</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->

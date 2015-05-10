@@ -1,0 +1,5 @@
+/*admin login*/
+.login-form{padding:10px;margin-top:10%;border:lightgrey 1px solid;background-color: #fff}
+.login-form h1{font-size:20px;font-weight:bold}
+.login-form form{margin-top:20px;}
+.login-form input{width:80%;}

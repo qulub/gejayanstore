@@ -57,4 +57,11 @@ class Base extends CI_Controller
 		// $diff = $diff->d
 		return $diff;
 	}
+	//is admin logged in
+	function adminLoggedIn(){
+		$session = $this->session->userdata('adminLoggedIn');
+		if (empty($session)) {
+			return false;//admin not logged in
+		}else{return true;}//admin is loged in
+	}
 }
