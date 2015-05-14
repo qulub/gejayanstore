@@ -1,4 +1,4 @@
-/*<style media="screen">
+<style media="screen">
 th{width:150px}
 </style>
 <script charset="utf-8">
@@ -15,9 +15,10 @@ $(document).ready(function(){
          <li class="active"><a href="<?php echo site_url('admin/promo');?>">Promo</a></li>
       </ol>
       <a class="btn btn-default" href="<?php echo site_url('admin/promo');?>"><i class="glyphicon glyphicon-arrow-left"></i> kembali</a>
+      <br/><br/>
       <div class="row">
          <div class="col-lg-6">
-            <h3><?php echo $title;?></h3>
+            <h3 style="margin:0"><?php echo $title;?></h3>
          </div><!-- /.col-lg-6 -->
          <div class="col-lg-6">
             <div class="input-group">
@@ -55,4 +56,4 @@ $(document).ready(function(){
    </div>
    <!-- /#page-wrapper -->
 </div>
-<!-- /#wrapper -->*/
+<!-- /#wrapper -->

@@ -49,7 +49,7 @@ class Admin extends Base {
 		}
 	}
 	//login failed
-	public function loadingFailed($note)
+	public function loginFailed($note)
 	{
 		$Data = array(
 			'title'=>'Admin Login',
