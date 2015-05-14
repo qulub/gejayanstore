@@ -201,6 +201,7 @@ class M_produk extends CI_Model
 			$this->db->select('*');
 			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori = item.idSubKategori');
 			$this->db->join('kategoriItem','kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem');
+			$this->db->join('toko','item.idToko = toko.idToko');
 			$this->db->limit($limit,$offset);
 			return $this->db->get('item');
 		}
@@ -210,6 +211,7 @@ class M_produk extends CI_Model
 			$this->db->select('*');
 			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori = item.idSubKategori');
 			$this->db->join('kategoriItem','kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem');
+			$this->db->join('toko','item.idToko = toko.idToko');
 			$this->db->like('Judul',$keyword);
 			$this->db->or_like('Deskripsi',$keyword);
 			$this->db->limit($limit,$offset);

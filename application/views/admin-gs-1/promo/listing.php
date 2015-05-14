@@ -41,6 +41,7 @@ $(document).ready(function(){
                <div class="col-md-4">
                   <strong><h3><?php echo $p['Judul'];?></h3></strong>
                   <small>Kategori : <a href="<?php echo site_url('kategori/'.str_replace(' ','-',$p['namaKategori']))?>"><?php echo $p['namaKategori']?></a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="<?php echo site_url('kategori/'.str_replace(' ','-',$p['namaKategori']))?>"><?php echo $p['namaSubKategori']?></a></small><br/>
+                  <small>Toko : <a href="<?php echo site_url('v/'.$p['idToko'].'/'.str_replace(' ','-',$p['namaToko']))?>"><?php echo $p['namaToko'];?></a></small><br/>
                   <small>Post : <?php echo $p['tglPost'];?></small><br/>
                   <small>Update : <?php echo $p['tglEdit'];?></small><br/>
                   <small>Habis : <?php echo $p['habisPromo'];?></small><br/>
