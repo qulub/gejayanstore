@@ -4,44 +4,43 @@
       <div class="main">
          <!-- start grids_of_3 -->
          <div class="grids_of_4">
-            <center><h1>Tambah Toko</h1></center>
-            <p>sebelum menambah toko silahkan terlebih dahulu baca syarat dan ketentuan dibawah ini</p>
+            <center><h1>Pendaftaran Toko</h1></center>
+            <p>Hal-hal yang perlu diketahui Calon Member toko</p>
             <br/>
             <div class="skk-view">
                <p>
                   <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  Pendaftaran Toko dilakukan dengan mengisikan form yang sudah disediakan. 
                </p>
                <br/>
                <p>
-                  <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  <strong>Pasal 2</strong><br/>
+                  Setelah selesai dan di kirimkan ke webmaster, maka admin dari kami akan melakukan pembuatan akun.
                </p>
                <br/>
                <p>
-                  <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  <strong>Pasal 3</strong><br/>
+                  Admin akan memberikan konfirmasi dengan mengirimkan username dan password kepada pendaftar toko melalui email yang sudah isikan pada form pendaftaran.
                </p>
                <br/>
                <p>
-                  <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  <strong>Pasal 4</strong><br/>
+                  Username dan password tersebut akan sepenuhnya menjadi milik pendaftar selama masih menjadi member toko. Khusus untuk password bisa dirubah sesuai keiinginan member toko.
                </p>
                <br/>
                <p>
-                  <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  <strong>Pasal 5</strong><br/>
+                  Setelah login fitur yang aktif hanya tab konfirmasi pembayaran. Fitur upload untuk konten promo produk akan aktif setelah melakukan konfirmasi pembayaran. 
                </p>
                <br/>
                <p>
-                  <strong>Pasal 1</strong><br/>
-                  Tooltips need the attribute role="tooltip" so assistive devices understand what they are. On the text connected to the tooltip, you need the attribute aria-describedby, where the value is the ID of the tooltip it's connected to. Lucky for you, our JavaScript handles all of this for you!
-                  The only markup change you'll need to make is adding the attribute aria-haspopup="true" to your tooltip text. It's helpful for screen readers, and it also makes tooltips easier to use on Windows 8 touch devices.
+                  <strong>Pasal 6</strong><br/>
+                  Akun begi member baru akan di berikan waktu selama 3x24 jam untuk mengkonfirmasi pembayarannya kepada kami, dalam waktu tersebut akun hanya dapat login untuk melakukan konfirmasi(frezee). Jika dalam waktu 3x24 jam belum melakukan konfirmasi pembayaran maka akan dilakukan penghapusan akun secara sepihak.
+               </p>
+               <br/>
+               <p>
+                  <strong>pasal 7</strong>
+                  Ketika member toko sudah melakukan pembayaran maka semua fitur sudah dapat dinikmati.
                </p>
                </div
             </div>
