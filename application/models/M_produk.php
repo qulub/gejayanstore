@@ -183,10 +183,25 @@ class M_produk extends CI_Model
 
 	public function promoListing($limit="",$offset="",$status)
 	{
-		$this->db->select('*');
-		$this->db->join('kategoriItem','kategoriItem.idKategoriItem = item.idKategoriItem');
-		$this->db->join('subKategoriItem','subKategori.idSubKategori = item.idSubKategori');
-		$this->db->limit($limit,$offset);
-		return $this->db->get('item');
+		//filter
+		switch ($status) {
+			case 'aktif':
+				$this->db->where('item.habisPromo >','CURTIME()');
+				break;
+				case 'habis':
+				$this->db->where('item.habisPromo <','CURTIME()');
+				break;
+				case 'banned':
+				$this->db->where('item.status','banned');
+				break;
+				default:
+				# code...
+				break;
+			}
+			$this->db->select('*');
+			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori = item.idSubKategori');
+			$this->db->join('kategoriItem','kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem');
+			$this->db->limit($limit,$offset);
+			return $this->db->get('item');
+		}
 	}
-}

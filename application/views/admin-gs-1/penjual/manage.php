@@ -47,7 +47,7 @@ $(document).ready(function(){
          </div>
          <div class="row">
             <div class="col-md-12">
-               <h4><span class="glyphicon glyphicon-bullhorn"></span> Daftar Promosi</h4>
+               <h4><span class="glyphicon glyphicon-bullhorn"></span> History Promosi</h4>
                <?php foreach($promosi as $p):
                   // print_r($p);
                   ?>

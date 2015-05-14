@@ -168,21 +168,23 @@ public function promo()
 	if(empty($this->uri->segment(3))){redirect(site_url('admin/promo/aktif'));}
 	//pagination
 	$this->load->library('pagination');
-	$config['base_url'] = $this->uri->string();
+	$config['base_url'] = $this->uri->uri_string();
 	$config['per_page'] = 20;
 	//end of pagination
 	$Uri = $this->uri->segment(4);
 	if(empty($uri)){$Uri = 0;}
 	switch ($this->uri->segment(3)) {
 		case 'aktif':
-			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif');
-			$row = $this->M_produk->promoListing('aktif');
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif')->result_array();;
+			$count = $this->M_produk->promoListing('','','aktif')->num_rows();
 			break;
 			case 'banned':
-			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'banned');
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'banned')->result_array();;
+			$count = $this->M_produk->promoListing('','','aktif')->num_rows();
 			break;
 			case 'habis':
-			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'habis');
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'habis')->result_array();;
+			$count = $this->M_produk->promoListing('','','aktif')->num_rows();
 			break;
 			default:
 			# code...
@@ -191,9 +193,12 @@ public function promo()
 		$config['total_rows'] = 200;
 		$this->pagination->initialize($config);
 		$Data = array(
+			'title'=>'Daftar Promo '.$this->uri->segment(3),
 			'link'=>$this->pagination->create_links(),
+			'total'=>$count,
+			'view'=>$view
 		);
-		return $this->baseAdminView('penjual/manage',$Data);
+		return $this->baseAdminView('promo/listing',$Data);
 	}
 	/*END OF MANAJEMEN*/
 
