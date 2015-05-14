@@ -181,7 +181,7 @@ class M_produk extends CI_Model
 	ADMIN
 	**************/
 
-	public function promoListting($limit="",$offset="",$status)
+	public function promoListing($limit="",$offset="",$status)
 	{
 		$this->db->select('*');
 		$this->db->join('kategoriItem','kategoriItem.idKategoriItem = item.idKategoriItem');

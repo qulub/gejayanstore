@@ -166,20 +166,34 @@ public function toko()
 public function promo()
 {
 	if(empty($this->uri->segment(3))){redirect(site_url('admin/promo/aktif'));}
+	//pagination
+	$this->load->library('pagination');
+	$config['base_url'] = $this->uri->string();
+	$config['per_page'] = 20;
+	//end of pagination
+	$Uri = $this->uri->segment(4);
+	if(empty($uri)){$Uri = 0;}
 	switch ($this->uri->segment(3)) {
 		case 'aktif':
-			# code...
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif');
+			$row = $this->M_produk->promoListing('aktif');
 			break;
 			case 'banned':
-			# code...
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'banned');
 			break;
 			case 'habis':
-			# code...
+			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'habis');
 			break;
 			default:
 			# code...
 			break;
 		}
+		$config['total_rows'] = 200;
+		$this->pagination->initialize($config);
+		$Data = array(
+			'link'=>$this->pagination->create_links(),
+		);
+		return $this->baseAdminView('penjual/manage',$Data);
 	}
 	/*END OF MANAJEMEN*/
 
