@@ -128,31 +128,31 @@ public function actionpenjual()
 	$action = $this->uri->segment(3);
 	switch ($action){
 		case 'ubahstatus'://ubah status active atau banned
-			$idpenjual = $this->uri->segment(4);
-			$penjual = $this->M_penjual->detPenjual($idpenjual);
-			if($penjual['status']=='active'){$status='banned';}
-			else{$status='active';}
-			$this->db->where('idPemilik',$penjual['idPemilik']);
-			$data = array('status'=>$status);
-			$this->db->update('pemilikToko',$data);
-			return redirect($this->agent->referrer());
-			break;
+		$idpenjual = $this->uri->segment(4);
+		$penjual = $this->M_penjual->detPenjual($idpenjual);
+		if($penjual['status']=='active'){$status='banned';}
+		else{$status='active';}
+		$this->db->where('idPemilik',$penjual['idPemilik']);
+		$data = array('status'=>$status);
+		$this->db->update('pemilikToko',$data);
+		return redirect($this->agent->referrer());
+		break;
 		case 'manage'://detail penjual
-			$Idpenjual = $this->uri->segment(4);
-			$Penjual = $this->M_penjual->detPenjual($Idpenjual);
-			$Data = array
-			(
-				'title'=>$Penjual['namaPemilik'],
-				'penjual'=>$Penjual,
-				'toko'=>$this->M_toko->detailToko($Penjual['idToko']),
-				'promosi'=>$this->M_produk->listProdukToko(100,0,$Penjual['idToko']),
-			);
-			return $this->baseAdminView('penjual/manage',$Data);
-			break;
-		default:
-			# code...
-			break;
-	}
+		$Idpenjual = $this->uri->segment(4);
+		$Penjual = $this->M_penjual->detPenjual($Idpenjual);
+		$Data = array
+		(
+		'title'=>$Penjual['namaPemilik'],
+		'penjual'=>$Penjual,
+		'toko'=>$this->M_toko->detailToko($Penjual['idToko']),
+		'promosi'=>$this->M_produk->listProdukToko(100,0,$Penjual['idToko']),
+	);
+	return $this->baseAdminView('penjual/manage',$Data);
+	break;
+	default:
+	# code...
+	break;
+}
 }
 //manajemen toko
 public function toko()
@@ -162,12 +162,31 @@ public function toko()
 	'title'=>'Manajemen Toko',
 );
 }
-/*END OF MANAJEMEN*/
-
-//logout
-public function logout()
+//manajemen promosi
+public function promo()
 {
-	$this->session->sess_destroy();
-	redirect(site_url('admin'));
-}
+	if(empty($this->uri->segment(3))){redirect(site_url('admin/promo/aktif'));}
+	switch ($this->uri->segment(3)) {
+		case 'aktif':
+			# code...
+			break;
+			case 'banned':
+			# code...
+			break;
+			case 'habis':
+			# code...
+			break;
+			default:
+			# code...
+			break;
+		}
+	}
+	/*END OF MANAJEMEN*/
+
+	//logout
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(site_url('admin'));
+	}
 }

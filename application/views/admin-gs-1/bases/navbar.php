@@ -247,13 +247,13 @@
                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Promosi Produk<span class="fa arrow"></span></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="flot.html">Promo Aktif</a>
+                     <a href="<?php echo site_url('admin/promo/aktif');?>">Promo Aktif</a>
                   </li>
                   <li>
-                     <a href="flot.html">Promo Banned</a>
+                     <a href="<?php echo site_url('admin/promo/banned');?>">Promo Banned</a>
                   </li>
                   <li>
-                     <a href="morris.html">Promo Habis</a>
+                     <a href="<?php echo site_url('admin/promo/habis');?>">Promo Habis</a>
                   </li>
                </ul>
                <!-- /.nav-second-level -->

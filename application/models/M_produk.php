@@ -90,7 +90,7 @@ class M_produk extends CI_Model
 	//list prduk toko
 	public function listProdukToko($limit,$offset,$idtoko)
 	{
-		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,item.habisPromo,
 		SubKategoriItem.namaSubKategori AS 'subkategori',
 		kategoriItem.namaKategori AS 'kategori',
 		toko.namaToko as 'toko'
@@ -162,7 +162,7 @@ class M_produk extends CI_Model
 	}
 
 	/*
-	* ALL ABOUT PRODUK
+	* ALL ABOUT KATEGORI
 	*/
 	public function allMainKategori()
 	{
@@ -175,5 +175,18 @@ class M_produk extends CI_Model
 		else{$this->db->where('idKategoriItem',$idmainkat);}
 		$query = $this->db->get('SubKategoriItem');
 		return $query->result_array();
+	}
+
+	/*************
+	ADMIN
+	**************/
+
+	public function promoListting($limit="",$offset="",$status)
+	{
+		$this->db->select('*');
+		$this->db->join('kategoriItem','kategoriItem.idKategoriItem = item.idKategoriItem');
+		$this->db->join('subKategoriItem','subKategori.idSubKategori = item.idSubKategori');
+		$this->db->limit($limit,$offset);
+		return $this->db->get('item');
 	}
 }

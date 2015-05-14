@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.2.12deb2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 06, 2015 at 06:18 
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: May 14, 2015 at 07:43 PM
+-- Server version: 5.6.24-0ubuntu2
+-- PHP Version: 5.6.4-4ubuntu6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `2015_GejayanStore`
 --
+CREATE DATABASE IF NOT EXISTS `2015_GejayanStore` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `2015_GejayanStore`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +35,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `password` text NOT NULL,
   `telp` varchar(50) NOT NULL,
   `alamat` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`idAdmin`, `email`, `userName`, `password`, `telp`, `alamat`) VALUES
+(1, 'iam@yussan.me', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', '085645777298', 'Jimbe, Jenangan, Ponorogo, Jawa Timur\r\n');
 
 -- --------------------------------------------------------
 
@@ -156,20 +165,22 @@ CREATE TABLE IF NOT EXISTS `pelanggan` (
 
 CREATE TABLE IF NOT EXISTS `pemilikToko` (
 `idPemilik` int(11) NOT NULL,
+  `tglRegister` datetime NOT NULL,
   `namaPemilik` varchar(100) NOT NULL,
   `telp` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `userName` varchar(50) NOT NULL,
-  `password` text NOT NULL
+  `password` text NOT NULL,
+  `status` enum('active','banned') NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilikToko`
 --
 
-INSERT INTO `pemilikToko` (`idPemilik`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`) VALUES
-(1, 'Yusuf Akhsan Hidayat', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', '829b36babd21be519fa5f9353daf5dbdb796993e');
+INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `status`) VALUES
+(1, '2015-05-01 05:22:35', 'Yusuf Akhsan Hidayat', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', '829b36babd21be519fa5f9353daf5dbdb796993e', 'active');
 
 -- --------------------------------------------------------
 
@@ -313,7 +324,7 @@ ALTER TABLE `tokoFavorite`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `Diskusi`
 --
