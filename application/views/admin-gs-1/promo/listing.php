@@ -21,12 +21,14 @@ $(document).ready(function(){
             <h3 style="margin:0"><?php echo $title;?></h3>
          </div><!-- /.col-lg-6 -->
          <div class="col-lg-6">
-            <div class="input-group">
-               <input type="text" class="form-control">
-               <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">Cari Promo</button>
-               </span>
-            </div><!-- /input-group -->
+            <form action="<?php echo site_url('admin/caripromo')?>">
+               <div class="input-group">
+                  <input name="q" type="text" class="form-control" value="">
+                  <span class="input-group-btn">
+                     <button class="btn btn-default" type="button">Cari Promo</button>
+                  </span>
+               </div><!-- /input-group -->
+            </form>
          </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
       <hr/>

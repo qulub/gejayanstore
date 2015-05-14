@@ -190,10 +190,34 @@ public function promo()
 			# code...
 			break;
 		}
-		$config['total_rows'] = 200;
+		$config['total_rows'] = $count;
 		$this->pagination->initialize($config);
 		$Data = array(
 			'title'=>'Daftar Promo '.$this->uri->segment(3),
+			'link'=>$this->pagination->create_links(),
+			'total'=>$count,
+			'view'=>$view
+		);
+		return $this->baseAdminView('promo/listing',$Data);
+	}
+	//search promosi
+	public function caripromo()
+	{
+		if(!empty($_GET['q'])){redirect(site_url('admin/caripromo/'.str_replace(' ','-',$_GET['q'])));}//redirect for SEO friendly
+		//pagination
+		$this->load->library('pagination');
+		$config['base_url'] = $this->uri->uri_string();
+		$config['per_page'] = 20;
+		//end of pagination
+		$Uri = $this->uri->segment(4);
+		if(empty($uri)){$Uri = 0;}
+		$keyword = str_replace('-',' ',$this->uri->segment(3));
+		$count = $this->M_produk->promoSearch('','',$keyword)->num_rows();
+		$view = $this->M_produk->promoSearch($config['per_page'],$Uri,$keyword)->result_array();
+		$config['total_rows'] = $count;
+		$this->pagination->initialize($config);
+		$Data = array(
+			'title'=>'Pencarian Promo : '.$this->uri->segment(3),
 			'link'=>$this->pagination->create_links(),
 			'total'=>$count,
 			'view'=>$view

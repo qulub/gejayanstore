@@ -180,7 +180,7 @@ class M_produk extends CI_Model
 	/*************
 	ADMIN
 	**************/
-
+	//listing promo
 	public function promoListing($limit="",$offset="",$status)
 	{
 		//filter
@@ -201,6 +201,17 @@ class M_produk extends CI_Model
 			$this->db->select('*');
 			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori = item.idSubKategori');
 			$this->db->join('kategoriItem','kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem');
+			$this->db->limit($limit,$offset);
+			return $this->db->get('item');
+		}
+		//search promo
+		public function promoSearch($limit="",$offset="",$keyword)
+		{
+			$this->db->select('*');
+			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori = item.idSubKategori');
+			$this->db->join('kategoriItem','kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem');
+			$this->db->like('Judul',$keyword);
+			$this->db->or_like('Deskripsi',$keyword);
 			$this->db->limit($limit,$offset);
 			return $this->db->get('item');
 		}
