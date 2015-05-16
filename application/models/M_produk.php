@@ -217,4 +217,10 @@ class M_produk extends CI_Model
 			$this->db->limit($limit,$offset);
 			return $this->db->get('item');
 		}
-	}
+		//ubah status item
+		public function changeStatus($id,$status)
+		{
+			$this->db->where('idItem',$id);
+			return $this->db->update('item',array('Status'=>$status));
+		}
+	}//end of class

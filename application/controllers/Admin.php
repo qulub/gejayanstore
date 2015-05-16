@@ -200,6 +200,18 @@ public function promo()
 		);
 		return $this->baseAdminView('promo/listing',$Data);
 	}
+	//promo action
+	public function actionpromo()
+	{
+		switch($_GET['act']) {//whats action
+			case 'updatestatus':
+				echo $status = $_GET['action'];//what the lattest status
+				echo $id = $_GET['id'];//whats the item id
+				$this->M_produk->changeStatus($id,$status);//update status
+				redirect($this->agent->referrer());////ke referrer page
+				break;
+		}
+	}
 	//search promosi
 	public function caripromo()
 	{

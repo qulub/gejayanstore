@@ -49,7 +49,14 @@ $(document).ready(function(){
                   <span style="text-decoration:line-through" class="col-sm-6">Rp <?php echo number_format($p['harga']);?>,-</span>
                   <span class="col-sm-6"><strong>Rp <?php echo number_format($p['harga'] - ($p['harga']*$p['diskon']/100));?>,-</strong></span>
                   <br/><br/>
-                  <a class="btn btn-danger btn-xs" href="#">set banned</a> <a class="btn btn-default btn-xs" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','/',$p['Judul']));?>">preview</a>
+                  <?php
+                  if($p['status']=='banned')
+                  {$action='aktif';$text='set aktif';$class='btn-primary';
+                  }else
+                  {$action='banned';;$text='set banned';$class='btn-danger';
+                  }
+                  ?>
+                  <a class="btn <?php echo $class;?> btn-xs" href="<?php echo site_url('admin/actionpromo?act=updatestatus&action='.$action.'&id='.$p['idItem']);?>"><?php echo $text;?></a> <a class="btn btn-default btn-xs" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','/',$p['Judul']));?>">preview</a>
                </div>
             <?php endforeach;?>
          </div>
