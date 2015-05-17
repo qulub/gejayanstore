@@ -1,4 +1,4 @@
-<?php $this->load->view('yussan-templategejayan/bases/popular')?>
+<?php $this->load->view('publik-templategejayan/bases/popular')?>
 <!-- start main1 -->
 <!-- produk terbaru -->
 <div class="main_bg1">

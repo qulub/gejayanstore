@@ -19,6 +19,12 @@ $(document).ready(function(){
       <br/>
       <!-- <?php print_r($toko); ?> -->
       <br/>
+      <?php if($penjual['status']=='menunggu'){//jika status pemilik toko adalah menunggu untuk konfirmasi?>
+      <div class="col-md-12">
+         <h4><span class="glyphicon glyphicon-shopping-cart"></span> Konfirmasi Pembayaran</h4>
+      </div>
+      <?php } ?>
+      <br/>
       <div class="col-md-6">
          <h4><span class="glyphicon glyphicon-briefcase"></span> Biodata pemilik</h4><br/>
          <table class="table">

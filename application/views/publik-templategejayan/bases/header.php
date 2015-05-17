@@ -73,15 +73,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="logo">
                <a href="<?php echo site_url();?>"><img src="<?php echo base_url('resource')?>/images/logo.png" alt=""/> </a>
             </div>
+            <?php if(empty($this->session->userdata('admintoko'))){?>
             <div style="width:auto" class="h_icon">
                <ul class="icon1">
-                  <li class="sub-icon1" style="margin-right:5px"><a class="tambahtoko" href="<?php echo site_url('register/toko')?>">Tambah Toko</a>
+                  <li class="sub-icon1"><a class="tambahtoko" href="<?php echo site_url('register/toko')?>">Tambah Toko</a>
                      <ul class="sub-icon1 list">
                         <li><h3>Punya Toko Di Jalan Gejayan</h3><a href=""></a></li>
                         <li><p>cukup dengan mengikuti....</p></li>
                      </ul>
                   </li>
-                  <li class="sub-icon1"><a class="tambahtoko" href="#">Login</a>
+                  <li class="sub-icon1"><a style="background-color:rgb(65, 176, 164)" class="tambahtoko" href="<?php echo site_url('home/login');?>">Login</a>
                      <ul class="sub-icon1 list">
                         <li><h3>Login</li>
                         <li><p>klik untuk login sebagai pemilik toko atau pelanggan</p></li>
@@ -89,6 +90,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   </li>
                </ul>
             </div>
+            <?php }else{?>
+            <div style="width:auto" class="h_icon">
+               <ul class="icon1">
+                  <li class="sub-icon1"><a class="tambahtoko" href="<?php echo site_url('dashboard')?>">ke Dashboard</a> </li>
+                  <li class="sub-icon1"><a style="background-color:rgb(239, 86, 86)" class="tambahtoko" href="<?php echo site_url('dashboard/logout')?>">logout</a></li>
+               </ul>
+            </div>
+            <?php } ?>
             <div class="h_search">
                <form action="<?php echo site_url('produk/cari')?>">
                   <input name="q" type="text" value="<?php if(!empty($carion)){echo str_replace('-',' ',$this->uri->segment(3));}?>">
@@ -144,7 +153,7 @@ $recent = site_url($this->uri->uri_string());
 $site = site_url();
 ?>
 <?php if($recent==$site)://only show on homepage?>
-   <?php $this->load->view('yussan-templategejayan/bases/slider-produkpopuler')?>
+   <?php $this->load->view('publik-templategejayan/bases/slider-produkpopuler')?>
 <?php endif;?>
 <!----start-cursual---->
 <div class="wrap">

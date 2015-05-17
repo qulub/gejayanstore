@@ -259,10 +259,15 @@
                <!-- /.nav-second-level -->
             </li>
             <li>
-               <a href="<?php echo site_url('admin/penjual');?>"><i class="fa fa-edit fa-fw"></i> Pemilik Toko</a>
-            </li>
-            <li>
-               <a href="#"><i class="fa fa-sitemap fa-fw"></i> Contact Us</span></a>
+               <a href="#"><i class="fa fa-edit fa-fw"></i> Pemilik Toko<span class="fa arrow"></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/penjualmenunggu')?>">Menunggu Konfirmasi</a>
+                  </li>
+                  <li>
+                     <a href="<?php echo site_url('admin/penjual');?>">Ready</a>
+                  </li>
+               </ul>
             </li>
             <li>
                <a href="#"><i class="fa fa-files-o fa-fw"></i> Berita<span class="fa arrow"></span></a>
