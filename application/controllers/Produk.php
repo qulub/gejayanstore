@@ -91,7 +91,7 @@ class Produk extends Base {
 			'promolain'=>$this->m_produk->othersPromo($produk['idToko'],true),
 			'promotokolain'=>$this->m_produk->othersPromo($produk['idToko'],false)
 		);
-		$this->load->view('yussan-templategejayan/produk',$Data);
+		$this->load->view('publik-templategejayan/produk',$Data);
 		//end of single
 	}//produk masih dalam masa promo
 }

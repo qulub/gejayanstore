@@ -57,7 +57,6 @@ class Home extends Base {
 				if($userData->num_rows()>0)//user found
 				{
 					$userData = $userData->row_array();
-					$sessionData['admintoko'] = $userData;
 					$this->session->set_userdata($sessionData);
 					return redirect(site_url('Dashboard'));//redirect to dashboard
 				}else//user not found

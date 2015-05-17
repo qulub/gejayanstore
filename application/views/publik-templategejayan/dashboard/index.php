@@ -1,13 +1,13 @@
 <div class="gallery1">
-					<div class="container">
-					<ul id="filters" class="clearfix">
-						<li><span class="filter active" data-filter="app card icon logo web">Dashboard</span></li>
-						<li><span class="filter" data-filter="app card web">Manajemen Promo</span></li>
-						<li><span class="filter" data-filter="icon web card">Manahemen Toko</span></li>
-						<li><span class="filter" data-filter="web app icon card">Edit Profil</span></li>
-						<li><span class="filter" data-filter="icon app web logo">Konfirmasi Pembayaran</span></li>
-					</ul>
-			<div id="portfoliolist">
+	<div class="container">
+		<ul id="filters" class="clearfix">
+			<li><span class="filter active" data-filter="app card icon logo web">Dashboard</span></li>
+			<li><span class="filter" data-filter="app card web">Manajemen Promo</span></li>
+			<li><span class="filter" data-filter="icon web card">Manahemen Toko</span></li>
+			<li><span class="filter" data-filter="web app icon card">Edit Profil</span></li>
+			<li><span class="filter" data-filter="icon app web logo">Konfirmasi Pembayaran</span></li>
+		</ul>
+		<div id="portfoliolist">
 			<div class="portfolio logo1" data-cat="logo">
 				<div class="portfolio-wrapper">				
 					<a  href="details.html">
@@ -148,7 +148,7 @@
 					</div>
 				</div>
 			</div>	
-					
+			
 			<div class="portfolio card" data-cat="card">
 				<div class="portfolio-wrapper">			
 					<a  href="details.html">
@@ -183,4 +183,4 @@
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
 	<script type="text/javascript">$('body').flipLightBox()</script>
 	<div class="clear"> </div>
-	</div>
+</div>
