@@ -68,7 +68,9 @@ class Admin extends Base {
 
 	/*MANAJEMEN ONLY*/
 	//manajemen penjual
-	public function penjual()
+
+	//menampilkan penjual yang menunggu konfirmasi pembayaran
+	public function penjualmenunggu()
 	{
 		//do search
 		if(!empty($_GET['q']))
@@ -81,46 +83,81 @@ class Admin extends Base {
 		$config['per_page'] = 20;
 		$Uri = $this->uri->segment(4);
 		if(empty($Uri))$Uri=0;//default uri
-		switch ($this->uri->segment(3)) {
-			case 'search'://search penjual
-			$CountPenjual = $this->M_penjual->getPenjual('','','',str_replace('-',' ',$this->uri->segment(3)))->num_rows();//total rows
-			$config['total_rows'] = $CountPenjual;
-			$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'',str_replace('-',' ',$this->uri->segment(3)))->result_array();//view
-			$Script = "$('#semua').addClass('active');";
-			break;
-			case 'active'://search penjual
-			$CountPenjual = $this->M_penjual->getPenjual('','','active','')->num_rows();//total rows
-			$config['total_rows'] = $CountPenjual;
-			$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'active','')->result_array();//total rows
-			$Script = "$('#active').addClass('active');";
-			break;
-			case 'banned'://search penjual
-			$CountPenjual = $this->M_penjual->getPenjual('','','banned','')->num_rows();//total rows
-			$config['total_rows'] = $CountPenjual;
-			$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'banned','')->result_array();//total rows
-			$Script = "$('#banned').addClass('active');";
-			break;
-			case 'all'://search penjual
-			$CountPenjual = $this->M_penjual->getPenjual('','','','')->num_rows();//total rows
-			$config['total_rows'] = $CountPenjual;
-			$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'','')->result_array();//total rows
-			$Script = "$('#semua').addClass('active');";
-			break;
-			default:
-			redirect(site_url('admin/penjual/all'));
-			break;
-		}
+		$CountPenjual = $this->M_penjual->getSimplePenjual('','','menunggu','')->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getSimplePenjual($config['per_page'],$Uri,'menunggu','')->result_array();//view
 		$this->pagination->initialize($config);
 		$Data = array
 		(
-		'title'=>'Olah Data Penjual',
+		'title'=>'Penjual Menunggu Konfirmasi',
 		'count'=>$CountPenjual,
 		'view'=>$Penjual,
 		'link'=>$this->pagination->create_links(),
-		'script'=>$Script,
+		'script'=>'',
 		'action'=>site_url('admin/penjual'),
 	);
 	$this->baseAdminView('penjual/list',$Data);
+}
+//tampilan penjual yang telah memiliki toko
+public function penjual()
+{
+	//do search
+	if(!empty($_GET['q']))
+	{
+		redirect(site_url('admin/penjual/search/'.str_replace(' ','-',$_GET['q'])));
+	}
+	///pagination setup
+	$this->load->library('pagination');
+	$config['base_url'] = site_url($this->uri->uri_string());//recent url
+	$config['per_page'] = 20;
+	$Uri = $this->uri->segment(4);
+	if(empty($Uri))$Uri=0;//default uri
+	switch ($this->uri->segment(3)) {
+		case 'search'://search penjual
+		$CountPenjual = $this->M_penjual->getPenjual('','','',str_replace('-',' ',$this->uri->segment(3)))->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'',str_replace('-',' ',$this->uri->segment(3)))->result_array();//view
+		$Script = "$('#semua').addClass('active');";
+		break;
+		case 'active'://search penjual
+		$CountPenjual = $this->M_penjual->getPenjual('','','active','')->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'active','')->result_array();//total rows
+		$Script = "$('#active').addClass('active');";
+		break;
+		case 'banned'://search penjual
+		$CountPenjual = $this->M_penjual->getPenjual('','','banned','')->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'banned','')->result_array();//total rows
+		$Script = "$('#banned').addClass('active');";
+		break;
+		case 'menunggu'://menunggu konfirmasi
+		$CountPenjual = $this->M_penjual->getPenjual('','','menunggu','')->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'menunggu','')->result_array();//total rows
+		$Script = "$('#menunggu').addClass('active');";
+		break;
+		case 'all'://search penjual
+		$CountPenjual = $this->M_penjual->getPenjual('','','','')->num_rows();//total rows
+		$config['total_rows'] = $CountPenjual;
+		$Penjual = $this->M_penjual->getPenjual($config['per_page'],$Uri,'','')->result_array();//total rows
+		$Script = "$('#semua').addClass('active');";
+		break;
+		default:
+		redirect(site_url('admin/penjual/all'));
+		break;
+	}
+	$this->pagination->initialize($config);
+	$Data = array
+	(
+	'title'=>'Olah Data Penjual',
+	'count'=>$CountPenjual,
+	'view'=>$Penjual,
+	'link'=>$this->pagination->create_links(),
+	'script'=>$Script,
+	'action'=>site_url('admin/penjual'),
+);
+$this->baseAdminView('penjual/list',$Data);
 }
 //action penjual
 public function actionpenjual()
@@ -140,6 +177,7 @@ public function actionpenjual()
 		case 'manage'://detail penjual
 		$Idpenjual = $this->uri->segment(4);
 		$Penjual = $this->M_penjual->detPenjual($Idpenjual);
+		//cek status penjual
 		$Data = array
 		(
 		'title'=>$Penjual['namaPemilik'],
@@ -149,9 +187,20 @@ public function actionpenjual()
 	);
 	return $this->baseAdminView('penjual/manage',$Data);
 	break;
-	default:
-	# code...
-	break;
+	case 'managemenunggu'://detail penjual yang sedang menunggu
+	$IdPenjual = $this->uri->segment(4);//get id penjual
+	$Penjual = $this->M_penjual->detSimplePenjual($IdPenjual);//detail penjual
+	$Data = array
+	(
+	'title'=>$Penjual['namaPemilik'],
+	'penjual'=>$Penjual,
+	'konfirmasi'=>''
+);
+return $this->baseAdminView('penjual/managemenunggu',$Data);//detail penjual yang belum melakukan pembayara
+break;
+default:
+# code...
+break;
 }
 }
 //manajemen toko
@@ -200,6 +249,18 @@ public function promo()
 		);
 		return $this->baseAdminView('promo/listing',$Data);
 	}
+	//promo action
+	public function actionpromo()
+	{
+		switch($_GET['act']) {//whats action
+			case 'updatestatus':
+			echo $status = $_GET['action'];//what the lattest status
+			echo $id = $_GET['id'];//whats the item id
+			$this->M_produk->changeStatus($id,$status);//update status
+			redirect($this->agent->referrer());////ke referrer page
+			break;
+		}
+	}
 	//search promosi
 	public function caripromo()
 	{
@@ -223,6 +284,31 @@ public function promo()
 			'view'=>$view
 		);
 		return $this->baseAdminView('promo/listing',$Data);
+	}
+	//search penjual
+	public function caripenjual()
+	{
+		if(!empty($_GET['q'])){redirect(site_url('admin/caripenjual/'.str_replace(' ','-',$_GET['q'])));}//redirect for SEO friendly
+		//pagination
+		$this->load->library('pagination');
+		$config['base_url'] = $this->uri->uri_string();
+		$config['per_page'] = 20;
+		//end of pagination
+		$Uri = $this->uri->segment(4);
+		if(empty($uri)){$Uri = 0;}
+		$keyword = str_replace('-',' ',$this->uri->segment(3));
+		$count= $this->M_penjual->getPenjual('','','',$keyword)->num_rows();//total rows
+		$config['total_rows'] = $count;
+		$view = $this->M_penjual->getPenjual($config['per_page'],$Uri,'',$keyword)->result_array();//total rows
+		$config['total_rows'] = $count;
+		$this->pagination->initialize($config);
+		$Data = array(
+			'title'=>'Pencarian Penjual : '.$this->uri->segment(3),
+			'link'=>$this->pagination->create_links(),
+			'count'=>$count,
+			'view'=>$view
+		);
+		return $this->baseAdminView('penjual/list',$Data);
 	}
 	/*END OF MANAJEMEN*/
 

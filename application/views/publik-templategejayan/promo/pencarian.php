@@ -1,10 +1,10 @@
-<?php $this->load->view('yussan-templategejayan/bases/popular')?>
+<?php $this->load->view('publik-templategejayan/bases/popular')?>
 <!-- start main1 -->
 <!-- produk terbaru -->
 <div class="main_bg1">
     <div class="wrap">
         <div class="main1">
-            <h2>update promo</h2>
+            <h2><?php echo $title;?></h2>
         </div>
     </div>
 </div>
@@ -14,6 +14,7 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
+                <?php if(empty($listproduk))echo '<h3>Promo tidak ditemukan</h3>';?>
                 <?php foreach($listproduk as $lp):?>
                     <div class="list-item grid1_of_3">
                         <a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>">
@@ -31,7 +32,7 @@
                                         <striped class="strip">Rp<?php echo number_format($lp['harga']);?>,-</striped>
                                     <?php endif;?>
                                     Rp<?php echo number_format($lp['harga']-($lp['harga']*($lp['diskon']/100)));?>,-<br/><br/>
-                                    <a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>"><span style="margin-left:0">SELENGKAPNYA</span></a>
+                                    <span style="margin-left:0">SELENGKAPNYA</span>
                                 </h4>
                             </div>
                             <span class="b_btm"></span>
@@ -43,40 +44,8 @@
             <!-- end grids_of_3 -->
         </div>
     </div>
-    <div class="wrap">
-        <a href="<?php echo site_url('produk/semua')?>"><div class="price"><h4><span>Tampilkan Semua Promo</span></h4></div></a>
-    </div>
+    <!-- <div class="wrap">
+        <a href="#"><div class="price"><h4><span>Tampilkan Semua Promo</span></h4></div></a>
+    </div> -->
 </div>
 <!-- end of produk terbaru -->
-<!-- update toko -->
-<div class="main_bg1">
-    <div class="wrap">
-        <div class="main1">
-            <h2>update toko</h2>
-        </div>
-    </div>
-</div>
-<!-- start main -->
-<div class="main_bg">
-    <div class="wrap">
-        <div class="main">
-            <!-- start grids_of_3 -->
-            <div class="grids_of_4">
-                <?php foreach($listtoko as $lt):?>
-                <div class="toko-item grid1_of_4">
-                    <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
-                        <img src="<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>" alt="" />
-                        <center><h3><?php echo $lt['namaToko']?></h3></center>
-                     </a>
-                </div>
-                <?php endforeach;?>
-                <div class="clear"></div>
-            </div>
-            <!-- end grids_of_3 -->
-        </div>
-    </div>
-    <div class="wrap">
-        <a href="<?php echo site_url('toko/semua')?>"><div class="price"><h4><span>Tampilkan Semua Toko</span></h4></div></a>
-    </div>
-</div>
-<!-- end of update toko -->

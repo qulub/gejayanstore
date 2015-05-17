@@ -10,7 +10,7 @@
             <div class="skk-view">
                <p>
                   <strong>Pasal 1</strong><br/>
-                  Pendaftaran Toko dilakukan dengan mengisikan form yang sudah disediakan. 
+                  Pendaftaran Toko dilakukan dengan mengisikan form yang sudah disediakan.
                </p>
                <br/>
                <p>
@@ -30,7 +30,7 @@
                <br/>
                <p>
                   <strong>Pasal 5</strong><br/>
-                  Setelah login fitur yang aktif hanya tab konfirmasi pembayaran. Fitur upload untuk konten promo produk akan aktif setelah melakukan konfirmasi pembayaran. 
+                  Setelah login fitur yang aktif hanya tab konfirmasi pembayaran. Fitur upload untuk konten promo produk akan aktif setelah melakukan konfirmasi pembayaran.
                </p>
                <br/>
                <p>
@@ -50,9 +50,16 @@
       <div class="wrap">
          <center>
             <form method="POST" action="">
-               <label><input type="checkbox" value="1" required> Menyetujui syarat dan ketentuan</label>
-               <button style="border:none;background-color:transparent" type="submit"><div class="price"><h4><span>Download Form Pendaftaran</span></h4></div></button>
+               <label style="line-height:40px"><input type="checkbox" value="1" required> Menyetujui syarat dan ketentuan</label>
+               <div class="price"><button style="border:none;background-color:transparent" type="submit"><h4><span>Download Form</span></h4></div></button>
             </form>
+            <br/>
+            <p style="text-align:center">Sudah mengisi form, silahkan upload disini</p>
+            <form class="" action="index.html" method="post">
+               <label style="line-height:40px"><input type="file" name="formupload" value="" required></label>
+               <div class="price"><button style="border:none;background-color:transparent" type="submit"><h4><span>Upload Form</span></h4></div></button></div>
+            </form>
+            <br/>
          </center>
       </div>
    </div>

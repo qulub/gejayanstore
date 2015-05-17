@@ -11,12 +11,25 @@
          <li><a href="<?php echo site_url('admin/dashboard');?>">Dashboard</a></li>
          <li class="<?php echo site_url('admin/Penjual');?>">Penjual</li>
       </ol>
-      <h1><?php echo $title;?></h1>
+      <div class="row">
+         <div class="col-lg-6">
+            <h3 style="margin:0"><?php echo $title;?></h3>
+         </div><!-- /.col-lg-6 -->
+         <div class="col-lg-6">
+            <form action="<?php echo site_url('admin/caripenjual')?>">
+               <div class="input-group">
+                  <input name="q" type="text" class="form-control" value="">
+                  <span class="input-group-btn">
+                     <button class="btn btn-default" type="button">Cari Penjual</button>
+                  </span>
+               </div><!-- /input-group -->
+            </form>
+         </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
       <p>Data Ditemukan : <?php echo $count?> Penjual</p>
       <!-- <pre><?php print_r($view); ?></pre> -->
       <ul class="nav nav-tabs">
          <li id="semua"><a href="<?php echo site_url('admin/penjual/all');?>">Semua</a></li>
-         <li id="active"><a href="<?php echo site_url('admin/penjual/active');?>">Menunggu Konfirmasi</a></li>
          <li id="active"><a href="<?php echo site_url('admin/penjual/active');?>">Active</a></li>
          <li id="banned"><a href="<?php echo site_url('admin/penjual/banned');?>">Banned</a></li>
       </ul>
@@ -42,7 +55,11 @@
                <td><?php echo $v['alamat'];?></td>
                <td><?php if(!empty($v['namaToko'])){echo $v['namaToko'];}else{echo 'Belum Pasang';}?></td>
                <td><a data-toggle="tooltip" title="klik untuk ubah status" href="<?php echo site_url('admin/actionpenjual/ubahstatus/'.$v['idPemilik']);?>"><?php echo $v['status'];?></td>
+               <?php if($v['status']=='menunggu'){?>
+               <td><a href="<?php echo site_url('admin/actionpenjual/managemenunggu/'.$v['idPemilik'])?>" class="btn btn-default btn-xs">manage + konfirm pembayaran</a></td>
+               <?php } else {?>
                <td><a href="<?php echo site_url('admin/actionpenjual/manage/'.$v['idPemilik'])?>" class="btn btn-default btn-xs">manage</a></td>
+               <?php } ?>
             </tr>
          <?php endforeach ?>
       </table>

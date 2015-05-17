@@ -9,7 +9,7 @@ class Base extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->TemplateDir = 'yussan-templategejayan';
+		$this->TemplateDir = 'publik-templategejayan';
 		$this->AdminTemplateDir = 'admin-gs-1';
 	}
 	//base view untuk public

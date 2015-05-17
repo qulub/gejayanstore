@@ -1308,16 +1308,23 @@ striped.strip{color:#C7C7C7;text-decoration:line-through}
 .toko-title h2{font-size: 40px;padding:20px;}
 .note{width:400px;margin:0 auto;background-color:softgray;border:1px rgb(221, 71, 71) solid;padding:10px;font-size:30px;color:rgb(221, 71, 71)}
 .item-image{width:100%;height:270px;background-size:contain;background-position:center;background-repeat:no-repeat}
-.tambahtoko{  padding: 14px;
+.tambahtoko{  /* margin-bottom: 50px; */  padding: 14px;
   background-color: rgb(76, 207, 193);
   display: block;
   color: #fff;
-  float: right;font-size:1.3em}
+  float: right;font-size:1.3em;  border: none;}
 /* end tabs */
+.full-width{display:block;padding: 10px 0;}
+
 .skk-view{height: 350px;overflow-y: scroll;font-family: arial;}
 /*kategori*/
 .list-mainkat{height:400px;}
 .list-mainkat .active a{color:#C8335A}
+/*Login Form*/
+.login-form{width:300px;padding:20px;margin:0 auto;}
+.login-form input[type='text'],.login-form input[type='password']{width:100%;height:30px;margin:5px 0;}
+.login-form input[type='submit']{width:100%;height:50px;margin:5px 0;}
+.error{background-color: rgb(239, 86, 86);color: #fff;padding: 10px;text-decoration: none;text-transform: none;}
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
 	.wrap{
