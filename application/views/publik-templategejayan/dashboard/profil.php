@@ -14,14 +14,17 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<p>Terahir Login : <?php echo date('d-m-Y H:i:s',strtotime($user['lastLogin']));?></p>
 						<p>Status : <?php echo $user['status'];?></p>
 						<br/>
-						<form method="post" action="">
+						<form method="post" action="#error">
+							<input name="profile[tglRegister]" type="hidden" class="textbox" value="<?php echo $user['tglRegister'];?>">
+							<input name="profile[lastLogin]" type="hidden" class="textbox" value="<?php echo $user['lastLogin'];?>">
+							<input name="profile[status]" type="hidden" class="textbox" value="<?php echo $user['status'];?>">
 							<div>
 								<span><label>Nama Lengkap</label></span>
-								<span><input name="profile[name]" type="text" class="textbox" value="<?php echo $user['namaPemilik'];?>"></span>
+								<span><input name="profile[namaPemilik]" type="text" class="textbox" value="<?php echo $user['namaPemilik'];?>"></span>
 							</div>
 							<div>
 								<span><label>No Telp</label></span>
-								<span><input name="profile[phone]" type="text" class="textbox" value="<?php echo $user['telp'];?>"></span>
+								<span><input name="profile[telp]" type="text" class="textbox" value="<?php echo $user['telp'];?>"></span>
 							</div>
 							<div>
 								<span><label>Email</label></span>
@@ -29,7 +32,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Username</label></span>
-								<span><input name="profile[userame]" type="text" class="textbox" value="<?php echo $user['userName'];?>"></span>
+								<span><input name="profile[userName]" type="text" class="textbox" value="<?php echo $user['userName'];?>"></span>
 							</div>
 							<hr/>
 							<p>kosongkan jika tidak ingin merubah password</p>
@@ -46,6 +49,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span><label>Masukan password untuk simpan perubahan</label></span>
 								<span><input name="profile[password]" type="password" class="textbox"></span>
 							</div>
+							<?php if(!empty($error))echo $error;?>
 							<div>
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							</div>
