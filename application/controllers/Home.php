@@ -56,8 +56,10 @@ class Home extends Base {
 				$userData = $this->M_penjual->canLogin($email,$password);
 				if($userData->num_rows()>0)//user found
 				{
-					$userData = $userData->row_array();
+					$sessionData['admintoko'] = $userData->row_array();
 					$this->session->set_userdata($sessionData);
+					$this->db->where('idPemilik',$userData->row_array()['idPemilik']);
+					$this->db->update('pemilikToko',array('lastLogin'=>DATE('y-m-d H:i:s')));
 					return redirect(site_url('Dashboard'));//redirect to dashboard
 				}else//user not found
 				{

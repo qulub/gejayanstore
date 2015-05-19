@@ -1,183 +1,38 @@
+<?php 
+if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
+?>
 <div class="gallery1">
 	<div class="container">
-		<ul id="filters" class="clearfix">
-			<li><span class="filter active" data-filter="app card icon logo web">Dashboard</span></li>
-			<li><span class="filter" data-filter="app card web">Manajemen Promo</span></li>
-			<li><span class="filter" data-filter="icon web card">Manahemen Toko</span></li>
-			<li><span class="filter" data-filter="web app icon card">Edit Profil</span></li>
-			<li><span class="filter" data-filter="icon app web logo">Konfirmasi Pembayaran</span></li>
-		</ul>
-		<div id="portfoliolist">
-			<div class="portfolio logo1" data-cat="logo">
-				<div class="portfolio-wrapper">				
-					<a  href="details.html">
-						<img src="images/sale_pic1.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">ethnic fashion guide: sarees</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
+		<div class="wrap">	
+			<div class="main">
+				<div class="contact">	
+					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
+					<div class="contact-form">
+						<h2>Contact Us</h2>
+						<form method="post" action="contact-post.html">
+							<div>
+								<span><label>Name</label></span>
+								<span><input name="userName" type="text" class="textbox"></span>
+							</div>
+							<div>
+								<span><label>E-mail</label></span>
+								<span><input name="userEmail" type="text" class="textbox"></span>
+							</div>
+							<div>
+								<span><label>Mobile</label></span>
+								<span><input name="userPhone" type="text" class="textbox"></span>
+							</div>
+							<div>
+								<span><label>Subject</label></span>
+								<span><textarea name="userMsg"> </textarea></span>
+							</div>
+							<div>
+							<span><input type="submit" class="" value="Simpan Data"></span>
+							</div>
+						</form>		
 					</div>
 				</div>
-			</div>				
-			<div class="portfolio app" data-cat="app">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic2.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">fasttrack: watches</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>		
-			<div class="portfolio web" data-cat="web">
-				<div class="portfolio-wrapper">						
-					<a  href="details.html">
-						<img src="images/sale_pic3.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">ethnic fashion guide: dresses</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>				
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic4.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">ethnic fashion guide: tees</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>	
-			<div class="portfolio app" data-cat="app">
-				<div class="portfolio-wrapper">
-					<a  href="details.html">
-						<img src="images/sale_pic5.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">ethnic fashion guide: tees</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>			
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic6.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">fasttrack: watches</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>	
-			<div class="portfolio web" data-cat="web">
-				<div class="portfolio-wrapper">						
-					<a  href="details.html">
-						<img src="images/sale_pic7.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">Sonor's Design</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>				
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic8.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">Typography Company</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>	
-			<div class="portfolio app" data-cat="app">
-				<div class="portfolio-wrapper">
-					<a  href="details.html">
-						<img src="images/sale_pic9.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">Weatherette</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>			
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic10.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">BMF</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>	
-			
-			<div class="portfolio card" data-cat="card">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic11.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">Techlion</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>	
-			
-			<div class="portfolio logo1" data-cat="logo">
-				<div class="portfolio-wrapper">			
-					<a  href="details.html">
-						<img src="images/sale_pic12.jpg"  alt="Image 2" />
-					</a>
-					<div class="label">
-						<div class="label-text">
-							<a class="text-title">KittyPic</a>
-							<span class="text-category">indulge</span>
-						</div>
-						<div class="label-bg"></div>
-					</div>
-				</div>
-			</div>																																							
+			</div>
 		</div>
 	</div><!-- container -->
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
