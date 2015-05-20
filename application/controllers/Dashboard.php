@@ -25,12 +25,58 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//olah data promo
 	public function promo()
 	{
-
+		$Data = array
+		(
+			'title'=>'Promo',
+			'script'=>'$("#promo").addClass("active")',
+			'toko'=>''
+			);
+		return $this->basePublicView('dashboard/promo',$Data);
 	}
 	//olah data toko
 	public function toko()
 	{
-
+		if(!empty($_POST))
+		{
+			$toko = $this->M_toko->tokoByIdPemilik($this->session->userdata('admintoko')['idPemilik'])->row_array();//get old data
+			$tokodata = $this->input->post('toko');
+			// print_r($_POST);
+			// print_r($_FILES);
+			// processor
+			if(!empty($_FILES['avatar']['name']))//if do upload
+			{
+				// echo 'sedang upload';
+				$config['upload_path']          = './resource/images/toko';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['max_size']             = 70000;
+                $config['max_width']            = 1200;
+                $config['encrypt_name']         = TRUE;
+				$this->load->library('upload',$config);
+				if ( !$this->upload->do_upload('avatar'))
+                {
+	                $error = array('error' => $this->upload->display_errors());
+                	echo $this->upload->display_errors();
+                }
+                else
+                {
+                  $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg 
+                }
+			}
+			$this->db->where('idToko',$toko['idToko']);
+			$this->db->update('toko',$tokodata);
+			// print_r($toko);
+			return redirect($this->agent->referrer());
+		}else
+		{
+			$this->load->model('M_toko');
+			$Data = array
+			(
+				'title'=>'Toko',
+				'script'=>'$("#toko").addClass("active")',
+				'toko'=>$this->M_toko->tokoByIdPemilik($this->session->userdata('admintoko')['idPemilik'])->row_array(),
+				);
+			return $this->basePublicView('dashboard/toko',$Data);
+		}
 	}
 	//olah data profil
 	public function profil()
@@ -140,6 +186,32 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			return $this->basePublicView('dashboard/profil',$Data);
 			
 		}
+	}
+	//konfirmasi pembayaran
+	public function konfirmasi()
+	{
+		$this->load->model('M_transaksi');//load model transaksi
+		$uri = $this->uri->segment(3);
+		if(empty($uri)){redirect(site_url('dashboard/konfirmasi/baru'));}
+		switch ($uri) {
+			case 'baru':
+				$title = "Konfirmasi Baru";
+				$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
+				$view = '';
+				break;
+			case 'riwayat':
+				$title = "Riwayat Konfirmasi";
+				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
+				$view = '';
+				break;			
+		}
+		$Data = array
+		(
+			'title'=>$title,
+			'script'=>$script,
+			'view'=>$view,
+			);
+		return $this->basePublicView('dashboard/konfirmasi',$Data);
 	}
 	//do logout
 	public function logout()

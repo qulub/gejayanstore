@@ -29,4 +29,10 @@ class M_toko extends CI_Model
 		$query = $this->db->get('toko');
 		return $query->row_array();
 	}
+	//toko berdasarkan id pemilik
+	public function tokoByIdPemilik($idpemilik)//melihat toko berdasarkan id pemilik
+	{
+		$this->db->where('idPemilik',$idpemilik);
+		return $this->db->get('toko');
+	}
 }
