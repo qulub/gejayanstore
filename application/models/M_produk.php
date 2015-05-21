@@ -223,4 +223,24 @@ class M_produk extends CI_Model
 			$this->db->where('idItem',$id);
 			return $this->db->update('item',array('Status'=>$status));
 		}
-	}//end of class
+	//promo berdasarkan id pemilik
+	public function promoByIdPemilik($idpemilik,$limit,$offset,$byviews="",$status="")//melihat toko berdasarkan id pemilik
+	{
+		if($byviews==TRUE)$this->db->order_by('views','DESC');
+		if($status=='active' OR $status=='banned'){$this->db->where('item.status','active');}
+		else{$this->db->where('CURDATE() >','toko.habisPromo');}//non active promo
+		$this->db->where('toko.idPemilik',$idpemilik);
+		$this->db->join('toko','toko.idToko=item.idToko');
+		return $this->db->get('item');
+	}
+	//total views
+	public function totalPromoViews($idPemilik)
+	{
+		$this->db->where('toko.idPemilik',$idPemilik);
+		$this->db->join('toko','toko.idToko=item.idToko');
+		$this->db->select_sum('item.views','views');
+		$query = $this->db->get('item')->row_array();
+		return $query['views'];
+	}
+}//end of class
+	

@@ -11,9 +11,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<h2>Promo</h2>
 						<br/>
 						<ul class="vertical-menu">
-							<li id="riwayat"><a href="<?php echo site_url('dashboard/konfirmasi/riwayat');?>">+ Tambah Promo</a></li>
-							<li id="baru"><a href="<?php echo site_url('dashboard/konfirmasi/baru');?>">Promo Aktif</a></li>
-							<li id="riwayat"><a href="<?php echo site_url('dashboard/konfirmasi/riwayat');?>">Promo NonAktif</a></li>
+							<li id=""><a href="<?php echo site_url('dashboard/promo/baru');?>">+ Tambah Promo</a></li>
+							<li id="aktif"><a href="<?php echo site_url('dashboard/promo/aktif');?>">Promo Aktif</a></li>
+							<li id="banned"><a href="<?php echo site_url('dashboard/promo/banned');?>">Promo Banned</a></li>
+							<li id="habis"><a href="<?php echo site_url('dashboard/promo/habis');?>">Promo Habis</a></li>
 						</ul>
 						<br/>
 						<?php if(empty($toko)){?>

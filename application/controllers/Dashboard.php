@@ -15,20 +15,43 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//index menampilkan semua promo and status
 	public function index()
 	{
+		$this->load->model('M_produk');
 		$Data = array
 		(
 			'title'=>'Dashboard',
 			'script'=>'$("#dashboard").addClass("active")',
+			'totalviews'=>$this->M_produk->totalPromoViews($this->session->userdata('admintoko')['idPemilik']),
+			'popular'=>$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,TRUE,'')->result_array(),
 			);
 		return $this->basePublicView('dashboard/index',$Data);
 	}
 	//olah data promo
 	public function promo()
 	{
+		$uri=$this->uri->segment(3);
+		switch ($uri) {
+			case 'aktif':
+				$title='Menampilkan Promo Aktif';
+				$script='$("#promo").addClass("active");$("#aktif").addClass("active")';
+				break;
+			case 'banned':
+				$title = 'Menampilkan Promo Banned';
+				$script='$("#promo").addClass("active");$("#banned").addClass("active")';
+				# code...
+				break;
+			case 'habis':
+				$title = 'Menampilkan Promo Banned';
+				$script='$("#promo").addClass("active");$("#habis").addClass("active")';
+				# code...
+				break;
+			default:
+				redirect(site_url('dashboard/promo/aktif'));
+				break;
+		}
 		$Data = array
 		(
-			'title'=>'Promo',
-			'script'=>'$("#promo").addClass("active")',
+			'title'=>$title,
+			'script'=>$script,
 			'toko'=>''
 			);
 		return $this->basePublicView('dashboard/promo',$Data);
