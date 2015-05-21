@@ -30,18 +30,24 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	{
 		$uri=$this->uri->segment(3);
 		switch ($uri) {
+			case 'baru'://buat promo baru
+				return $this->promobaru();
+				break;
 			case 'aktif':
 				$title='Menampilkan Promo Aktif';
 				$script='$("#promo").addClass("active");$("#aktif").addClass("active")';
+				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','aktif')->result_array();
 				break;
 			case 'banned':
 				$title = 'Menampilkan Promo Banned';
 				$script='$("#promo").addClass("active");$("#banned").addClass("active")';
+				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','banned')->result_array();
 				# code...
 				break;
 			case 'habis':
 				$title = 'Menampilkan Promo Banned';
 				$script='$("#promo").addClass("active");$("#habis").addClass("active")';
+				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','habis')->result_array();
 				# code...
 				break;
 			default:
@@ -52,9 +58,16 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		(
 			'title'=>$title,
 			'script'=>$script,
-			'toko'=>''
+			'view'=>$view,
 			);
 		return $this->basePublicView('dashboard/promo',$Data);
+	}
+	//buat promo baru
+	public function promobaru()
+	{
+		//apakah sudah melewati batas
+		$totalpromo = '';//total promo yang sudah dipasang
+		$makspromo = '';//total maksimal promo
 	}
 	//olah data toko
 	public function toko()
