@@ -227,8 +227,20 @@ class M_produk extends CI_Model
 	public function promoByIdPemilik($idpemilik,$limit,$offset,$byviews="",$status="")//melihat toko berdasarkan id pemilik
 	{
 		if($byviews==TRUE)$this->db->order_by('views','DESC');
-		if($status=='active' OR $status=='banned'){$this->db->where('item.status','active');}
-		else{$this->db->where('CURDATE() >','toko.habisPromo');}//non active promo
+		switch ($status) {
+			case 'aktif':
+				$this->db->where('item.status',$status);
+				$this->db->where('CURDATE() < DATE(item.habisPromo)');
+			break;
+			case 'banned':
+				$this->db->where('item.status',$status);
+			break;
+			case 'habis':
+				$this->db->where('CURDATE() > item.habisPromo');
+				$this->db->or_where('item.status','aktif');
+				$this->db->or_where('item.status','banned');
+			break;
+		}
 		$this->db->where('toko.idPemilik',$idpemilik);
 		$this->db->join('toko','toko.idToko=item.idToko');
 		return $this->db->get('item');
