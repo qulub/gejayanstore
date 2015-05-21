@@ -1,3 +1,6 @@
+<style type="text/css">
+	td{padding-right:10px;}
+</style>
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
@@ -8,29 +11,35 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h2>Contact Us</h2>
-						<form method="post" action="contact-post.html">
-							<div>
-								<span><label>Name</label></span>
-								<span><input name="userName" type="text" class="textbox"></span>
-							</div>
-							<div>
-								<span><label>E-mail</label></span>
-								<span><input name="userEmail" type="text" class="textbox"></span>
-							</div>
-							<div>
-								<span><label>Mobile</label></span>
-								<span><input name="userPhone" type="text" class="textbox"></span>
-							</div>
-							<div>
-								<span><label>Subject</label></span>
-								<span><textarea name="userMsg"> </textarea></span>
-							</div>
-							<div>
-							<span><input type="submit" class="" value="Simpan Data"></span>
-							</div>
-						</form>		
+						<h2>Total Views : <?php echo $totalviews; ?></h2>
+						<br/>
+						<h2>Promo Terpopuler</h2>
+						<!-- item -->
+						<div class="grids_of_3">
+							<?php foreach($popular as $p):?>
+								<div class="list-item grid1_of_3">
+									<a href="...">
+										<h3><?php echo $p['Judul'];?></h3>
+										<table>
+											<tr>
+												<center>
+													<td>Views <?php echo $p['views'];?></td>
+													<td><?php echo $p['status'];?></td>
+													<td><a href="#">ubah </a></td>
+													<td><a onclick="return confirm('yakinkan dulu !')" href="#">hapus </a></td>
+												</center>
+											</tr>
+										</table>
+										<span class="b_btm"></span>
+									</a>
+								</div>
+							<?php endforeach; ?>
+							<div class="clear"></div>
+						</div>
+						<!-- end of item -->
+						<a href="<?php echo site_url('dashboard/promo')?>">tampilkan semua promo</a>
 					</div>
+					<br/>					
 				</div>
 			</div>
 		</div>

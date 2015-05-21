@@ -29,4 +29,5 @@ class M_toko extends CI_Model
 		$query = $this->db->get('toko');
 		return $query->row_array();
 	}
+	
 }
