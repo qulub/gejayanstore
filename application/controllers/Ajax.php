@@ -21,4 +21,21 @@ class Ajax extends Base {
 		$sql = 'UPDATE item SET views = views+1 WHERE idItem='.$iditem;
 		return $this->db->query($sql);		
 	}
+	/*
+	* ALL ABOUT JSON
+	*/
+	//get mainkat json
+	public function jsonGetMainKat()
+	{
+		$mainkat = $this->db->get('kategoriItem')->result_array();
+		echo json_encode($mainkat);
+	}
+	//get subkategori json by id main kat
+	public function jsonGetSubKat()
+	{
+		$idmainkat = $_GET['mainkat'];
+		$this->db->where('idKategoriItem',$idmainkat);
+		$subkat = $this->db->get('SubKategoriItem')->result_array();
+		echo json_encode($subkat);
+	}
 }

@@ -838,7 +838,7 @@ p.para{
 	padding-bottom: 5px;
 	text-transform: capitalize;
 }
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input[type="text"], .contact-form input[type="number"], .contact-form textarea,select {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: #FFFFFF;
 	border: 1px solid #E7E7E7;

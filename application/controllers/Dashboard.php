@@ -65,9 +65,32 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//buat promo baru
 	public function promobaru()
 	{
-		//apakah sudah melewati batas
-		$totalpromo = '';//total promo yang sudah dipasang
-		$makspromo = '';//total maksimal promo
+		$this->load->model('M_produk');
+		if(!empty($_POST))//input process
+		{
+			print_r($_POST);
+		}else //only view
+		{
+			//apakah sudah melewati batas
+			$totalpromo = $this->M_produk->totalPromo($this->session->userdata('admintoko')['idPemilik']);//total promo yang sudah dipasang
+			$makspromo = $this->M_produk->maksPromo($this->session->userdata('admintoko')['idPemilik']);;//total maksimal promo
+			if($totalpromo >= $makspromo){//batas penambahan promo sudah habis
+				$Data = array 
+				(
+					'title'=>'Tambah Promo',
+					'error'=>'Slot Promo Sudah Full, Silahkan Hapus Atau Edit Promo Yang Sudah Ada'
+					);
+				return $this->basePublicView('dashboard/error',$Data);
+			}else{//masih b
+				$Data = array
+				(
+					'title'=>'Tambah Promo',
+					'mainkat'=>$this->db->get('kategoriItem')->result_array(),
+					'script'=>'$("#promo").addClass("active");$("#baru").addClass("active")'
+					);
+				return $this->basePublicView('dashboard/tambahpromo',$Data);
+			}
+		}
 	}
 	//olah data toko
 	public function toko()
@@ -222,6 +245,18 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			return $this->basePublicView('dashboard/profil',$Data);
 			
 		}
+	}
+	//transaksi
+	public function transaksi()
+	{
+		$script = "$('#transaksi').addClass('active');$('#baru').addClass('active');";
+		$Data = array
+		(
+			'title'=>'Transaksi',
+			'script'=>$script,
+			'view'=>''
+			);
+		return $this->basePublicView('dashboard/transaksi',$Data);
 	}
 	//konfirmasi pembayaran
 	public function konfirmasi()

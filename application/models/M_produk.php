@@ -254,5 +254,25 @@ class M_produk extends CI_Model
 		$query = $this->db->get('item')->row_array();
 		return $query['views'];
 	}
+	//total promo
+	public function totalPromo($idpemilik)
+	{
+		$this->db->select('item.idItem');
+		$this->db->where('toko.idPemilik',$idpemilik);
+		$this->db->join('toko','toko.idPemilik=pemilikToko.idPemilik');
+		$this->db->join('item','item.idToko = toko.idToko');
+		$this->db->from('pemilikToko');
+		return $this->db->count_all_results();
+	}
+	//maks promo
+	public function maksPromo($idpemilik)
+	{
+		$this->db->select('maxPromo');
+		$this->db->join('pemilikToko','pemilikToko.idPemilik=toko.idPemilik');
+		$this->db->where('toko.idPemilik',$idpemilik);
+		$this->db->from('toko');
+		$query = $this->db->get()->row_array();
+		return $query['maxPromo'];
+	}
 }//end of class
 	
