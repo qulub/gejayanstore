@@ -25,7 +25,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<?php if(empty($view))echo '<center>promo tidak ditemukan</center>';?>
 							<?php foreach($view as $p):?>
 								<div class="list-item grid1_of_3">
-									<a href="...">
+									<a target="_blank" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['Judul'])) ?>">
 										<h3><?php echo $p['Judul'];?></h3>
 										<table>
 											<tr>

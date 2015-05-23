@@ -274,5 +274,18 @@ class M_produk extends CI_Model
 		$query = $this->db->get()->row_array();
 		return $query['maxPromo'];
 	}
+	//get latest id produk
+	public function lattestIdItem()
+	{
+		$this->db->select('idItem');
+		$this->db->order_by('idItem','DESC');
+		$query = $this->db->get('item')->row_array();
+		return $query['idItem'];
+	}
+	//insert promo image
+	public function insertPromoImage($lattestIdItem,$name)
+	{
+		return $this->db->insert('gambar',array('idItem'=>$lattestIdItem,'gambar'=>$name));
+	}
 }//end of class
 	

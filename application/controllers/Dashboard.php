@@ -65,10 +65,57 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//buat promo baru
 	public function promobaru()
 	{
-		$this->load->model('M_produk');
+		$this->load->model(array('M_produk','M_toko'));
 		if(!empty($_POST))//input process
 		{
-			print_r($_POST);
+			unset($_POST['promo']['IdMainKat']);//remove id main kat
+			$promo = $_POST['promo'];
+			// print_r($_FILES);
+			//check is directory exist
+			$dir = './resource/images/produk/'.date('m').'_'.date('Y');
+			if(!file_exists($dir))//directory not exist [worked]
+			{
+				mkdir($dir, 0755);//worked RWX+RW+RW
+			}
+			//insert data to the database
+			$promo['tglPost'] = date('Y-m-d H:i:s');
+			$promo['tglEdit'] = date('Y-m-d H:i:s');
+			$promo['status'] = 'aktif';
+			$promo['idToko'] = $this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']);//[WORKED]
+			// print_r($promo);
+			if($this->db->insert('item',$promo))//memasukan data ke database
+			{
+				$latestIdItem = $this->M_produk->lattestIdItem();//[WORKED]
+				//image upload process
+				//upload config
+				$config['upload_path'] = $dir;
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size']	= '1000';
+				$config['encrypt_name'] = TRUE;
+				$this->load->library('upload', $config);
+				// end of upload config
+				//get all choosed picture
+				for($n=1;$n<=3;$n++)
+				{
+					if(!empty($_FILES['gambar'.$n]['name']))
+					{
+						if(!$this->upload->do_upload('gambar'.$n))//fail to upload image
+						{
+							echo $this->upload->display_errors();
+						}else
+						{
+							echo 'good ';
+						}
+						$name = $this->upload->data('file_name');
+						//insert to database
+						$this->M_produk->insertPromoImage($latestIdItem,$name);
+					}
+				}
+				echo '<script>';
+                echo "alert('Berhasil Hapus Barang');";
+                echo "window.location='" . site_url('dashboard/promo') . "';";
+                echo '</script>';
+			}else{echo 'gagal memasukan ke database';}
 		}else //only view
 		{
 			//apakah sudah melewati batas

@@ -8,7 +8,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php
 //get main picture
 $picture=$this->M_produk->getGambarProduk($view['idItem']);;
-$dir = date('m-Y',strtotime($view['tglPost']));
+$dir = date('m_Y',strtotime($view['tglPost']));
 $location = base_url('resource/images/produk/'.$dir.'/');
 $mainpic = $location.'/'.$picture['gambar'];
 ?>
