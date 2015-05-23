@@ -32,7 +32,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
 													<td><a href="#">ubah </a></td>
-													<td><a onclick="return confirm('yakinkan dulu !')" href="#">hapus </a></td>
+													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 											</tr>
 											<tr>
 													<td style="padding-left:5px" colspan="3">Habis <?php echo date('d-m-Y H:i:s',strtotime($p['habisPromo']));?></td>

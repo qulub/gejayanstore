@@ -160,6 +160,13 @@ class M_produk extends CI_Model
 		if($query->num_rows()>0){return $query->row_array();}
 		else{return array();}
 	}
+	public function getAllGambarProduk($idproduk)
+	{
+		$this->db->where('idItem',$idproduk);
+		$query = $this->db->get('gambar');
+		if($query->num_rows()>0){return $query->result_array();}
+		else{return array();}
+	}
 
 	/*
 	* ALL ABOUT KATEGORI
@@ -237,8 +244,6 @@ class M_produk extends CI_Model
 			break;
 			case 'habis':
 				$this->db->where('CURDATE() > item.habisPromo');
-				$this->db->or_where('item.status','aktif');
-				$this->db->or_where('item.status','banned');
 			break;
 		}
 		$this->db->where('toko.idPemilik',$idpemilik);

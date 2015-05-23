@@ -8,7 +8,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('M_penjual'));//auto load model
+		$this->load->model(array('M_penjual','M_produk'));//auto load model
 		if(empty($this->session->userdata('admintoko')))redirect(site_url('home/login'));//back to login page
 		
 	}
@@ -75,7 +75,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			$dir = './resource/images/produk/'.date('m').'_'.date('Y');
 			if(!file_exists($dir))//directory not exist [worked]
 			{
-				mkdir($dir, 0755);//worked RWX+RW+RW
+				mkdir($dir, 0766);//worked RWX+RW+RW
 			}
 			//insert data to the database
 			$promo['tglPost'] = date('Y-m-d H:i:s');
@@ -137,6 +137,32 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 					);
 				return $this->basePublicView('dashboard/tambahpromo',$Data);
 			}
+		}
+	}
+	
+	//action untuk promo
+	public function promoaction()
+	{
+		switch ($_GET['act']) {
+			case 'hapus':
+				$id = $_GET['id'];//get id promo
+				//get all image name
+				$images = $this->M_produk->getAllGambarProduk($id);
+				$item = $this->M_produk->getProduk($id);
+				print_r($images);
+				foreach ($images as $i) {
+					unlink(base_url('resource/images/produk/'.date('m_Y',strtotime($item['tglPost'])).'/'.$i['gambar']));
+				}
+				$this->db->where('idItem',$id);
+				$this->db->delete('item');
+				redirect($this->agent->referrer());
+				break;
+			case 'edit':
+				# code...
+				break;			
+			default:
+				# code...
+				break;
 		}
 	}
 	//olah data toko
