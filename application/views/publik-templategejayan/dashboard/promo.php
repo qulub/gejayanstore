@@ -31,7 +31,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 											<tr>
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
-													<td><a href="#">ubah </a></td>
+													<td><a href="<?php echo site_url('dashboard/promoaction?act=edit&id='.$p['idItem'])?>">ubah </a></td>
 													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 											</tr>
 											<tr>

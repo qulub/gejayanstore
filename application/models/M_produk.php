@@ -287,6 +287,12 @@ class M_produk extends CI_Model
 		$query = $this->db->get('item')->row_array();
 		return $query['idItem'];
 	}
+	//get all images promo
+	public function getImages($iditem)
+	{
+		$this->db->where('idItem',$iditem);
+		return $this->db->get('gambar')->result_array();//get gambar dari hasil result array
+	}
 	//insert promo image
 	public function insertPromoImage($lattestIdItem,$name)
 	{

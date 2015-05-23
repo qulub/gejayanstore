@@ -139,7 +139,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			}
 		}
 	}
-	
+
 	//action untuk promo
 	public function promoaction()
 	{
@@ -157,13 +157,28 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				$this->db->delete('item');
 				redirect($this->agent->referrer());
 				break;
-			case 'edit':
-				# code...
+			case 'edit'://fo edit promo
+				$id=$_GET['id'];//get id promo
+				$this->updatePromo($id);//do edit promo
 				break;			
-			default:
+			case 'edit'://process edit promo
 				# code...
 				break;
 		}
+	}
+	//form view 
+	public function updatePromo($id)
+	{
+		$this->db->where('idItem',$id);
+		$item = $this->db->get('item')->row_array();//get item detail 
+		$images = $this->M_produk->getImages($id);//get all images
+		$Data = array
+		(
+			'title'=>'Ubah Promo',
+			'item'=>$item,
+			'images'=>$images,
+			);
+		return $this->basePublicView('dashboard/updatepromo',$Data);
 	}
 	//olah data toko
 	public function toko()
