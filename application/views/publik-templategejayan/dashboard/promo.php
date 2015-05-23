@@ -14,7 +14,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<h2><?php echo $title;?></h2>
 						<br/>
 						<ul class="vertical-menu">
-							<li id=""><a href="<?php echo site_url('dashboard/promo/baru');?>">+ Tambah Promo</a></li>
+							<li id="baru"><a href="<?php echo site_url('dashboard/promo/baru');?>">+ Tambah Promo</a></li>
 							<li id="aktif"><a href="<?php echo site_url('dashboard/promo/aktif');?>">Promo Aktif</a></li>
 							<li id="banned"><a href="<?php echo site_url('dashboard/promo/banned');?>">Promo Banned</a></li>
 							<li id="habis"><a href="<?php echo site_url('dashboard/promo/habis');?>">Promo Habis</a></li>
@@ -25,14 +25,14 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<?php if(empty($view))echo '<center>promo tidak ditemukan</center>';?>
 							<?php foreach($view as $p):?>
 								<div class="list-item grid1_of_3">
-									<a href="...">
+									<a target="_blank" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['Judul'])) ?>">
 										<h3><?php echo $p['Judul'];?></h3>
 										<table>
 											<tr>
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
 													<td><a href="#">ubah </a></td>
-													<td><a onclick="return confirm('yakinkan dulu !')" href="#">hapus </a></td>
+													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 											</tr>
 											<tr>
 													<td style="padding-left:5px" colspan="3">Habis <?php echo date('d-m-Y H:i:s',strtotime($p['habisPromo']));?></td>

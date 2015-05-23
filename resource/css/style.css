@@ -838,14 +838,14 @@ p.para{
 	padding-bottom: 5px;
 	text-transform: capitalize;
 }
-.contact-form input[type="text"], .contact-form textarea {
+.contact-form input[type="text"], .contact-form input[type="number"], .contact-form textarea, select,input[type="date"] {
 	font-family: 'Source Sans Pro', sans-serif;
 	background: #FFFFFF;
 	border: 1px solid #E7E7E7;
 	color: rgba(85, 81, 81, 0.84);
 	padding: 8px;
 	display: block;
-	width: 96.3333%;
+	width: 50%;
 	outline: none;
 	-webkit-appearance: none;
 	text-transform: capitalize;
@@ -857,10 +857,10 @@ p.para{
 	color: rgba(85, 81, 81, 0.84);
 	padding: 8px;
 	display: block;
-	width: 96.3333%;
+	width: 50%;
 	outline: none;
 	-webkit-appearance: none;
-	text-transform: capitalize;
+	text-transform: none;
 }
 .contact-form textarea{
 	resize:none;

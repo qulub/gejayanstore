@@ -21,6 +21,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
    <link href="<?php echo base_url('resource')?>/css/style.css" rel="stylesheet" type="text/css" media="all" />
    <link rel="icon" href="<?php echo base_url('resource/images/logo-fav.png')?>" media="screen" title="no title" charset="utf-8">
+   <script type="text/javascript" src="<?php echo base_url('outsource/js/angular.min.js');?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('outsource/js/angular-route.min.js');?>"></script>
+   <script type="text/javascript" src="<?php echo base_url('outsource/js/gejayanstore.js');?>"></script>
    <script type="text/javascript" src="<?php echo base_url('resource')?>/js/jquery.min.js"></script>
    <!-- start slider -->
    <link href="<?php echo base_url('resource')?>/css/slider.css" rel="stylesheet" type="text/css" media="all" />

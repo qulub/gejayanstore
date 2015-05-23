@@ -160,6 +160,13 @@ class M_produk extends CI_Model
 		if($query->num_rows()>0){return $query->row_array();}
 		else{return array();}
 	}
+	public function getAllGambarProduk($idproduk)
+	{
+		$this->db->where('idItem',$idproduk);
+		$query = $this->db->get('gambar');
+		if($query->num_rows()>0){return $query->result_array();}
+		else{return array();}
+	}
 
 	/*
 	* ALL ABOUT KATEGORI
@@ -237,8 +244,6 @@ class M_produk extends CI_Model
 			break;
 			case 'habis':
 				$this->db->where('CURDATE() > item.habisPromo');
-				$this->db->or_where('item.status','aktif');
-				$this->db->or_where('item.status','banned');
 			break;
 		}
 		$this->db->where('toko.idPemilik',$idpemilik);
@@ -253,6 +258,39 @@ class M_produk extends CI_Model
 		$this->db->select_sum('item.views','views');
 		$query = $this->db->get('item')->row_array();
 		return $query['views'];
+	}
+	//total promo
+	public function totalPromo($idpemilik)
+	{
+		$this->db->select('item.idItem');
+		$this->db->where('toko.idPemilik',$idpemilik);
+		$this->db->join('toko','toko.idPemilik=pemilikToko.idPemilik');
+		$this->db->join('item','item.idToko = toko.idToko');
+		$this->db->from('pemilikToko');
+		return $this->db->count_all_results();
+	}
+	//maks promo
+	public function maksPromo($idpemilik)
+	{
+		$this->db->select('maxPromo');
+		$this->db->join('pemilikToko','pemilikToko.idPemilik=toko.idPemilik');
+		$this->db->where('toko.idPemilik',$idpemilik);
+		$this->db->from('toko');
+		$query = $this->db->get()->row_array();
+		return $query['maxPromo'];
+	}
+	//get latest id produk
+	public function lattestIdItem()
+	{
+		$this->db->select('idItem');
+		$this->db->order_by('idItem','DESC');
+		$query = $this->db->get('item')->row_array();
+		return $query['idItem'];
+	}
+	//insert promo image
+	public function insertPromoImage($lattestIdItem,$name)
+	{
+		return $this->db->insert('gambar',array('idItem'=>$lattestIdItem,'gambar'=>$name));
 	}
 }//end of class
 	

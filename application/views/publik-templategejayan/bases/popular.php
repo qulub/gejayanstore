@@ -6,7 +6,7 @@
       <?php $popular = $this->M_produk->popularProduk(10,0);
       foreach($popular as $p):
          //get picture directory
-         $dir = date('m-Y',strtotime($p['tglPost']));
+         $dir = date('m_Y',strtotime($p['tglPost']));
          //get picture name
          $picture = $this->M_produk->getGambarProduk($p['idItem']);
          $picture = $picture['gambar'];

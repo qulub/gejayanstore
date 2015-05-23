@@ -8,7 +8,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('M_penjual'));//auto load model
+		$this->load->model(array('M_penjual','M_produk'));//auto load model
 		if(empty($this->session->userdata('admintoko')))redirect(site_url('home/login'));//back to login page
 		
 	}
@@ -65,9 +65,105 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//buat promo baru
 	public function promobaru()
 	{
-		//apakah sudah melewati batas
-		$totalpromo = '';//total promo yang sudah dipasang
-		$makspromo = '';//total maksimal promo
+		$this->load->model(array('M_produk','M_toko'));
+		if(!empty($_POST))//input process
+		{
+			unset($_POST['promo']['IdMainKat']);//remove id main kat
+			$promo = $_POST['promo'];
+			// print_r($_FILES);
+			//check is directory exist
+			$dir = './resource/images/produk/'.date('m').'_'.date('Y');
+			if(!file_exists($dir))//directory not exist [worked]
+			{
+				mkdir($dir, 0766);//worked RWX+RW+RW
+			}
+			//insert data to the database
+			$promo['tglPost'] = date('Y-m-d H:i:s');
+			$promo['tglEdit'] = date('Y-m-d H:i:s');
+			$promo['status'] = 'aktif';
+			$promo['idToko'] = $this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']);//[WORKED]
+			// print_r($promo);
+			if($this->db->insert('item',$promo))//memasukan data ke database
+			{
+				$latestIdItem = $this->M_produk->lattestIdItem();//[WORKED]
+				//image upload process
+				//upload config
+				$config['upload_path'] = $dir;
+				$config['allowed_types'] = 'gif|jpg|png';
+				$config['max_size']	= '1000';
+				$config['encrypt_name'] = TRUE;
+				$this->load->library('upload', $config);
+				// end of upload config
+				//get all choosed picture
+				for($n=1;$n<=3;$n++)
+				{
+					if(!empty($_FILES['gambar'.$n]['name']))
+					{
+						if(!$this->upload->do_upload('gambar'.$n))//fail to upload image
+						{
+							echo $this->upload->display_errors();
+						}else
+						{
+							echo 'good ';
+						}
+						$name = $this->upload->data('file_name');
+						//insert to database
+						$this->M_produk->insertPromoImage($latestIdItem,$name);
+					}
+				}
+				echo '<script>';
+                echo "alert('Berhasil Hapus Barang');";
+                echo "window.location='" . site_url('dashboard/promo') . "';";
+                echo '</script>';
+			}else{echo 'gagal memasukan ke database';}
+		}else //only view
+		{
+			//apakah sudah melewati batas
+			$totalpromo = $this->M_produk->totalPromo($this->session->userdata('admintoko')['idPemilik']);//total promo yang sudah dipasang
+			$makspromo = $this->M_produk->maksPromo($this->session->userdata('admintoko')['idPemilik']);;//total maksimal promo
+			if($totalpromo >= $makspromo){//batas penambahan promo sudah habis
+				$Data = array 
+				(
+					'title'=>'Tambah Promo',
+					'error'=>'Slot Promo Sudah Full, Silahkan Hapus Atau Edit Promo Yang Sudah Ada'
+					);
+				return $this->basePublicView('dashboard/error',$Data);
+			}else{//masih b
+				$Data = array
+				(
+					'title'=>'Tambah Promo',
+					'mainkat'=>$this->db->get('kategoriItem')->result_array(),
+					'script'=>'$("#promo").addClass("active");$("#baru").addClass("active")'
+					);
+				return $this->basePublicView('dashboard/tambahpromo',$Data);
+			}
+		}
+	}
+	
+	//action untuk promo
+	public function promoaction()
+	{
+		switch ($_GET['act']) {
+			case 'hapus':
+				$id = $_GET['id'];//get id promo
+				//get all image name
+				$images = $this->M_produk->getAllGambarProduk($id);
+				$item = $this->M_produk->getProduk($id);
+				print_r($images);
+				foreach ($images as $i) {
+					unlink(base_url('resource/images/produk/'.date('m_Y',strtotime($item['tglPost'])).'/'.$i['gambar']));
+				}
+				$this->db->where('idItem',$id);
+				$this->db->delete('item');
+				redirect($this->agent->referrer());
+				break;
+			case 'edit':
+				# code...
+				break;			
+			default:
+				# code...
+				break;
+		}
 	}
 	//olah data toko
 	public function toko()
@@ -222,6 +318,18 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			return $this->basePublicView('dashboard/profil',$Data);
 			
 		}
+	}
+	//transaksi
+	public function transaksi()
+	{
+		$script = "$('#transaksi').addClass('active');$('#baru').addClass('active');";
+		$Data = array
+		(
+			'title'=>'Transaksi',
+			'script'=>$script,
+			'view'=>''
+			);
+		return $this->basePublicView('dashboard/transaksi',$Data);
 	}
 	//konfirmasi pembayaran
 	public function konfirmasi()
