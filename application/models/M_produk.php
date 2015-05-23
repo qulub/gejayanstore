@@ -298,5 +298,13 @@ class M_produk extends CI_Model
 	{
 		return $this->db->insert('gambar',array('idItem'=>$lattestIdItem,'gambar'=>$name));
 	}
+	//kategori
+	//get id main kategori
+	public function getIdMain($idsubkat)
+	{
+		$this->db->where('idSubKategori',$idsubkat);
+		$query = $this->db->get('SubKategoriItem')->row_array();
+		return $query['idKategoriItem'];
+	}
 }//end of class
 	

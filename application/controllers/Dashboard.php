@@ -176,6 +176,8 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		(
 			'title'=>'Ubah Promo',
 			'item'=>$item,
+			'mainkat'=>$this->db->get('kategoriItem')->result_array(),//all main kat
+			'idmainkat'=>$this->M_produk->getIdMain($item['idSubKategori']),
 			'images'=>$images,
 			);
 		return $this->basePublicView('dashboard/updatepromo',$Data);

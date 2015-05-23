@@ -1,6 +1,10 @@
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
+<?php print_r($item);
+echo '<br/>';
+print_r($images);
+?>
 <div class="gallery1">
 	<div class="container">
 		<div class="wrap">	
@@ -19,6 +23,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<br/>
 						<br/>
 						<form name="myForm" method="post" action="<?php echo site_url('dashboard/promobaru')?>" enctype="multipart/form-data">
+							<input type="hidden" name="promo[id]" ng-model="id">
+							<?php $n=1;foreach($images as $im):?>
+							<input type="hidden" name="gambar[lama<?php echo $n;?>]" ng-model="gambarlama<?php echo $n;?>">
+							<?php $n++;endforeach;?>
 							<div>
 								<span><label>Judul Promo</label></span>
 								<span><input name="promo[Judul]" type="text" class="textbox" value="" ng-model="title" value=""></span>
@@ -56,7 +64,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Diskon (%) masukan tanpa tanda '%'</label></span>
-								<span><input name="promo[Diskon]" type="number" min="0" max="100" class="textbox" value="" ng-model="diskon"></span>
+								<span><input name="promo[Diskon]" type="text" min="0" max="100" class="textbox" value="" ng-model="diskon"></span>
 							</div>
 							<div>
 								<span><label>Batas Promo</label></span>
@@ -92,7 +100,15 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 	.controller('formCtrl',['$scope','$http',function($scope,$http){
 		//set input value
 		$scope.title = '<?php echo $item["Judul"]?>';
-		$scope.deskripsi = '<?php echo $item["Judul"]?>';
+		$scope.deskripsi = '<?php echo $item["Deskripsi"]?>';
+		$scope.mainkat = '<?php echo $idmainkat;?>';
+		$scope.subkat = '<?php echo $item["idSubKategori"]?>';
+		$scope.harga = '<?php echo $item["harga"]?>';
+		$scope.diskon = '<?php echo $item["diskon"]?>';
+		$scope.habis = '<?php echo date("Y-m-d",strtotime($item["habisPromo"]));?>';
+		<?php $n=1;foreach($images as $im):?>
+		$scope.gambarlama<?php echo $n;?> = '<?php echo $im["gambar"]?>';
+		<?php $n++;endforeach;?>
 		//end of set input value
 		$http.get('<?php echo site_url("ajax/jsonGetMainKat")?>')//auto load
 		.success(function(data){
