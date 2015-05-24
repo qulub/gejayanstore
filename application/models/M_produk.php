@@ -233,11 +233,11 @@ class M_produk extends CI_Model
 	//promo berdasarkan id pemilik
 	public function promoByIdPemilik($idpemilik,$limit,$offset,$byviews="",$status="")//melihat toko berdasarkan id pemilik
 	{
-		if($byviews==TRUE)$this->db->order_by('views','DESC');
+		if(!empty($byviews) OR $byviews==TRUE)$this->db->order_by('views','DESC');
 		switch ($status) {
 			case 'aktif':
 				$this->db->where('item.status',$status);
-				$this->db->where('CURDATE() < DATE(item.habisPromo)');
+				$this->db->where('CURDATE() <= DATE(item.habisPromo)');
 			break;
 			case 'banned':
 				$this->db->where('item.status',$status);
@@ -297,6 +297,27 @@ class M_produk extends CI_Model
 	public function insertPromoImage($lattestIdItem,$name)
 	{
 		return $this->db->insert('gambar',array('idItem'=>$lattestIdItem,'gambar'=>$name));
+	}
+	//kategori
+	//get id main kategori
+	public function getIdMain($idsubkat)
+	{
+		$this->db->where('idSubKategori',$idsubkat);
+		$query = $this->db->get('SubKategoriItem')->row_array();
+		return $query['idKategoriItem'];
+	}
+	//get sub kategori
+	public function getSubKat($idmainkat,$type="")//id main kategori :: type = json or empty
+	{
+		$this->db->where('idKategoriItem',$idmainkat);
+		if($type=="json")
+		{
+			$result = $this->db->get('SubKategoriItem')->result_array();//get result as array
+			return json_encode($result);//get result as json
+		}else
+		{
+			return $this->db->get('SubKategoriItem')->result_array();//get result as array
+		}
 	}
 }//end of class
 	

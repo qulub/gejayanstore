@@ -1,1 +1,0 @@
-var gejayanapp = angular.module('gejayanApp',['ngRoute']);

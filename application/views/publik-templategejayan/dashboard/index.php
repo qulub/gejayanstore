@@ -1,5 +1,5 @@
 <style type="text/css">
-	td{padding-right:10px;}
+	td{padding-right:5px;}
 </style>
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
@@ -11,13 +11,18 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h2>Total Views : <?php echo $totalviews; ?></h2>
+						<table class="dashboard-grid">
+							<tr>
+								<td><h3>Total Views : <?php echo $totalviews; ?></h3></td>
+								<td><h3>Sisa Slot : <?php echo $sisa; ?></h3></td>
+							</tr>
+						</table>
 						<br/>
 						<h2>Promo Terpopuler</h2>
 						<!-- item -->
 						<div class="grids_of_3">
 							<?php foreach($popular as $p):?>
-								<div class="list-item grid1_of_3">
+								<div class="dashboard-list-item grid1_of_3">
 									<a href="...">
 										<h3><?php echo $p['Judul'];?></h3>
 										<table>
@@ -25,8 +30,8 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 												<center>
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
-													<td><a href="#">ubah </a></td>
-													<td><a onclick="return confirm('yakinkan dulu !')" href="#">hapus </a></td>
+													<td><a href="<?php echo site_url('dashboard/promoaction?act=edit&id='.$p['idItem'])?>">ubah </a></td>
+													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 												</center>
 											</tr>
 										</table>

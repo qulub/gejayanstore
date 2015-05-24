@@ -120,7 +120,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   <?php
                   $categories = $this->M_category->showCategories(7);
                   foreach($categories as $c):?>
-                  <li><a href="sale.html"><?php echo $c['namaKategori']?></a></li> |
+                  <li><a href="<?php echo site_url('produk/kategori/'.str_replace(' ','-', $c['namaKategori']))?>"><?php echo $c['namaKategori']?></a></li> |
                <?php endforeach;?>
                <li class="active"><a href="<?php echo site_url('kategori');?>">Semua</a></li>
             </ul>

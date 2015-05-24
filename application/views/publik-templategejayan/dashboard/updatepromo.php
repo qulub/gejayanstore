@@ -11,6 +11,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<h2><?php echo $title;?></h2>
 						<br/>
 						<ul class="vertical-menu">
+							<!-- get lattest menu status, and counting -->
 							<li id="baru"><a href="<?php echo site_url('dashboard/promo/baru');?>">+ Tambah Promo</a></li>
 							<li id="aktif"><a href="<?php echo site_url('dashboard/promo/aktif');?>">Promo Aktif</a></li>
 							<li id="banned"><a href="<?php echo site_url('dashboard/promo/banned');?>">Promo Banned</a></li>
@@ -18,14 +19,15 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						</ul>
 						<br/>
 						<br/>
-						<form name="myForm" method="post" action="<?php echo site_url('dashboard/promobaru')?>" enctype="multipart/form-data">
+						<form name="myForm" method="post" action="<?php echo site_url('dashboard/promoaction?act=editprocess')?>" enctype="multipart/form-data">
+							<input type="hidden" name="promo[id]" value="<?php echo $item['idItem'];?>">
 							<div>
 								<span><label>Judul Promo</label></span>
 								<span><input name="promo[Judul]" type="text" class="textbox" value="" ng-model="title" value=""></span>
 							</div>
 							<div>
 								<span><label>Deskripsi</label></span>
-								<span><textarea name="promo[Deskripsi]" type="text" class="textbox" value="" ng-model="deskripsi"></textarea></span>
+								<span><textarea name="promo[Deskripsi]" type="text" class="textbox"><?php echo $item['Deskripsi']?></textarea></span>
 							</div>
 							<div>
 								<span><label>Kategori</label></span>
@@ -56,7 +58,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Diskon (%) masukan tanpa tanda '%'</label></span>
-								<span><input name="promo[Diskon]" type="number" min="0" max="100" class="textbox" value="" ng-model="diskon"></span>
+								<span><input name="promo[Diskon]" type="text" min="0" max="100" class="textbox" value="" ng-model="diskon"></span>
 							</div>
 							<div>
 								<span><label>Batas Promo</label></span>
@@ -65,14 +67,27 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<?php if(!empty($error))echo $error;?>
 							<div>
 							<div>
-								<span><label>Tambah Gambar</label></span>
+								<span><label>Ubah Gambar (klik untuk ukuran besar)</label></span>
 								<table>
 									<tr>
+										<?php $dir = base_url('resource/images/produk/'.date('m_Y',strtotime($item['tglPost'])));$n=1;
+										foreach($images as $im):?>
 										<td>
-										<div class="imagereview"></div>
-										<input name="gambar1" type="file" class="textbox" value=""></td>
-										<td><input name="gambar2" type="file" class="textbox" value=""></td>
-										<td><input name="gambar3" type="file" class="textbox" value=""></td>
+										<a target="_blank" href="<?php echo $dir;?>/<?php echo $im['gambar'];?>"><div class="imagereview" style="background-image:url('<?php echo $dir;?>/<?php echo $im['gambar'];?>')"></div></a>
+										<br/>
+										<input type="hidden" name="gambar[lama<?php echo $n;?>]" ng-model="gambarlama<?php echo $n;?>">
+										<input name="gambar<?php echo $n?>" type="file" class="textbox" value=""></td>
+										</td>
+										<?php $n++;endforeach;?>
+										<?php
+										if($n<=3)
+										{
+											for($n;$n<=3;$n++)
+											{
+											echo '<td><div style="background-image:url('.base_url("resource/images/produk/no_image.jpg").')" class="imagereview"></div><br/><input name="gambar'.$n.'" type="file" class="textbox" value=""></td>';
+											}
+										}
+										?>
 									</tr>
 								</table>
 							</div>
@@ -92,7 +107,16 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 	.controller('formCtrl',['$scope','$http',function($scope,$http){
 		//set input value
 		$scope.title = '<?php echo $item["Judul"]?>';
-		$scope.deskripsi = '<?php echo $item["Judul"]?>';
+		$scope.mainkat = '<?php echo $idmainkat;?>';
+		$scope.subkat = '<?php echo $item["idSubKategori"]?>';
+		$scope.harga = '<?php echo $item["harga"]?>';
+		$scope.diskon = '<?php echo $item["diskon"]?>';
+		$scope.habis = '<?php echo date("Y-m-d",strtotime($item["habisPromo"]));?>';
+		$scope.DataSubKat = <?php echo $subkat;?>;//get subkat list by id main kat
+		$scope.subkat = '<?php echo $item["idSubKategori"];?>';
+		<?php $n=1;foreach($images as $im):?>
+		$scope.gambarlama<?php echo $n;?> = '<?php echo $im["gambar"]?>';
+		<?php $n++;endforeach;?>
 		//end of set input value
 		$http.get('<?php echo site_url("ajax/jsonGetMainKat")?>')//auto load
 		.success(function(data){

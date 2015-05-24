@@ -1,5 +1,5 @@
 <style type="text/css">
-	td{padding-right:10px;}
+	td{padding-right:5px;text-align:left;}
 </style>
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
@@ -24,10 +24,14 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<div class="grids_of_3">
 							<?php if(empty($view))echo '<center>promo tidak ditemukan</center>';?>
 							<?php foreach($view as $p):?>
-								<div class="list-item grid1_of_3">
+								<div class="dashboard-list-item grid1_of_3">
 									<a target="_blank" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['Judul'])) ?>">
 										<h3><?php echo $p['Judul'];?></h3>
-										<table>
+										<table >
+											<tr>
+													<td style="font-size:10px;" colspan="2">Post <?php echo date('d-m-Y H:i:s',strtotime($p['tglPost']));?>,</td>
+													<td style="font-size:10px;" colspan="2">Update <?php echo date('d-m-Y H:i:s',strtotime($p['tglEdit']));?></td>
+											</tr>
 											<tr>
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
@@ -35,8 +39,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 											</tr>
 											<tr>
-													<td style="padding-left:5px" colspan="3">Habis <?php echo date('d-m-Y H:i:s',strtotime($p['habisPromo']));?></td>
-													<td></td>
+													<td style="padding-left:1px" colspan="4">Habis <?php echo date('d-m-Y H:i:s',strtotime($p['habisPromo']));?></td>
 											</tr>
 										</table>
 										<span class="b_btm"></span>
