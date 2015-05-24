@@ -46,7 +46,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				# code...
 			break;
 			case 'habis':
-			$title = 'Menampilkan Promo Banned';
+			$title = 'Menampilkan Promo Habis';
 			$script='$("#promo").addClass("active");$("#habis").addClass("active")';
 			$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','habis')->result_array();
 				# code...
@@ -113,7 +113,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 					}
 				}
 				echo '<script>';
-				echo "alert('Berhasil Hapus Barang');";
+				echo "alert('Promo Berhasil ditambahkan');";
 				echo "window.location='" . site_url('dashboard/promo') . "';";
 				echo '</script>';
 			}else{echo 'gagal memasukan ke database';}
