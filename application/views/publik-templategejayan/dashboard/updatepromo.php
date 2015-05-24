@@ -1,10 +1,6 @@
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
-<?php print_r($item);
-echo '<br/>';
-print_r($images);
-?>
 <div class="gallery1">
 	<div class="container">
 		<div class="wrap">	
@@ -15,6 +11,7 @@ print_r($images);
 						<h2><?php echo $title;?></h2>
 						<br/>
 						<ul class="vertical-menu">
+							<!-- get lattest menu status, and counting -->
 							<li id="baru"><a href="<?php echo site_url('dashboard/promo/baru');?>">+ Tambah Promo</a></li>
 							<li id="aktif"><a href="<?php echo site_url('dashboard/promo/aktif');?>">Promo Aktif</a></li>
 							<li id="banned"><a href="<?php echo site_url('dashboard/promo/banned');?>">Promo Banned</a></li>
@@ -22,18 +19,15 @@ print_r($images);
 						</ul>
 						<br/>
 						<br/>
-						<form name="myForm" method="post" action="<?php echo site_url('dashboard/promobaru')?>" enctype="multipart/form-data">
-							<input type="hidden" name="promo[id]" ng-model="id">
-							<?php $n=1;foreach($images as $im):?>
-							<input type="hidden" name="gambar[lama<?php echo $n;?>]" ng-model="gambarlama<?php echo $n;?>">
-							<?php $n++;endforeach;?>
+						<form name="myForm" method="post" action="<?php echo site_url('dashboard/promoaction?act=editprocess')?>" enctype="multipart/form-data">
+							<input type="hidden" name="promo[id]" value="<?php echo $item['idItem'];?>">
 							<div>
 								<span><label>Judul Promo</label></span>
 								<span><input name="promo[Judul]" type="text" class="textbox" value="" ng-model="title" value=""></span>
 							</div>
 							<div>
 								<span><label>Deskripsi</label></span>
-								<span><textarea name="promo[Deskripsi]" type="text" class="textbox" value="" ng-model="deskripsi"></textarea></span>
+								<span><textarea name="promo[Deskripsi]" type="text" class="textbox"><?php echo $item['Deskripsi']?></textarea></span>
 							</div>
 							<div>
 								<span><label>Kategori</label></span>
@@ -73,14 +67,27 @@ print_r($images);
 							<?php if(!empty($error))echo $error;?>
 							<div>
 							<div>
-								<span><label>Tambah Gambar</label></span>
+								<span><label>Ubah Gambar (klik untuk ukuran besar)</label></span>
 								<table>
 									<tr>
+										<?php $dir = base_url('resource/images/produk/'.date('m_Y',strtotime($item['tglPost'])));$n=1;
+										foreach($images as $im):?>
 										<td>
-										<div class="imagereview"></div>
-										<input name="gambar1" type="file" class="textbox" value=""></td>
-										<td><input name="gambar2" type="file" class="textbox" value=""></td>
-										<td><input name="gambar3" type="file" class="textbox" value=""></td>
+										<a target="_blank" href="<?php echo $dir;?>/<?php echo $im['gambar'];?>"><div class="imagereview" style="background-image:url('<?php echo $dir;?>/<?php echo $im['gambar'];?>')"></div></a>
+										<br/>
+										<input type="hidden" name="gambar[lama<?php echo $n;?>]" ng-model="gambarlama<?php echo $n;?>">
+										<input name="gambar<?php echo $n?>" type="file" class="textbox" value=""></td>
+										</td>
+										<?php $n++;endforeach;?>
+										<?php
+										if($n<=3)
+										{
+											for($n;$n<=3;$n++)
+											{
+											echo '<td><div style="background-image:url('.base_url("resource/images/produk/no_image.jpg").')" class="imagereview"></div><br/><input name="gambar'.$n.'" type="file" class="textbox" value=""></td>';
+											}
+										}
+										?>
 									</tr>
 								</table>
 							</div>
@@ -100,12 +107,13 @@ print_r($images);
 	.controller('formCtrl',['$scope','$http',function($scope,$http){
 		//set input value
 		$scope.title = '<?php echo $item["Judul"]?>';
-		$scope.deskripsi = '<?php echo $item["Deskripsi"]?>';
 		$scope.mainkat = '<?php echo $idmainkat;?>';
 		$scope.subkat = '<?php echo $item["idSubKategori"]?>';
 		$scope.harga = '<?php echo $item["harga"]?>';
 		$scope.diskon = '<?php echo $item["diskon"]?>';
 		$scope.habis = '<?php echo date("Y-m-d",strtotime($item["habisPromo"]));?>';
+		$scope.DataSubKat = <?php echo $subkat;?>;//get subkat list by id main kat
+		$scope.subkat = '<?php echo $item["idSubKategori"];?>';
 		<?php $n=1;foreach($images as $im):?>
 		$scope.gambarlama<?php echo $n;?> = '<?php echo $im["gambar"]?>';
 		<?php $n++;endforeach;?>

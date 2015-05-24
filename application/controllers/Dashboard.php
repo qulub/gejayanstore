@@ -31,28 +31,28 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		$uri=$this->uri->segment(3);
 		switch ($uri) {
 			case 'baru'://buat promo baru
-				return $this->promobaru();
-				break;
+			return $this->promobaru();
+			break;
 			case 'aktif':
-				$title='Menampilkan Promo Aktif';
-				$script='$("#promo").addClass("active");$("#aktif").addClass("active")';
-				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','aktif')->result_array();
-				break;
+			$title='Menampilkan Promo Aktif';
+			$script='$("#promo").addClass("active");$("#aktif").addClass("active")';
+			$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','aktif')->result_array();
+			break;
 			case 'banned':
-				$title = 'Menampilkan Promo Banned';
-				$script='$("#promo").addClass("active");$("#banned").addClass("active")';
-				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','banned')->result_array();
+			$title = 'Menampilkan Promo Banned';
+			$script='$("#promo").addClass("active");$("#banned").addClass("active")';
+			$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','banned')->result_array();
 				# code...
-				break;
+			break;
 			case 'habis':
-				$title = 'Menampilkan Promo Banned';
-				$script='$("#promo").addClass("active");$("#habis").addClass("active")';
-				$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','habis')->result_array();
+			$title = 'Menampilkan Promo Banned';
+			$script='$("#promo").addClass("active");$("#habis").addClass("active")';
+			$view=$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,'','habis')->result_array();
 				# code...
-				break;
+			break;
 			default:
-				redirect(site_url('dashboard/promo/aktif'));
-				break;
+			redirect(site_url('dashboard/promo/aktif'));
+			break;
 		}
 		$Data = array
 		(
@@ -112,9 +112,9 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 					}
 				}
 				echo '<script>';
-                echo "alert('Berhasil Hapus Barang');";
-                echo "window.location='" . site_url('dashboard/promo') . "';";
-                echo '</script>';
+				echo "alert('Berhasil Hapus Barang');";
+				echo "window.location='" . site_url('dashboard/promo') . "';";
+				echo '</script>';
 			}else{echo 'gagal memasukan ke database';}
 		}else //only view
 		{
@@ -161,25 +161,62 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				$id=$_GET['id'];//get id promo
 				$this->updatePromo($id);//do edit promo
 				break;			
-			case 'edit'://process edit promo
-				# code...
+			case 'editprocess'://process edit promo
+			echo 'yus';
+			print_r($_POST);
+			echo '<br/>';
+			print_r($_FILES);
+				//generate data
+				$promo = $_POST['promo'];
+				$iditem = $promo['id'];//get item id
+				$data = array(
+					'Judul'=>$promo['Judul'],
+					'tglEdit'=>date('Y-m-d H:i:s'),//get current date and time
+					'Deskripsi'=>$promo['Deskripsi'],
+					'idSubKategori'=>$promo['IdSubKategori'],
+					'harga'=>$promo['Harga'],
+					'diskon'=>$promo['Diskon'],
+					'habisPromo'=>$promo['HabisPromo'],
+					);
+				//update item on database
+				// print_r($data);
+				$this->db->where('idItem',$iditem);
+				if($this->db->update('item',$data))//update database)
+				{
+					//process gambar
+					for($n=1;$n<=3;$n++)
+					{
+						if(!empty($_FILES['gambar']['gambar'.$n]))//upload new image
+						{
+
+						}
+					}
+					//success popup
+					echo '<script>';
+					echo "alert('Berhasil Ubah Barang');";
+					echo "window.location='" .$this->agent->referrer(). "';";
+					echo '</script>';
+				}else{echo 'gagal update promo';}
 				break;
+			}
 		}
-	}
 	//form view 
-	public function updatePromo($id)
-	{
-		$this->db->where('idItem',$id);
+		public function updatePromo($id)
+		{
+			$this->db->where('idItem',$id);
 		$item = $this->db->get('item')->row_array();//get item detail 
 		$images = $this->M_produk->getImages($id);//get all images
 		$Data = array
 		(
+			'script'=>'$(document).ready(function(){$("#promo").addClass("active");});',
 			'title'=>'Ubah Promo',
 			'item'=>$item,
 			'mainkat'=>$this->db->get('kategoriItem')->result_array(),//all main kat
 			'idmainkat'=>$this->M_produk->getIdMain($item['idSubKategori']),
 			'images'=>$images,
 			);
+		//get all sub kat
+		$Data['subkat']=$this->M_produk->getSubKat($Data['idmainkat'],'json');//subkat by main kat -> return is array
 		return $this->basePublicView('dashboard/updatepromo',$Data);
 	}
 	//olah data toko
@@ -196,41 +233,41 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			{
 				// echo 'sedang upload';
 				$config['upload_path']          = './resource/images/toko';
-                $config['allowed_types']        = 'gif|jpg|png';
-                $config['max_size']             = 70000;
-                $config['max_width']            = 1200;
-                $config['encrypt_name']         = TRUE;
+				$config['allowed_types']        = 'gif|jpg|png';
+				$config['max_size']             = 70000;
+				$config['max_width']            = 1200;
+				$config['encrypt_name']         = TRUE;
 				$this->load->library('upload',$config);
 				if ( !$this->upload->do_upload('avatar'))
-                {
-	                $error = array('error' => $this->upload->display_errors());
-                	echo $this->upload->display_errors();
-                }
-                else
-                {
+				{
+					$error = array('error' => $this->upload->display_errors());
+					echo $this->upload->display_errors();
+				}
+				else
+				{
                   $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg 
-                }
-			}
-			$this->db->where('idToko',$toko['idToko']);
-			$this->db->update('toko',$tokodata);
+              }
+          }
+          $this->db->where('idToko',$toko['idToko']);
+          $this->db->update('toko',$tokodata);
 			// print_r($toko);
-			return redirect($this->agent->referrer());
-		}else
-		{
-			$this->load->model('M_toko');
-			$Data = array
-			(
-				'title'=>'Toko',
-				'script'=>'$("#toko").addClass("active")',
-				'toko'=>$this->M_toko->tokoByIdPemilik($this->session->userdata('admintoko')['idPemilik'])->row_array(),
-				);
-			return $this->basePublicView('dashboard/toko',$Data);
-		}
-	}
+          return redirect($this->agent->referrer());
+      }else
+      {
+      	$this->load->model('M_toko');
+      	$Data = array
+      	(
+      		'title'=>'Toko',
+      		'script'=>'$("#toko").addClass("active")',
+      		'toko'=>$this->M_toko->tokoByIdPemilik($this->session->userdata('admintoko')['idPemilik'])->row_array(),
+      		);
+      	return $this->basePublicView('dashboard/toko',$Data);
+      }
+  }
 	//olah data profil
-	public function profil()
-	{
-		$this->load->model('M_penjual');
+  public function profil()
+  {
+  	$this->load->model('M_penjual');
 		if(!empty($_POST))//update profil
 		{
 			$inputpassword = md5($this->input->post('profile')['password']);
@@ -259,7 +296,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						'errors'=>array(//custom error message
 							'required'=>'%s harus diisi'
 							),
-					),
+						),
 					array(//telp validation
 						'field'=>'profile[telp]',
 						'label'=>'Nomor Telepon',
@@ -267,7 +304,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						'errors'=>array(//custom error message
 							'required'=>'%s harus diisi'
 							),
-					),
+						),
 					array(//email validation
 						'field'=>'profile[email]',
 						'label'=>'Email',
@@ -275,7 +312,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						'errors'=>array(//custom error message
 							'required'=>'%s harus diisi','valid_email'=>'penulisan %s harus valid'
 							),
-					),
+						),
 					array(//username validation
 						'field'=>'profile[userName]',
 						'label'=>'Username',
@@ -283,12 +320,12 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						'errors'=>array(//custom error message
 							'required'=>'%s harus diisi'
 							),
-					),
+						),
 					array(//new password validation
 						'field'=>'password[newpassword]',
 						'label'=>'Password Baru',
 						'rules'=>'trim',
-					),
+						),
 					array(//new password confirmation vaidation
 						'field'=>'password[confirmpassword]',
 						'label'=>'Ulangi Password Baru',
@@ -296,9 +333,9 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						'errors'=>array(//custom error message
 							'matches'=>'Password Baru dan konfirmasi Password Baru tidak cocok'
 							),
-					),
+						),
 				);//end of confirmation rules
-				$this->form_validation->set_rules($config);
+$this->form_validation->set_rules($config);
 				if($this->form_validation->run())//data valid
 				{
 					//update database
@@ -356,15 +393,15 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		if(empty($uri)){redirect(site_url('dashboard/konfirmasi/baru'));}
 		switch ($uri) {
 			case 'baru':
-				$title = "Konfirmasi Baru";
-				$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
-				$view = '';
-				break;
+			$title = "Konfirmasi Baru";
+			$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
+			$view = '';
+			break;
 			case 'riwayat':
-				$title = "Riwayat Konfirmasi";
-				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
-				$view = '';
-				break;			
+			$title = "Riwayat Konfirmasi";
+			$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
+			$view = '';
+			break;			
 		}
 		$Data = array
 		(
