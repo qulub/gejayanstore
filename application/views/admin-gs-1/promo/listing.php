@@ -39,9 +39,9 @@ $(document).ready(function(){
                // print_r($p);
                ?>
                <div class="col-md-4">
-                  <strong><h3><?php echo $p['Judul'];?></h3></strong>
+                  <strong><h3 class="list-title"><?php echo $p['Judul'];?></h3></strong>
                   <small>Kategori : <a href="<?php echo site_url('kategori/'.str_replace(' ','-',$p['namaKategori']))?>"><?php echo $p['namaKategori']?></a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="<?php echo site_url('kategori/'.str_replace(' ','-',$p['namaKategori']))?>"><?php echo $p['namaSubKategori']?></a></small><br/>
-                  <small>Toko : <a href="<?php echo site_url('v/'.$p['idToko'].'/'.str_replace(' ','-',$p['namaToko']))?>"><?php echo $p['namaToko'];?></a></small><br/>
+                  <small>Toko : <a href="<?php echo site_url('toko/v/'.$p['idToko'].'/'.str_replace(' ','-',$p['namaToko']))?>"><?php echo $p['namaToko'];?></a></small><br/>
                   <small>Post : <?php echo $p['tglPost'];?></small><br/>
                   <small>Update : <?php echo $p['tglEdit'];?></small><br/>
                   <small>Habis : <?php echo $p['habisPromo'];?></small><br/>
@@ -53,7 +53,7 @@ $(document).ready(function(){
                   if($p['status']=='banned')
                   {$action='aktif';$text='set aktif';$class='btn-primary';
                   }else
-                  {$action='banned';;$text='set banned';$class='btn-danger';
+                  {$action='banned';$text='set banned';$class='btn-danger';
                   }
                   ?>
                   <a class="btn <?php echo $class;?> btn-xs" href="<?php echo site_url('admin/actionpromo?act=updatestatus&action='.$action.'&id='.$p['idItem']);?>"><?php echo $text;?></a> <a class="btn btn-default btn-xs" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','/',$p['Judul']));?>">preview</a>

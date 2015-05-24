@@ -221,7 +221,7 @@ public function promo()
 	$config['per_page'] = 20;
 	//end of pagination
 	$Uri = $this->uri->segment(4);
-	if(empty($uri)){$Uri = 0;}
+	if(empty($Uri)){$Uri = 0;}
 	switch ($this->uri->segment(3)) {
 		case 'aktif':
 			$view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif')->result_array();;

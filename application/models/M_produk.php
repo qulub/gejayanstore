@@ -193,10 +193,10 @@ class M_produk extends CI_Model
 		//filter
 		switch ($status) {
 			case 'aktif':
-				$this->db->where('item.habisPromo >','CURTIME()');
+				$this->db->where('CURDATE() <= DATE(item.habisPromo)');
 				break;
 				case 'habis':
-				$this->db->where('item.habisPromo <','CURTIME()');
+				$this->db->where('CURDATE() > DATE(item.habisPromo)');
 				break;
 				case 'banned':
 				$this->db->where('item.status','banned');
