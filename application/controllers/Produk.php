@@ -85,6 +85,7 @@ class Produk extends Base {
 			$Data = array
 			(
 			'title'=>$produk['judul'],
+			'galeri'=>$this->M_produk->getAllGambarProduk($produk['idItem']),
 			'view'=>$produk,
 			'toko'=>$toko,
 			'sisa'=>$itemro,
