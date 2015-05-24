@@ -18,6 +18,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		$this->load->model('M_produk');
 		$Data = array
 		(
+			'sisa'=>$this->sisaSlot($this->session->userdata('adminToko')['idPemilik']),
 			'title'=>'Dashboard',
 			'script'=>'$("#dashboard").addClass("active")',
 			'totalviews'=>$this->M_produk->totalPromoViews($this->session->userdata('admintoko')['idPemilik']),
@@ -125,7 +126,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				$Data = array 
 				(
 					'title'=>'Tambah Promo',
-					'error'=>'Slot Promo Sudah Full, Silahkan Hapus Atau Edit Promo Yang Sudah Ada'
+					'error'=>'! Slot Promo Sudah Full, Silahkan Hapus Atau Edit Promo Yang Sudah Ada'
 					);
 				return $this->basePublicView('dashboard/error',$Data);
 			}else{//masih b

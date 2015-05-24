@@ -64,4 +64,19 @@ class Base extends CI_Controller
 			return false;//admin not logged in
 		}else{return true;}//admin is loged in
 	}
+	/*
+	* ALl ABOUT DASHBOARD
+	*/
+	//sisa slot untuk memasang promo
+	public function sisaSlot($idpemilik)
+	{
+		$this->load->model('M_produk');
+		$makspromo = $this->M_produk->maksPromo($idpemilik);
+		$totalpromo = $this->M_produk->totalPromo($idpemilik);
+		$sisa = $makspromo - $totalpromo;
+		$note = 'habis';
+		if($sisa < 0){return $note;}
+		else if($sisa == 0){return '1';}
+		else{return $sisa;}
+	}
 }

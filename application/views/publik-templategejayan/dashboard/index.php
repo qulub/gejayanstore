@@ -11,10 +11,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<table>
-							<tr class="dashboard-grid">
+						<table class="dashboard-grid">
+							<tr>
 								<td><h3>Total Views : <?php echo $totalviews; ?></h3></td>
-								<td><h3>Sisa Slot : <?php echo $totalviews; ?></h3></td>
+								<td><h3>Sisa Slot : <?php echo $sisa; ?></h3></td>
 							</tr>
 						</table>
 						<br/>
@@ -30,8 +30,8 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 												<center>
 													<td>Views <?php echo $p['views'];?></td>
 													<td><?php echo $p['status'];?></td>
-													<td><a href="#">ubah </a></td>
-													<td><a onclick="return confirm('yakinkan dulu !')" href="#">hapus </a></td>
+													<td><a href="<?php echo site_url('dashboard/promoaction?act=edit&id='.$p['idItem'])?>">ubah </a></td>
+													<td><a onclick="return confirm('yakinkan dulu !')" href="<?php echo site_url('dashboard/promoaction?act=hapus&id='.$p['idItem'])?>">hapus </a></td>
 												</center>
 											</tr>
 										</table>

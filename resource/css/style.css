@@ -1360,7 +1360,7 @@ ul.vertical-menu li.active{border-bottom:1px solid rgb(64, 196, 178);}
 .imagebg{background-size: contain;background-repeat: no-repeat;background-position: center;}
 /*dashboard*/
 .dashboard-list-item h3{height:50px;overflow: hidden;font-size:20px}
-.dashboard-grid tr td{padding:10px;background-color: 1px solid gray}
+.dashboard-grid tr td{padding:10px;border: 1px solid rgb(223, 223, 223);}
 /***** Media Quries *****/
 @media only screen and (max-width: 1366px) {
 	.wrap{

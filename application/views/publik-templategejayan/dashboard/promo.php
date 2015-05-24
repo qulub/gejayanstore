@@ -27,8 +27,8 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<div class="dashboard-list-item grid1_of_3">
 									<a target="_blank" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['Judul'])) ?>">
 										<h3><?php echo $p['Judul'];?></h3>
-										<table class="dashboard-grid">
-											<tr >
+										<table >
+											<tr>
 													<td style="font-size:10px;" colspan="2">Post <?php echo date('d-m-Y H:i:s',strtotime($p['tglPost']));?>,</td>
 													<td style="font-size:10px;" colspan="2">Update <?php echo date('d-m-Y H:i:s',strtotime($p['tglEdit']));?></td>
 											</tr>
