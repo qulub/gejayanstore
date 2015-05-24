@@ -1,5 +1,5 @@
 <style type="text/css">
-	td{padding-right:10px;}
+	td{padding-right:5px;}
 </style>
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
@@ -11,13 +11,18 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h2>Total Views : <?php echo $totalviews; ?></h2>
+						<table>
+							<tr class="dashboard-grid">
+								<td><h3>Total Views : <?php echo $totalviews; ?></h3></td>
+								<td><h3>Sisa Slot : <?php echo $totalviews; ?></h3></td>
+							</tr>
+						</table>
 						<br/>
 						<h2>Promo Terpopuler</h2>
 						<!-- item -->
 						<div class="grids_of_3">
 							<?php foreach($popular as $p):?>
-								<div class="list-item grid1_of_3">
+								<div class="dashboard-list-item grid1_of_3">
 									<a href="...">
 										<h3><?php echo $p['Judul'];?></h3>
 										<table>
