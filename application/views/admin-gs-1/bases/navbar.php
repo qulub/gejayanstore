@@ -243,6 +243,36 @@
             <li>
                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
+            <!-- konfirmasi pembayaran -->
+            <li>
+               <a href="#"><i class="fa fa-dollar fa-fw"></i>Konfirmasi Pembayaran<span class="fa arrow"></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/konfirmasi/menunggu')?>">Konfirmasi Menunggu</a>
+                  </li>
+                  <li>
+                     <a href="<?php echo site_url('admin/konfirmasi/terbayar');?>">Konfirmasi Terbayar</a>
+                  </li>
+               </ul>
+            </li>
+            <!-- daftar transaksi -->
+            <li>
+               <a href="#"><i class="fa fa-dollar fa-fw"></i>Transaksi<span class="fa arrow"></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/transaksi')?>">Riwayat Transaksi</a>
+                  </li>
+               </ul>
+            </li>
+            <!-- manajemen kategori -->
+            <li>
+               <a href="#"><i class="fa fa-edit fa-fw"></i>Kategori<span class="fa arrow"></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/kategori/barang')?>">Kategori Barang</a>
+                  </li>
+               </ul>
+            </li>
             <li>
                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Promosi Produk<span class="fa arrow"></span></a>
                <ul class="nav nav-second-level">
@@ -258,6 +288,7 @@
                </ul>
                <!-- /.nav-second-level -->
             </li>
+            <!-- pemilik toko -->
             <li>
                <a href="#"><i class="fa fa-edit fa-fw"></i> Pemilik Toko<span class="fa arrow"></a>
                <ul class="nav nav-second-level">

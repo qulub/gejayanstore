@@ -306,18 +306,42 @@ class M_produk extends CI_Model
 		$query = $this->db->get('SubKategoriItem')->row_array();
 		return $query['idKategoriItem'];
 	}
-	//get sub kategori
-	public function getSubKat($idmainkat,$type="")//id main kategori :: type = json or empty
+	// //get sub kategori
+	// public function getSubKat($idmainkat,$type="")//id main kategori :: type = json or empty
+	// {
+	// 	$this->db->where('idKategoriItem',$idmainkat);
+	// 	if($type=="json")
+	// 	{
+	// 		$result = $this->db->get('SubKategoriItem')->result_array();//get result as array
+	// 		return json_encode($result);//get result as json
+	// 	}else
+	// 	{
+	// 		return $this->db->get('SubKategoriItem')->result_array();//get result as array
+	// 	}
+	// }
+	//kategori
+	public function getKategori($param,$kategoriId)//barang OR toko
 	{
-		$this->db->where('idKategoriItem',$idmainkat);
-		if($type=="json")
-		{
-			$result = $this->db->get('SubKategoriItem')->result_array();//get result as array
-			return json_encode($result);//get result as json
-		}else
-		{
-			return $this->db->get('SubKategoriItem')->result_array();//get result as array
+		switch ($param) {
+			case 'barang':
+				if(!empty($kategoriId))
+				{
+					$this->db->join('SubKategoriItem','SubKategoriItem.idKategoriItem = kategoriItem.idKategoriItem');
+					$this->db->where('SubKategoriItem.idKategoriItem',$kategoriId);
+				}
+				return $this->db->get('kategoriItem');
+				break;
+			case 'toko':
+				//build
+				break;
 		}
+	}
+	//subkat
+	public function getSubKat($idmainkat="")
+	{
+		if(!empty($idmainkat)){$this->db->where('idKategoriItem',$idmainkat);}
+		else{$this->db->where('idKategoriItem',1);}
+		return $this->db->get('SubKategoriItem');
 	}
 }//end of class
 	

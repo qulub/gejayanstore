@@ -310,6 +310,57 @@ public function promo()
 		);
 		return $this->baseAdminView('penjual/list',$Data);
 	}
+	//manajemen kategori
+	public function kategori()
+	{
+		if(!empty($_GET['act']))
+		{
+			switch ($_GET['act']) {
+				case 'addmainkat':
+					$this->db->insert('kategoriItem',array('namaKategori'=>$_POST['nama'],'deskripsiKategori'=>$_POST['deskripsi']));
+					redirect($this->agent->referrer());
+					break;
+				case 'addsubkat':
+					$this->db->insert('SubKategoriItem',array('idKategoriItem'=>$_POST['mainkat'],'namaSubKategori'=>$_POST['subkat']));
+					redirect($this->agent->referrer());
+					break;
+				case 'delmainkat';
+					$this->db->where('idKategoriItem',$_GET['id']);
+					$this->db->delete('kategoriItem');
+					redirect($this->agent->referrer());
+					break;
+				case 'delsubkat';
+					$this->db->where('idSubKategori',$_GET['id']);
+					$this->db->delete('SubKategoriItem');
+					redirect($this->agent->referrer());
+					break;
+				default:
+					redirect($this->agent->referrer());
+					break;
+			}
+		}else//just view
+		{
+		$segment = $this->uri->segment(3);
+		$idmainkat = $this->uri->segment(4);
+		switch($segment){
+			case 'barang'://manajemen kategori barang
+				$Data = array(
+					'title'=>'Manajemen Kategori',
+					'mainkat'=>$this->M_produk->getKategori('barang',''),//get all item kategori
+					'subkat'=>$this->M_produk->getSubKat($idmainkat),//get sub kat
+					'script'=>'$scope.semua = "active";',
+					);
+				return $this->baseAdminView('kategori/barang',$Data);
+				break;
+			case 'toko'://menajemen kategori toks
+				echo 'on construct';
+				break;	
+			default://not defined uri segment 3
+			redirect(site_url('kategori/barang'));
+			break;
+		}
+		}
+	}
 	/*END OF MANAJEMEN*/
 
 	//logout
