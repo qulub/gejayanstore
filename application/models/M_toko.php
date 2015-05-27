@@ -15,7 +15,7 @@ class M_toko extends CI_Model
 		return $query->result_array();
 	}
 	//count toko
-	public function countToko()
+	public function countToko($status="")
 	{
 		$this->db->order_by('updatedata','DESC');
 		$query = $this->db->get('toko');

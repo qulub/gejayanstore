@@ -343,5 +343,26 @@ class M_produk extends CI_Model
 		else{$this->db->where('idKategoriItem',1);}
 		return $this->db->get('SubKategoriItem');
 	}
+	/*
+	* Transaksi
+	*/
+	public function transaksi($status="")
+	{
+		if(!empty($status))$this->db->where('transaksi.status',$status);//get by status
+		$this->db->select('*');
+		$this->db->join('pemilikToko','pemilikToko.idPemilik = transaksi.idPemilik');
+		$this->db->join('toko','toko.idPemilik = pemilikToko.idPemilik');
+		return $this->db->get('transaksi');
+	}
+	/*
+	* Konfirmasi
+	*/
+	public function konfirmasi($status="")
+	{
+		if(!empty($status))$this->db->where('transaksi.status',$status);//get by status
+		$this->db->select('*');
+		$this->db->join('transaksi','transaksi.idTransaksi = konfirmasiPembayaran.idTransaksi');//transaksi
+		return $this->db->get('konfirmasiPembayaran');
+	}
 }//end of class
 	

@@ -28,11 +28,6 @@
       </div><!-- /.row -->
       <p>Data Ditemukan : <?php echo $count?> Penjual</p>
       <!-- <pre><?php print_r($view); ?></pre> -->
-      <ul class="nav nav-tabs">
-         <li id="semua"><a href="<?php echo site_url('admin/penjual/all');?>">Semua</a></li>
-         <li id="active"><a href="<?php echo site_url('admin/penjual/active');?>">Active</a></li>
-         <li id="banned"><a href="<?php echo site_url('admin/penjual/banned');?>">Banned</a></li>
-      </ul>
       <table class="table">
          <tr>
             <th></th>

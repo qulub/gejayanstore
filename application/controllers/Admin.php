@@ -62,6 +62,9 @@ class Admin extends Base {
 	{
 		$Data  = array(
 			'title'=>'Admin Dashboard',
+			'transaksimenunggu'=>$this->M_produk->transaksi('menunggu'),
+			'konfirmasimenunggu'=>$this->M_produk->konfirmasi('menunggu'),
+			'totaltoko'=>$this->M_toko->countToko($status=""),
 		);
 		$this->baseAdminView('dashboard',$Data);
 	}
@@ -369,4 +372,5 @@ public function promo()
 		$this->session->sess_destroy();
 		redirect(site_url('admin'));
 	}
+
 }
