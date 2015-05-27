@@ -106,5 +106,12 @@ class Home extends Base {
 		}
 	}
 
+	public function importspreadsheet()//import spreadsheet
+	{
+		echo '<center>memproses data...</center>';
+		require_once 'application/controllers/excel_reader2.php';//get third party
+		$file = $_FILES['spreadsheet']['name'];
+	}
+
 }
 

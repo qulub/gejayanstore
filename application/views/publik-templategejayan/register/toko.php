@@ -49,14 +49,14 @@
       </div>
       <div class="wrap">
          <center>
-            <form method="POST" action="">
+            <form >
                <label style="line-height:40px"><input type="checkbox" value="1" required> Menyetujui syarat dan ketentuan</label>
                <div class="price"><button style="border:none;background-color:transparent" type="submit"><h4><span>Download Form</span></h4></div></button>
             </form>
             <br/>
             <p style="text-align:center">Sudah mengisi form, silahkan upload disini</p>
-            <form class="" action="index.html" method="post">
-               <label style="line-height:40px"><input type="file" name="formupload" value="" required></label>
+            <form method="POST" enctype="multipart/form-data" action="<?php echo site_url('home/importspreadsheet')?>">
+               <label style="line-height:40px"><input name="spreadsheet" type="file" name="formupload" value="" required></label>
                <div class="price"><button style="border:none;background-color:transparent" type="submit"><h4><span>Upload Form</span></h4></div></button></div>
             </form>
             <br/>
