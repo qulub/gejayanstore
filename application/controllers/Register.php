@@ -21,9 +21,18 @@ class Register extends Base {
 		);
 		return $this->basePublicView('register/toko',$Data);
 	}
-	//register pelanggan
-	public function pelanggan()
+	//isi form
+	public function isiform()
 	{
-
+		if(!empty($_POST['setuju']) AND $_POST['setuju']==TRUE)
+		{
+			$Data = array(
+				'title'=>'Isi Formulir Pendaftaran'
+				);
+			return $this->basePublicView('register/isifile',$Data);
+		}else
+		{
+			$this->toko();
+		}
 	}
 }
