@@ -46,7 +46,7 @@
                <td><?php echo $v['userName'];?></td>
                <td><?php echo $v['namaPemilik'];?></td>
                <td><?php echo $v['telp'];?></td>
-               <td><?php echo $v['email'];?></td>
+               <td><?php echo $v['emailToko'];?></td>
                <td><?php echo $v['alamat'];?></td>
                <td><?php if(!empty($v['namaToko'])){echo $v['namaToko'];}else{echo 'Belum Pasang';}?></td>
                <td><a data-toggle="tooltip" title="klik untuk ubah status" href="<?php echo site_url('admin/actionpenjual/ubahstatus/'.$v['idPemilik']);?>"><?php echo $v['status'];?></td>

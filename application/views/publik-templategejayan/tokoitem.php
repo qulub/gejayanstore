@@ -29,7 +29,7 @@
 						<p><span class="bold">Buka : </span><?php echo $view['jamBuka']?> - <?php echo $view['jamTutup']?></p>
 						<p><span class="bold">Alamat : </span><?php echo $view['alamatToko']?></p>
 						<p><span class="bold">Telp : </span><?php echo $view['telp']?></p>
-						<p><span class="bold">Email : </span><?php echo $view['email']?></p>
+						<p><span class="bold">Email : </span><?php echo $view['emailToko']?></p>
 						<div class="clear"></div>
 					</div>
 					<div class="content-2">
