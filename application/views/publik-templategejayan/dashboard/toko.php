@@ -24,7 +24,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						// print_r($toko);
 						?>
 						<form enctype="multipart/form-data" method="post" action="#error">
-							<input name="toko[avatar]" type="hidden" class="textbox" value="">
+							<input name="oldavatar" type="hidden" class="textbox" value="<?php echo $toko['avatar'];?>">
 							<?php
 							if(!empty($toko['avatar']))echo '<img width="200px" src="'.base_url('resource/images/toko/'.$toko['avatar']).'">';
 							?>
@@ -59,11 +59,11 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Email</label></span>
-								<span><input name="profile[email]" type="text" class="textbox" value="<?php echo $toko['email'];?>"></span>
+								<span><input name="toko[emailToko]" type="text" class="textbox" value="<?php echo $toko['emailToko'];?>"></span>
 							</div>
 							<div>
 								<span><label>Nomor Telepon</label></span>
-								<span><input name="profile[telp]" type="text" class="textbox" value="<?php echo $toko['telp'];?>"></span>
+								<span><input name="toko[telp]" type="text" class="textbox" value="<?php echo $toko['telp'];?>"></span>
 							</div>
 							<?php if(!empty($error))echo $error;?>
 							<div>

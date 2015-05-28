@@ -248,6 +248,8 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				{
                   $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg 
               }
+          }else{//not upload
+          		$tokodata['avatar'] = $_POST['oldavatar'];
           }
           $this->db->where('idToko',$toko['idToko']);
           $this->db->update('toko',$tokodata);
