@@ -497,6 +497,6 @@ class Base extends CI_Controller
 		curl_close($session);
 		// print everything out
 		// $reponse = json_decode($response);
-		echo $response;
+		// echo $response;
 	}
 }

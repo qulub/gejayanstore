@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 29, 2015 at 06:46 PM
+-- Generation Time: May 29, 2015 at 08:47 PM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -252,10 +252,10 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
   `telp` varchar(15) NOT NULL,
   `email` varchar(100) NOT NULL,
   `alamat` varchar(100) NOT NULL,
-  `userName` varchar(50) NOT NULL,
-  `password` text NOT NULL,
+  `userName` varchar(50) DEFAULT NULL,
+  `password` text,
   `status` enum('active','banned','menunggu') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilikToko`
@@ -263,7 +263,14 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
 
 INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `status`) VALUES
 (1, '2015-05-01 05:22:35', '15-05-28 22:43:37', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', 'active'),
-(2, '2015-05-01 05:22:35', NULL, 'Mella Ramadhani', '085645728977', 'mellastarter@gmail.com', 'Jl Nusa Indah 25 Sleman DIY', 'mella', 'ac43724f16e9241d990427ab7c8f4228', 'menunggu');
+(2, '2015-05-01 05:22:35', NULL, 'Mella Ramadhani', '085645728977', 'mellastarter@gmail.com', 'Jl Nusa Indah 25 Sleman DIY', 'mella', 'ac43724f16e9241d990427ab7c8f4228', 'menunggu'),
+(3, '2015-05-29 20:38:42', '2015-05-29 20:38:42', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(4, '2015-05-29 20:39:03', '2015-05-29 20:39:03', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(5, '2015-05-29 20:39:39', '2015-05-29 20:39:39', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(6, '2015-05-29 20:40:06', '2015-05-29 20:40:06', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(7, '2015-05-29 20:41:13', '2015-05-29 20:41:13', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(8, '2015-05-29 20:43:19', '2015-05-29 20:43:19', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
+(9, '2015-05-29 20:45:09', '2015-05-29 20:45:09', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu');
 
 -- --------------------------------------------------------
 
@@ -312,15 +319,19 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `updateData` datetime NOT NULL,
   `libur` varchar(45) DEFAULT NULL,
   `maxPromo` varchar(45) NOT NULL DEFAULT '',
-  `kategoriUsaha` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `kategoriUsaha` int(11) DEFAULT NULL,
+  `tdp` varchar(45) DEFAULT NULL,
+  `siup` varchar(45) DEFAULT NULL,
+  `sig` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `toko`
 --
 
-INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `emailToko`, `tentangToko`, `updateData`, `libur`, `maxPromo`, `kategoriUsaha`) VALUES
-(1, 1, '2015-05-25 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', 'e2303f01e58736c6c54a1f34727a93d1.jpg', '08:00:00', '22:00:00', '085645777298', 'ma@max.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00', 'minggu', '5', 1);
+INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `emailToko`, `tentangToko`, `updateData`, `libur`, `maxPromo`, `kategoriUsaha`, `tdp`, `siup`, `sig`) VALUES
+(1, 1, '2015-05-25 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', 'e2303f01e58736c6c54a1f34727a93d1.jpg', '08:00:00', '22:00:00', '085645777298', 'ma@max.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00', 'minggu', '5', 1, NULL, NULL, NULL),
+(4, 9, '0000-00-00 00:00:00', 'Nama Usaha', 'Jl. Gejayan No 3 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'f8b2586363eca23a752bd01ccd22662f.png<br/>', '08:00:00', '12:00:00', '08123456', 'yusuftwenty@gmail.com', 'ini toko yang paling keren', '2015-05-29 20:45:09', 'minggu', '0', 1, '<br/>', '9f9c05cbbc272720423824dec2dd6d2f.png<br/>', '1c1208ccad13095b2de1a8d01233da4f.png<br/>');
 
 -- --------------------------------------------------------
 
@@ -436,7 +447,7 @@ ALTER TABLE `SubKategoriItem`
 -- Indexes for table `toko`
 --
 ALTER TABLE `toko`
- ADD PRIMARY KEY (`idToko`), ADD UNIQUE KEY `koordinat` (`koordinat`), ADD UNIQUE KEY `namaToko` (`namaToko`), ADD KEY `idPemilik` (`idPemilik`), ADD KEY `fk_toko_1_idx` (`kategoriUsaha`);
+ ADD PRIMARY KEY (`idToko`), ADD UNIQUE KEY `namaToko` (`namaToko`), ADD KEY `idPemilik` (`idPemilik`), ADD KEY `fk_toko_1_idx` (`kategoriUsaha`);
 
 --
 -- Indexes for table `tokoFavorite`
@@ -498,7 +509,7 @@ MODIFY `idPelanggan` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `pemilikToko`
 --
 ALTER TABLE `pemilikToko`
-MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
@@ -508,7 +519,7 @@ MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- Constraints for dumped tables
 --
