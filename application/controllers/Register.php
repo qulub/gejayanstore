@@ -38,7 +38,7 @@ class Register extends Base {
 	public function process()//process of entry data
 	{
 		// echo '<pre>';
-		// print_r($_POST);
+		print_r($_POST);
 		// echo '<br/>';
 		// print_r($_FILES);
 		// echo '</pre>';
@@ -203,7 +203,7 @@ class Register extends Base {
 			// $this->upload->initialize($config['logo']);
 			$this->upload->initialize($config['logo']);
 			$this->upload->do_upload('logotoko');
-			echo $idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			echo $logoname = $this->upload->data('file_name').'<br/>';//get ktp filename
 			//idcard
 			$this->upload->initialize($config['idcard']);
 			$this->upload->do_upload('idcard');
@@ -221,6 +221,42 @@ class Register extends Base {
 			$this->upload->do_upload('sig');
 			echo $signame = $this->upload->data('file_name').'<br/>';//get sig filename
 			$this->upload->display_errors();
+			$pemilik = $_POST['pemilik'];
+			//insert pemilik toko
+			$datapemilik = array(
+				'tglRegister'=>date('Y-m-d H:i:s'),
+				'lastLogin'=>date('Y-m-d H:i:s'),
+				'namaPemilik'=>$pemilik['nama'],
+				'telp'=>$pemilik['notelp'],
+				'email'=>$pemilik['email'],
+				'alamat'=>$pemilik['domisili'],
+				'status'=>'menunggu',
+				);
+			$this->db->insert('pemilikToko',$datapemilik);//insert to table pemilik toko
+			//get lattest pemilik toko id
+			$this->load->model('M_penjual');
+			$idpemilik = $this->M_penjual->latestPemilikToko();
+			//insert toko
+			$toko = $_POST['usaha'];
+			$datatoko = array(
+				'idPemilik'=>$idpemilik,
+				'namaToko'=>$usaha['nama'],
+				'alamatToko'=>$usaha['alamat'],
+				'avatar'=>$logoname,
+				'jamBuka'=>$usaha['jambukan'],
+				'jamTutup'=>$usaha['jamtutup'],
+				'telp'=>$usaha['telepon'],
+				'emailToko'=>$usaha['email'],
+				'tentangToko'=>$usaha['deskripsi'],
+				'updateData'=>date('Y-m-d H:i:s'),
+				'libur'=>$usaha['libur'],
+				'MaxPromo'=>0,
+				'kategoriUsaha'=>$usaha['kategori'],
+				'tdp'=>$tdpname,
+				'siup'=>$siup,
+				'sig'=>$signame,
+				);
+			$this->db->insert('toko',$datatoko);//insert to table toko
 		}else
 		{
 			$error = validation_errors('<div id="error" style="padding:10px" class="error">','</div>');
@@ -237,9 +273,11 @@ class Register extends Base {
 	//send email
 	public function success()
 	{
-		$destination = 'yusuftwenty@gmail.com';
-		$subject = 'Rindu Sangat';
-		$body = '<h1>Pendaftaran Gejayan Store</h1><p>Data anda telah kami terima, terus cek email ini untuk mengetahui status pendaftara anda</p>';
-		return $this->sendemail($destination,$subject,$body);
+		//html message
+		$body ='Username dan password akan dikirimkan melalui email ini, setelah data yang anda masukan diverifikasi oleh admin';
+		$topic = 'Pendaftaran Toko Di Gejayan Store';
+		$destination = 'mudawil.q@students.amikom.ac.id';
+		$subject = 'Pendaftaran Anda Berhasil';
+		return $this->sendemail($destination,$subject,$topic,$body);
 	}
 }

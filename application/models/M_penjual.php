@@ -44,4 +44,12 @@ class M_penjual extends CI_Model
 		$this->db->join('toko','toko.idPemilik=pemilikToko.IdPemilik');
 		return $this->db->get('pemilikToko')->row_array();
 	}
+	//get latest id pemilik toko
+	public function latestPemilikToko()
+	{
+		$this->db->select('idPemilik');
+		$this->db->order_by('idPemilik','DESC');
+		$query = $this->db->get('pemilikToko');
+		return $query['idPemilik'];//get latest id pemilik toko
+	}
 }
