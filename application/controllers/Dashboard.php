@@ -338,7 +338,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 							),
 						),
 				);//end of confirmation rules
-$this->form_validation->set_rules($config);
+				$this->form_validation->set_rules($config);
 				if($this->form_validation->run())//data valid
 				{
 					//update database
