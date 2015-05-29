@@ -183,7 +183,7 @@ class Base extends CI_Controller
 			<tr>
 			<td>
 			<![endif]-->
-			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #323341" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
+			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color:#E8E8E8" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
 			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0"> 
@@ -269,7 +269,7 @@ class Base extends CI_Controller
 			<tr>
 			<td>
 			<![endif]-->
-			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #61626F" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
+			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #FFF" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
 			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0"> 
@@ -320,7 +320,7 @@ class Base extends CI_Controller
 			<a style="display: inline-block;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;line-height: 100%;padding-top: 5px;                         padding-right: 20px;                        padding-bottom: 5px;                        padding-left: 20px;                        text-align:;                        font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;-webkit-border-radius: 25px;-moz-border-radius: 25px;border-radius: 25px;border-top: 0px solid transparent;border-right: 0px solid transparent;border-bottom: 0px solid transparent;border-left: 0px solid transparent;color: #ffffff" href="" target="_blank">
 
 			<!--[if mso]>&nbsp;<![endif]-->
-			<div style="text-align: center !important;line-height: 100% !important;font-family: inherit;font-size: 12px;color: #ffffff" data-mce-style="font-family: inherit; font-size: 16px; line-height: 32px;"><span style="line-height: 100% !important;font-size: 14px">ke GejayanStore</span></div>
+			<div style="text-align: center !important;line-height: 100% !important;font-family: inherit;font-size: 12px;color: #ffffff" data-mce-style="font-family: inherit; font-size: 16px; line-height: 32px;"><a href="http://gejayanstore.com" style="color:#fff;text-decoration:none;line-height: 100% !important;font-size: 14px">ke GejayanStore</a></div>
 			<!--[if mso]>&nbsp;<![endif]-->
 			</a>
 
@@ -408,7 +408,7 @@ class Base extends CI_Controller
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top">
 			<a href="https://www.facebook.com/" title="Facebook" target="_blank">
-			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="images/facebook.png" alt="Facebook" title="Facebook" width="100%">
+			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="http://i.imgur.com/DHxcb2m.png" alt="Facebook" title="Facebook" width="100%">
 			</a>
 			</td>
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top"></td>
@@ -418,7 +418,7 @@ class Base extends CI_Controller
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top">
 			<a href="http://twitter.com/" title="Twitter" target="_blank">
-			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="images/twitter.png" alt="Twitter" title="Twitter" width="100%">
+			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="http://i.imgur.com/uYn565H.png" alt="Twitter" title="Twitter" width="100%">
 			</a>
 			</td>
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top"></td>
@@ -428,7 +428,7 @@ class Base extends CI_Controller
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top">
 			<a href="http://plus.google.com/" title="Google+" target="_blank">
-			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="images/googleplus.png" alt="Google+" title="Google+" width="100%">
+			<img style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;width: 100%;clear: both;display: block;border: none;height: auto;line-height: 100%;max-width: 32px !important" src="http://i.imgur.com/yb90ePk.png" alt="Google+" title="Google+" width="100%">
 			</a>
 			</td>
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top"></td>
@@ -497,6 +497,6 @@ class Base extends CI_Controller
 		curl_close($session);
 		// print everything out
 		// $reponse = json_decode($response);
-		echo $response;
+		// echo $response;
 	}
 }

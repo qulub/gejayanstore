@@ -38,7 +38,7 @@ class Register extends Base {
 	public function process()//process of entry data
 	{
 		// echo '<pre>';
-		print_r($_POST);
+		// print_r($_POST);
 		// echo '<br/>';
 		// print_r($_FILES);
 		// echo '</pre>';
@@ -158,7 +158,7 @@ class Register extends Base {
 		$this->form_validation->set_rules($config);
 		if($this->form_validation->run())//validasi berhasil, waktunya upload
 		{
-			echo 'semua data valid';
+			// echo 'semua data valid';
 			//upload validation
 			$config = array(
 				//ktp upload
@@ -203,23 +203,23 @@ class Register extends Base {
 			// $this->upload->initialize($config['logo']);
 			$this->upload->initialize($config['logo']);
 			$this->upload->do_upload('logotoko');
-			echo $logoname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			$logoname = $this->upload->data('file_name').'<br/>';//get ktp filename
 			//idcard
 			$this->upload->initialize($config['idcard']);
 			$this->upload->do_upload('idcard');
-			echo $idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			$idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
 			//tdp
 			$this->upload->initialize($config['tdp']);
 			$this->upload->do_upload('tdp');
-			echo $tdpname = $this->upload->data('file_name').'<br/>';//get tdp file name
+			$tdpname = $this->upload->data('file_name').'<br/>';//get tdp file name
 			//siup
 			$this->upload->initialize($config['siup']);
 			$this->upload->do_upload('siup');
-			echo $siupname = $this->upload->data('file_name').'<br/>';//get siup filename
+			$siupname = $this->upload->data('file_name').'<br/>';//get siup filename
 			//sig
 			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
-			echo $signame = $this->upload->data('file_name').'<br/>';//get sig filename
+			// $signame = $this->upload->data('file_name').'<br/>';//get sig filename
 			$this->upload->display_errors();
 			$pemilik = $_POST['pemilik'];
 			//insert pemilik toko
@@ -237,13 +237,13 @@ class Register extends Base {
 			$this->load->model('M_penjual');
 			$idpemilik = $this->M_penjual->latestPemilikToko();
 			//insert toko
-			$toko = $_POST['usaha'];
+			$usaha = $_POST['usaha'];
 			$datatoko = array(
 				'idPemilik'=>$idpemilik,
 				'namaToko'=>$usaha['nama'],
 				'alamatToko'=>$usaha['alamat'],
 				'avatar'=>$logoname,
-				'jamBuka'=>$usaha['jambukan'],
+				'jamBuka'=>$usaha['jambuka'],
 				'jamTutup'=>$usaha['jamtutup'],
 				'telp'=>$usaha['telepon'],
 				'emailToko'=>$usaha['email'],
@@ -253,10 +253,11 @@ class Register extends Base {
 				'MaxPromo'=>0,
 				'kategoriUsaha'=>$usaha['kategori'],
 				'tdp'=>$tdpname,
-				'siup'=>$siup,
+				'siup'=>$siupname,
 				'sig'=>$signame,
 				);
 			$this->db->insert('toko',$datatoko);//insert to table toko
+			return $this->registersuccess($datapemilik['email']);//kirim pensa success ke email
 		}else
 		{
 			$error = validation_errors('<div id="error" style="padding:10px" class="error">','</div>');
@@ -271,13 +272,19 @@ class Register extends Base {
 		}
 	}
 	//send email
-	public function success()
+	public function registersuccess($destination)
 	{
 		//html message
 		$body ='Username dan password akan dikirimkan melalui email ini, setelah data yang anda masukan diverifikasi oleh admin';
 		$topic = 'Pendaftaran Toko Di Gejayan Store';
-		$destination = 'mudawil.q@students.amikom.ac.id';
 		$subject = 'Pendaftaran Anda Berhasil';
-		return $this->sendemail($destination,$subject,$topic,$body);
+		$this->sendemail($destination,$subject,$topic,$body);
+		//pesan emai
+		$Data = array
+		(
+			'title'=>'Pendaftaran Sukses',
+			'pesan'=>'Pendaftaran sukses. Username dan Password akan dikirimkan ke email anda setelah diverifikasi oleh admin',
+			);
+		$this->basePublicView('register/sukses',$Data);
 	}
 }

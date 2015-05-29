@@ -49,7 +49,7 @@ class M_penjual extends CI_Model
 	{
 		$this->db->select('idPemilik');
 		$this->db->order_by('idPemilik','DESC');
-		$query = $this->db->get('pemilikToko');
+		$query = $this->db->get('pemilikToko')->row_array();
 		return $query['idPemilik'];//get latest id pemilik toko
 	}
 }
