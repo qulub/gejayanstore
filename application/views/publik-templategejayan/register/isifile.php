@@ -88,16 +88,16 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span><input name="logotoko" type="file"></span>
 							</div>
 							<div>
-								<span><label>Scan Bukti 1<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="bukti1" type="file"></span>
+								<span><label>Scan TDP<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="tdp" type="file"></span>
 							</div>
 							<div>
-								<span><label>Scan Bukti 2<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="bukti2" type="file"></span>
+								<span><label>Scan SIUP<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="siup" type="file"></span>
 							</div>
 							<div>
-								<span><label>Scan Bukti 3<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="bukti3" type="file"></span>
+								<span><label>Scan Surat Ijin Gangguan<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="sig" type="file"></span>
 							</div>
 							<?php if(!empty($error))echo $error;//if error found?>
 							<span><input type="submit" class="" value="Daftar"></span>

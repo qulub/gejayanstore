@@ -159,7 +159,6 @@ class Register extends Base {
 		if($this->form_validation->run())//validasi berhasil, waktunya upload
 		{
 			echo 'semua data valid';
-			$this->load->library('upload');
 			//upload validation
 			$config = array(
 				//ktp upload
@@ -198,20 +197,30 @@ class Register extends Base {
 					'encrypt_name' => TRUE
 					),
 				);
-			//initialize upload config
-			$this->upload->initialize($config['idcard']);
-			$this->upload->initialize($config['tdp']);
-			$this->upload->initialize($config['siup']);
-			$this->upload->initialize($config['sig']);
 			//do upload
+			$this->load->library('upload');
+			//logo toko
+			// $this->upload->initialize($config['logo']);
+			$this->upload->initialize($config['logo']);
+			$this->upload->do_upload('logotoko');
+			echo $idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			//idcard
+			$this->upload->initialize($config['idcard']);
 			$this->upload->do_upload('idcard');
-			echo $idcardname = $this->upload->data('file_name');//get ktp filename
+			echo $idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			//tdp
+			$this->upload->initialize($config['tdp']);
 			$this->upload->do_upload('tdp');
-			echo $tdpname = $this->upload->data('file_name');//get tdp file name
+			echo $tdpname = $this->upload->data('file_name').'<br/>';//get tdp file name
+			//siup
+			$this->upload->initialize($config['siup']);
 			$this->upload->do_upload('siup');
-			echo $siupname = $this->upload->data('file_name');//get siup filename
+			echo $siupname = $this->upload->data('file_name').'<br/>';//get siup filename
+			//sig
+			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
-			echo $signame = $this->upload->data('file_name');//get sig filename
+			echo $signame = $this->upload->data('file_name').'<br/>';//get sig filename
+			$this->upload->display_errors();
 		}else
 		{
 			$error = validation_errors('<div id="error" style="padding:10px" class="error">','</div>');
