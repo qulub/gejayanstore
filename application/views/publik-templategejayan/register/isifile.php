@@ -29,17 +29,17 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Domisili Sekarang</label></span>
-								<span><textarea name="pemilik[domisili]" type="text" class="textbox"><?php if(!empty($pemilik['domisili']))echo $pemilik['domisili'];?></textarea></span>
+								<span><textarea name="pemilik[domisili]" type="text" class="textbox" required><?php if(!empty($pemilik['domisili']))echo $pemilik['domisili'];?></textarea></span>
 							</div>
 							<div>
 								<span><label>Upload Scan KTP / tanda pengenal lain<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="idcard" type="file"></span>
+								<span><input name="idcard" type="file" required></span>
 							</div>
 							<br/>
 							<h3><strong>Data Usaha</strong></h3>
 							<div>
 								<span><label>Nama Toko / Tempat Usaha</label></span>
-								<span><input name="usaha[nama]" type="text" class="textbox" value="<?php if(!empty($usaha['nama']))echo $usaha['nama'];?>"></span>
+								<span><input name="usaha[nama]" type="text" class="textbox" value="<?php if(!empty($usaha['nama']))echo $usaha['nama'];?>" required></span>
 							</div>
 							<div>
 								<span><label>Kategori Usaha</label></span>
@@ -53,11 +53,11 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Deskripsi Singkat Toko / Tempat Usaha</label></span>
-								<span><textarea name="usaha[deskripsi]" type="text" class="textbox"><?php if(!empty($usaha['deskripsi']))echo $usaha['deskripsi'];?></textarea></span>
+								<span><textarea name="usaha[deskripsi]" type="text" class="textbox" required><?php if(!empty($usaha['deskripsi']))echo $usaha['deskripsi'];?></textarea></span>
 							</div>
 							<div>
 								<span><label>Alamat Toko</label></span>
-								<span><textarea name="usaha[alamat]" type="text" class="textbox">Jl. Gejayan No ? , Kabuaten Sleman, Daerah Istimewa Yogyakarta</textarea></span>
+								<span><textarea name="usaha[alamat]" type="text" class="textbox" required>Jl. Gejayan No ? , Kabuaten Sleman, Daerah Istimewa Yogyakarta</textarea></span>
 								
 							</div>
 							<div>
@@ -85,19 +85,19 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Logo Toko<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="logotoko" type="file"></span>
+								<span><input name="logotoko" type="file" required></span>
 							</div>
 							<div>
 								<span><label>Scan TDP<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="tdp" type="file"></span>
+								<span><input name="tdp" type="file" required></span>
 							</div>
 							<div>
 								<span><label>Scan SIUP<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="siup" type="file"></span>
+								<span><input name="siup" type="file" required></span>
 							</div>
 							<div>
 								<span><label>Scan Surat Ijin Gangguan<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="sig" type="file"></span>
+								<span><input name="sig" type="file" required></span>
 							</div>
 							<?php if(!empty($error))echo $error;//if error found?>
 							<span><input type="submit" class="" value="Daftar"></span>
