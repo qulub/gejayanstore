@@ -293,7 +293,7 @@
                <a href="#"><i class="fa fa-edit fa-fw"></i> Pemilik Toko<span class="fa arrow"></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="<?php echo site_url('admin/penjualmenunggu')?>">Menunggu Konfirmasi</a>
+                     <a href="<?php echo site_url('admin/penjual/menunggu')?>">Menunggu Konfirmasi</a>
                   </li>
                   <li>
                      <a href="<?php echo site_url('admin/penjual');?>">Ready</a>

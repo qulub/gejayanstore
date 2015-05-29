@@ -13,6 +13,12 @@ class M_penjual extends CI_Model
 		$this->db->where('password',md5($password));
 		return $this->db->get('pemilikToko');//get pemilik toko data from database
 	}
+	//get all penjual
+	public function getAllPenjual($status)
+	{
+		$this->db->where('status',$status);
+		return $this->db->get('pemilikToko');
+	}
 	//get penjual simple
 	public function getSimplePenjual($limit="",$offset="",$status="",$q="")
 	{

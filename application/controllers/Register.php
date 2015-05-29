@@ -203,23 +203,23 @@ class Register extends Base {
 			// $this->upload->initialize($config['logo']);
 			$this->upload->initialize($config['logo']);
 			$this->upload->do_upload('logotoko');
-			$logoname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			$logoname = $this->upload->data('file_name');//get ktp filename
 			//idcard
 			$this->upload->initialize($config['idcard']);
 			$this->upload->do_upload('idcard');
-			$idcardname = $this->upload->data('file_name').'<br/>';//get ktp filename
+			$idcardname = $this->upload->data('file_name');//get ktp filename
 			//tdp
 			$this->upload->initialize($config['tdp']);
 			$this->upload->do_upload('tdp');
-			$tdpname = $this->upload->data('file_name').'<br/>';//get tdp file name
+			$tdpname = $this->upload->data('file_name');//get tdp file name
 			//siup
 			$this->upload->initialize($config['siup']);
 			$this->upload->do_upload('siup');
-			$siupname = $this->upload->data('file_name').'<br/>';//get siup filename
+			$siupname = $this->upload->data('file_name');//get siup filename
 			//sig
 			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
-			// $signame = $this->upload->data('file_name').'<br/>';//get sig filename
+			$signame = $this->upload->data('file_name').'<br/>';//get sig filename
 			$this->upload->display_errors();
 			$pemilik = $_POST['pemilik'];
 			//insert pemilik toko
