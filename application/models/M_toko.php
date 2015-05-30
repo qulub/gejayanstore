@@ -9,6 +9,8 @@ class M_toko extends CI_Model
 	//show all toko //sort by update date
 	public function listToko($limit,$offset)
 	{
+		$this->db->join('pemilikToko','pemilikToko.idPemilik = toko.idPemilik');
+		$this->db->where('pemilikToko.status','active');
 		$this->db->order_by('updatedata','DESC');
 		$this->db->limit($limit,$offset);//limit offset
 		$query = $this->db->get('toko');

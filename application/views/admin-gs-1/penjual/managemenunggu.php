@@ -37,7 +37,22 @@ $(document).ready(function(){
          </div>
          <div class="col-md-6">
             <h4><span class="glyphicon glyphicon-home"></span> Data Toko</h4><br/>
-            <p><i>belum mempunyai toko</i></p>
+             <table class="table">
+               <tr><th>Nama Toko</th><td><?php echo $toko['namaToko'];?></td></tr>
+               <tr><th>Habis Masa</th><td><?php echo $penjual['namaPemilik'];?></td></tr>
+               <tr><th>Max Promo</th><td><?php echo $penjual['namaPemilik'];?></td></tr>
+               <tr><th>Alamat Toko</th><td><?php echo $penjual['email'];?></td></tr>
+               <tr><th>Buka</th><td><?php echo $penjual['telp'];?></td></tr>
+               <tr><th>No Telepon</th><td><?php echo $penjual['alamat'];?></td></tr>
+               <tr><th>Email</th><td><?php echo $penjual['tglRegister'];?></td></tr>   
+            </table>
+              <h4><span class="glyphicon glyphicon-briefcase"></span> Surat Penting</h4><br/>
+            <table>
+               <tr><th>TDP</th><td><?php echo $penjual['tglRegister'];?></td></tr>
+               <tr><th>SIUP</th><td><?php echo $penjual['tglRegister'];?></td></tr>
+               <tr><th>SIG</th><td><?php echo $penjual['tglRegister'];?></td></tr>
+            </table>
+            <br/>
          </div>
          <hr/>
          <br/>

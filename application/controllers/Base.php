@@ -479,7 +479,7 @@ class Base extends CI_Controller
 			</tbody></table>
 			</body></html>
 		  ';
-		  $params['text'] = $params['html'];
+		  $params['text'] = "<h1>$topic</h1><p>$body</p>";
 		$request =  $url.'api/mail.send.json';
 		// Generate curl request
 		$session = curl_init($request);
