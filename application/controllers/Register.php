@@ -278,7 +278,7 @@ class Register extends Base {
 		$body ='Username dan password akan dikirimkan melalui email ini, setelah data yang anda masukan diverifikasi oleh admin';
 		$topic = 'Pendaftaran Toko Di Gejayan Store';
 		$subject = 'Pendaftaran Anda Berhasil';
-		// $this->sendemail($destination,$subject,$topic,$body);//email success to user
+		$this->sendemail($destination,$subject,$topic,$body);//email success to user
 		//pesan emai
 		$Data = array
 		(

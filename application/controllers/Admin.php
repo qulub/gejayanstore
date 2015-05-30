@@ -197,6 +197,7 @@ public function actionpenjual()
 	(
 	'title'=>$Penjual['namaPemilik'],
 	'penjual'=>$Penjual,
+	'toko'=>$this->M_toko->tokoByIdPemilik($Penjual['idPemilik'])->row_array(),
 	'konfirmasi'=>''
 );
 return $this->baseAdminView('penjual/managemenunggu',$Data);//detail penjual yang belum melakukan pembayara
