@@ -15,12 +15,12 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//index menampilkan semua promo and status
 	public function index()
 	{
-		$this->load->model('M_produk');
+		$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
 		$Data = array
 		(
 			'sisa'=>$this->sisaSlot($this->session->userdata('adminToko')['idPemilik']),
 			'title'=>'Dashboard',
-			'toko'=>$this->M_toko->tokoByIdPemilik($this->session->userdata('adminToko')['idPemilik'])->row_array(),
+			'toko'=>$this->M_toko->tokoByIdPemilik($idpemilik)->row_array(),
 			'script'=>'$("#dashboard").addClass("active")',
 			'totalviews'=>$this->M_produk->totalPromoViews($this->session->userdata('admintoko')['idPemilik']),
 			'popular'=>$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,TRUE,'')->result_array(),

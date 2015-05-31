@@ -12,9 +12,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<?php 
-						if($toko['maxPromo']<=0){
+						// print_r($toko);
+						if($toko['maxPromo'] <= 0){
 							echo '<div style="padding:10px" class="error">Untuk aktifasi toko dan bisa menggunakan fitur Gejayan Store, silahkan melakukan pembayaran terlebih dahulu <strong><a href="'.site_url('transaksi/order').'">masuk ke pembayaran</a></strong></div>';
-						} else {
+						}else{
 						?>
 						<table class="dashboard-grid">
 							<tr>
