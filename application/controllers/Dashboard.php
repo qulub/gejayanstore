@@ -388,35 +388,67 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		(
 			'title'=>'Transaksi',
 			'script'=>$script,
-			'view'=>''
+			'transaksi'=>$this->M_transaksi->riwayat($this->session->userdata('admintoko')['idPemilik']),
 			);
 		return $this->basePublicView('dashboard/transaksi',$Data);
 	}
 	//konfirmasi pembayaran
 	public function konfirmasi()
 	{
-		$this->load->model('M_transaksi');//load model transaksi
-		$uri = $this->uri->segment(3);
-		if(empty($uri)){redirect(site_url('dashboard/konfirmasi/baru'));}
-		switch ($uri) {
-			case 'baru':
-			$title = "Konfirmasi Baru";
-			$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
-			$view = '';
-			break;
-			case 'riwayat':
-			$title = "Riwayat Konfirmasi";
-			$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
-			$view = '';
-			break;			
+		$this->load->model(array('M_transaksi','M_konfirmasi'));//load model transaksi
+		if(!empty($_POST))
+		{
+			switch ($_GET['act']) {
+				case 'add':
+					//cek apakah transaksi milik user tersebut
+					if($this->M_transaksi->isMyTransaction($_POST['idTransaksi']))
+					{
+						$konfirmasi = $_POST['konfirmasi'];
+						$data = array(
+							'idTransaksi'=>$konfirmasi['idtransaksi'],
+							'tglKonfirmasi'=>date('Y-m-d H:i:s'),
+							'tujuanBank'=>$konfirmasi['tujuan'],
+							'asalBank'=>$konfirmasi['asal'],
+							'noRekening'=>$konfirmasi['norek'],
+							'jumlahTransfer'=>$konfirmasi['jumlah'],
+							'nama'=>$konfirmasi['nama'],
+							'idTransaksi'=>$konfirmasi['idTransaksi'],
+							);
+						print_r($data);
+					}else
+					{
+						echo 'id transaksi bukan atas nama akun anda';
+					}
+					break;
+				
+				default:
+					redirect(site_url('dashboard/konfirmasi'));//kehalaman list konfirmasi
+					break;
+			}
+		}else
+		{
+			$uri = $this->uri->segment(3);
+			if(empty($uri)){redirect(site_url('dashboard/konfirmasi/riwayat'));}
+			switch ($uri) {
+				case 'baru':
+				$title = "Konfirmasi Baru";
+				$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
+				$view = '';
+				break;
+				case 'riwayat':
+				$title = "Riwayat Konfirmasi";
+				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
+				$view = '';
+				break;			
+			}
+			$Data = array
+			(
+				'title'=>$title,
+				'script'=>$script,
+				'view'=>$view,
+				);
+			return $this->basePublicView('dashboard/konfirmasi',$Data);
 		}
-		$Data = array
-		(
-			'title'=>$title,
-			'script'=>$script,
-			'view'=>$view,
-			);
-		return $this->basePublicView('dashboard/konfirmasi',$Data);
 	}
 	//do logout
 	public function logout()

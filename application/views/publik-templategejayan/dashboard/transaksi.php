@@ -11,7 +11,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h1><?php echo $title;?></h1>
+						<h1><?php echo $title;?> (<?php echo $transaksi->num_rows();?>)</h1>
 						<br/>
 						<ul class="vertical-menu">
 							<li id="baru"><a href="<?php echo site_url('dashboard/konfirmasi/baru');?>">+ Transaksi Baru</a></li>
@@ -29,25 +29,35 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							break;
 
 						case 'riwayat':?>
+						<?php if($transaksi->num_rows() <= 0){echo 'Transaksi Tidak Ditemukan';}
+						else {?>
 						<br/><br/>
 							<table style="width:100%">
 								<tr style="border-bottom:1px solid lightgray;height:30px">
 									<th>Id Transaksi</th>
 									<th>Tgl Transaksi</th>
 									<th>Tambah Slot</th>
-									<th>Tambah Masa</th>
-									<th>Total</th>
-									<th>Status</th>
+									<th>Tambah Masa (bulan)</th>
+									<th>Total (Rp)</th>
+									<th style="width:300px">Status</th>
 								</tr>
+								<?php foreach($transaksi->result_array() as $t):?>
 								<tr>
-									<td>323222-2</td>
-									<td>...</td>
-									<td>...</td>
-									<td>...</td>
-									<td>...</td>
-									<td>...</td>
+									<td><?php echo $t['idTransaksi'];?></td>
+									<td><?php echo $t['tglTransaksi'];?></td>
+									<td><?php echo $t['tambahSlot'];?></td>
+									<td><?php echo $t['tambahMasa'];?></td>
+									<td><?php echo number_format($t['biaya']);?></td>
+									<td><?php 
+									$status = $t['status'];
+									if($status == 'menunggu'){
+										echo '<p>menunggu, untuk aktivasi penambahan silahkan melakukan konfirmasi <a href="'.site_url('dashboard/konfirmasi/baru?id='.$t['idTransaksi']).'">disini</a>. Jika dalam waktu 24 jam tidak ditemukan konfirmasi atas transaksi ini, maka secra otomatis transaksi dihapus.</p>';
+									}
+									?></td>
 								</tr>
+							<?php endforeach;?>
 							</table>
+							<?php } ?>
 							<?php break;
 					}
 					?>
