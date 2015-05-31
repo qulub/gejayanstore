@@ -76,7 +76,7 @@ class Base extends CI_Controller
 		$sisa = $makspromo - $totalpromo;
 		$note = 'habis';
 		if($sisa < 0){return $note;}
-		else if($sisa == 0){return '1';}
+		else if($sisa == 0){return 'tidak ada';}
 		else{return $sisa;}
 	}
 	/*
@@ -86,8 +86,8 @@ class Base extends CI_Controller
 	public function sendemail($destination,$subject,$topic,$body)
 	{
 		$url = 'https://api.sendgrid.com/';
-		$user = 'qulub';
-		$pass = 'GN-003gundam';
+		$user = 'yussanamikom';
+		$pass = 'Rahasia20';
 		$params = array(
 		    'api_user'  => $user,
 		    'api_key'   => $pass,
@@ -479,7 +479,7 @@ class Base extends CI_Controller
 			</tbody></table>
 			</body></html>
 		  ';
-		  $params['text'] = "<h1>$topic</h1><p>$body</p>";
+		$params['text'] = $params['html'];
 		$request =  $url.'api/mail.send.json';
 		// Generate curl request
 		$session = curl_init($request);

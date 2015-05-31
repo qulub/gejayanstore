@@ -8,7 +8,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('M_penjual','M_produk'));//auto load model
+		$this->load->model(array('M_penjual','M_produk','M_toko'));//auto load model
 		if(empty($this->session->userdata('admintoko')))redirect(site_url('home/login'));//back to login page
 		
 	}
@@ -20,6 +20,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		(
 			'sisa'=>$this->sisaSlot($this->session->userdata('adminToko')['idPemilik']),
 			'title'=>'Dashboard',
+			'toko'=>$this->M_toko->tokoByIdPemilik($this->session->userdata('adminToko')['idPemilik'])->row_array(),
 			'script'=>'$("#dashboard").addClass("active")',
 			'totalviews'=>$this->M_produk->totalPromoViews($this->session->userdata('admintoko')['idPemilik']),
 			'popular'=>$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,TRUE,'')->result_array(),
@@ -379,7 +380,10 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//transaksi
 	public function transaksi()
 	{
-		$script = "$('#transaksi').addClass('active');$('#baru').addClass('active');";
+		$this->load->model('M_transaksi');//load transaksi model
+		$uri = $this->uri->segment(3);
+		if(empty($uri))redirect(site_url('dashboard/transaksi/riwayat'));
+		$script = "$('#transaksi').addClass('active');$('#riwayat').addClass('active');";
 		$Data = array
 		(
 			'title'=>'Transaksi',
