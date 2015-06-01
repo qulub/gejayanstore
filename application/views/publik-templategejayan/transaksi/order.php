@@ -17,7 +17,7 @@
                 <span style="padding:10px">
                 <p>Tambah Masa Aktif dan Slot Promo</p><br/>
                 <p style="padding-left:10px;padding-bottom:5px;text-align:left">Tambah Massa Toko <input name="tambahmasa" ng-model="TambahMasa" style="width:50px" type="number" min="1" required> bulan, Rp 100.000,-/bulan</p>   
-                <p style="padding-left:10px;text-align:left">Tambah Slot Promo <input name="tambahslot" ng-model="TambahSlot" style="width:50px" min="<?php if($toko["maxPromo"]==0)echo 3;?>" max="100" type="number" required> Rp 20.000,-/slot </p>  
+                <p style="padding-left:10px;text-align:left">Tambah Slot Promo <input name="tambahslot" ng-model="TambahSlot" style="width:50px" min="0" max="100" type="number" required> Rp 20.000,-/slot </p>  
                 </span>
                 </div>
                 <div style="height:120px" class="list-item grid1_of_3">

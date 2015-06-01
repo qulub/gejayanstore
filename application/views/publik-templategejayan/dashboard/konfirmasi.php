@@ -11,11 +11,11 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h1>Konfirmasi (<?php echo $view->num_rows();?>)</h1>
+						<h1>Konfirmasi <?php if(!empty($view))echo '('.$view->num_rows().')';?></h1>
 						<br/>
 						<ul class="vertical-menu">
 							<!-- <li id="baru"><a href="<?php echo site_url('dashboard/konfirmasi/baru');?>">+ Konfirmasi Baru</a></li> -->
-							<li id="riwayat"><a href="<?php echo site_url('dashboard/konfirmasi/riwayat');?>">Riwayat Konfirmasi</a></li>
+							<a id="riwayat" href="<?php echo site_url('dashboard/konfirmasi/riwayat');?>">Riwayat Konfirmasi</a>
 						</ul>
 					</div>
 					<div class="contact-form">

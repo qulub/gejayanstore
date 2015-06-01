@@ -14,8 +14,8 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<h1><?php echo $title;?> (<?php echo $transaksi->num_rows();?>)</h1>
 						<br/>
 						<ul class="vertical-menu">
-							<li id="baru"><a href="<?php echo site_url('dashboard/konfirmasi/baru');?>">+ Transaksi Baru</a></li>
-							<li id="riwayat"><a href="<?php echo site_url('dashboard/konfirmasi/riwayat');?>">Riwayat Transaksi</a></li>
+							<a id="baru" href="<?php echo site_url('transaksi/order');?>">+ Transaksi Baru</a> | 
+							<a id="riwayat" href="<?php echo site_url('dashboard/transaksi/riwayat');?>">Riwayat Transaksi</a>
 						</ul>
 					</div>
 					<div class="contact-form">
@@ -52,7 +52,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 									$status = $t['status'];
 									if($status == 'menunggu'){
 										echo '<p>menunggu, untuk aktivasi penambahan silahkan melakukan konfirmasi <a href="'.site_url('dashboard/konfirmasi/baru?id='.$t['idTransaksi']).'">disini</a>. Jika dalam waktu 24 jam tidak ditemukan konfirmasi atas transaksi ini, maka secra otomatis transaksi dihapus.</p>';
-									}
+									} else {echo $status;}
 									?></td>
 								</tr>
 							<?php endforeach;?>

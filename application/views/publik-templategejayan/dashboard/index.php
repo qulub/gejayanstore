@@ -21,6 +21,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<tr>
 								<td><h3>Total Views : <?php echo $totalviews; ?></h3></td>
 								<td><h3>Sisa Slot : <?php echo $sisa; ?></h3></td>
+								<td><h3>Berlaku Sampai : <?php echo date('d-m-Y', strtotime($toko['habisMasa'])); ?></h3></td>
 							</tr>
 						</table>
 						<br/>
