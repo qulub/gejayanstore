@@ -8,7 +8,7 @@ class Admin extends Base {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model(array('M_admin','M_penjual','M_toko','M_produk'));
+		$this->load->model(array('M_admin','M_penjual','M_toko','M_produk','M_konfirmasi','M_transaksi'));
 		//is admin lgged in
 		$session = $this->adminLoggedIn();
 		if($session==FALSE && $this->uri->uri_string() != 'admin'){redirect(site_url('admin'));}
@@ -47,6 +47,99 @@ class Admin extends Base {
 			);
 			$this->baseAdminView('login',$Data);
 		}
+	}
+	//konfirmasi
+	function konfirmasi()
+	{
+		$urisegment = $this->uri->segment(3);
+		//pagination setup
+		$this->load->library('pagination');
+		$config['base_url'] = site_url($this->uri->uri_string());
+		$config['per_page'] = 20;
+		$uri = $this->uri->segment(4);
+		if(empty($uri))$uri=0;
+		//end of pagination setup
+		switch ($urisegment) {
+			case 'menunggu':
+				$konfirmasi = $this->M_konfirmasi->konfirmasi('menunggu');
+				$count = $konfirmasi->num_rows();
+				$view = $this->M_konfirmasi->konfirmasi('menunggu',$config['per_page'],$uri)->result_array();
+				$title = 'Konfirmasi Menunggu';
+			case 'riwayat':
+				$konfirmasi = $this->M_konfirmasi->konfirmasi();
+				$count = $konfirmasi->num_rows();
+				$view = $this->M_konfirmasi->konfirmasi('',$config['per_page'],$uri)->result_array();
+				$title = 'Riwayat Konfirmasi';
+		}
+		$config['total_rows'] = $count;
+		$this->pagination->initialize($config);
+		$Data = array(
+			'count'=>$count,
+			'title'=>$title,
+			'link'=>$this->pagination->create_links(),
+			'view'=>$view
+		);
+		$this->baseAdminView('konfirmasi/list',$Data);
+	}
+	//transaksi
+	function transaksi()
+	{
+		$urisegment = $this->uri->segment(3);
+		//pagination setup
+		$this->load->library('pagination');
+		$config['base_url'] = site_url($this->uri->uri_string());
+		$config['per_page'] = 20;
+		$uri = $this->uri->segment(4);
+		if(empty($uri))$uri=0;
+		switch ($urisegment) {
+			case 'menunggu':
+				$title = 'Transaksi Menunggu';
+				$transaksi = $this->M_transaksi->transaksi('menunggu',$config['per_page'],$uri)->result_array();//menampilkan transaksi yahg belum ada status
+				$count = $this->M_transaksi->transaksi('menunggu')->num_rows();
+				break;
+			case 'diproses':
+				$title = 'Transaksi Diproses';
+				$transaksi = $this->M_transaksi->transaksi('diproses',$config['per_page'],$uri)->result_array();//menampilkan transaksi yang masih diproses
+				$count = $this->M_transaksi->transaksi('diproses')->num_rows();
+				break;
+			case 'lunas':
+				$title = 'Transaksi Lunas';
+				$transaksi = $this->M_transaksi->transaksi('lunas',$config['per_page'],$uri)->result_array();//menampilkan transaksi yang sudah lunas
+				$count = $this->M_transaksi->transaksi('lunas')->num_rows();
+			break;
+			case 'riwayat':
+				$title = 'Riwayat Transaksi';
+				$transaksi = $this->M_transaksi->transaksi();
+				$transaksi = $this->M_transaksi->transaksi()->result_array();//menampilkan transaksi yang sudah lunas
+				$count = $this->M_transaksi->transaksi()->num_rows();
+				break;
+			case 'detail':
+				$urisegment = $this->uri->segment(4);
+				return $this->detailtransaksi($urisegment);
+			break;
+			default:
+				redirect(site_url('admin/transaksi/menunggu'));
+				break;
+		}
+		$config['total_rows'] = $count;
+		$this->pagination->initialize($config);
+		$Data = array(
+			'count'=>$count,
+			'title'=>$title,
+			'view'=>$transaksi,
+		);
+		$this->baseAdminView('transaksi/list',$Data);
+	}
+	//detail transaksi
+	public function detailtransaksi($idtransaksi)
+	{
+		echo $idtransaksi;
+		$transaksi = $this->M_transaksi->detailtransaksi($idtransaksi);//detail transaksi
+		$Data = array(
+			'title'=>'Detail Transaksi',
+			
+			);
+		$this->baseAdminView('transaksi/detail',$Data);
 	}
 	//login failed
 	public function loginFailed($note)

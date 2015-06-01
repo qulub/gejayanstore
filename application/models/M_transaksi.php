@@ -22,5 +22,20 @@ class M_transaksi extends CI_Model
 		if($query->num_rows() > 0){return true;}
 		else{return false;}
 	}
+	/*
+	* FOR ADMIN
+	*/
+	public function transaksi($status="",$limit="",$offset="")
+	{
+		if(!empty($status))$this->db->where('transaksi.status',$status);
+		if(!empty($limit AND $offset))$this->db->limit($limit,$offset);
+		return $this->db->get('transaksi');
+	}
+	//get detail transaksi
+	public function detailTransaksi($idtransaksi)
+	{
+		$this->db->where('idTransaksi',$idtransaksi);
+		return $this->db->get('transaksi')->row_array();//get detail by row array
+	}
 	
 }
