@@ -131,13 +131,16 @@ class Admin extends Base {
 		$this->baseAdminView('transaksi/list',$Data);
 	}
 	//detail transaksi
-	public function detailtransaksi($idtransaksi)
+	public function detailtransaksi($idtransaksi="")
 	{
-		echo $idtransaksi;
 		$transaksi = $this->M_transaksi->detailtransaksi($idtransaksi);//detail transaksi
+		$user = $this->M_penjual->detPenjual($transaksi['idPemilik']);
+		$konfirmasi = $this->M_konfirmasi->konfirmasiByTransaksi($idtransaksi);
 		$Data = array(
-			'title'=>'Detail Transaksi',
-			
+			'title'=>'Detail Transaksi '.$idtransaksi,
+			'transaksi'=>$transaksi,
+			'user'=>$user,
+			'konfirmasi'=>$konfirmasi
 			);
 		$this->baseAdminView('transaksi/detail',$Data);
 	}

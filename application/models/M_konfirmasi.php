@@ -26,4 +26,12 @@ class M_konfirmasi extends CI_Model
 		$this->db->order_by('idKonfirmasiPembayaran','DESC');//order berdasarkan data yang terbaru
 		return $this->db->get('konfirmasiPembayaran');
 	}
+	public function konfirmasiByTransaksi($idtransaksi)
+	{
+		if(!empty($status))$this->db->where('transaksi.status',$status);
+		$this->db->where('konfirmasiPembayaran.idTransaksi',$idtransaksi);
+		$this->db->join('transaksi','transaksi.idTransaksi = konfirmasiPembayaran.idTransaksi');
+		$this->db->order_by('idKonfirmasiPembayaran','DESC');//order berdasarkan data yang terbaru
+		return $this->db->get('konfirmasiPembayaran');
+	}
 }

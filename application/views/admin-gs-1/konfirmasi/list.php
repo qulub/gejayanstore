@@ -40,10 +40,10 @@
          <?php if(empty($view)){echo '<tr><td colspan="7">Konfirmasi tidak ditemukan</center></td></tr>';}else{?>
          <?php foreach($view as $v):?>
             <tr>
-           <td><a href="#"><?php echo $v['idTransaksi'] ?></a></td>
+           <td><a href="<?php echo site_url('admin/transaksi/detail/'.$v['idTransaksi'])?>"><?php echo $v['idTransaksi'] ?></a></td>
            <td><?php echo $v['tglKonfirmasi'] ?></td>
            <td><?php echo $v['tujuanBank'] ?></td>
-           <td><?php echo $v['asalbank'] ?> norek <?php echo $v['noRekening'];?> a/n <?php echo $v['nama'];?></td>
+           <td><?php echo $v['dariBank'] ?> norek <?php echo $v['noRekening'];?> a/n <?php echo $v['nama'];?></td>
            <td><?php echo $v['jumlahTransfer'] ?></td>
            <td><?php echo $v['status'] ?></td>
            <td><a class="btn btn-primary btn-xs" data-toggle="tooltip" title="klik tombol ini secara otomatis mengaktifkan tambahan promo dan masa yang diorder pemilik toko" href="#">konfirmasi pembayaran</a></td>

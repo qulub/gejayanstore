@@ -40,7 +40,7 @@
          <?php if(empty($view)){echo '<tr><td colspan="7">Transaksi tidak ditemukan</center></td></tr>';}else{?>
          <?php foreach($view as $v):?>
           <tr>
-            <td><a href="<?php echo site_url('admin/transaksi/detail/'.$v['idPemilik'])?>"><?php echo $v['idTransaksi'];?></a></td>
+            <td><a href="<?php echo site_url('admin/transaksi/detail/'.$v['idTransaksi'])?>"><?php echo $v['idTransaksi'];?></a></td>
             <td><a target="blank" href="<?php echo site_url('admin/actionpenjual/manage/'.$v['idPemilik'])?>"><?php echo $v['idPemilik'];?></a></td>
             <td><?php echo $v['tglTransaksi'];?></td>
             <td><?php echo $v['tambahSlot'];?></td>

@@ -46,4 +46,19 @@ class M_toko extends CI_Model
 		$toko = $this->db->get('toko')->row_array();//get toko
 		return $toko['idToko'];
 	}
+	/*
+	* ADMIN ONLY
+	*/
+	public function ubahPromoToko($idtoko,$tambahslot,$tambahmasa,$type)
+	{
+		switch ($type) {
+			case 'tambah':
+				$sql = 'UPDATE toko SET habisMasa = ADDDATE(CURRENT_DATE(),INTERVAL '.$tambahmasa.' MONTH) , maxPromo = maxPromo + '.$tambahslot.' WHERE idToko = '.$idtoko;
+				break;
+			case 'kurang':
+				$sql = 'UPDATE toko SET habisMasa = DATE_SUB(CURRENT_DATE(),INTERVAL '.$tambahmasa.' MONTH) , maxPromo = maxPromo - '.$tambahslot.' WHERE idToko = '.$idtoko;
+				break;
+		}
+		return $this->db->query($sql);
+	}
 }
