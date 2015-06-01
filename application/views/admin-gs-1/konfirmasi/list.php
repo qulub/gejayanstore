@@ -35,7 +35,7 @@
             <th>Asal Bank</th>
             <th>Nominal (Rp)</th>
             <th>Status</th>
-            <th></th>
+            <!-- <th></th> -->
          </tr>
          <?php if(empty($view)){echo '<tr><td colspan="7">Konfirmasi tidak ditemukan</center></td></tr>';}else{?>
          <?php foreach($view as $v):?>
@@ -46,7 +46,7 @@
            <td><?php echo $v['dariBank'] ?> norek <?php echo $v['noRekening'];?> a/n <?php echo $v['nama'];?></td>
            <td><?php echo $v['jumlahTransfer'] ?></td>
            <td><?php echo $v['status'] ?></td>
-           <td><a class="btn btn-primary btn-xs" data-toggle="tooltip" title="klik tombol ini secara otomatis mengaktifkan tambahan promo dan masa yang diorder pemilik toko" href="#">konfirmasi pembayaran</a></td>
+           <!-- <td><a class="btn btn-primary btn-xs" data-toggle="tooltip" title="klik tombol ini secara otomatis mengaktifkan tambahan promo dan masa yang diorder pemilik toko" href="#">konfirmasi pembayaran</a></td> -->
          </tr>
          <?php endforeach;}?>
       </table>

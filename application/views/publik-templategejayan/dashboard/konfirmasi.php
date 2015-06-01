@@ -67,7 +67,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<th>Pengirim</th>
 							<th>Tujuan Bank</th>
 							<th>Jumlah (Rp)</th>
-							<th style="width:300px">Balasan</th>
+							<!-- <th style="width:300px">Balasan</th> -->
 						</tr>
 						<?php foreach($view->result_array() as $v):?>
 							<tr>
@@ -76,12 +76,12 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<td>Bank <?php echo $v['dariBank']?> NoRek <?php echo $v['noRekening']?> a/n <?php echo $v['nama']?></td>
 							<td><?php echo $v['tujuanBank']?></td>
 							<td><?php echo number_format($v['jumlahTransfer'])?></td>
-							<td style="width:300px">
+							<!-- <td style="width:300px">
 								<?php 
 								if(empty($v['balasan'])){echo 'Belum ada balasan dari admin';}
 								else{echo $v['balasan'];}
 								?>
-							</td>
+							</td> -->
 						</tr>
 						<?php endforeach;?>
 						</table>

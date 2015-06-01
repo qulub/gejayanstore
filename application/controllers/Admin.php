@@ -65,11 +65,13 @@ class Admin extends Base {
 				$count = $konfirmasi->num_rows();
 				$view = $this->M_konfirmasi->konfirmasi('menunggu',$config['per_page'],$uri)->result_array();
 				$title = 'Konfirmasi Menunggu';
+				break;
 			case 'riwayat':
 				$konfirmasi = $this->M_konfirmasi->konfirmasi();
 				$count = $konfirmasi->num_rows();
 				$view = $this->M_konfirmasi->konfirmasi('',$config['per_page'],$uri)->result_array();
 				$title = 'Riwayat Konfirmasi';
+				break;
 		}
 		$config['total_rows'] = $count;
 		$this->pagination->initialize($config);

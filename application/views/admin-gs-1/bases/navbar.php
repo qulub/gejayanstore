@@ -241,7 +241,7 @@
                <!-- /input-group -->
             </li>
             <li>
-               <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+               <a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <!-- konfirmasi pembayaran -->
             <li>

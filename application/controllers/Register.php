@@ -219,7 +219,7 @@ class Register extends Base {
 			//sig
 			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
-			$signame = $this->upload->data('file_name').'<br/>';//get sig filename
+			$signame = $this->upload->data('file_name');//get sig filename
 			$this->upload->display_errors();
 			$pemilik = $_POST['pemilik'];
 			//insert pemilik toko
@@ -321,7 +321,7 @@ class Register extends Base {
 				$body = '<p>Selamat anda telah menjadi customer dari GejayanStore. Untuk login silahkan klik masuk ke link <a href="http://gejayanstore.com/home/login">http://gejayanstore.com/home/login</a>
 				menggunakan akun dibawah ini :</p>
 				<p>
-				<strong> Username : </strong> '.$username.'<br/>
+				
 				<strong> Password : </strong> '.$password.'<br/>
 				</p>
 				<p>untuk langkah berikutnya adalah aktifasi masa aktif promo, silahkan pilih jenis pembayarannya melalui login ke GejayanStore.</p>
