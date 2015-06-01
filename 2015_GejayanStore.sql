@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 31, 2015 at 07:13 PM
+-- Generation Time: Jun 01, 2015 at 07:19 AM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -191,15 +191,25 @@ INSERT INTO `kategoriUsaha` (`idkategoriUsaha`, `namaKategoriUsaha`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `konfirmasiPembayaran` (
-  `idkonfirmasiPembayaran` int(11) NOT NULL,
+`idkonfirmasiPembayaran` int(11) NOT NULL,
   `idTransaksi` varchar(20) DEFAULT NULL,
   `tglKonfirmasi` datetime DEFAULT NULL,
   `tujuanBank` varchar(45) DEFAULT NULL,
   `dariBank` varchar(45) DEFAULT NULL,
   `nama` varchar(45) DEFAULT NULL,
   `noRekening` varchar(45) DEFAULT NULL,
-  `jumlahTransfer` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jumlahTransfer` int(11) DEFAULT NULL,
+  `balasan` varchar(300) DEFAULT NULL,
+  `dilihatAdmin` enum('0','1') DEFAULT NULL,
+  `dilihatUser` enum('0','1') DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `konfirmasiPembayaran`
+--
+
+INSERT INTO `konfirmasiPembayaran` (`idkonfirmasiPembayaran`, `idTransaksi`, `tglKonfirmasi`, `tujuanBank`, `dariBank`, `nama`, `noRekening`, `jumlahTransfer`, `balasan`, `dilihatAdmin`, `dilihatUser`) VALUES
+(1, '150531171607-11', '2015-06-01 05:49:34', 'Mandiri', 'Mandiri', 'Yusuf Akhsan Hidayat', '1234', 160000, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -241,8 +251,8 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
 --
 
 INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `idcard`, `status`) VALUES
-(1, '2015-05-01 05:22:35', '15-05-28 22:43:37', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
-(11, '2015-05-29 21:24:33', '15-05-31 16:42:39', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
+(1, '2015-05-01 05:22:35', '15-06-01 00:01:15', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
+(11, '2015-05-29 21:24:33', '15-06-01 05:38:37', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
 (12, '2015-05-30 23:31:24', '2015-05-30 23:31:24', 'Alvin Indra Cahya', '0812345', 'alvin.i@students.amikom.ac.id', 'Yogyakarta', 'alvin', '4f89858774e2187568d02e0541dee1b5', '4c52f98dd792fc2912bd81b171e7dcc1.png', 'active');
 
 -- --------------------------------------------------------
@@ -465,6 +475,11 @@ MODIFY `idKategoriItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 ALTER TABLE `kategoriUsaha`
 MODIFY `idkategoriUsaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `konfirmasiPembayaran`
+--
+ALTER TABLE `konfirmasiPembayaran`
+MODIFY `idkonfirmasiPembayaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --

@@ -1,3 +1,6 @@
+<style type="text/css">
+	td{padding:10px;}
+</style>
 <?php 
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
@@ -8,7 +11,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
-						<h1>Konfirmasi</h1>
+						<h1>Konfirmasi (<?php echo $view->num_rows();?>)</h1>
 						<br/>
 						<ul class="vertical-menu">
 							<!-- <li id="baru"><a href="<?php echo site_url('dashboard/konfirmasi/baru');?>">+ Konfirmasi Baru</a></li> -->
@@ -55,9 +58,34 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							<?php break;
 
-						case 'riwayat':
-							# code...
-							break;
+						case 'riwayat':?>
+						<br/><br/>
+						<table style="width:100%">
+						<tr style="border-bottom:1px solid lightgray;height:30px">
+							<th>Id Transaksi</th>
+							<th>Tgl Konfirmasi</th>
+							<th>Pengirim</th>
+							<th>Tujuan Bank</th>
+							<th>Jumlah (Rp)</th>
+							<th style="width:300px">Balasan</th>
+						</tr>
+						<?php foreach($view->result_array() as $v):?>
+							<tr>
+							<td><?php echo $v['idTransaksi']?></td>
+							<td><?php echo $v['tglKonfirmasi']?></td>
+							<td>Bank <?php echo $v['dariBank']?> NoRek <?php echo $v['noRekening']?> a/n <?php echo $v['nama']?></td>
+							<td><?php echo $v['tujuanBank']?></td>
+							<td><?php echo number_format($v['jumlahTransfer'])?></td>
+							<td style="width:300px">
+								<?php 
+								if(empty($v['balasan'])){echo 'Belum ada balasan dari admin';}
+								else{echo $v['balasan'];}
+								?>
+							</td>
+						</tr>
+						<?php endforeach;?>
+						</table>
+							<?php break;
 					}
 					?>
 					</div>

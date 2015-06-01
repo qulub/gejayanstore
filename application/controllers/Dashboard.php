@@ -18,7 +18,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
 		$Data = array
 		(
-			'sisa'=>$this->sisaSlot($this->session->userdata('adminToko')['idPemilik']),
+			'sisa'=>$this->sisaSlot($idpemilik),
 			'title'=>'Dashboard',
 			'toko'=>$this->M_toko->tokoByIdPemilik($idpemilik)->row_array(),
 			'script'=>'$("#dashboard").addClass("active")',
@@ -401,20 +401,21 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			switch ($_GET['act']) {
 				case 'add':
 					//cek apakah transaksi milik user tersebut
-					if($this->M_transaksi->isMyTransaction($_POST['idTransaksi']))
+					if($this->M_transaksi->isMyTransaction($_POST['konfirmasi']['idTransaksi']))
 					{
 						$konfirmasi = $_POST['konfirmasi'];
 						$data = array(
-							'idTransaksi'=>$konfirmasi['idtransaksi'],
+							'idTransaksi'=>$konfirmasi['idTransaksi'],
 							'tglKonfirmasi'=>date('Y-m-d H:i:s'),
-							'tujuanBank'=>$konfirmasi['tujuan'],
-							'asalBank'=>$konfirmasi['asal'],
+							'tujuanBank'=>$konfirmasi[0],
+							'dariBank'=>$konfirmasi['asal'],
 							'noRekening'=>$konfirmasi['norek'],
 							'jumlahTransfer'=>$konfirmasi['jumlah'],
 							'nama'=>$konfirmasi['nama'],
 							'idTransaksi'=>$konfirmasi['idTransaksi'],
 							);
-						print_r($data);
+						$this->db->insert('konfirmasiPembayaran',$data);
+						redirect(site_url('dashboard/konfirmasi'));
 					}else
 					{
 						echo 'id transaksi bukan atas nama akun anda';
@@ -428,6 +429,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		}else
 		{
 			$uri = $this->uri->segment(3);
+			$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
 			if(empty($uri)){redirect(site_url('dashboard/konfirmasi/riwayat'));}
 			switch ($uri) {
 				case 'baru':
@@ -438,7 +440,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				case 'riwayat':
 				$title = "Riwayat Konfirmasi";
 				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
-				$view = '';
+				$view = $this->M_konfirmasi->riwayat($idpemilik);
 				break;			
 			}
 			$Data = array

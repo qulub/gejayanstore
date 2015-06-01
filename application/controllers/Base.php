@@ -75,8 +75,7 @@ class Base extends CI_Controller
 		$totalpromo = $this->M_produk->totalPromo($idpemilik);
 		$sisa = $makspromo - $totalpromo;
 		$note = 'habis';
-		if($sisa < 0){return $note;}
-		else if($sisa == 0){return 'tidak ada';}
+		if($sisa <= 0){return $note;}
 		else{return $sisa;}
 	}
 	/*
