@@ -241,7 +241,7 @@
                <!-- /input-group -->
             </li>
             <li>
-               <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+               <a href="<?php echo site_url('admin/dashboard');?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <!-- konfirmasi pembayaran -->
             <li>
@@ -251,7 +251,7 @@
                      <a href="<?php echo site_url('admin/konfirmasi/menunggu')?>">Konfirmasi Menunggu</a>
                   </li>
                   <li>
-                     <a href="<?php echo site_url('admin/konfirmasi/terbayar');?>">Konfirmasi Terbayar</a>
+                     <a href="<?php echo site_url('admin/konfirmasi/riwayat');?>">Riwayat Konfirmasi</a>
                   </li>
                </ul>
             </li>
@@ -260,7 +260,10 @@
                <a href="#"><i class="fa fa-dollar fa-fw"></i>Transaksi<span class="fa arrow"></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="<?php echo site_url('admin/transaksi')?>">Riwayat Transaksi</a>
+                     <a href="<?php echo site_url('admin/transaksi/menunggu')?>">Transaksi Menunggu</a>
+                     <a href="<?php echo site_url('admin/transaksi/diproses')?>">Transaksi Diproses</a>
+                     <a href="<?php echo site_url('admin/transaksi/lunas')?>">Transaksi Lunas</a>
+                     <a href="<?php echo site_url('admin/transaksi/riwayat')?>">Riwayat Transaksi</a>
                   </li>
                </ul>
             </li>

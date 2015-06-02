@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 29, 2015 at 08:47 PM
+-- Generation Time: Jun 01, 2015 at 07:19 AM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -191,37 +191,25 @@ INSERT INTO `kategoriUsaha` (`idkategoriUsaha`, `namaKategoriUsaha`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `konfirmasiPembayaran` (
-  `idkonfirmasiPembayaran` int(11) NOT NULL,
+`idkonfirmasiPembayaran` int(11) NOT NULL,
   `idTransaksi` varchar(20) DEFAULT NULL,
   `tglKonfirmasi` datetime DEFAULT NULL,
   `tujuanBank` varchar(45) DEFAULT NULL,
   `dariBank` varchar(45) DEFAULT NULL,
   `nama` varchar(45) DEFAULT NULL,
   `noRekening` varchar(45) DEFAULT NULL,
-  `jumlahTransfer` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `paketPromo`
---
-
-CREATE TABLE IF NOT EXISTS `paketPromo` (
-`idpaketPromo` int(11) NOT NULL,
-  `namaPaket` varchar(45) DEFAULT NULL,
-  `deskripsiPaket` varchar(400) DEFAULT NULL,
-  `lamaHari` int(11) DEFAULT NULL,
-  `maksHari` int(11) DEFAULT NULL,
-  `hargaPaket` bigint(20) DEFAULT NULL
+  `jumlahTransfer` int(11) DEFAULT NULL,
+  `balasan` varchar(300) DEFAULT NULL,
+  `dilihatAdmin` enum('0','1') DEFAULT NULL,
+  `dilihatUser` enum('0','1') DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `paketPromo`
+-- Dumping data for table `konfirmasiPembayaran`
 --
 
-INSERT INTO `paketPromo` (`idpaketPromo`, `namaPaket`, `deskripsiPaket`, `lamaHari`, `maksHari`, `hargaPaket`) VALUES
-(1, 'Reguler', 'Paket Reguler memiliki masa aktif sampai 3 bulan dengan maksimal sampai 5 promo per pemasangannyanya', 90, 5, 50000);
+INSERT INTO `konfirmasiPembayaran` (`idkonfirmasiPembayaran`, `idTransaksi`, `tglKonfirmasi`, `tujuanBank`, `dariBank`, `nama`, `noRekening`, `jumlahTransfer`, `balasan`, `dilihatAdmin`, `dilihatUser`) VALUES
+(1, '150531171607-11', '2015-06-01 05:49:34', 'Mandiri', 'Mandiri', 'Yusuf Akhsan Hidayat', '1234', 160000, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -254,23 +242,18 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
   `alamat` varchar(100) NOT NULL,
   `userName` varchar(50) DEFAULT NULL,
   `password` text,
+  `idcard` varchar(45) DEFAULT NULL,
   `status` enum('active','banned','menunggu') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilikToko`
 --
 
-INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `status`) VALUES
-(1, '2015-05-01 05:22:35', '15-05-28 22:43:37', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', 'active'),
-(2, '2015-05-01 05:22:35', NULL, 'Mella Ramadhani', '085645728977', 'mellastarter@gmail.com', 'Jl Nusa Indah 25 Sleman DIY', 'mella', 'ac43724f16e9241d990427ab7c8f4228', 'menunggu'),
-(3, '2015-05-29 20:38:42', '2015-05-29 20:38:42', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(4, '2015-05-29 20:39:03', '2015-05-29 20:39:03', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(5, '2015-05-29 20:39:39', '2015-05-29 20:39:39', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(6, '2015-05-29 20:40:06', '2015-05-29 20:40:06', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(7, '2015-05-29 20:41:13', '2015-05-29 20:41:13', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(8, '2015-05-29 20:43:19', '2015-05-29 20:43:19', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu'),
-(9, '2015-05-29 20:45:09', '2015-05-29 20:45:09', 'Yusuf Akhsan Hidayat', '081', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Sleman, DIY', NULL, NULL, 'menunggu');
+INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `idcard`, `status`) VALUES
+(1, '2015-05-01 05:22:35', '15-06-01 00:01:15', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
+(11, '2015-05-29 21:24:33', '15-06-01 05:38:37', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
+(12, '2015-05-30 23:31:24', '2015-05-30 23:31:24', 'Alvin Indra Cahya', '0812345', 'alvin.i@students.amikom.ac.id', 'Yogyakarta', 'alvin', '4f89858774e2187568d02e0541dee1b5', '4c52f98dd792fc2912bd81b171e7dcc1.png', 'active');
 
 -- --------------------------------------------------------
 
@@ -323,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `tdp` varchar(45) DEFAULT NULL,
   `siup` varchar(45) DEFAULT NULL,
   `sig` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `toko`
@@ -331,7 +314,8 @@ CREATE TABLE IF NOT EXISTS `toko` (
 
 INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `emailToko`, `tentangToko`, `updateData`, `libur`, `maxPromo`, `kategoriUsaha`, `tdp`, `siup`, `sig`) VALUES
 (1, 1, '2015-05-25 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', 'e2303f01e58736c6c54a1f34727a93d1.jpg', '08:00:00', '22:00:00', '085645777298', 'ma@max.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00', 'minggu', '5', 1, NULL, NULL, NULL),
-(4, 9, '0000-00-00 00:00:00', 'Nama Usaha', 'Jl. Gejayan No 3 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'f8b2586363eca23a752bd01ccd22662f.png<br/>', '08:00:00', '12:00:00', '08123456', 'yusuftwenty@gmail.com', 'ini toko yang paling keren', '2015-05-29 20:45:09', 'minggu', '0', 1, '<br/>', '9f9c05cbbc272720423824dec2dd6d2f.png<br/>', '1c1208ccad13095b2de1a8d01233da4f.png<br/>');
+(6, 11, '0000-00-00 00:00:00', 'Usaha Yussan', 'Jl. Gejayan No 20 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', '0b9561f711c444bc7428f3be9cb08385.png', '09:00:00', '22:00:00', '08123456', 'usaha@yussan.me', 'Deskripsi singkat toko yussan.', '2015-05-29 21:24:33', 'minggu', '0', 1, 'e5166320154850cd9fe6d838f8de4934.jpg', 'd0131909ccedcb0a98ca8f3085b5c9d0.jpg', 'af56dd6e22147ad220097cf800ec960f.jpg'),
+(7, 12, '0000-00-00 00:00:00', 'Usaha Alvin', 'Jl. Gejayan No 3 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'bba2fc2a883dc05d4e9055bba5bfdf67.png', '08:00:00', '09:00:00', '081234', 'alvin@gmail.com', 'biar makin cantik', '2015-05-30 23:31:24', 'Minggu', '0', 4, '4aba10658769a04f84193a4e0044081d.png', '832fba05a5a01f8e524b42c3f2ec1ffe.png', '94d3ed4802fda1bb67065420a810a795.png<br/>');
 
 -- --------------------------------------------------------
 
@@ -354,9 +338,10 @@ CREATE TABLE IF NOT EXISTS `tokoFavorite` (
 CREATE TABLE IF NOT EXISTS `transaksi` (
   `idTransaksi` varchar(20) NOT NULL COMMENT 'id konfirmaasi = \nyymmddhhiiss-id',
   `idPemilik` int(11) NOT NULL,
-  `idPaketPromo` int(11) NOT NULL,
   `tglTransaksi` varchar(45) DEFAULT NULL,
   `biaya` int(11) DEFAULT NULL,
+  `tambahSlot` int(11) DEFAULT NULL,
+  `tambahMasa` int(11) DEFAULT NULL,
   `status` enum('menunggu','diproses','lunas','tidak ditemukan') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -364,8 +349,9 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`idTransaksi`, `idPemilik`, `idPaketPromo`, `tglTransaksi`, `biaya`, `status`) VALUES
-('150519131527-1', 1, 1, '2015-05-19 13:16:32', 50000, 'menunggu');
+INSERT INTO `transaksi` (`idTransaksi`, `idPemilik`, `tglTransaksi`, `biaya`, `tambahSlot`, `tambahMasa`, `status`) VALUES
+('150519131527-1', 1, '2015-05-19 13:16:32', 50000, NULL, NULL, 'menunggu'),
+('150531171607-11', 11, '2015-05-31 17:16:07', 160000, 3, 1, 'menunggu');
 
 --
 -- Indexes for dumped tables
@@ -420,12 +406,6 @@ ALTER TABLE `konfirmasiPembayaran`
  ADD PRIMARY KEY (`idkonfirmasiPembayaran`), ADD KEY `fk_konfirmasiPembayaran_transaksi_idx` (`idTransaksi`);
 
 --
--- Indexes for table `paketPromo`
---
-ALTER TABLE `paketPromo`
- ADD PRIMARY KEY (`idpaketPromo`);
-
---
 -- Indexes for table `pelanggan`
 --
 ALTER TABLE `pelanggan`
@@ -459,7 +439,7 @@ ALTER TABLE `tokoFavorite`
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
- ADD PRIMARY KEY (`idTransaksi`), ADD KEY `fk_KonfirmasiPembayaran_1_idx` (`idPemilik`), ADD KEY `fk_KonfirmasiPembayaran_peketpromo_idx` (`idPaketPromo`);
+ ADD PRIMARY KEY (`idTransaksi`), ADD KEY `fk_KonfirmasiPembayaran_1_idx` (`idPemilik`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -496,10 +476,10 @@ MODIFY `idKategoriItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 ALTER TABLE `kategoriUsaha`
 MODIFY `idkategoriUsaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `paketPromo`
+-- AUTO_INCREMENT for table `konfirmasiPembayaran`
 --
-ALTER TABLE `paketPromo`
-MODIFY `idpaketPromo` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+ALTER TABLE `konfirmasiPembayaran`
+MODIFY `idkonfirmasiPembayaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `pelanggan`
 --
@@ -509,7 +489,7 @@ MODIFY `idPelanggan` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `pemilikToko`
 --
 ALTER TABLE `pemilikToko`
-MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
@@ -519,7 +499,7 @@ MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -580,7 +560,6 @@ ADD CONSTRAINT `tokoFavorite_ibfk_2` FOREIGN KEY (`idPelanggan`) REFERENCES `pel
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-ADD CONSTRAINT `fk_KonfirmasiPembayaran_peketpromo` FOREIGN KEY (`idPaketPromo`) REFERENCES `paketPromo` (`idpaketPromo`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ADD CONSTRAINT `fk_KonfirmasiPembayaran_pemilik` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

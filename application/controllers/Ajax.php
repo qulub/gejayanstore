@@ -38,4 +38,29 @@ class Ajax extends Base {
 		$subkat = $this->db->get('SubKategoriItem')->result_array();
 		echo json_encode($subkat);
 	}
+	//ubah status transaksi
+	public function ubahstatustransaksi()
+	{
+		$this->load->model(array('M_transaksi','M_toko'));
+		$postdata = file_get_contents("php://input");
+	    $request = json_decode($postdata);
+	    $idtransaksi =  $request->idtransaksi;
+	    $statusbaru = $request->statusbaru;
+		$transaksi = $this->M_transaksi->detailTransaksi($idtransaksi);
+		$idpemilik = $transaksi['idPemilik'];
+		$tambahslot = $transaksi['tambahSlot'];
+		$tambahmasa = $transaksi['tambahMasa'];
+		//get id toko
+		$idtoko = $this->M_toko->getIdToko($idpemilik);//[worked]
+		//modif data transaksi
+		$this->M_transaksi->ubahStatus($idtransaksi,$statusbaru);
+		//modif data toko
+		if($transaksi['status']=='lunas')//sebelumnya dah lunas
+		{
+			return $this->M_toko->ubahPromoToko($idtoko,$tambahslot,$tambahmasa,'kurang');//kurangi stok dan masa toko
+		}else if($statusbaru == 'lunas')//belum lunas
+		{
+			return $this->M_toko->ubahPromoToko($idtoko,$tambahslot,$tambahmasa,'tambah');//tambah stok dan masa toko
+		}
+	}
 }

@@ -11,10 +11,17 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				<div class="contact">	
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
+						<?php 
+						// print_r($toko);
+						if($toko['maxPromo'] <= 0){
+							echo '<div style="padding:10px" class="error">Untuk aktifasi toko dan bisa menggunakan fitur Gejayan Store, silahkan melakukan pembayaran terlebih dahulu <strong><a href="'.site_url('transaksi/order').'">masuk ke pembayaran</a></strong></div>';
+						}else{
+						?>
 						<table class="dashboard-grid">
 							<tr>
 								<td><h3>Total Views : <?php echo $totalviews; ?></h3></td>
 								<td><h3>Sisa Slot : <?php echo $sisa; ?></h3></td>
+								<td><h3>Berlaku Sampai : <?php echo date('d-m-Y', strtotime($toko['habisMasa'])); ?></h3></td>
 							</tr>
 						</table>
 						<br/>
@@ -43,6 +50,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						</div>
 						<!-- end of item -->
 						<a href="<?php echo site_url('dashboard/promo')?>">tampilkan semua promo</a>
+						<?php } ?>
 					</div>
 					<br/>					
 				</div>

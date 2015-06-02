@@ -58,4 +58,12 @@ class M_penjual extends CI_Model
 		$query = $this->db->get('pemilikToko')->row_array();
 		return $query['idPemilik'];//get latest id pemilik toko
 	}
+	//is username unique
+	public function usernameNotFound($username)
+	{
+		$this->db->where('username',$username);
+		$result = $this->db->get('pemilikToko')->num_rows();
+		if($result>0){return false;}
+		else{return true;}
+	}
 }

@@ -219,7 +219,7 @@ class Register extends Base {
 			//sig
 			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
-			$signame = $this->upload->data('file_name').'<br/>';//get sig filename
+			$signame = $this->upload->data('file_name');//get sig filename
 			$this->upload->display_errors();
 			$pemilik = $_POST['pemilik'];
 			//insert pemilik toko
@@ -230,6 +230,7 @@ class Register extends Base {
 				'telp'=>$pemilik['notelp'],
 				'email'=>$pemilik['email'],
 				'alamat'=>$pemilik['domisili'],
+				'idcard'=>$idcardname,
 				'status'=>'menunggu',
 				);
 			$this->db->insert('pemilikToko',$datapemilik);//insert to table pemilik toko
@@ -286,5 +287,62 @@ class Register extends Base {
 			'pesan'=>'Pendaftaran sukses. Username dan Password akan dikirimkan ke email anda setelah diverifikasi oleh admin',
 			);
 		$this->basePublicView('register/sukses',$Data);
+	}
+	//admin process
+	public function actionprocess()
+	{
+		$this->load->model('M_penjual');
+		switch ($_GET['act']) {
+			case 'konfirmasi'://new konfirmasi
+				$idpemilik = $_GET['idpemilik'];
+				$pemilik = $this->M_penjual->detSimplePenjual($idpemilik);
+				$namaArray = explode(' ',$pemilik['namaPemilik']);
+				//generate username and password
+				if($this->M_penjual->usernameNotFound($namaArray[0]))
+				{
+					$username = $namaArray[0];
+				}else if($this->M_penjual->usernameNotFound($namaArray[0].$namaArray[1]))
+				{
+					$username = $namaArray[0].$namaArray[1];
+				}else
+				{
+					$username = $namaArray[0].$namaArray[1].date('is');
+				}
+				$password = strtolower($username.date('is'));//password send to email
+				$username = strtolower($username);//username send to email
+				//update db status
+				$this->db->where('idPemilik',$idpemilik);
+				$data = array('userName'=>$username,'password'=>md5($password),'status'=>'active');
+				$this->db->update('pemilikToko',$data);
+				//send email to pemilik toko
+				$destination = $pemilik['email'];
+				$subject = 'Akun GejayanStore Anda Siap Digunakan';
+				$topic = 'Pendaftaran Telah Kami Konfirmasi';
+				$body = '<p>Selamat anda telah menjadi customer dari GejayanStore. Untuk login silahkan klik masuk ke link <a href="http://gejayanstore.com/home/login">http://gejayanstore.com/home/login</a>
+				menggunakan akun dibawah ini :</p>
+				<p>
+				
+				<strong> Password : </strong> '.$password.'<br/>
+				</p>
+				<p>untuk langkah berikutnya adalah aktifasi masa aktif promo, silahkan pilih jenis pembayarannya melalui login ke GejayanStore.</p>
+				';
+				$this->sendemail($destination,$subject,$topic,$body);
+				redirect(site_url('admin/penjual'));//back to last page
+				break;
+			case 'tolak'://delete konfirmasi
+				$idpemilik = $_GET['idpemilik'];
+				$alasan = $_GET['pesan'];
+				$pemilik = $this->M_penjual->detSimplePenjual($idpemilik);
+				$this->db->where('idPemilik',$idpemilik);
+				// $this->db->delete('pemilikToko');
+				//send email to user
+				$destination = $pemilik['email'];
+				$subject = '';
+				$topic = '';
+				$body = '';
+				// $this->sendemail($destination,$subject,$topic,$body);
+				// redirect($this->agent->referrer());//back to last page
+				break;
+		}
 	}
 }
