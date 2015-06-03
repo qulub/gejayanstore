@@ -65,6 +65,7 @@
                 <?php foreach($listtoko as $lt):?>
                 <div class="toko-item grid1_of_4">
                     <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
+                        <div class="toko-logo">...</div>
                         <img src="<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>" alt="" />
                         <center><h3><?php echo $lt['namaToko']?></h3></center>
                      </a>
