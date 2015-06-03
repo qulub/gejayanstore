@@ -46,6 +46,25 @@ class M_toko extends CI_Model
 		$toko = $this->db->get('toko')->row_array();//get toko
 		return $toko['idToko'];
 	}
+	//get katalog
+	public function getkatalog($idtoko)
+	{
+		$this->db->where('idToko',$idtoko);
+		$this->db->select('*');
+		$query = $this->db->get('katalog');
+		if($query->num_rows())
+		{
+			$query = $query->result_array();
+		}else{
+			$query = array();
+		}
+		$json = array();
+		foreach($query as $q):
+			$url = array('url'=>base_url('resource/images/katalog/'.$q['idToko'].'/'.$q['katalog']));
+			array_push($json,$url);
+		endforeach;
+		return json_encode($json);
+	}
 	/*
 	* ADMIN ONLY
 	*/

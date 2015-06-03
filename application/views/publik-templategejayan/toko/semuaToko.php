@@ -16,7 +16,7 @@
                <?php foreach($view as $lt):?>
                <div class="toko-item grid1_of_4">
                    <a href="<?php echo site_url('toko/v/'.$lt['idToko'].'/'.str_replace(' ','-',strtolower($lt['namaToko'])));?>">
-                       <img src="<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>" alt="" />
+                     <div style="background-image:url('<?php echo base_url('resource/images/toko/'.$lt['avatar']);?>')" class="toko-logo"></div>
                        <center><h3><?php echo $lt['namaToko']?></h3></center>
                     </a>
                </div>

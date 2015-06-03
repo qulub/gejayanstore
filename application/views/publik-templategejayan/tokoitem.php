@@ -8,31 +8,47 @@
 	</div>
 </div>
 <!-- start main -->
-<div class="main_bg">
+<div ng-app="tokoApp"  ng-controller="toko-navbar"  class="main_bg">
 	<div class="wrap">
 		<div class="main">
 			<!-- tab -->
 			<section class="tabs">
-				<input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
+				<input ng-click="contentStyle={height:'200px'}" id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked">
 				<label for="tab-1" class="tab-label-1">Tentang Toko</label>
 
-				<input id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
-				<label for="tab-2" class="tab-label-2">Peta Toko</label>
+				<input ng-click="loadCatalog()" id="tab-2" type="radio" name="radio-set" class="tab-selector-2">
+				<label for="tab-2" class="tab-label-2">Katalog</label>
+
+				<input ng-click="contentStyle={height:'200px'}" id="tab-3" type="radio" name="radio-set" class="tab-selector-3">
+				<label for="tab-3" class="tab-label-3">Peta Toko</label>
+
 
 				<div class="clear-shadow"></div>
 
-				<div class="content">
+				<div ng-style="contentStyle" class="content">
 					<div class="content-1">
 						<span style="width: 200px;float: left;margin-right: 10px;
-						"><img src="<?php echo base_url('resource/images/toko/'.$view['avatar']);?>"></span>
+						"><img style="height:180px" src="<?php echo base_url('resource/images/toko/'.$view['avatar']);?>"></span>
 						<p><span class="bold">Nama : </span><?php echo $view['namaToko']?></p>
 						<p><span class="bold">Buka : </span><?php echo $view['jamBuka']?> - <?php echo $view['jamTutup']?></p>
 						<p><span class="bold">Alamat : </span><?php echo $view['alamatToko']?></p>
 						<p><span class="bold">Telp : </span><?php echo $view['telp']?></p>
 						<p><span class="bold">Email : </span><?php echo $view['emailToko']?></p>
+						<p><span class="bold">Tentang Toko : </span><?php echo $view['tentangToko']?></p>
 						<div class="clear"></div>
 					</div>
 					<div class="content-2">
+						<h3>Katalog Kami</h3><br/>
+						<p>
+							{{kataloglist}}
+							<!-- list katalog-->
+							<a class="toko-katalog-list" ng-repeat="list in lists" target="_blank" href="{{list.url}}">
+							<img src="{{list.url}}" alt="" />
+							</a>
+							<!-- end of list barang -->
+						</p>
+					</div>
+					<div class="content-3">
 						<p class="para"><span>WELCOME </span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>
 						<ul class="qua_nav">
 							<li>Multimedia Systems</li>
@@ -77,4 +93,45 @@
 		</div>
 	</div>
 </div>
-<!-- end of produk terbaru
+<!-- end of produk terbaru -->
+
+<script charset="utf-8">
+	var app = angular.module('tokoApp',['ngRoute']);
+	app.controller('toko-navbar',['$scope','$http',function($scope,$http){
+		$scope.kataloglist = 'loading...';
+		$scope.loadCatalog = function()
+		{
+			// //get json list of catalog barang
+			url = '<?php echo site_url("ajax/getKatalog");?>';
+			var request = $http({
+				method: "post",
+				url: url,
+				data: {
+						idToko:'<?php echo $view["idToko"];?>',
+				},
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			});
+			// // Store the data-dump of the FORM scope.
+			request.success(
+					function(response) {
+							if(response.length == 0)//belum upload katalog
+							{
+								$scope.contentStyle={height:'200px'};
+								$scope.kataloglist = 'belum upload katalog';
+							}else//sudah upload katalog
+							{
+								$scope.lists = response;
+								$scope.contentStyle={height:'500px'};
+								$scope.kataloglist = null;
+							}
+					}
+			);
+			// //request error
+			request.error(
+				function(response){
+					alert('gagal ambil data katalog');
+				}
+			);
+		};
+	}]);
+</script>

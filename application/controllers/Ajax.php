@@ -19,7 +19,7 @@ class Ajax extends Base {
 		$iditem = $_POST['iditem'];
 		$this->db->where('idItem',$iditem);
 		$sql = 'UPDATE item SET views = views+1 WHERE idItem='.$iditem;
-		return $this->db->query($sql);		
+		return $this->db->query($sql);
 	}
 	/*
 	* ALL ABOUT JSON
@@ -62,5 +62,16 @@ class Ajax extends Base {
 		{
 			return $this->M_toko->ubahPromoToko($idtoko,$tambahslot,$tambahmasa,'tambah');//tambah stok dan masa toko
 		}
+	}
+	//get katalog by id toko
+	public function getKatalog()
+	{
+		$postdata = file_get_contents("php://input");
+		$request = json_decode($postdata);
+		$idToko = $request->idToko;
+		if(empty($postdata)){exit();}
+		$this->load->model('M_toko');//get toko model
+		$katalog = $this->M_toko->getKatalog($idToko);
+		echo $katalog;
 	}
 }
