@@ -60,7 +60,7 @@ class M_toko extends CI_Model
 		}
 		$json = array();
 		foreach($query as $q):
-			$url = array('url'=>base_url('resource/images/katalog/'.$q['idToko'].'/'.$q['katalog']));
+			$url = array('id'=>$q['idkatalog'],'url'=>base_url('resource/images/katalog/'.$q['idToko'].'/'.$q['katalog']));
 			array_push($json,$url);
 		endforeach;
 		return json_encode($json);
