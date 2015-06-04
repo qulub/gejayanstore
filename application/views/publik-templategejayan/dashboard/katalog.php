@@ -4,7 +4,7 @@
 <?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
-<div ng-app="katalogApp" ng-controller="katalogCtrl" class="gallery1">
+<div ng-app="katalogApp" class="gallery1">
 	<div class="container">
 		<div class="wrap">
 			<div class="main">
@@ -12,12 +12,17 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<form enctype="multipart/form-data" class="" action="index.html" method="post">
-							<input type="file" name="inputkatalog" value="" required>
+							<img style="width:200px" ng-src="{{imageSrc}}" alt="" />
+							<b>Progress:</b>
+						  <progress value="{{progress}}"></progress>
+							<br/>
+							<input type="file" name="inputkatalog" value="" ng-file-select="onFileSelect($file)" required>
 							<span><input type="submit" class="" value="+ Upload Katalog"></span>
 						</form>
 						<hr/>
 						<h3 style="font-size:20px">Daftar Katalog</h3>
 						<br/>
+						<span ng-controller="katalogCtrl">
 						<!-- katalog list -->
 						<a title="klik untuk perbesar" ng-repeat="list in lists">
 							<div class="katalog-list" style="background:url('{{list.url}}');  background-size: contain;background-position: center;background-repeat: no-repeat;">
@@ -26,6 +31,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 						</a>
 						<!-- end of katalog list -->
+					</span>
 					</div>
 				</div>
 			</div>
@@ -76,7 +82,9 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 				alert('terhapus');
 			}
 		};
-		$scope.viewKatalog = function(url){
+		//VIEW KATALOG
+		$scope.viewKatalog = function(url)
+		{
 			$window.open(url, '_blank');
 		};
 	}]);
