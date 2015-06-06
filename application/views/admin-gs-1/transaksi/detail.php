@@ -51,7 +51,7 @@
         <div class="col-md-12">
         <hr/>
            <h4>Data Konfirmasi Pembayaran</h4>
-            <?php if($konfirmasi->num_rows()<0){echo 'user belum melakukan konfirmasi';}else{?>
+            <?php if($konfirmasi->num_rows() <= 0){echo '<center class="alert alert-warning">Menunggu user melakukan konfirmasi pembayaran</center>';}else{?>
             <table class="table">
             <?php foreach($konfirmasi->result_array() as $k):?>
                <tr>

@@ -10,7 +10,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		parent::__construct();
 		$this->load->model(array('M_penjual','M_produk','M_toko'));//auto load model
 		if(empty($this->session->userdata('admintoko')))redirect(site_url('home/login'));//back to login page
-		
+
 	}
 	//index menampilkan semua promo and status
 	public function index()
@@ -124,7 +124,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			$totalpromo = $this->M_produk->totalPromo($this->session->userdata('admintoko')['idPemilik']);//total promo yang sudah dipasang
 			$makspromo = $this->M_produk->maksPromo($this->session->userdata('admintoko')['idPemilik']);;//total maksimal promo
 			if($totalpromo >= $makspromo){//batas penambahan promo sudah habis
-				$Data = array 
+				$Data = array
 				(
 					'title'=>'Tambah Promo',
 					'error'=>'! Slot Promo Sudah Full, Silahkan Hapus Atau Edit Promo Yang Sudah Ada'
@@ -162,7 +162,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			case 'edit'://fo edit promo
 				$id=$_GET['id'];//get id promo
 				$this->updatePromo($id);//do edit promo
-				break;			
+				break;
 			case 'editprocess'://process edit promo
 			echo 'yus';
 			print_r($_POST);
@@ -202,11 +202,11 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				break;
 			}
 		}
-	//form view 
+	//form view
 		public function updatePromo($id)
 		{
 			$this->db->where('idItem',$id);
-		$item = $this->db->get('item')->row_array();//get item detail 
+		$item = $this->db->get('item')->row_array();//get item detail
 		$images = $this->M_produk->getImages($id);//get all images
 		$Data = array
 		(
@@ -220,6 +220,16 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		//get all sub kat
 		$Data['subkat']=$this->M_produk->getSubKat($Data['idmainkat'],'json');//subkat by main kat -> return is array
 		return $this->basePublicView('dashboard/updatepromo',$Data);
+	}
+	//manajemen katalog
+	public function katalog()
+	{
+		$Data = array
+		(
+		'script'=>'$("#katalog").addClass("active");$("#aktif").addClass("active")',
+		'idToko'=>$this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']),
+		);
+		return $this->basePublicView('dashboard/katalog',$Data);
 	}
 	//olah data toko
 	public function toko()
@@ -247,7 +257,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				}
 				else
 				{
-                  $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg 
+                  $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg
               }
           }else{//not upload
           		$tokodata['avatar'] = $_POST['oldavatar'];
@@ -374,7 +384,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				'user'=>$this->M_penjual->detSimplePenjual($idPemilik),
 				);
 			return $this->basePublicView('dashboard/profil',$Data);
-			
+
 		}
 	}
 	//transaksi
@@ -421,7 +431,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 						echo 'id transaksi bukan atas nama akun anda';
 					}
 					break;
-				
+
 				default:
 					redirect(site_url('dashboard/konfirmasi'));//kehalaman list konfirmasi
 					break;
@@ -441,7 +451,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				$title = "Riwayat Konfirmasi";
 				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
 				$view = $this->M_konfirmasi->riwayat($idpemilik);
-				break;			
+				break;
 			}
 			$Data = array
 			(

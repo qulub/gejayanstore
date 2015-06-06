@@ -53,8 +53,9 @@ $(document).ready(function(){
          </div>
          <div class="row">
             <div class="col-md-12">
-               <h4><span class="glyphicon glyphicon-bullhorn"></span> History Promosi</h4>
-               <?php foreach($promosi as $p):
+                <h4><span class="glyphicon glyphicon-bullhorn"></span> Promosi Aktif <small>promosi / toko tidak melewati batas masa aktif</small></h4>
+               <?php if(empty($promosi))echo '<br/><center class="alert alert-warning">Tidak ada promosi ditemukan</center>';?>
+                <?php foreach($promosi as $p):
                   // print_r($p);
                   ?>
                   <div class="col-md-4">

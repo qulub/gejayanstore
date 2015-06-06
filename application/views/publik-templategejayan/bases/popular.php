@@ -13,7 +13,7 @@
          //location
          $pp = base_url('resource/images/produk/'.$dir.'/'.$picture);
          ?>
-         <div class="item" onclick="location.href='details.html';">
+         <div class="item">
             <div class="cau_left">
                <img class="lazyOwl" data-src="<?php echo $pp;?>" alt="<?php echo $p['judul']?>">
             </div>
