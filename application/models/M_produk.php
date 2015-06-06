@@ -14,7 +14,7 @@ class M_produk extends CI_Model
 		return $query->result_array();
 	}
 	//list produk
-	public function listProduk($limit,$offset)
+	public function listProduk($limit,$offset,$end='')
 	{
 		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
 		SubKategoriItem.namaSubKategori AS 'subkategori',
@@ -23,7 +23,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE item.habisPromo >= CURDATE()
+		WHERE item.habisPromo >= CURDATE() AND toko.habisMasa >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
@@ -40,7 +40,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE item.habisPromo >= CURDATE()AND kategoriItem.namaKategori = '$mainkat'
+		WHERE item.habisPromo >= CURDATE() AND kategoriItem.namaKategori = '$mainkat' AND toko.habisMasa >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
@@ -57,7 +57,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE item.habisPromo >= CURDATE()
+		WHERE item.habisPromo >= CURDATE() AND toko.habisMasa >= CURDATE()
 		ORDER BY item.tglPost DESC";
 		$query=$this->db->query($sql);
 		return $query->num_rows();
@@ -80,7 +80,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE ".$searchSql." item.deskripsi LIKE '%".$keyword."%' AND item.habisPromo >= CURDATE()
+		WHERE ".$searchSql." item.deskripsi LIKE '%".$keyword."%' AND item.habisPromo >= CURDATE() AND toko.habisMasa >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
@@ -97,7 +97,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE item.idToko = $idtoko
+		WHERE item.idToko = $idtoko AND item.habisPromo >= CURDATE() AND toko.habisMasa >= CURDATE()
 		ORDER BY item.tglPost DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);
@@ -114,7 +114,7 @@ class M_produk extends CI_Model
 		FROM item INNER JOIN SubKategoriItem on SubKategoriItem.idSubKategori=item.idSubKategori
 		INNER JOIN kategoriItem ON kategoriItem.idKategoriItem = SubKategoriItem.idKategoriItem
 		INNER JOIN toko ON toko.idToko = item.idToko
-		WHERE item.habisPromo >= CURDATE()
+		WHERE item.habisPromo >= CURDATE() AND toko.habisMasa >= CURDATE()
 		ORDER BY item.views DESC
 		LIMIT $offset,$limit";
 		$query=$this->db->query($sql);

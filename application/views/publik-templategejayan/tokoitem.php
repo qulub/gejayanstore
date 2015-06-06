@@ -63,6 +63,7 @@
 				</div>
 			<!-- start grids_of_3 -->
 			<div class="grids_of_3">
+                <?php if(empty($listproduk))echo '<center class="error">Tidak ada promo aktif / masa berlaku toko sudah habis</center>';?>
 				<?php foreach($listproduk as $lp):?>
 					<div class="list-item grid1_of_3">
 						<a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>">

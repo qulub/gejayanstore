@@ -14,7 +14,7 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
-                <?php if(empty($listproduk))echo '<h3>Promo tidak ditemukan</h3>';?>
+                <?php if(empty($listproduk))echo '<center class="error">Promo Tidak Ditemukan</center>';?>
                 <?php foreach($listproduk as $lp):?>
                     <div class="list-item grid1_of_3">
                         <a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>">
