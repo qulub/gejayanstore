@@ -1,14 +1,14 @@
 <style type="text/css">
 	td{padding-right:5px;text-align:left;}
 </style>
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div class="contact">	
+				<div class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h2><?php echo $title;?></h2>
@@ -22,7 +22,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<br/>
 						<!-- item -->
 						<div class="grids_of_3">
-							<?php if(empty($view))echo '<center>promo tidak ditemukan</center>';?>
+							<?php if(empty($view))echo '<center class="error">promo tidak ditemukan</center>';?>
 							<?php foreach($view as $p):?>
 								<div class="dashboard-list-item grid1_of_3">
 									<a target="_blank" href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['Judul'])) ?>">

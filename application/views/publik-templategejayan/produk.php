@@ -243,6 +243,7 @@ $mainpic = $picture['gambar'];
                   <h4>Promo Lain</h4>
                   <div class="single-nav">
                      <ul>
+                        <?php if(empty($promolain))echo '<span style="padding:20px;font-size:15px">Promo kosong</span>';?>
                         <?php foreach($promolain as $pl):
                                           //hitung sisa promo
                         $today = date_create(date('Y-m-d'));
@@ -260,8 +261,9 @@ $mainpic = $picture['gambar'];
                <h4>Promo Toko Lain</h4>
                <div class="single-nav">
                   <ul>
+                    <?php if(empty($promotokolain))echo '<span style="padding:20px;font-size:15px">Promo kosong</span>';?> 
                      <?php foreach($promotokolain as $pl):
-                                          //hitung sisa promo
+                    //hitung sisa promo
                      $today = date_create(date('Y-m-d'));
                      $last = date_create(date('Y-m-d', strtotime($pl['habisPromo'])));
                      $diff=date_diff($today,$last);

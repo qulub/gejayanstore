@@ -142,7 +142,8 @@ class M_produk extends CI_Model
 		if($ini === FALSE){$this->db->where('item.idToko <>',$idtoko);}
 		else{$this->db->where('item.idToko',$idtoko);}
 		$this->db->where('datediff(item.habisPromo,current_date())>=',0);
-		$this->db->select('*');
+        $this->db->where('datediff(toko.habisMasa,current_date())>=',0);
+        $this->db->select('*');
 		//join
 		$this->db->join('toko','item.idToko = toko.idToko');
 		$this->db->limit(7,0);

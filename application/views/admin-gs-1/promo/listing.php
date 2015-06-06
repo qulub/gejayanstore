@@ -32,7 +32,7 @@ $(document).ready(function(){
          </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
       <hr/>
-      <?php if(empty($view))echo '<center>promo tidak ditemukan</center>';?>
+      <?php if(empty($view))echo '<center class="alert alert-warning">promo tidak ditemukan</center>';?>
       <div class="row">
          <div class="col-md-12">
             <?php foreach($view as $p):
