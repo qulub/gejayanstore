@@ -307,10 +307,31 @@
                <a href="#"><i class="fa fa-files-o fa-fw"></i> Berita<span class="fa arrow"></span></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="blank.html">Berita Aktif</a>
+                     <a href="<?php echo site_url('admin/Berita Aktif');?>">Berita Aktif</a>
                   </li>
                   <li>
-                     <a href="login.html">Berita</a>
+                     <a href="<?php echo site_url('admin/Semua Berita');?>">Semua Berita</a>
+                  </li>
+               </ul>
+               <!-- /.nav-second-level -->
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-files-o fa-fw"></i> Bank<span class="fa arrow"></span></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/norek');?>">No Rekening</a>
+                  </li>
+               </ul>
+               <!-- /.nav-second-level -->
+            </li>
+            <li>
+               <a href="#"><i class="fa fa-files-o fa-fw"></i> Tiket<span class="fa arrow"></span></a>
+               <ul class="nav nav-second-level">
+                  <li>
+                     <a href="<?php echo site_url('admin/norek');?>">Belum Terbaca</a>
+                  </li>
+                  <li>
+                     <a href="<?php echo site_url('admin/norek');?>">Semua Tiket</a>
                   </li>
                </ul>
                <!-- /.nav-second-level -->

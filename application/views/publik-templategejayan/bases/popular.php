@@ -2,8 +2,11 @@
    <br/>
    <center><h1>Promo Terpopuler</h1></center>
    <!----start-img-cursual---->
+      <?php
+      $popular = $this->M_produk->popularProduk(10,0);
+      if(empty($popular))echo '<br/><center><span class="error" >saat ini tidak ada promo di Gejayan Store</span></center><br/>'; ?>
    <div id="owl-demo" class="owl-carousel">
-      <?php $popular = $this->M_produk->popularProduk(10,0);
+      <?php
       foreach($popular as $p):
          //get picture directory
          $dir = date('m_Y',strtotime($p['tglPost']));

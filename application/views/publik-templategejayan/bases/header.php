@@ -67,8 +67,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
       });
    });
    </script>
+   <script charset="utf-8">
+    //ANGULAR JS
+    var app = angular.module('gejayanApp',['ngRoute']);
+   </script>
 </head>
-<body>
+<body ng-app="gejayanApp">
    <!-- start header -->
    <div class="header_bg">
       <div class="wrap">

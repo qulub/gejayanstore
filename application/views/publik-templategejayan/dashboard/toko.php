@@ -1,11 +1,11 @@
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div class="contact">	
+				<div class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h2>Toko</h2>
@@ -20,7 +20,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						<p>Terakhir Update : <?php echo date('d-m-Y H:i:s',strtotime($toko['updateData']));?></p>
 						<p>Masa Aktif Sampai : <?php echo date('d-m-Y',strtotime($toko['habisMasa']));?> <a target="_blank" href="#">+ Tambah Masa Aktif</a></p>
 						<br/>
-						<?php 
+						<?php
 						// print_r($toko);
 						?>
 						<form enctype="multipart/form-data" method="post" action="#error">
@@ -59,7 +59,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Email</label></span>
-								<span><input name="toko[emailToko]" type="text" class="textbox" value="<?php echo $toko['emailToko'];?>"></span>
+								<span><input style="text-transform:none" name="toko[emailToko]" type="text" class="textbox" value="<?php echo $toko['emailToko'];?>"></span>
 							</div>
 							<div>
 								<span><label>Nomor Telepon</label></span>
@@ -69,7 +69,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<div>
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							</div>
-						</form>		
+						</form>
 					</div>
 						<?php } ?>
 					</div>

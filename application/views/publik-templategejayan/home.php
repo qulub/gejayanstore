@@ -14,6 +14,7 @@
         <div class="main">
             <!-- start grids_of_3 -->
             <div class="grids_of_3">
+            <?php if(empty($listproduk))echo '<span class="error">saat ini tidak ada promo di Gejayan Store</span>'?>
                 <?php foreach($listproduk as $lp):?>
                     <div class="list-item grid1_of_3">
                         <a href="<?php echo site_url('produk/v/'.$lp['idItem'].'/'.str_replace(' ','-',strtolower($lp['judul'])))?>">
@@ -38,14 +39,16 @@
                         </a>
                     </div>
                 <?php endforeach;?>
-                <div class="clear"></div>
             </div>
             <!-- end grids_of_3 -->
         </div>
-    </div>
+    </div
+    <?php if(!empty($listproduk)):?>
+    <div class="clear"></div>
     <div class="wrap">
         <a href="<?php echo site_url('produk/semua')?>"><div class="price"><h4><span>Tampilkan Semua Promo</span></h4></div></a>
     </div>
+  <?php endif;?>
 </div>
 <!-- end of produk terbaru -->
 <!-- update toko -->

@@ -1,14 +1,14 @@
 <style type="text/css">
 	td{padding:10px;}
 </style>
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
-<div class="gallery1">
+<div ng-controller="ctrlKonfirmasi" class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div class="contact">	
+				<div class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h1>Konfirmasi <?php if(!empty($view))echo '('.$view->num_rows().')';?></h1>
@@ -19,7 +19,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						</ul>
 					</div>
 					<div class="contact-form">
-					<?php 
+					<?php
 					switch ($this->uri->segment(3)) {
 						case 'baru':?>
 							<br/><br/>
@@ -41,9 +41,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span>
 									<select name="konfirmasi['tujuan']" required>
 										<option value="">pilih bank tujuan</option>
-										<option value="BRI">BRI No Rek 1234 A.N Mudawil Kulur</option>
-										<option value="Mandiri">Mandiri No Rek 1234 A.N Mudawil Kulur</option>
-										<option value="BCA">BCA No Rek 1234 A.N Mudawil Kulur</option>
+										<option  ng-repeat="rekening in rekenings" value="{{rekening.bank}}">{{rekening.bank}} No Rek {{rekening.norek}} a.n. {{rekening.an}}</option>
 									</select>
 								</span>
 							</div>
@@ -77,7 +75,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<td><?php echo $v['tujuanBank']?></td>
 							<td><?php echo number_format($v['jumlahTransfer'])?></td>
 							<!-- <td style="width:300px">
-								<?php 
+								<?php
 								if(empty($v['balasan'])){echo 'Belum ada balasan dari admin';}
 								else{echo $v['balasan'];}
 								?>
@@ -93,7 +91,17 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 			</div>
 		</div>
 	</div><!-- container -->
-	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
-	<script type="text/javascript">$('body').flipLightBox()</script>
 	<div class="clear"> </div>
 </div>
+<script charset="utf-8">
+app.controller('ctrlKonfirmasi',['$scope','$http',function($scope,$http){
+var $getjson = $http.get('<?php echo site_url('ajax/rekeningbank?act=read');?>');
+$getjson.success(function(response){//success get data
+	$scope.rekenings = response;
+	$scope.loader = '';
+});
+$getjson.error(function(response){
+	alert('terjadi masalah untuk ambil data bank');
+});
+}]);
+</script>

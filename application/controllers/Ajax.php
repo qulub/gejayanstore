@@ -74,4 +74,25 @@ class Ajax extends Base {
 		$katalog = $this->M_toko->getKatalog($idToko);
 		echo $katalog;
 	}
+
+	/*
+	* ALL ABOUT ADMIN
+	*/
+	//get data rekening bank
+	public function rekeningbank()
+	{
+		$action = $_GET['act'];
+		switch ($action) {
+			case 'read':
+				$json = file_get_contents(base_url('resource/bank.json'));
+				echo $json;
+				break;
+			case 'update':
+				# code...
+				break;
+			case 'delete':
+				# code...
+				break;
+		}
+	}
 }

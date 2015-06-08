@@ -12,6 +12,7 @@ class M_toko extends CI_Model
 		$this->db->join('pemilikToko','pemilikToko.idPemilik = toko.idPemilik');
 		$this->db->where('pemilikToko.status','active');
 		$this->db->where('toko.habisMasa <>','0000-00-00 00:00:00');//toko belum aktif
+		$this->db->where('toko.habisMasa >= CURDATE() ');//toko belum aktif
 		$this->db->order_by('updatedata','DESC');
 		$this->db->limit($limit,$offset);//limit offset
 		$query = $this->db->get('toko');

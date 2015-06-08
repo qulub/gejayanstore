@@ -1,11 +1,12 @@
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
+<!-- <h1>dsdsdsdsd</h1> -->
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div ng-app="gejayanApp" ng-controller="formCtrl" class="contact">	
+				<div ng-controller="formCtrl" class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h2><?php echo $title;?></h2>
@@ -23,7 +24,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<input type="hidden" name="promo[id]" value="<?php echo $item['idItem'];?>">
 							<div>
 								<span><label>Judul Promo</label></span>
-								<span><input name="promo[Judul]" type="text" class="textbox" value="" ng-model="title" value=""></span>
+								<span><input name="promo[Judul]" type="text" class="textbox" value="" ng-model="item" value=""></span>
 							</div>
 							<div>
 								<span><label>Deskripsi</label></span>
@@ -34,7 +35,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span>
 								<select name="promo[IdMainKat]" ng-change="getSubKat()" ng-model="mainkat" class="textbox" required>
 									<option value="">Pilih Kategori Utama</option>
-									<?php 
+									<?php
 									foreach ($mainkat as $mk) {
 										echo '<option value="'.$mk['idKategoriItem'].'">'.$mk['namaKategori'].'</option>';
 									}
@@ -93,7 +94,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							</div>
-						</form>		
+						</form>
 					</div>
 				</div>
 			</div>
@@ -103,22 +104,21 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 </div>
 <!-- javascript -->
 <script type="text/javascript">
-	angular.module('gejayanApp',['ngRoute'])
-	.controller('formCtrl',['$scope','$http',function($scope,$http){
+	app.controller('formCtrl',['$scope','$http',function($scope,$http){
 		//set input value
-		$scope.title = '<?php echo $item["Judul"]?>';
+		$scope.item = '<?php echo $item["Judul"];?>';
 		$scope.mainkat = '<?php echo $idmainkat;?>';
-		$scope.subkat = '<?php echo $item["idSubKategori"]?>';
-		$scope.harga = '<?php echo $item["harga"]?>';
-		$scope.diskon = '<?php echo $item["diskon"]?>';
+		$scope.subkat = '<?php echo $item["idSubKategori"];?>';
+		$scope.harga = '<?php echo $item["harga"];?>';
+		$scope.diskon = '<?php echo $item["diskon"];?>';
 		$scope.habis = '<?php echo date("Y-m-d",strtotime($item["habisPromo"]));?>';
 		$scope.DataSubKat = <?php echo $subkat;?>;//get subkat list by id main kat
 		$scope.subkat = '<?php echo $item["idSubKategori"];?>';
 		<?php $n=1;foreach($images as $im):?>
-		$scope.gambarlama<?php echo $n;?> = '<?php echo $im["gambar"]?>';
+		$scope.gambarlama<?php echo $n;?> = '<?php echo $im["gambar"];?>';
 		<?php $n++;endforeach;?>
 		//end of set input value
-		$http.get('<?php echo site_url("ajax/jsonGetMainKat")?>')//auto load
+		$http.get('<?php echo site_url("ajax/jsonGetMainKat");?>')//auto load
 		.success(function(data){
 			$scope.DataMainKat = data;
 		})

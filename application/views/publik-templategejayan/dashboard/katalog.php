@@ -4,7 +4,7 @@
 <?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
-<div ng-app="katalogApp" class="gallery1">
+<div class="gallery1">
 	<div class="container">
 		<div class="wrap">
 			<div class="main">
@@ -41,7 +41,6 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 </div>
 <br/>
 <script charset="utf-8">
-	var app = angular.module('katalogApp',['ngRoute']);
 	app.controller('katalogCtrl',['$scope','$http','$window',function($scope,$http,$window){
 		//load katalog
 		//get json list of catalog barang
