@@ -1,11 +1,11 @@
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div ng-app="gejayanApp" ng-controller="formCtrl" class="contact">	
+				<div ng-controller="formCtrl" class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h2><?php echo $title;?></h2>
@@ -32,7 +32,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span>
 								<select name="promo[IdMainKat]" ng-change="getSubKat()" ng-model="mainkat" class="textbox" ng-model="promo.mainkat" required>
 									<option value="">Pilih Kategori Utama</option>
-									<?php 
+									<?php
 									foreach ($mainkat as $mk) {
 										echo '<option value="'.$mk['idKategoriItem'].'">'.$mk['namaKategori'].'</option>';
 									}
@@ -76,7 +76,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							</div>
-						</form>		
+						</form>
 					</div>
 				</div>
 			</div>
@@ -86,8 +86,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 </div>
 <!-- javascript -->
 <script type="text/javascript">
-	angular.module('gejayanApp',['ngRoute'])
-	.controller('formCtrl',['$scope','$http',function($scope,$http){
+	app.controller('formCtrl',['$scope','$http',function($scope,$http){
 		$http.get('<?php echo site_url("ajax/jsonGetMainKat")?>')//auto load
 		.success(function(data){
 			$scope.DataMainKat = data;

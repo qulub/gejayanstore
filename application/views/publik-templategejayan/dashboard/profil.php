@@ -1,11 +1,11 @@
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div class="contact">	
+				<div class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h2>Update Profile</h2>
@@ -28,11 +28,11 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Email</label></span>
-								<span><input name="profile[email]" type="text" class="textbox" value="<?php echo $user['email'];?>"></span>
+								<span><input style="text-transform:none" name="profile[email]" type="text" class="textbox" value="<?php echo $user['email'];?>"></span>
 							</div>
 							<div>
 								<span><label>Username</label></span>
-								<span><input name="profile[userName]" type="text" class="textbox" value="<?php echo $user['userName'];?>"></span>
+								<span><input style="font-transform:capitalize" name="profile[userName]" type="text" class="textbox" value="<?php echo $user['userName'];?>"></span>
 							</div>
 							<hr/>
 							<p>kosongkan jika tidak ingin merubah password</p>
@@ -53,7 +53,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<div>
 							<span><input type="submit" class="" value="Simpan Data"></span>
 							</div>
-						</form>		
+						</form>
 					</div>
 				</div>
 			</div>

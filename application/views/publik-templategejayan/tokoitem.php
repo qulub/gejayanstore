@@ -97,7 +97,7 @@
 <!-- end of produk terbaru -->
 
 <script charset="utf-8">
-	var app = angular.module('tokoApp',['ngRoute']);
+	// var app = angular.module('tokoApp',['ngRoute']);
 	app.controller('toko-navbar',['$scope','$http',function($scope,$http){
 		$scope.kataloglist = 'loading...';
 		$scope.loadCatalog = function()

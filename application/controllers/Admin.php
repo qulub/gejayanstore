@@ -456,12 +456,20 @@ public function promo()
 				break;
 			case 'toko'://menajemen kategori toks
 				echo 'on construct';
-				break;	
+				break;
 			default://not defined uri segment 3
 			redirect(site_url('kategori/barang'));
 			break;
 		}
 		}
+	}
+	//nomor rekening
+	public function norek()
+	{
+		$Data = array(
+			'title'=>'Bank dan Nomor Rekening',
+		);
+		return $this->baseAdminView('norekening',$Data);
 	}
 	/*END OF MANAJEMEN*/
 

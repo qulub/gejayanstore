@@ -308,18 +308,18 @@ class M_produk extends CI_Model
 		return $query['idKategoriItem'];
 	}
 	// //get sub kategori
-	// public function getSubKat($idmainkat,$type="")//id main kategori :: type = json or empty
-	// {
-	// 	$this->db->where('idKategoriItem',$idmainkat);
-	// 	if($type=="json")
-	// 	{
-	// 		$result = $this->db->get('SubKategoriItem')->result_array();//get result as array
-	// 		return json_encode($result);//get result as json
-	// 	}else
-	// 	{
-	// 		return $this->db->get('SubKategoriItem')->result_array();//get result as array
-	// 	}
-	// }
+	public function getSubKat($idmainkat,$type="")//id main kategori :: type = json or empty
+	{
+		$this->db->where('idKategoriItem',$idmainkat);
+		if($type=="json")
+		{
+			$result = $this->db->get('SubKategoriItem')->result_array();//get result as array
+			return json_encode($result);//get result as json
+		}else
+		{
+			return $this->db->get('SubKategoriItem')->result_array();//get result as array
+		}
+	}
 	//kategori
 	public function getKategori($param,$kategoriId)//barang OR toko
 	{
@@ -337,13 +337,13 @@ class M_produk extends CI_Model
 				break;
 		}
 	}
-	//subkat
-	public function getSubKat($idmainkat="")
-	{
-		if(!empty($idmainkat)){$this->db->where('idKategoriItem',$idmainkat);}
-		else{$this->db->where('idKategoriItem',1);}
-		return $this->db->get('SubKategoriItem');
-	}
+	// //subkat
+	// public function getSubKat($idmainkat="")
+	// {
+	// 	if(!empty($idmainkat)){$this->db->where('idKategoriItem',$idmainkat);}
+	// 	else{$this->db->where('idKategoriItem',1);}
+	// 	return $this->db->get('SubKategoriItem');
+	// }
 	/*
 	* Transaksi
 	*/
@@ -366,4 +366,3 @@ class M_produk extends CI_Model
 		return $this->db->get('konfirmasiPembayaran');
 	}
 }//end of class
-	

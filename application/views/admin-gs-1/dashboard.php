@@ -14,7 +14,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    
+
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $konfirmasimenunggu->num_rows();?></div>
@@ -35,11 +35,11 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <div class="row">
-                                <div class="col-xs-3">                                    
+                                <div class="col-xs-3">
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge"><?php echo $transaksimenunggu->num_rows();?></div>
-                                    <div>Transaksi Menunggu</div>
+                                    <div class="huge">0</div>
+                                    <div>Tiket Belum Terbalas</div>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    
+
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $totaltoko;?></div>
@@ -79,7 +79,7 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    
+
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge"><?php echo $this->M_penjual->getAllPenjual('menunggu')->num_rows();?></div>
