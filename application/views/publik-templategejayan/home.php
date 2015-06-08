@@ -39,6 +39,7 @@
                         </a>
                     </div>
                 <?php endforeach;?>
+                <div class="clear"></div>
             </div>
             <!-- end grids_of_3 -->
         </div>
