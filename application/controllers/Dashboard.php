@@ -462,6 +462,39 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			return $this->basePublicView('dashboard/konfirmasi',$Data);
 		}
 	}
+	#TIKET
+	public function tiket()
+	{
+			$uri=$this->uri->segment(3);
+			switch ($uri) {
+				#TIKET BARU
+				case 'baru':
+					$Data = array
+					(
+						'title'=>'Tiket Baru',
+						'script'=>'',
+						'view'=>'',
+						);
+					return $this->basePublicView('dashboard/newticket',$Data);
+					break;
+				#END OF TIKET BARU
+				#RIWAYAT TIKET
+				case 'riwayat':
+					$Data = array
+					(
+						'title'=>'Riwayat Tiket',
+						'script'=>'',
+						'view'=>'',
+						);
+					return $this->basePublicView('dashboard/tickets',$Data);
+					break;
+				#END OF RIWAYAT TIKER
+				default:
+					redirect(site_url('dashboard/tiket/baru'));
+					break;
+			}
+	}
+	#END OF TIKET
 	//do logout
 	public function logout()
 	{

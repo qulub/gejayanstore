@@ -16,13 +16,13 @@ class Base extends CI_Controller
 	function basepublicView($ChildView='',$Data='' )
 	{
 		$Data['ChildView'] = $ChildView;
-		$this->load->view($this->TemplateDir.'/bases/BaseView', $Data);
+		return $this->load->view($this->TemplateDir.'/bases/BaseView', $Data);
 	}
 	//base view untuk Admin
 	function baseAdminView($ChildView='',$Data='' )
 	{
 		$Data['ChildView'] = $ChildView;
-		$this->load->view($this->AdminTemplateDir.'/bases/BaseView', $Data);
+		return $this->load->view($this->AdminTemplateDir.'/bases/BaseView', $Data);
 	}
 	//get main picture
 	function getMainPicture($iditem)
@@ -185,7 +185,7 @@ class Base extends CI_Controller
 			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color:#E8E8E8" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
-			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0"> 
+			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
 			<table class="block-grid" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width: 500px;color: #000000;background-color: transparent" cellpadding="0" cellspacing="0" width="100%" bgcolor="transparent">
@@ -217,7 +217,7 @@ class Base extends CI_Controller
 			</tbody></table><table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 30px;padding-right: 0px;padding-bottom: 30px;padding-left: 0px">
-			<div style="color:#ffffff;line-height:120%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">            
+			<div style="color:#ffffff;line-height:120%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">
 			<div style="font-size: 14px; line-height: 16px; text-align: center;color: #ffffff;font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;line-height: 17px" data-mce-style="font-size: 14px; line-height: 16px; text-align: center;"><strong><span style="font-size: 28px; line-height: 33px;" data-mce-style="font-size: 28px; line-height: 33px;">Gejayan Store<br></span></strong></div>
 			</div>
 			</td>
@@ -271,7 +271,7 @@ class Base extends CI_Controller
 			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #FFF" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
-			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0"> 
+			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
 			<table class="block-grid" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width: 500px;color: #333;background-color: transparent" cellpadding="0" cellspacing="0" width="100%" bgcolor="transparent">
@@ -289,7 +289,7 @@ class Base extends CI_Controller
 			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 25px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px">
-			<div style="color:#ffffff;line-height:120%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">            
+			<div style="color:#ffffff;line-height:120%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">
 			<div style="font-size: 18px; line-height: 21px; text-align: center;color: #ffffff;font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;line-height: 22px" data-mce-style="font-size: 18px; line-height: 21px; text-align: center;"><span style="font-size:24px; line-height:29px;" mce-data-marked="1"><strong>'.$topic.'</strong></span></div>
 			</div>
 			</td>
@@ -298,7 +298,7 @@ class Base extends CI_Controller
 			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 0px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px">
-			<div style="color:#B8B8C0;line-height:150%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">            
+			<div style="color:#B8B8C0;line-height:150%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">
 			<div style="font-size: 14px; line-height: 21px; text-align: center;color: #B8B8C0;font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;line-height: 21px" data-mce-style="font-size: 14px; line-height: 16px; text-align: center;"><span style="font-size:14px; line-height:21px;">'.$body.'</span></div>
 			</div>
 			</td>
@@ -380,7 +380,7 @@ class Base extends CI_Controller
 			<table style="border-spacing: 0;border-collapse: collapse;vertical-align: top;background-color: #ffffff" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
-			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0"> 
+			<table class="container" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;max-width: 500px;margin: 0 auto;text-align: inherit" cellpadding="0" cellspacing="0" align="center" width="100%" border="0">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top" width="100%">
 			<table class="block-grid" style="border-spacing: 0;border-collapse: collapse;vertical-align: top;width: 100%;max-width: 500px;color: #333;background-color: transparent" cellpadding="0" cellspacing="0" width="100%" bgcolor="transparent">
@@ -441,7 +441,7 @@ class Base extends CI_Controller
 			</tbody></table><table style="border-spacing: 0;border-collapse: collapse;vertical-align: top" cellpadding="0" cellspacing="0" width="100%">
 			<tbody><tr style="vertical-align: top">
 			<td style="word-break: break-word;-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;border-collapse: collapse !important;vertical-align: top;padding-top: 15px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px">
-			<div style="color:#959595;line-height:150%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">            
+			<div style="color:#959595;line-height:150%;font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;">
 			<div style="font-size: 14px; line-height: 21px; text-align: center;color: #959595;font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;line-height: 21px" data-mce-style="font-size: 14px; line-height: 16px; text-align: center;">www.gejayanstore.com</div>
 			</div>
 			</td>
