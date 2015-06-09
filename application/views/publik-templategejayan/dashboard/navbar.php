@@ -6,6 +6,6 @@
 	<li><span id="profil" class="filter" data-filter="web app icon card"><a href="<?php echo site_url('dashboard/profil')?>">Data Profil</a></span></li>
 	<li><span id="transaksi" class="filter" data-filter="icon app web logo"><a href="<?php echo site_url('dashboard/transaksi')?>">Transaksi</a></span></li>
 	<li><span id="konfirmasi" class="filter" data-filter="icon app web logo"><a href="<?php echo site_url('dashboard/konfirmasi')?>">Konfirmasi</a></span></li>
-	<li><span id="tiket" class="filter" data-filter="icon app web logo"><a href="<?php echo site_url('dashboard/tiket')?>">Tiket</a></span></li>
+    <li><span id="tiket" class="filter {{ticketClass}}" data-filter="icon app web logo"><a href="<?php echo site_url('dashboard/tiket')?>">Tiket <small>1</small>  </a></span></li>
 </ul>
 <hr/>

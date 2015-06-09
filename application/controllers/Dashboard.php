@@ -465,17 +465,18 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	#TIKET
 	public function tiket()
 	{
-			$uri=$this->uri->segment(3);
+		$this->load->model('M_ticket');
+        $uri=$this->uri->segment(3);
 			switch ($uri) {
 				#TIKET BARU
 				case 'baru':
 					$Data = array
 					(
 						'title'=>'Tiket Baru',
-						'script'=>'',
+						'script'=>'$scope.baruClass="active";$scope.ticketClass="active";',
 						'view'=>'',
 						);
-					return $this->basePublicView('dashboard/newticket',$Data);
+					return $this->basePublicView('dashboard/ticket/new',$Data);
 					break;
 				#END OF TIKET BARU
 				#RIWAYAT TIKET
@@ -483,18 +484,61 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 					$Data = array
 					(
 						'title'=>'Riwayat Tiket',
-						'script'=>'',
-						'view'=>'',
+						'script'=>'$scope.riwayatClass="active";$scope.ticketClass="active";',
+						'tiket'=>$this->M_ticket->ticketByUser($this->session->userdata('admintoko')['idPemilik']),
 						);
-					return $this->basePublicView('dashboard/tickets',$Data);
+					return $this->basePublicView('dashboard/ticket/listing',$Data);
 					break;
-				#END OF RIWAYAT TIKER
+				#END OF RIWAYAT TIKET
+				#READ TICKET
+				case 'read':
+				$idtiket = $this->input->get('id');
+				$ticket = $this->M_ticket->readTicket($idtiket);//get ticket data
+				$comments = $this->M_ticket->comments($idtiket);//get comment ticket
+				$Data = array(
+					'title'=>'Baca Tiket',
+					'script'=>'$scope.riwayatClass="active";$scope.ticketClass="active";',
+					'ticket'=>$ticket,
+					'comments'=>$comments
+				);
+				return $this->basePublicView('dashboard/ticket/single',$Data);
+				break;
+				#END OF READ TICKET
 				default:
 					redirect(site_url('dashboard/tiket/baru'));
 					break;
 			}
 	}
 	#END OF TIKET
+    #TIKET PROCESS IN ACTION
+    public function ticketaction()
+    {
+        $act = $this->input->get('act');
+        switch($act){
+            //NEW TICKET
+            case 'add':
+            $data = $this->input->post();
+            $datainsert = array
+                (
+                'idPemilik'=>$this->session->userdata('admintoko')['idPemilik'],//get id pemilik toko data
+                'judulTiket'=>$data['tiket']['judul'],//get judul tiket
+                'isiTiket'=>$data['tiket']['pesan'],//get isi pesan tiket
+                'tipeTiket'=>$data['tiket']['tujuan'],//get tujuan tiket
+                'tglPostTiket'=>date('Y-m-d H:i:s'),//get now
+                'dibaca'=>'0',
+								'status'=>'open'
+            );
+            $this->db->insert('tiket',$datainsert);
+            redirect(site_url('dashboard/tiket/riwayat'));
+            break;
+            //END OF NEW TICKET
+						//CLOSE TICKET
+            case 'close':
+            break;
+            //END OF CLOSE TICKET
+        }
+    }
+    #END OF TICKET PROCESS
 	//do logout
 	public function logout()
 	{

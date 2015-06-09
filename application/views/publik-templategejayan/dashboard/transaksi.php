@@ -1,4 +1,4 @@
-<?php 
+<?php
 if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</script>';
 ?>
 <style type="text/css">
@@ -6,9 +6,9 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 </style>
 <div class="gallery1">
 	<div class="container">
-		<div class="wrap">	
+		<div class="wrap">
 			<div class="main">
-				<div class="contact">	
+				<div class="contact">
 					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
 					<div class="contact-form">
 						<h1><?php echo $title;?> (<?php echo $transaksi->num_rows();?>)</h1>
@@ -19,10 +19,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 						</ul>
 					</div>
 					<div class="contact-form">
-					<?php 
+					<?php
 					if(!empty($_GET['success']))echo "<div style='padding:10px' class='success'>".$_GET['success']." <a href='".site_url('dashboard/transaksi')."'>X</a></div>";
 					?>
-					<?php 
+					<?php
 					switch ($this->uri->segment(3)) {
 						case 'baru':
 							# code...
@@ -48,7 +48,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 									<td><?php echo $t['tambahSlot'];?></td>
 									<td><?php echo $t['tambahMasa'];?></td>
 									<td><?php echo number_format($t['biaya']);?></td>
-									<td><?php 
+									<td><?php
 									$status = $t['status'];
 									if($status == 'menunggu'){
 										echo '<p>menunggu, untuk aktivasi penambahan silahkan melakukan konfirmasi <a href="'.site_url('dashboard/konfirmasi/baru?id='.$t['idTransaksi']).'">disini</a>. Jika dalam waktu 24 jam tidak ditemukan konfirmasi atas transaksi ini, maka secra otomatis transaksi dihapus.</p>';
