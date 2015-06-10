@@ -10,18 +10,18 @@
     <!-- /.row -->
     <div class="row">
       <p>Menambah Data Rekening</p>
-      <form class="form-inline" role="form">
+      <form class="form-inline" role="form" method="POST" action="<?php echo site_url('admin/norek?act=add')?>">
         <div class="form-group">
           <label class="sr-only" for="exampleInputEmail2">Nama Bank</label>
-          <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Nama Bank">
+          <input name="bank[bank]" type="text" class="form-control" id="exampleInputEmail2" placeholder="Nama Bank">
         </div>
         <div class="form-group">
           <label class="sr-only" for="exampleInputPassword2">Nomor Rekening</label>
-          <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Nomor Rekening">
+          <input name="bank[norek]" type="text" class="form-control" id="exampleInputPassword2" placeholder="Nomor Rekening">
         </div>
         <div class="form-group">
           <label class="sr-only" for="exampleInputPassword2">Password</label>
-          <input type="text" class="form-control" id="exampleInputPassword2" placeholder="Nama Pemilik Rekening">
+          <input name="bank[nama]" type="text" class="form-control" id="exampleInputPassword2" placeholder="Nama Pemilik Rekening">
         </div>
         <button type="submit" class="btn btn-primary">+ Tambah Nomor Rekening</button>
       </form>
@@ -34,7 +34,7 @@
           <th>Bank</th><th>Nomor Rekening</th><th>Nama Pemilik</th><th></th>
       </tr>
       <tr ng-repeat="rekening in rekenings">
-          <td>{{rekening.bank}}</td><td>{{rekening.norek}}</td><td>{{rekening.an}}</td><td><button ng-click="hapusRek('idrek')" name="button" class="btn-xs btn btn-danger">hapus</button></td>
+          <td>{{rekening.bank}}</td><td>{{rekening.norek}}</td><td>{{rekening.an}}</td><td><button ng-click="hapusRek(rekening.norek)" name="button" class="btn-xs btn btn-danger">hapus</button></td>
       </tr>
     </table>
   </div>
@@ -53,16 +53,13 @@ app.controller('ctrlNorek',['$scope','$http',function($scope,$http){
   $getjson.error(function(response){
     alert('terjadi masalah untuk ambil data bank');
   });
-  //click
-  $scope.tambahRek = function()
-  {
-
-  };
-  $scope.hapusRek = function(idrek){
+ $scope.hapusRek = function(norek){
     var agree = confirm('Anda Yakin!');
     if(agree == true)
     {
-      alert(idrek);
+      // redirect
+      var url = "<?php echo site_url('admin/norek?act=delete&norek=')?>"+norek;
+      window.location = url;
     }
   };
 }]);

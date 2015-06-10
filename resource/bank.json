@@ -1,5 +1,1 @@
-[
-  {"bank":"Mandiri","norek":"10102345678","an":"Mudamaro Hyuga"},
-  {"bank":"BRI","norek":"20202345688","an":"Mudamaro Hyuga"},
-  {"bank":"BCA","norek":"30302345678","an":"Mudamaro Hyuga"}
-]
+[{"bank":"BRI","norek":"20202345688","an":"Mudamaro Hyuga"},{"bank":"BCA","norek":"30302345678","an":"Mudamaro Hyuga"},{"bank":"Mandiri","norek":"123456789","an":"Andriyas Efendi"}]
