@@ -86,7 +86,7 @@ class Base extends CI_Controller
 	{
 		$url = 'https://api.sendgrid.com/';
 		$user = 'yussanamikom';
-		$pass = 'Rahasia20';
+		$pass = 'Rahasia26011993';
 		$params = array(
 		    'api_user'  => $user,
 		    'api_key'   => $pass,
@@ -478,7 +478,7 @@ class Base extends CI_Controller
 			</tbody></table>
 			</body></html>
 		  ';
-		$params['text'] = $params['html'];
+		$params['text'] = 'masuk';
 		$request =  $url.'api/mail.send.json';
 		// Generate curl request
 		$session = curl_init($request);
