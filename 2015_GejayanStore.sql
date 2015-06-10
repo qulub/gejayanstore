@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2015 at 07:52 AM
+-- Generation Time: Jun 11, 2015 at 09:25 AM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -43,6 +43,40 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`idAdmin`, `email`, `userName`, `password`, `telp`, `alamat`) VALUES
 (1, 'iam@yussan.me', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', '085645777298', 'Jimbe, Jenangan, Ponorogo, Jawa Timur\r\n');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `balasanTiket`
+--
+
+CREATE TABLE IF NOT EXISTS `balasanTiket` (
+`idbalasanTiket` int(11) NOT NULL,
+  `idTiket` int(11) DEFAULT NULL,
+  `isiBalasanTiket` text,
+  `dibacaBalasan` enum('0','1') DEFAULT NULL,
+  `tglBalasanTiketPost` datetime DEFAULT NULL,
+  `idAdmin` int(11) DEFAULT NULL,
+  `idPemilik` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `balasanTiket`
+--
+
+INSERT INTO `balasanTiket` (`idbalasanTiket`, `idTiket`, `isiBalasanTiket`, `dibacaBalasan`, `tglBalasanTiketPost`, `idAdmin`, `idPemilik`) VALUES
+(1, 1, 'saat ini fasilitas hapus belum tersedia, tapi kami bisa banned akun anda agar tidak dibaca oleh pengguna lain.', '0', '2015-05-09 11:03:22', 1, NULL),
+(2, 2, 'belum bisa mas karena akan jadi member untuk selama-lamnya.', '0', '2015-06-09 11:03:22', 1, NULL),
+(3, 1, 'ya sudah lah', '0', '2015-06-09 14:00:00', NULL, 1);
+
+--
+-- Triggers `balasanTiket`
+--
+DELIMITER //
+CREATE TRIGGER `balasanTiket_AFTER_INSERT` AFTER INSERT ON `balasanTiket`
+ FOR EACH ROW UPDATE tiket SET tiket.tglUpdateTiket = NOW() WHERE idtiket = NEW.idTiket
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -127,9 +161,9 @@ CREATE TABLE IF NOT EXISTS `item` (
 
 INSERT INTO `item` (`idItem`, `tglPost`, `tglEdit`, `habisPromo`, `Judul`, `Deskripsi`, `idToko`, `idSubKategori`, `harga`, `diskon`, `views`, `status`) VALUES
 (33, '2015-05-24 09:02:20', '2015-05-24 17:21:34', '2015-05-28 00:00:00', 'Jilbab warna murah di elzata', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan augue massa, et tristique lorem venenatis non. Proin ultrices tellus quam, id suscipit odio sodales id. Curabitur vitae diam a tellus fringilla ultricies vel sed nisl. Aenean commodo, turpis eget porttitor vulputate, lacus massa rhoncus dolor, id suscipit nisi odio vel enim. \r\nFusce egestas interdum justo, vitae euismod lacus rutrum nec. Mauris semper maximus lectus, nec tempor risus semper in. Pellentesque sed dui quam. Ves', 1, 3, 340000, 20, 11, 'aktif'),
-(34, '2015-05-24 12:09:43', '2015-06-06 15:30:20', '2015-06-30 00:00:00', 'Piyama Imut Ala Gigi', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan augue massa, et tristique lorem venenatis non. Proin ultrices tellus quam, id suscipit odio sodales id. Curabitur vitae diam a tellus fringilla ultricies vel sed nisl. Aenean commodo, turpis eget porttitor vulputate, lacus massa rhoncus dolor, id suscipit nisi odio vel enim. \r\nFusce egestas interdum justo, vitae euismod lacus rutrum nec. Mauris semper maximus lectus, nec tempor risus semper in. Pellentesque sed dui quam. Ves', 1, 3, 145000, 4, 26, 'aktif'),
+(34, '2015-05-24 12:09:43', '2015-06-09 10:35:46', '2015-06-30 00:00:00', 'Piyama Imut Ala Gigi', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan augue massa, et tristique lorem venenatis non. Proin ultrices tellus quam, id suscipit odio sodales id. Curabitur vitae diam a tellus fringilla ultricies vel sed nisl. Aenean commodo, turpis eget porttitor vulputate, lacus massa rhoncus dolor, id suscipit nisi odio vel enim. \r\nFusce egestas interdum justo, vitae euismod lacus rutrum nec. Mauris semper maximus lectus, nec tempor risus semper in. Pellentesque sed dui quam. Ves', 1, 3, 145000, 4, 28, 'aktif'),
 (35, '2015-06-05 21:15:50', '2015-06-05 17:03:42', '2015-06-09 00:00:00', 'qwerty`', 'loerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psum', 6, 2, 127000, 40, 1, 'aktif'),
-(36, '2015-06-06 16:11:35', '2015-06-07 12:19:15', '2015-08-29 00:00:00', 'Potongan Harga Seragam Ala Cosplay Imut', 'mau bergaya ke Jepangan kaya para cosplayer, kini bisa kamu dapatkan dengan setengah harga saja', 1, 3, 278000, 50, 20, 'aktif'),
+(36, '2015-06-06 16:11:35', '2015-06-09 09:33:36', '2015-08-29 00:00:00', 'Potongan Harga Seragam Ala Cosplay Imut', 'mau bergaya ke Jepangan kaya para cosplayer, kini bisa kamu dapatkan dengan setengah harga saja', 1, 3, 278000, 50, 24, 'aktif'),
 (37, '2015-06-06 17:37:19', '2015-06-07 16:32:54', '2015-06-30 00:00:00', 'Diskon Spesial Ramadhan Mac Book Air Segala Type', 'Berkah ramdhan memang selalu berlimpah, kini tidak perlu lagi kamu merogoh kocek cukup dalam untuk membeli Mac Book Air.\r\nDapatkan penawaran spesial ini hanya ditoko kami, dan miliki Mac Book Air segera,', 1, 8, 13000000, 20, 14, 'aktif');
 
 -- --------------------------------------------------------
@@ -271,20 +305,19 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
   `password` text,
   `idcard` varchar(45) DEFAULT NULL,
   `status` enum('active','banned','menunggu') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilikToko`
 --
 
 INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `idcard`, `status`) VALUES
-(1, '2015-05-01 05:22:35', '15-06-07 19:22:35', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
-(11, '2015-05-29 21:24:33', '15-06-06 23:15:52', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
+(1, '2015-05-01 05:22:35', '15-06-09 15:32:08', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
+(11, '2015-05-29 21:24:33', '15-06-10 08:36:52', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
 (12, '2015-05-30 23:31:24', '2015-05-30 23:31:24', 'Alvin Indra Cahya', '0812345', 'alvin.i@students.amikom.ac.id', 'Yogyakarta', 'alvin', '4f89858774e2187568d02e0541dee1b5', '4c52f98dd792fc2912bd81b171e7dcc1.png', 'active'),
 (15, '2015-06-01 22:27:00', '15-06-01 22:41:13', 'qulub', '081997946977', 'mudaw.qulub@gmail.com', 'jakarta', 'qulub', '1f1b49c0a9e8e356faa2e476edef5f7f', '4d5e556ac02e59a112b03126d2a59c3e.jpg', 'active'),
 (16, '2015-06-05 21:46:02', '2015-06-05 21:46:02', 'Ahmad Sena', '09978747', 'mudaw.qulub@gmail.com', 'yogya', 'ahmad', 'dee426ff22255d6e0a34700dcd9c0874', 'df5e99b7e2ad125a5d9887484dd89f31.jpg', 'active'),
-(17, '2015-06-05 22:11:09', '2015-06-05 22:11:09', 'muhammad fuad', '072398', 'mudawil.q@students.amikom.ac.id', 'yogya', 'muhammad', '21d7649faf456cdd6a510b6f91889b1a', '4a2a0b02aebf4175d140dee40f620e91.jpg', 'active'),
-(18, '2015-06-05 23:40:49', '2015-06-05 23:40:49', 'alvin indro', '89237907', 'mudawil.q@students.amikom.ac.id', 'yogya', NULL, NULL, '329633-naruto-minato-bijuu-mode_png.jpeg', 'menunggu');
+(19, '2015-06-10 20:39:02', '15-06-10 21:18:56', 'Siti arni', '081997946977', 'mudawil.q@students.amikom.ac.id', 'yogyarkarta', 'siti', 'e71a6f7da8871cf7736bf5468af33a8d', 'f833099a98fe25f73ed3cab8c9ac2e4f.jpg', 'active');
 
 -- --------------------------------------------------------
 
@@ -317,6 +350,32 @@ INSERT INTO `SubKategoriItem` (`idSubKategori`, `idKategoriItem`, `namaSubKatego
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tiket`
+--
+
+CREATE TABLE IF NOT EXISTS `tiket` (
+`idtiket` int(11) NOT NULL,
+  `judulTiket` varchar(200) DEFAULT NULL,
+  `isiTiket` text,
+  `idPemilik` int(11) DEFAULT NULL,
+  `dibaca` enum('0','1') DEFAULT NULL,
+  `tglPostTiket` datetime DEFAULT NULL,
+  `tglUpdateTiket` datetime DEFAULT NULL,
+  `tipeTiket` enum('cs','biling','teknis') DEFAULT NULL,
+  `status` enum('open','clossed') DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tiket`
+--
+
+INSERT INTO `tiket` (`idtiket`, `judulTiket`, `isiTiket`, `idPemilik`, `dibaca`, `tglPostTiket`, `tglUpdateTiket`, `tipeTiket`, `status`) VALUES
+(1, 'Apakah saya bisa memiliki 2 buah toko untuk satu akun', 'em ipsum semi dolor amet, oma ti samape balakula hajar kuit kutilmu bauk sekali. Tapi aku lega kentutmu lebih bau, untuk semua disini suka bau kentut.', 1, '0', '2015-06-09 08:54:05', '2015-06-09 16:09:23', 'cs', 'open'),
+(2, 'Menghapus Akun', 'Saya ingin menghapus akun saya di GejayanStore, bagaimana caranya ?', 1, '0', '2015-06-09 10:58:01', '2015-06-09 17:08:23', 'cs', 'clossed');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `toko`
 --
 
@@ -340,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `tdp` varchar(45) DEFAULT NULL,
   `siup` varchar(45) DEFAULT NULL,
   `sig` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `toko`
@@ -352,8 +411,7 @@ INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`
 (7, 12, '0000-00-00 00:00:00', 'Usaha Alvin', 'Jl. Gejayan No 3 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'bba2fc2a883dc05d4e9055bba5bfdf67.png', '08:00:00', '09:00:00', '081234', 'alvin@gmail.com', 'biar makin cantik', '2015-05-30 23:31:24', 'Minggu', '0', 4, '4aba10658769a04f84193a4e0044081d.png', '832fba05a5a01f8e524b42c3f2ec1ffe.png', '94d3ed4802fda1bb67065420a810a795.png<br/>'),
 (10, 15, '2015-08-01 00:00:00', 'grafika art', 'Jl. Gejayan No 3 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', '7148ec5edb88b1fb43a5f5ac70af5d7d.jpg', '08:00:00', '21:00:00', '081997946977', 'mudaw.qulub@gmail.com', 'lorem ipsum dolor si amet lorem ipsum dolor si amet  lorem ipsum dolor si amet  lorem ipsum dolor si amet  lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet lorem ipsum dolor si amet ', '2015-06-01 22:27:00', 'senin', '5', 1, '317e1103f353ba6dc591ecbd59764ec1.jpg', '486c3f502cb0b0100800ab3a94538693.jpg', '84cef43e542142c1389cb62f0845c4c7.jpg'),
 (11, 16, '0000-00-00 00:00:00', 'garuda nation', 'Jl. Gejayan No 2 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', '9405e12ca87eb9b26b1e9ba64729fbb5.jpg', '09:00:00', '20:00:00', '081997946977', 'mudaw.qulub@gmail.com', 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum ', '2015-06-05 21:46:02', 'senin', '0', 1, '2b1b8ae0fe78cdfcbe3b678b291725af.jpg', 'b188613e2327c5c14a216b34b4ee0a6b.jpg', '454215f4f9635d3b9ec37be7e7617d8e.jpg'),
-(12, 17, '0000-00-00 00:00:00', 'garuda kafe', 'Jl. Gejayan No 5 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', '7aa891974e738ab39c1b4b40c00f1e1b.jpg', '09:00:00', '22:00:00', '088878297', 'mudawil.q@students.amikom.ac.id', 'kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe kafe ', '2015-06-05 22:11:09', 'minggu', '0', 3, '35398d6c8a2131d15a51674736bcfa86.jpg', '18779e2f1296b3d25f0393cd52943872.jpg', 'a2ca09923bf0d58a29d7c01f78cd8fbe.jpg'),
-(13, 18, '0000-00-00 00:00:00', 'hga', 'Jl. Gejayan No 5 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'cc51001025a825bc900f1cc33f6a4e60.jpg', '09:09:00', '22:00:00', '09879678687', 'mudawil.q@students.amikom.ac.id', 'gerrgreth', '2015-06-05 23:40:49', 'minggu', '0', 2, 'a60d6d23ac2097d16c55975c5cc35c3f.jpg', '311dcc8c07aa06a5cc98357ae5fbdc13.jpg', '920a4f169b0d309019c04c68c68451ab.jpg');
+(14, 19, '0000-00-00 00:00:00', 'cosplay art', 'Jl. Gejayan No 43 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', '946cdd3429863694cbd3de1b14a1548f.jpg', '08:00:00', '21:00:00', '08123456', 'mudawil.q@students.amikom.ac.id', 'lorem cosplay', '2015-06-10 20:39:02', 'senin', '0', 4, '592f16c0ffb77b4a934acc24503cf452.jpg', '14da81c1812b9a447b3155b5792be476.jpg', '17502df31ca4a3e528d14bcd6b31b382.jpg');
 
 -- --------------------------------------------------------
 
@@ -407,6 +465,12 @@ INSERT INTO `transaksi` (`idTransaksi`, `idPemilik`, `tglTransaksi`, `biaya`, `t
 --
 ALTER TABLE `admin`
  ADD PRIMARY KEY (`idAdmin`), ADD UNIQUE KEY `email` (`email`,`userName`);
+
+--
+-- Indexes for table `balasanTiket`
+--
+ALTER TABLE `balasanTiket`
+ ADD PRIMARY KEY (`idbalasanTiket`), ADD KEY `fk_balasanTiket_1_idx` (`idTiket`), ADD KEY `fk_balasanTiket_2_idx` (`idAdmin`), ADD KEY `fk_balasanTiket_3_idx` (`idPemilik`);
 
 --
 -- Indexes for table `Diskusi`
@@ -475,6 +539,12 @@ ALTER TABLE `SubKategoriItem`
  ADD PRIMARY KEY (`idSubKategori`), ADD KEY `idKategori` (`idKategoriItem`);
 
 --
+-- Indexes for table `tiket`
+--
+ALTER TABLE `tiket`
+ ADD PRIMARY KEY (`idtiket`), ADD KEY `fk_tiket_1_idx` (`idPemilik`);
+
+--
 -- Indexes for table `toko`
 --
 ALTER TABLE `toko`
@@ -501,6 +571,11 @@ ALTER TABLE `transaksi`
 --
 ALTER TABLE `admin`
 MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `balasanTiket`
+--
+ALTER TABLE `balasanTiket`
+MODIFY `idbalasanTiket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `Diskusi`
 --
@@ -545,20 +620,33 @@ MODIFY `idPelanggan` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `pemilikToko`
 --
 ALTER TABLE `pemilikToko`
-MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=19;
+MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
 ALTER TABLE `SubKategoriItem`
 MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
 --
+-- AUTO_INCREMENT for table `tiket`
+--
+ALTER TABLE `tiket`
+MODIFY `idtiket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `balasanTiket`
+--
+ALTER TABLE `balasanTiket`
+ADD CONSTRAINT `fk_balasanTiket_1` FOREIGN KEY (`idTiket`) REFERENCES `tiket` (`idtiket`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_balasanTiket_2` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`idAdmin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk_balasanTiket_3` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `Diskusi`
@@ -603,6 +691,12 @@ ADD CONSTRAINT `fk_konfirmasiPembayaran_transaksi` FOREIGN KEY (`idTransaksi`) R
 --
 ALTER TABLE `SubKategoriItem`
 ADD CONSTRAINT `SubKategoriItem_ibfk_1` FOREIGN KEY (`idKategoriItem`) REFERENCES `kategoriItem` (`idKategoriItem`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tiket`
+--
+ALTER TABLE `tiket`
+ADD CONSTRAINT `fk_tiket_1` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `toko`
