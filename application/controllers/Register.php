@@ -318,7 +318,7 @@ class Register extends Base {
 				$destination = $pemilik['email'];
 				$subject = 'Akun GejayanStore Anda Siap Digunakan';
 				$topic = 'Pendaftaran Telah Kami Konfirmasi';
-				$body = '<p>Selamat anda telah menjadi customer dari GejayanStore. Untuk login silahkan klik masuk ke link <a href="http://gejayanstore.com/home/login">http://gejayanstore.com/home/login</a>
+				$body = '<p>Selamat anda telah menjadi customer dari GejayanStore. Untuk login silahkan gunakan email yang didaftarkan sebagai username dan password berikut untuk login, klik masuk ke link <a href="http://gejayanstore.com/home/login">http://gejayanstore.com/home/login</a>
 				menggunakan akun dibawah ini :</p>
 				<p>
 				
