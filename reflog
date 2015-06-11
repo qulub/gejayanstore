@@ -1,0 +1,88 @@
+d824c83 HEAD@{0}: commit: majamene tiket oleh admin toko
+3e7db2c HEAD@{1}: commit: perbaikan tampilan homepage
+1e99768 HEAD@{2}: commit: jalan
+35b70e5 HEAD@{3}: commit: new database dari kontrakan Toni
+90b2c94 HEAD@{4}: commit: error ketika tidak ada data
+b55d456 HEAD@{5}: commit: normal
+72b25a2 HEAD@{6}: commit: menampilkan promo yang aktif saja
+c2e8f79 HEAD@{7}: commit: malam jumat
+5d199b6 HEAD@{8}: commit: manajemen object admintoko
+b55b1e2 HEAD@{9}: commit: lihat katalog di toko single page
+ccb876f HEAD@{10}: commit: perubahan slidder
+67c41e6 HEAD@{11}: commit: malam selasa
+a7a8c21 HEAD@{12}: commit: transaksi baru
+f56cc40 HEAD@{13}: commit: admin ubah status transaksi
+0371377 HEAD@{14}: commit: finsihing
+be60ba4 HEAD@{15}: commit: pagi2
+c47ed45 HEAD@{16}: commit: bayar dulu
+e672876 HEAD@{17}: pull origin master: Fast-forward
+6d67abd HEAD@{18}: commit: tambah konfirmasi
+17d0eb6 HEAD@{19}: commit: malam dari cemara
+4d0e91a HEAD@{20}: commit: perbaikan email
+42a8cb8 HEAD@{21}: commit: register success
+4eae131 HEAD@{22}: commit: perbaikan error waktu register
+c4790d3 HEAD@{23}: commit: mama
+700196b HEAD@{24}: commit: desain email ganti
+c078ffc HEAD@{25}: commit: pesan email
+bce08fb HEAD@{26}: commit: new db
+5e931d2 HEAD@{27}: commit: normal upload daftar
+9fcea5d HEAD@{28}: commit: malam di jdv
+0783c04 HEAD@{29}: commit: form pendaftaran
+f569079 HEAD@{30}: commit: email toko
+97ae5af HEAD@{31}: commit: yssan
+f93cf1d HEAD@{32}: commit: manajemen kategori oleh admin
+38143f1 HEAD@{33}: pull dawil master: Merge made by the 'recursive' strategy.
+303be55 HEAD@{34}: commit: tampilan admin web
+04b8e5a HEAD@{35}: commit: sync dashboard
+cc32cce HEAD@{36}: commit: menampilkan produk berdasarkan kategori
+8e766a2 HEAD@{37}: commit: lihat galleri di detail produk
+0718b08 HEAD@{38}: commit: export db
+f238d59 HEAD@{39}: commit: ubah promo item
+c04e332 HEAD@{40}: commit: angular get data
+52eb292 HEAD@{41}: commit: menuju ubah promo
+330c5c3 HEAD@{42}: commit: hapus promo admin toko
+1ccd01f HEAD@{43}: commit: tambah promo, cek sisisa slot, cek folder resource
+e8a3484 HEAD@{44}: commit: angular js for req ajax
+e237f9a HEAD@{45}: commit: yus
+838b0b9 HEAD@{46}: commit: dashboard page admin toko
+10212c4 HEAD@{47}: commit: manajemen toko
+75692fe HEAD@{48}: commit: update profil pemilik toko berhasil
+875a2b8 HEAD@{49}: commit: ubah data profile
+b8e2c12 HEAD@{50}: commit: lihat produk item
+66d6cd7 HEAD@{51}: commit: tampilan dashboard
+c312d59 HEAD@{52}: commit: total untuk admin toko
+63913ce HEAD@{53}: commit: set banned/saktif untuk promosi
+9623367 HEAD@{54}: commit: commit terakhir malam jum;at
+060815c HEAD@{55}: commit: commit terakhir malam jum;at
+d25f9cb HEAD@{56}: commit: promo listing worked
+a6ba817 HEAD@{57}: commit: login failed
+a27d520 HEAD@{58}: pull dawil master: Merge made by the 'recursive' strategy.
+c7a181c HEAD@{59}: commit: listing promo
+5a60b52 HEAD@{60}: commit: ubah httaccess
+555aeb7 HEAD@{61}: commit: dawil teh bnotol sosro
+2fbb07c HEAD@{62}: commit: push malam ini olah data dan detail penjual
+1363d0c HEAD@{63}: commit: olah data penjual untuk admin
+dfd98d4 HEAD@{64}: commit: base view untuk admin versi apache2
+f1c8a93 HEAD@{65}: commit: barnag berdasarkan kategori utama
+3e5feb3 HEAD@{66}: commit: produk berdasarkan main kategori
+475b2ac HEAD@{67}: commit: halaman semua promo dan toko
+a944944 HEAD@{68}: commit: rabu pagi
+c147f20 HEAD@{69}: commit: senin malam tambah halaman kategori
+605243c HEAD@{70}: commit: pembatassan tampilan sesuai masa promo toko dan item
+517a273 HEAD@{71}: pull qulub master: Fast-forward
+b1c5f8f HEAD@{72}: commit: update rabu malam
+ad65e21 HEAD@{73}: commit: tambahan malam
+b0083cc HEAD@{74}: commit: link + single
+2e1794a HEAD@{75}: commit: update + db
+0b85934 HEAD@{76}: commit: edit radme
+f9bc95b HEAD@{77}: commit (merge): Merge branch 'master' of https://github.com/yussan/gejayanstore
+b41854b HEAD@{78}: commit: normal
+fa9eda9 HEAD@{79}: commit: btn hilang
+2770b5a HEAD@{80}: commit: normal
+2f768bb HEAD@{81}: commit: hitung
+52cde0e HEAD@{82}: commit: tampilan results
+4c6453a HEAD@{83}: commit: db
+66a7734 HEAD@{84}: commit: edit base
+ed1b2b5 HEAD@{85}: commit: return error
+20c90ef HEAD@{86}: pull origin master: Merge made by the 'recursive' strategy.
+1051dd1 HEAD@{87}: commit (initial): start

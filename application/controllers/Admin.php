@@ -466,6 +466,40 @@ public function promo()
 	//nomor rekening
 	public function norek()
 	{
+		if(!empty($_POST) OR !empty($_GET))
+		{
+			switch ($_GET['act']) {
+				case 'add':
+					$json = file_get_contents(base_url('resource/bank.json'));
+					$bank = $_POST['bank'];
+					$jsonarray = json_decode($json,true);
+					array_push($jsonarray, array('bank'=>$bank['bank'],'norek'=>$bank['norek'],'an'=>$bank['nama']));
+					print_r($jsonarray);
+					$json = json_encode($jsonarray);
+					$fh = fopen('./resource/bank.json', "w");
+					fwrite($fh, $json);
+					fclose($fh);
+					redirect(site_url('admin/norek'));		
+					break;
+				case 'delete':
+					$norek = $_GET['norek'];
+					$json = file_get_contents(base_url('resource/bank.json'));
+					$jsonarray = json_decode($json,true);
+					$newarray = array();
+					foreach ($jsonarray as $ja) {
+						if($ja['norek'] != $norek)array_push($newarray, $ja);
+					}
+					$json = json_encode($newarray);
+					$fh = fopen('./resource/bank.json', "w");
+					fwrite($fh, $json);
+					fclose($fh);
+					redirect(site_url('admin/norek'));					
+					break;
+				default:
+					# code...
+					break;
+			}
+		}
 		$Data = array(
 			'title'=>'Bank dan Nomor Rekening',
 		);
