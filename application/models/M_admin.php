@@ -25,4 +25,16 @@ class M_admin extends CI_Model
 			return $query->row_array();
 		}else{return array();}
 	}
+
+	##COUNTER
+	#TIKET SUBMISSION
+	public function unreadTicket()
+	{
+		//TOTAL UNREAD TICKET
+		$unreadtickets = $this->db->count_all();
+		//TOTAL UNREAD COMMENT	
+		$unreadcomments = $this->db->count_all();
+		//TOTAL UNREAD
+		return $unreadtickets + $unreadcomments;
+	}
 }
