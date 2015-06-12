@@ -589,9 +589,22 @@ $this->form_validation->set_rules($config);
 				$this->db->insert('tiket',$datainsert);
 				redirect(site_url('dashboard/tiket/riwayat'));
 				break;
-            //END OF NEW TICKET
-						//CLOSE TICKET
-				case 'close':
+            	//END OF NEW TICKET
+				//CLOSE TICKET
+				case 'addbalas':
+				$idtiket = $_POST['id'];
+				$balasan = $_POST['balasan'];
+				//INSERT TO DATABASE
+				$data = array
+				(
+					'idTiket'=>$idtiket,
+					'isiBalasanTiket'=>$balasan,
+					'dibacaBalasan'=>0,
+					'tglBalasanTiketPost'=>date('Y-m-d H:i:s'),
+					'idPemilik'=>$this->session->userdata('adminToko')['idpemilik']
+					);
+				$this->db->insert('balasanTiket',$data);
+				redirect($this->agent->referrer());
 				break;
             //END OF CLOSE TICKET
 			}

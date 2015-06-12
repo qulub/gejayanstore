@@ -47,7 +47,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
                 <tr>
                   <td><strong>Status </strong></td>
                   <td>
-                    <?php if($ticket['status']=='open'){$color="green";}else{$color="red";};?><span style="color:<?php echo $color;?>"><?php echo $ticket['status'];?>
+                    <?php if($ticket['statusTiket']=='open'){$color="green";}else{$color="red";};?><span style="color:<?php echo $color;?>"><?php echo $ticket['statusTiket'];?>
                     </td>
                   </tr>
                 </table>
@@ -55,9 +55,10 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
               <hr style="border: 1px solid rgb(229, 229, 229);"/>
               <h2>Balasan Tiket (<?php echo $comments->num_rows();?>)</h2><br/> 
               <!-- END OF TICKET -->
-              <form method="POST" action="">
+              <form method="POST" action="<?php echo site_url('dashboard/ticketaction?act=addbalas')?>">
                 <label>Balasan Baru</label>
-                <textarea style="width:100%" placeholder="balasan tiket"></textarea>
+                <input name="id" type="hidden" value="<?php echo $tiket['idtiket'];?>">
+                <textarea name="balasan" style="width:100%" placeholder="balasan tiket"></textarea>
                 <span><input type="submit" value="Kirim Balasan"></span>
               </form>
               <br/>
