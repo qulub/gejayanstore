@@ -328,10 +328,10 @@
                <a href="#"><i class="fa fa-files-o fa-fw"></i> Tiket<span class="fa arrow"></span></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="<?php echo site_url('admin/norek');?>">Belum Terbaca</a>
+                     <a href="<?php echo site_url('admin/tiket/belumterbaca');?>">Belum Terbaca</a>
                   </li>
                   <li>
-                     <a href="<?php echo site_url('admin/norek');?>">Semua Tiket</a>
+                     <a href="<?php echo site_url('admin/tiket/ditutup');?>">Tiket Ditutup</a>
                   </li>
                </ul>
                <!-- /.nav-second-level -->
