@@ -33,7 +33,7 @@ class Admin extends Base {
           'password'=>$adminData['password'],
           'telp'=>$adminData['telp'],
           'alamat'=>$adminData['alamat'],
-        );
+          );
         $sessionData['adminLoggedIn'] = $userdata;
         $this->session->set_userdata($sessionData);
         redirect(site_url('admin'));
@@ -44,7 +44,7 @@ class Admin extends Base {
       //end login process
       $Data = array(
         'title'=>'Admin Login',
-      );
+        );
       $this->baseAdminView('login',$Data);
     }
   }
@@ -80,7 +80,7 @@ class Admin extends Base {
       'title'=>$title,
       'link'=>$this->pagination->create_links(),
       'view'=>$view
-    );
+      );
     $this->baseAdminView('konfirmasi/list',$Data);
   }
   //transaksi
@@ -129,7 +129,7 @@ class Admin extends Base {
       'count'=>$count,
       'title'=>$title,
       'view'=>$transaksi,
-    );
+      );
     $this->baseAdminView('transaksi/list',$Data);
   }
   //detail transaksi
@@ -143,7 +143,7 @@ class Admin extends Base {
       'transaksi'=>$transaksi,
       'user'=>$user,
       'konfirmasi'=>$konfirmasi
-    );
+      );
     $this->baseAdminView('transaksi/detail',$Data);
   }
   //login failed
@@ -152,7 +152,7 @@ class Admin extends Base {
     $Data = array(
       'title'=>'Admin Login',
       'error'=>$note
-    );
+      );
     $this->baseAdminView('login',$Data);
   }
   //dashboard
@@ -164,7 +164,7 @@ class Admin extends Base {
       'konfirmasimenunggu'=>$this->M_produk->konfirmasi('menunggu'),
       'totaltoko'=>$this->M_toko->countToko($status=""),
       'tiketbelumterbaca'=>$this->M_admin->unreadTicket('tickets') + $this->M_admin->unreadTicket('comments')
-    );
+      );
     $this->baseAdminView('dashboard',$Data);
   }
 
@@ -191,25 +191,25 @@ class Admin extends Base {
     $this->pagination->initialize($config);
     $Data = array
     (
-    'title'=>'Penjual Menunggu Konfirmasi',
-    'count'=>$CountPenjual,
-    'view'=>$Penjual,
-    'link'=>$this->pagination->create_links(),
-    'script'=>'',
-    'action'=>site_url('admin/penjual'),
-  );
-  $this->baseAdminView('penjual/list',$Data);
-}
-//tampilan penjual yang telah memiliki toko
-public function penjual()
-{
-  //do search
-  if(!empty($_GET['q']))
-  {
-    redirect(site_url('admin/penjual/search/'.str_replace(' ','-',$_GET['q'])));
+      'title'=>'Penjual Menunggu Konfirmasi',
+      'count'=>$CountPenjual,
+      'view'=>$Penjual,
+      'link'=>$this->pagination->create_links(),
+      'script'=>'',
+      'action'=>site_url('admin/penjual'),
+      );
+    $this->baseAdminView('penjual/list',$Data);
   }
+//tampilan penjual yang telah memiliki toko
+  public function penjual()
+  {
+  //do search
+    if(!empty($_GET['q']))
+    {
+      redirect(site_url('admin/penjual/search/'.str_replace(' ','-',$_GET['q'])));
+    }
   ///pagination setup
-  $this->load->library('pagination');
+    $this->load->library('pagination');
   $config['base_url'] = site_url($this->uri->uri_string());//recent url
   $config['per_page'] = 20;
   $Uri = $this->uri->segment(4);
@@ -252,14 +252,14 @@ public function penjual()
   $this->pagination->initialize($config);
   $Data = array
   (
-  'title'=>'Olah Data Penjual',
-  'count'=>$CountPenjual,
-  'view'=>$Penjual,
-  'link'=>$this->pagination->create_links(),
-  'script'=>$Script,
-  'action'=>site_url('admin/penjual'),
-);
-$this->baseAdminView('penjual/list',$Data);
+    'title'=>'Olah Data Penjual',
+    'count'=>$CountPenjual,
+    'view'=>$Penjual,
+    'link'=>$this->pagination->create_links(),
+    'script'=>$Script,
+    'action'=>site_url('admin/penjual'),
+    );
+  $this->baseAdminView('penjual/list',$Data);
 }
 //action penjual
 public function actionpenjual()
@@ -282,23 +282,23 @@ public function actionpenjual()
     //cek status penjual
     $Data = array
     (
-    'title'=>$Penjual['namaPemilik'],
-    'penjual'=>$Penjual,
-    'toko'=>$this->M_toko->detailToko($Penjual['idToko']),
-    'promosi'=>$this->M_produk->listProdukToko(100,0,$Penjual['idToko']),
-  );
-  return $this->baseAdminView('penjual/manage',$Data);
-  break;
+      'title'=>$Penjual['namaPemilik'],
+      'penjual'=>$Penjual,
+      'toko'=>$this->M_toko->detailToko($Penjual['idToko']),
+      'promosi'=>$this->M_produk->listProdukToko(100,0,$Penjual['idToko']),
+      );
+    return $this->baseAdminView('penjual/manage',$Data);
+    break;
   case 'managemenunggu'://detail penjual yang sedang menunggu
   $IdPenjual = $this->uri->segment(4);//get id penjual
   $Penjual = $this->M_penjual->detSimplePenjual($IdPenjual);//detail penjual
   $Data = array
   (
-  'title'=>$Penjual['namaPemilik'],
-  'penjual'=>$Penjual,
-  'toko'=>$this->M_toko->tokoByIdPemilik($Penjual['idPemilik'])->row_array(),
-  'konfirmasi'=>''
-);
+    'title'=>$Penjual['namaPemilik'],
+    'penjual'=>$Penjual,
+    'toko'=>$this->M_toko->tokoByIdPemilik($Penjual['idPemilik'])->row_array(),
+    'konfirmasi'=>''
+    );
 return $this->baseAdminView('penjual/managemenunggu',$Data);//detail penjual yang belum melakukan pembayara
 break;
 default:
@@ -311,8 +311,8 @@ public function toko()
 {
   $Data = array
   (
-  'title'=>'Manajemen Toko',
-);
+    'title'=>'Manajemen Toko',
+    );
 }
 //manajemen promosi
 public function promo()
@@ -327,34 +327,34 @@ public function promo()
   if(empty($Uri)){$Uri = 0;}
   switch ($this->uri->segment(3)) {
     case 'aktif':
-      $view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif')->result_array();;
-      $count = $this->M_produk->promoListing('','','aktif')->num_rows();
-      break;
-      case 'banned':
-      $view = $this->M_produk->promoListing($config['per_page'],$Uri,'banned')->result_array();;
-      $count = $this->M_produk->promoListing('','','aktif')->num_rows();
-      break;
-      case 'habis':
-      $view = $this->M_produk->promoListing($config['per_page'],$Uri,'habis')->result_array();;
-      $count = $this->M_produk->promoListing('','','aktif')->num_rows();
-      break;
-      default:
+    $view = $this->M_produk->promoListing($config['per_page'],$Uri,'aktif')->result_array();;
+    $count = $this->M_produk->promoListing('','','aktif')->num_rows();
+    break;
+    case 'banned':
+    $view = $this->M_produk->promoListing($config['per_page'],$Uri,'banned')->result_array();;
+    $count = $this->M_produk->promoListing('','','aktif')->num_rows();
+    break;
+    case 'habis':
+    $view = $this->M_produk->promoListing($config['per_page'],$Uri,'habis')->result_array();;
+    $count = $this->M_produk->promoListing('','','aktif')->num_rows();
+    break;
+    default:
       # code...
-      break;
-    }
-    $config['total_rows'] = $count;
-    $this->pagination->initialize($config);
-    $Data = array(
-      'title'=>'Daftar Promo '.$this->uri->segment(3),
-      'link'=>$this->pagination->create_links(),
-      'total'=>$count,
-      'view'=>$view
-    );
-    return $this->baseAdminView('promo/listing',$Data);
+    break;
   }
+  $config['total_rows'] = $count;
+  $this->pagination->initialize($config);
+  $Data = array(
+    'title'=>'Daftar Promo '.$this->uri->segment(3),
+    'link'=>$this->pagination->create_links(),
+    'total'=>$count,
+    'view'=>$view
+    );
+  return $this->baseAdminView('promo/listing',$Data);
+}
   //promo action
-  public function actionpromo()
-  {
+public function actionpromo()
+{
     switch($_GET['act']) {//whats action
       case 'updatestatus':
       echo $status = $_GET['action'];//what the lattest status
@@ -385,7 +385,7 @@ public function promo()
       'link'=>$this->pagination->create_links(),
       'total'=>$count,
       'view'=>$view
-    );
+      );
     return $this->baseAdminView('promo/listing',$Data);
   }
   //search penjual
@@ -410,7 +410,7 @@ public function promo()
       'link'=>$this->pagination->create_links(),
       'count'=>$count,
       'view'=>$view
-    );
+      );
     return $this->baseAdminView('penjual/list',$Data);
   }
   //manajemen kategori
@@ -478,7 +478,7 @@ public function promo()
           'title'=>'Manajemen Kategori Promosi',
           'mainkat'=>$this->M_produk->getKategori('barang',''),//get all item kategori
           'subkat'=>$this->M_produk->getSubKat($idmainkat),//get sub kat
-        );
+          );
         return $this->baseAdminView('kategori/barang',$Data);
         break;
         case 'usaha'://menajemen kategori toks
@@ -533,7 +533,7 @@ public function promo()
     }
     $Data = array(
       'title'=>'Bank dan Nomor Rekening',
-    );
+      );
     return $this->baseAdminView('norekening',$Data);
   }
 
@@ -561,18 +561,18 @@ public function promo()
     //GET THE VIEW
     $Data = array
     (
-    'title'=>$title,
-    'view'=>$tiket->result_array(),
-    'script'=>'$("#'.$type.'").addClass("active")',
-  );
-  return $this->baseAdminView('tiket/list',$Data);
-}
+      'title'=>$title,
+      'view'=>$tiket->result_array(),
+      'script'=>'$("#'.$type.'").addClass("active")',
+      );
+    return $this->baseAdminView('tiket/list',$Data);
+  }
 
 #READ TIKET
-public function readtiket()
-{
-  $this->load->model('M_ticket');
-  $id = $this->uri->segment(3);
+  public function readtiket()
+  {
+    $this->load->model('M_ticket');
+    $id = $this->uri->segment(3);
   $ticket = $this->M_ticket->readTicket($id);//get ticket data
   $comments = $this->M_ticket->comments($id);//get comment ticket
   $Data = array(
@@ -588,31 +588,90 @@ public function actiontiket()
 {
   switch ($_GET['act']) {
     case 'add':
-      $data = array(
-        'idTiket'=>$_POST['id'],
-        'isiBalasanTiket'=>$_POST['balasan'],
-        'idAdmin'=>$this->session->userdata('adminLoggedIn')['idadmin'],
-        'dibacaBalasan'=>0,
-        'tglBalasanTiketPost'=>date('Y-m-d H:i:s')
+    $data = array(
+      'idTiket'=>$_POST['id'],
+      'isiBalasanTiket'=>$_POST['balasan'],
+      'idAdmin'=>$this->session->userdata('adminLoggedIn')['idadmin'],
+      'dibacaBalasan'=>0,
+      'tglBalasanTiketPost'=>date('Y-m-d H:i:s')
       );
-      $this->db->insert('balasanTiket',$data);
-      redirect($this->agent->referrer());
-      break;
+    $this->db->insert('balasanTiket',$data);
+    redirect($this->agent->referrer());
+    break;
     case 'delete':
       $id = $_GET['id'];//ID BALASAN TIKET
       $this->db->where('idbalasanTiket',$id);
       $this->db->delete('balasanTiket');
       break;
+    }
   }
-}
+#MANAJEMEN BERITA
+  public function berita()
+  {
+    $this->load->model('M_berita');
+    if(!empty($_POST))
+    {
 
-/*END OF MANAJEMEN*/
+    }else
+    {
+      $uri = $this->uri->segment(3);
+      switch ($uri) {
+      //VIEW
+        case 'baru':
+        return $this->beritaBaru();
+        break;
+        case 'edit':
+        # code...
+        break;
+        case 'semua':
+         return $this->semuaBerita();
+        break;
+        //DEFAULT
+        default:
+        redirect(site_url('admin/berita/semua'));//redirect untuk menampilkan semua is berita
+        break;
+      }
+
+    }
+  }
+  //BERITA BARU
+  public function beritaBaru()
+  {
+    $Data = array(
+      'title'=>'Buat Berita Baru',
+      'script'=>'',
+      );
+    return $this->baseAdminView('berita/new',$Data);
+  }
+  //SEMUA BERITA
+  public function semuaBerita()
+  {
+    //PAGINATION START
+    $this->load->library('pagination');
+    $config['base_url'] = site_url($this->uri->uri_string);
+    $config['total_rows'] = $this->M_berita->listing()->num_rows();
+    $config['per_page'] = 20;
+    $config['uri_segment'] = 4;
+    $config['num_links'] = 5;
+    $URI = $this->uri->segment(4);
+    if(empty($URI))$URI=0;
+    $this->pagination->initialize($config);
+    $Data = array(
+      'title'=>'Semua Berita',
+      'script'=>'',
+      'beritas'=>$this->M_berita->listing($config['per_page'],$URI)->result_array(),
+      'count'=>$this->M_berita->listing()->num_rows(),
+      'link'=>$this->pagination->create_links(),
+      );
+    return $this->baseAdminView('berita/list',$Data);
+  }
+  #END OF MANAJEMEN#
 
 //logout
-public function logout()
-{
-  $this->session->sess_destroy();
-  redirect(site_url('admin'));
-}
+  public function logout()
+  {
+    $this->session->sess_destroy();
+    redirect(site_url('admin'));
+  }
 
 }

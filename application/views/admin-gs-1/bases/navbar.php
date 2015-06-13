@@ -310,10 +310,10 @@
                <a href="#"><i class="fa fa-files-o fa-fw"></i> Berita<span class="fa arrow"></span></a>
                <ul class="nav nav-second-level">
                   <li>
-                     <a href="<?php echo site_url('admin/Berita Aktif');?>">Berita Aktif</a>
+                     <a href="<?php echo site_url('admin/berita/baru');?>">Baru</a>
                   </li>
                   <li>
-                     <a href="<?php echo site_url('admin/Semua Berita');?>">Semua Berita</a>
+                     <a href="<?php echo site_url('admin/berita/semua');?>">Semua Berita</a>
                   </li>
                </ul>
                <!-- /.nav-second-level -->
