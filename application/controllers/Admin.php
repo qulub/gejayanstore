@@ -611,7 +611,34 @@ public function actiontiket()
     $this->load->model('M_berita');
     if(!empty($_POST))
     {
-
+      switch ($_GET['act']) {
+        case 'add':
+        $data = array
+        (
+          'tglPostBerita'=>date('Y-m-d H:i:s'),
+          'tglUpdateBerita'=>date('Y-m-d H:i:s'),
+          'judulBerita'=>$_POST['judul'],
+          'berita'=>$_POST['berita'],
+          'idAdmin'=>$this->session->userdata('adminLoggedIn')['idadmin']
+          );
+        $this->db->insert('berita',$data);
+        redirect(site_url('admin/berita'));          
+        break;
+        case 'edit':
+          $this->db->where('idBerita',$_GET['id']);
+          $data = array(
+            'tglUpdateBerita'=>date('Y-m-d H:i:s'),
+            'judulBerita'=>$_POST['judul'],
+            'berita'=>$_POST['berita'],
+            'idAdmin'=>$this->session->userdata('adminLoggedIn')['idadmin']
+            );
+          $this->db->update('berita',$data);
+          redirect(site_url('admin/berita'));  
+        break;        
+        default:
+        redirect(site_url('admin/berita'));
+        break;
+      }
     }else
     {
       $uri = $this->uri->segment(3);
@@ -621,10 +648,16 @@ public function actiontiket()
         return $this->beritaBaru();
         break;
         case 'edit':
-        # code...
+        return $this->beritaEdit();
+        break;
+        case 'hapus'://WORKED
+        $id = $this->uri->segment(4);
+        $this->db->where('idBerita',$id);
+        $this->db->delete('berita');
+        redirect($this->agent->referrer());
         break;
         case 'semua':
-         return $this->semuaBerita();
+        return $this->semuaBerita();
         break;
         //DEFAULT
         default:
@@ -639,6 +672,17 @@ public function actiontiket()
   {
     $Data = array(
       'title'=>'Buat Berita Baru',
+      'script'=>'',
+      );
+    return $this->baseAdminView('berita/new',$Data);
+  }
+  //BERITA EDIT
+  public function beritaEdit()
+  {
+    $id = $this->uri->segment(4);
+    $Data = array(
+      'title'=>'Buat Berita Baru',
+      'berita'=>$this->M_berita->single($id),
       'script'=>'',
       );
     return $this->baseAdminView('berita/new',$Data);
