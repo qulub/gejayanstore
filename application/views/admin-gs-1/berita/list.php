@@ -42,7 +42,7 @@ $(document).ready(function(){
             <td><?php echo $berita['userName'];?></td>
             <td>
             <a class="btn btn-default btn-xs" href="">edit</a>
-            <a class="btn btn-error btn-xs" href="">edit</a>
+            <a onclick="return confirm('anda yakin')" class="btn btn-danger btn-xs" href="">hapus</a>
             </td>
           </tr>
         <?php endforeach;?>
