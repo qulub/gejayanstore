@@ -66,11 +66,7 @@ $db['default'] = array(
 	'dsn'	=> '',
 	'hostname' => 'localhost',
 	'username' => 'root',
-<<<<<<< HEAD
 	'password' => 'toor',
-=======
-	'password' => 'rahasia',
->>>>>>> 0b5faa8f81863aaca30909b73a1ad46afc77aa43
 	'database' => '2015_GejayanStore',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
