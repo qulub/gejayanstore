@@ -649,15 +649,18 @@ public function actiontiket()
     //PAGINATION START
     $this->load->library('pagination');
     $config['base_url'] = site_url($this->uri->uri_string);
-    $config['total_rows'] = $this->M_berita->listing()->num_rows;
+    $config['total_rows'] = $this->M_berita->listing()->num_rows();
     $config['per_page'] = 20;
-    $config['uri_segment'] = 3;
-    $config['num_links'] = 2;
+    $config['uri_segment'] = 4;
+    $config['num_links'] = 5;
+    $URI = $this->uri->segment(4);
+    if(empty($URI))$URI=0;
     $this->pagination->initialize($config);
     $Data = array(
       'title'=>'Semua Berita',
       'script'=>'',
-      'beritas'=>'',
+      'beritas'=>$this->M_berita->listing($config['per_page'],$URI)->result_array(),
+      'count'=>$this->M_berita->listing()->num_rows(),
       'link'=>$this->pagination->create_links(),
       );
     return $this->baseAdminView('berita/list',$Data);

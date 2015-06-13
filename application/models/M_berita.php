@@ -12,6 +12,7 @@ class M_berita extends CI_Model
 	{
 		if(!empty($limit) AND !empty($offset))$this->db->limit($limit,$offset);//if set a pagination
 		$this->db->order_by('tglUpdateBerita','asc');//order by update time
+		$this->db->join('admin','berita.idAdmin = admin.idAdmin');//join with admin
 		return $this->db->get('berita');
 	}
 	#READ BERITA
