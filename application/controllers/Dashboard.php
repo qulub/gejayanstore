@@ -169,7 +169,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			echo '<br/>';
 			print_r($_FILES);
 				//generate data
-				$promo = $_POST['promo'];
+			$promo = $_POST['promo'];
 				$iditem = $promo['id'];//get item id
 				$data = array(
 					'Judul'=>$promo['Judul'],
@@ -184,10 +184,10 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 				// print_r($data);
 				$this->db->where('idItem',$iditem);
 				if($this->db->update('item',$data))//update database)
-				{
+{
 					//process gambar
-					for($n=1;$n<=3;$n++)
-					{
+	for($n=1;$n<=3;$n++)
+	{
 						if(!empty($_FILES['gambar']['gambar'.$n]))//upload new image
 						{
 
@@ -221,15 +221,73 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		$Data['subkat']=$this->M_produk->getSubKat($Data['idmainkat'],'json');//subkat by main kat -> return is array
 		return $this->basePublicView('dashboard/updatepromo',$Data);
 	}
-	//manajemen katalog
+	#MANAJEMEN KATALOG
 	public function katalog()
 	{
 		$Data = array
 		(
-		'script'=>'$("#katalog").addClass("active");$("#aktif").addClass("active")',
-		'idToko'=>$this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']),
-		);
+			'script'=>'$("#katalog").addClass("active");$("#aktif").addClass("active")',
+			'idToko'=>$this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']),
+			);
 		return $this->basePublicView('dashboard/katalog',$Data);
+	}
+	#UPLOAD KATALOG PROCESS
+	public function uploadkatalog()
+	{
+		//DIRECTORY MANAJEMEN
+		$dir = './resource/images/katalog/'.$_POST['idtoko'];
+		//IS DIRECTORY EXIST
+		if(!file_exists($dir))//directory not exist [worked]
+		{
+			mkdir($dir, 0777);//worked RWX+RW+RW
+		}
+		$config['upload_path']          = $dir;
+		$config['allowed_types']        = 'gif|jpg|png';
+		$config['max_size']             = 1000;
+		$config['max_width']            = 1024;
+		$config['max_height']           = 1024;
+		$config['encrypt_name']			= TRUE;
+		//get file name
+		$this->load->library('upload', $config);
+		if (!$this->upload->do_upload('katalog'))
+		{
+			$Data = array
+			(
+				'script'=>'$("#katalog").addClass("active");$("#aktif").addClass("active")',
+				'idToko'=>$this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']),
+				'error'=>'Gagal Upload Katalog, Perhatikan Ukuran dan Format Gambar',
+				);
+			return $this->basePublicView('dashboard/katalog',$Data);
+		}
+		else
+		{
+			$this->db->where('idToko',$_POST['idtoko']);
+			$name = $this->upload->data('file_name');
+			$this->db->insert('katalog',array('tglTambahKatalog'=>date('Y-m-d H:i:s'),'idToko'=>$_POST['idtoko'],'katalog'=>$name));
+			$Data = array
+			(
+				'script'=>'$("#katalog").addClass("active");$("#aktif").addClass("active")',
+				'idToko'=>$this->M_toko->getIdToko($this->session->userdata('admintoko')['idPemilik']),
+				'success'=>'Sukses Upload Katalog',
+				);
+			return $this->basePublicView('dashboard/katalog',$Data);
+		}
+
+	}
+	#DELETE KATALOG PROCESS
+	public function deletekatalog()
+	{
+		$id = $_GET['id'];
+		//GET DATA
+		$this->db->where('idkatalog',$id);
+		$katalog = $this->db->get('katalog')->row_array();
+		$pic = './resource/images/katalog/'.$katalog['idkatalog'].'/'.$katalog['katalog'];
+		if(file_exists($pic)){
+			unlink($pic);
+		}
+		$this->db->where('idkatalog',$id);
+		$this->db->delete('katalog');
+		redirect(site_url('dashboard/katalog'));
 	}
 	//olah data toko
 	public function toko()
@@ -260,7 +318,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
                   $tokodata['avatar'] = $this->upload->data('file_name');       // Returns: mypic.jpg
               }
           }else{//not upload
-          		$tokodata['avatar'] = $_POST['oldavatar'];
+          	$tokodata['avatar'] = $_POST['oldavatar'];
           }
           $this->db->where('idToko',$toko['idToko']);
           $this->db->update('toko',$tokodata);
@@ -349,7 +407,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 							),
 						),
 				);//end of confirmation rules
-				$this->form_validation->set_rules($config);
+$this->form_validation->set_rules($config);
 				if($this->form_validation->run())//data valid
 				{
 					//update database
@@ -411,84 +469,84 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			switch ($_GET['act']) {
 				case 'add':
 					//cek apakah transaksi milik user tersebut
-					if($this->M_transaksi->isMyTransaction($_POST['konfirmasi']['idTransaksi']))
-					{
-						$konfirmasi = $_POST['konfirmasi'];
-						$data = array(
-							'idTransaksi'=>$konfirmasi['idTransaksi'],
-							'tglKonfirmasi'=>date('Y-m-d H:i:s'),
-							'tujuanBank'=>$konfirmasi[0],
-							'dariBank'=>$konfirmasi['asal'],
-							'noRekening'=>$konfirmasi['norek'],
-							'jumlahTransfer'=>$konfirmasi['jumlah'],
-							'nama'=>$konfirmasi['nama'],
-							'idTransaksi'=>$konfirmasi['idTransaksi'],
-							);
-						$this->db->insert('konfirmasiPembayaran',$data);
-						redirect(site_url('dashboard/konfirmasi'));
-					}else
-					{
-						echo 'id transaksi bukan atas nama akun anda';
-					}
-					break;
+				if($this->M_transaksi->isMyTransaction($_POST['konfirmasi']['idTransaksi']))
+				{
+					$konfirmasi = $_POST['konfirmasi'];
+					$data = array(
+						'idTransaksi'=>$konfirmasi['idTransaksi'],
+						'tglKonfirmasi'=>date('Y-m-d H:i:s'),
+						'tujuanBank'=>$konfirmasi[0],
+						'dariBank'=>$konfirmasi['asal'],
+						'noRekening'=>$konfirmasi['norek'],
+						'jumlahTransfer'=>$konfirmasi['jumlah'],
+						'nama'=>$konfirmasi['nama'],
+						'idTransaksi'=>$konfirmasi['idTransaksi'],
+						);
+					$this->db->insert('konfirmasiPembayaran',$data);
+					redirect(site_url('dashboard/konfirmasi'));
+				}else
+				{
+					echo 'id transaksi bukan atas nama akun anda';
+				}
+				break;
 
 				default:
 					redirect(site_url('dashboard/konfirmasi'));//kehalaman list konfirmasi
 					break;
+				}
+			}else
+			{
+				$uri = $this->uri->segment(3);
+				$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
+				if(empty($uri)){redirect(site_url('dashboard/konfirmasi/riwayat'));}
+				switch ($uri) {
+					case 'baru':
+					$title = "Konfirmasi Baru";
+					$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
+					$view = '';
+					break;
+					case 'riwayat':
+					$title = "Riwayat Konfirmasi";
+					$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
+					$view = $this->M_konfirmasi->riwayat($idpemilik);
+					break;
+				}
+				$Data = array
+				(
+					'title'=>$title,
+					'script'=>$script,
+					'view'=>$view,
+					);
+				return $this->basePublicView('dashboard/konfirmasi',$Data);
 			}
-		}else
-		{
-			$uri = $this->uri->segment(3);
-			$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
-			if(empty($uri)){redirect(site_url('dashboard/konfirmasi/riwayat'));}
-			switch ($uri) {
-				case 'baru':
-				$title = "Konfirmasi Baru";
-				$script = "$('#konfirmasi').addClass('active');$('#baru').addClass('active');";
-				$view = '';
-				break;
-				case 'riwayat':
-				$title = "Riwayat Konfirmasi";
-				$script = "$('#konfirmasi').addClass('active');$('#riwayat').addClass('active');";
-				$view = $this->M_konfirmasi->riwayat($idpemilik);
-				break;
-			}
-			$Data = array
-			(
-				'title'=>$title,
-				'script'=>$script,
-				'view'=>$view,
-				);
-			return $this->basePublicView('dashboard/konfirmasi',$Data);
 		}
-	}
 	#TIKET
-	public function tiket()
-	{
-		$this->load->model('M_ticket');
-        $uri=$this->uri->segment(3);
+		public function tiket()
+		{
+			$this->load->model('M_ticket');
+			$uri=$this->uri->segment(3);
 			switch ($uri) {
 				#TIKET BARU
 				case 'baru':
-					$Data = array
-					(
-						'title'=>'Tiket Baru',
-						'script'=>'$scope.baruClass="active";$scope.ticketClass="active";',
-						'view'=>'',
-						);
-					return $this->basePublicView('dashboard/ticket/new',$Data);
-					break;
+				$Data = array
+				(
+					'title'=>'Tiket Baru',
+					'script'=>'$scope.baruClass="active";$scope.ticketClass="active";',
+					'view'=>'',
+					);
+				return $this->basePublicView('dashboard/ticket/new',$Data);
+				break;
 				#END OF TIKET BARU
 				#RIWAYAT TIKET
 				case 'riwayat':
-					$Data = array
-					(
-						'title'=>'Riwayat Tiket',
-						'script'=>'$scope.riwayatClass="active";$scope.ticketClass="active";',
-						'tiket'=>$this->M_ticket->ticketByUser($this->session->userdata('admintoko')['idPemilik']),
-						);
-					return $this->basePublicView('dashboard/ticket/listing',$Data);
-					break;
+				$Data = array
+				(
+					'title'=>'Riwayat Tiket',
+					'script'=>'$scope.riwayatClass="active";$scope.ticketClass="active";',
+					'tiket'=>$this->M_ticket->ticketByUser($this->session->userdata('admintoko')['idPemilik']),
+					);
+				return $this->basePublicView('dashboard/ticket/listing',$Data);
+				break;
 				#END OF RIWAYAT TIKET
 				#READ TICKET
 				case 'read':
@@ -500,48 +558,61 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 					'script'=>'$scope.riwayatClass="active";$scope.ticketClass="active";',
 					'ticket'=>$ticket,
 					'comments'=>$comments
-				);
+					);
 				return $this->basePublicView('dashboard/ticket/single',$Data);
 				break;
 				#END OF READ TICKET
 				default:
-					redirect(site_url('dashboard/tiket/baru'));
-					break;
+				redirect(site_url('dashboard/tiket/baru'));
+				break;
 			}
-	}
+		}
 	#END OF TIKET
     #TIKET PROCESS IN ACTION
-    public function ticketaction()
-    {
-        $act = $this->input->get('act');
-        switch($act){
+		public function ticketaction()
+		{
+			$act = $this->input->get('act');
+			switch($act){
             //NEW TICKET
-            case 'add':
-            $data = $this->input->post();
-            $datainsert = array
-                (
+				case 'add':
+				$data = $this->input->post();
+				$datainsert = array
+				(
                 'idPemilik'=>$this->session->userdata('admintoko')['idPemilik'],//get id pemilik toko data
                 'judulTiket'=>$data['tiket']['judul'],//get judul tiket
                 'isiTiket'=>$data['tiket']['pesan'],//get isi pesan tiket
                 'tipeTiket'=>$data['tiket']['tujuan'],//get tujuan tiket
                 'tglPostTiket'=>date('Y-m-d H:i:s'),//get now
                 'dibaca'=>'0',
-								'status'=>'open'
-            );
-            $this->db->insert('tiket',$datainsert);
-            redirect(site_url('dashboard/tiket/riwayat'));
-            break;
-            //END OF NEW TICKET
-						//CLOSE TICKET
-            case 'close':
-            break;
+                'status'=>'open'
+                );
+				$this->db->insert('tiket',$datainsert);
+				redirect(site_url('dashboard/tiket/riwayat'));
+				break;
+            	//END OF NEW TICKET
+				//CLOSE TICKET
+				case 'addbalas':
+				$idtiket = $_POST['id'];
+				$balasan = $_POST['balasan'];
+				//INSERT TO DATABASE
+				$data = array
+				(
+					'idTiket'=>$idtiket,
+					'isiBalasanTiket'=>$balasan,
+					'dibacaBalasan'=>0,
+					'tglBalasanTiketPost'=>date('Y-m-d H:i:s'),
+					'idPemilik'=>$this->session->userdata('adminToko')['idpemilik']
+					);
+				$this->db->insert('balasanTiket',$data);
+				redirect($this->agent->referrer());
+				break;
             //END OF CLOSE TICKET
-        }
-    }
+			}
+		}
     #END OF TICKET PROCESS
 	//do logout
-	public function logout()
-	{
+		public function logout()
+		{
 		$this->session->sess_destroy();//clear session
 		return redirect(site_url('home/login'));//back to the login page
 	}
