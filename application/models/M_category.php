@@ -13,4 +13,5 @@ class M_category extends CI_Model
 		$query = $this->db->get('kategoriItem');
 		return $query->result_array();
 	}
+	#KATEGORI USAHA
 }

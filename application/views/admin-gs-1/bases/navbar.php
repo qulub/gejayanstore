@@ -274,6 +274,9 @@
                   <li>
                      <a href="<?php echo site_url('admin/kategori/barang')?>">Kategori Barang</a>
                   </li>
+                   <li>
+                     <a href="<?php echo site_url('admin/kategori/usaha')?>">Kategori Usaha</a>
+                  </li>
                </ul>
             </li>
             <li>

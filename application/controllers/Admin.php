@@ -416,9 +416,11 @@ public function promo()
   //manajemen kategori
   public function kategori()
   {
+    $this->load->model('M_category');
     if(!empty($_GET['act']))
     {
       switch ($_GET['act']) {
+        #MANAGE PROMO CATEGORY
         case 'addmainkat':
         $this->db->insert('kategoriItem',array('namaKategori'=>$_POST['nama'],'deskripsiKategori'=>$_POST['deskripsi']));
         redirect($this->agent->referrer());
@@ -437,6 +439,31 @@ public function promo()
         $this->db->delete('SubKategoriItem');
         redirect($this->agent->referrer());
         break;
+        case 'editmainkatbarang':
+        $this->db->where('idKategoriItem',$_GET['id']);
+        $this->db->update('kategoriItem',array('namaKategori'=>$_GET['nama'],'deskripsiKategori'=>$_GET['desc']));
+        redirect($this->agent->referrer());
+        break;
+        case 'editsubkatbarang':
+        $this->db->where('idSubKategori',$_GET['id']);
+        $this->db->update('SubKategoriItem',array('namaSubKategori'=>$_GET['nama']));
+        redirect($this->agent->referrer());
+        break;
+        #MANAGE USAHA CATEGORY
+        case 'addkatusaha':
+        $this->db->insert('kategoriUsaha',array('namaKategoriUsaha'=>$_POST['nama']));
+        redirect($this->agent->referrer());
+        break;
+        case 'delkatusaha':
+        $this->db->where('idkategoriUsaha',$_GET['id']);
+        $this->db->delete('kategoriUsaha');
+        redirect($this->agent->referrer());
+        break;       
+        case 'editkatusaha':
+        $this->db->where('idkategoriUsaha',$_GET['id']);
+        $this->db->update('kategoriUsaha',array('namaKategoriUsaha'=>$_GET['nama']));
+        redirect($this->agent->referrer());
+        break;
         default:
         redirect($this->agent->referrer());
         break;
@@ -448,15 +475,18 @@ public function promo()
       switch($segment){
         case 'barang'://manajemen kategori barang
         $Data = array(
-          'title'=>'Manajemen Kategori',
+          'title'=>'Manajemen Kategori Promosi',
           'mainkat'=>$this->M_produk->getKategori('barang',''),//get all item kategori
           'subkat'=>$this->M_produk->getSubKat($idmainkat),//get sub kat
-          'script'=>'$scope.semua = "active";',
         );
         return $this->baseAdminView('kategori/barang',$Data);
         break;
-        case 'toko'://menajemen kategori toks
-        echo 'on construct';
+        case 'usaha'://menajemen kategori toks
+        $Data = array(
+          'title'=>'Manajemen Kategori Usaha',
+          'mainkat'=>$this->db->get('kategoriUsaha'),
+          );
+        return $this->baseAdminView('kategori/usaha',$Data);
         break;
         default://not defined uri segment 3
         redirect(site_url('kategori/barang'));
