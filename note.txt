@@ -1,1 +1,2 @@
 dialog with angular js
+data di toko and facebook
