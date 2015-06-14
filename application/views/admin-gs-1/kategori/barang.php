@@ -16,9 +16,6 @@
          </div><!-- /.col-lg-6 -->
       </div><!-- /.row -->
       <!-- <pre><?php print_r($view); ?></pre> -->
-      <ul ng-controller="navbar" class="nav nav-tabs">
-         <li class="{{semua}}"><a href="<?php echo site_url('admin/penjual/all');?>">Kategori Promo</a></li>
-      </ul>
       <br/>
       <div ng-controller="addCategory">
          <ul class="nav nav-pills">
@@ -68,18 +65,19 @@
       <?php foreach($mainkat->result_array() as $mk):?>
           <tr>
              <td><a href="<?php echo site_url('admin/kategori/barang/'.$mk['idKategoriItem'])?>"><strong><?php echo $mk['namaKategori'];?></strong></a><br/><?php echo $mk['deskripsiKategori'];?></td>
-             <td style="width:90px"><button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-pencil"></span></button> <a href="?act=delmainkat&id=<?php echo $mk['idKategoriItem']?>" onclick="return confirm('Anda Yakin !')" class="btn btn-danger btn-xs" ><span class="glyphicon glyphicon-trash"></span></a></td>
+             <td style="width:90px"><button ng-click="editMainKat('<?php echo $mk['idKategoriItem'];?>','<?php echo $mk['namaKategori'];?>','<?php echo $mk['deskripsiKategori'];?>')" class="btn btn-default btn-xs" type="button"><span class="glyphicon glyphicon-pencil"></span></button> <a href="?act=delmainkat&id=<?php echo $mk['idKategoriItem']?>" onclick="return confirm('Anda Yakin !')" class="btn btn-danger btn-xs" ><span class="glyphicon glyphicon-trash"></span></a></td>
           </tr>
        <?php endforeach;?>
     </table>
  </div>
  <div class="col-md-6">
-   <h4>Sub Kategori (<?php echo $mainkat->num_rows();?>)</h4>
+   <h4>Sub Kategori (<?php echo count($subkat);?>)</h4>
    <table class="table">
-     <?php foreach($subkat->result_array() as $sk):?>
+     <?php foreach($subkat as $sk):?>
        <tr>
           <td><?php echo $sk['namaSubKategori'] ?>
-          <td style="width:90px"><button class="btn btn-default btn-xs" type="submit"><span class="glyphicon glyphicon-pencil"></span></button> <a href="?act=delsubkat&id=<?php echo $sk['idSubKategori']?>" onclick="return confirm('Anda Yakin !')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td style="width:90px">
+          <button ng-click="editSubKat('<?php echo $sk['idSubKategori'];?>','<?php echo $sk['namaSubKategori'];?>')" class="btn btn-default btn-xs" type="button"><span class="glyphicon glyphicon-pencil"></span></button> <a href="?act=delsubkat&id=<?php echo $sk['idSubKategori']?>" onclick="return confirm('Anda Yakin !')" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></a></td>
        </tr>
     <?php endforeach;?>
  </table>
@@ -108,6 +106,19 @@
       {
          $scope.boxAddSubCategory = $scope.boxAddSubCategory === false ? true: false;
          $scope.boxAddCategory = true;
+      };
+      //EDIT MAIN KAT
+      $scope.editMainKat = function(id,nama,desc)
+      {
+        var newname = prompt('Nama Baru',nama);
+        var newdesc = prompt('Deskripsi Baru',desc);
+        if(newname != null && newname != '' )document.location = '<?php echo site_url("admin/kategori?act=editmainkatbarang&id='+id+'&nama='+newname+'&desc=")?>'+newdesc;
+      };
+      //EDIT SUB KAT
+      $scope.editSubKat = function(id,nama)
+      {
+        var newname = prompt('Nama Baru',nama);
+        if(newname != null && newname != '')document.location = '<?php echo site_url("admin/kategori?act=editsubkatbarang&id='+id+'&nama='+newname+'")?>'
       };
    }]);   
 </script>

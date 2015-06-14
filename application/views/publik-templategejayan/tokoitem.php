@@ -38,15 +38,10 @@
 						<div class="clear"></div>
 					</div>
 					<div class="content-2">
-						<h3>Katalog Kami</h3><br/>
-						<p>
 							{{kataloglist}}
 							<!-- list katalog-->
-							<a class="toko-katalog-list" ng-repeat="list in lists" target="_blank" href="{{list.url}}">
-							<img src="{{list.url}}" alt="" />
-							</a>
+							<a ng-repeat="list in lists" class="katalog-list" target="_blank" style="background:url('{{list.url}}');background-size: contain;background-position: center;background-repeat: no-repeat;" href="{{list.url}}"></a>
 							<!-- end of list barang -->
-						</p>
 					</div>
 					<div class="content-3">
 						<p class="para"><span>WELCOME </span> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections </p>

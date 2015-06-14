@@ -47,9 +47,9 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
                     <td><?php echo $ticket['isiTiket'];?></td>
                     <td><?php echo $ticket['tipeTiket'];?></td>
                     <td><?php echo $ticket['tglPostTiket'];?></td>
-                    <td>status : <?php if($ticket['status']=='open'){$color="green";}else{$color="red";};?>
+                    <td>status : <?php if($ticket['statusTiket']=='open'){$color="green";}else{$color="red";};?>
                       <?php $balasan = $this->M_ticket->unreadComments($ticket['idtiket']);?>
-                      <span style="color:<?php echo $color;?>"><?php echo $ticket['status'];?></span>
+                      <span style="color:<?php echo $color;?>"><?php echo $ticket['statusTiket'];?></span>
                       <br/>
                       <?php if($balasan <= 0){ echo '<i>belum ada pemberitahuan</i></td>';}else{echo '<i>'.$balasan.' komentar belum terbaca</i>';}?>
                 </tr>

@@ -24,7 +24,7 @@ class Produk extends Base {
 			'per_page'=>12,
 			'uri_segment'=>3,
 			'num_link'=>9,
-		);
+			);
 		$Uri = $this->uri->segment(3);
 		if(!$Uri)$Uri=0;
 		$link = $this->pagination->create_links();
@@ -35,7 +35,7 @@ class Produk extends Base {
 			'title'=>'Semua Promo',
 			'link'=>$link,
 			'view'=>$this->M_produk->listProduk($Config['per_page'],$Uri)
-		);
+			);
 		return $this->basePublicView('promo/semuaPromo',$Data);
 	}
 	//semua promo berdasarkan main kategori
@@ -50,7 +50,7 @@ class Produk extends Base {
 			'per_page'=>12,
 			'uri_segment'=>4,
 			'num_link'=>9,
-		);
+			);
 		$Uri = $this->uri->segment(4);
 		if(!$Uri)$Uri=0;
 		$link = $this->pagination->create_links();
@@ -61,7 +61,7 @@ class Produk extends Base {
 			'title'=>'Kategori : '.$kategori,
 			'link'=>$link,
 			'view'=>$this->M_produk->listProdukByMainKat($kategori,$Config['per_page'],$Uri)
-		);
+			);
 		return $this->basePublicView('promo/semuaPromo',$Data);
 	}
 	//single produk
@@ -76,14 +76,14 @@ class Produk extends Base {
 		//apakah masa promo item sudah habis
 		if($shopro<0)
 		{return $this->promoHabis('Masa Promo Toko Sudah Habis');}//masa promo toko sudah habis
-		else if($itemro<0)
+	else if($itemro<0)
 		{return $this->promoHabis('Masa Promo Produk Sudah Habis');}//masa promo produk sudah habis
-		else{
+	else{
 			//start single
-			$promoItem = $produk['habisPromo'];
-			$toko = $this->M_toko->detailToko($produk['idToko']);
-			$Data = array
-			(
+		$promoItem = $produk['habisPromo'];
+		$toko = $this->M_toko->detailToko($produk['idToko']);
+		$Data = array
+		(
 			'title'=>$produk['judul'],
 			'galeri'=>$this->M_produk->getAllGambarProduk($produk['idItem']),
 			'view'=>$produk,
@@ -91,7 +91,7 @@ class Produk extends Base {
 			'sisa'=>$itemro,
 			'promolain'=>$this->m_produk->othersPromo($produk['idToko'],true),
 			'promotokolain'=>$this->m_produk->othersPromo($produk['idToko'],false)
-		);
+			);
 		$this->load->view('publik-templategejayan/produk',$Data);
 		//end of single
 	}//produk masih dalam masa promo
@@ -101,10 +101,10 @@ public function promoHabis($note="")
 {
 	$data = array
 	(
-	'title'=>'Masa Promo Habis',
-	'note'=>$note
-);
-$this->basePublicView('customnote',$data);
+		'title'=>'Masa Promo Habis',
+		'note'=>$note
+		);
+	$this->basePublicView('customnote',$data);
 }
 //cari produk
 public function cari()
@@ -118,12 +118,12 @@ public function cari()
 		$keyword = str_replace('-',' ',$this->uri->segment(3));
 		$Data = array
 		(
-		'carion'=>TRUE,
-		'title'=>'Hasil Pencarian '.$keyword,
-		'listproduk'=>$this->M_produk->cariPromo($keyword,10,0),
-	);
+			'carion'=>TRUE,
+			'title'=>'Hasil Pencarian '.$keyword,
+			'listproduk'=>$this->M_produk->cariPromo($keyword,10,0),
+			);
 	//view
-	$this->basePublicView('promo/pencarian',$Data);
-}
+		$this->basePublicView('promo/pencarian',$Data);
+	}
 }
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2015 at 09:25 AM
+-- Generation Time: Jun 13, 2015 at 08:15 PM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -58,7 +58,7 @@ CREATE TABLE IF NOT EXISTS `balasanTiket` (
   `tglBalasanTiketPost` datetime DEFAULT NULL,
   `idAdmin` int(11) DEFAULT NULL,
   `idPemilik` int(11) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `balasanTiket`
@@ -67,7 +67,10 @@ CREATE TABLE IF NOT EXISTS `balasanTiket` (
 INSERT INTO `balasanTiket` (`idbalasanTiket`, `idTiket`, `isiBalasanTiket`, `dibacaBalasan`, `tglBalasanTiketPost`, `idAdmin`, `idPemilik`) VALUES
 (1, 1, 'saat ini fasilitas hapus belum tersedia, tapi kami bisa banned akun anda agar tidak dibaca oleh pengguna lain.', '0', '2015-05-09 11:03:22', 1, NULL),
 (2, 2, 'belum bisa mas karena akan jadi member untuk selama-lamnya.', '0', '2015-06-09 11:03:22', 1, NULL),
-(3, 1, 'ya sudah lah', '0', '2015-06-09 14:00:00', NULL, 1);
+(3, 1, 'ya sudah lah', '0', '2015-06-09 14:00:00', NULL, 1),
+(8, 1, 'its working\r\n', '', '2015-06-12 23:13:09', 1, NULL),
+(9, 1, 'wajahmu ayu', '', '2015-06-12 23:31:50', NULL, NULL),
+(10, 1, 'wajahmu ayu', '', '2015-06-12 23:32:09', NULL, NULL);
 
 --
 -- Triggers `balasanTiket`
@@ -81,29 +84,24 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Diskusi`
+-- Table structure for table `berita`
 --
 
-CREATE TABLE IF NOT EXISTS `Diskusi` (
-`idDiskusi` int(11) NOT NULL,
-  `idItem` int(11) NOT NULL,
-  `JudulDiskusi` varchar(300) NOT NULL,
-  `idPelanggan` int(11) NOT NULL,
-  `waktu` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `berita` (
+`idBerita` int(11) NOT NULL,
+  `tglPostBerita` datetime DEFAULT NULL,
+  `tglUpdateBerita` datetime DEFAULT NULL,
+  `judulBerita` varchar(300) DEFAULT NULL,
+  `berita` text,
+  `idAdmin` int(11) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Table structure for table `diskusiKonten`
+-- Dumping data for table `berita`
 --
 
-CREATE TABLE IF NOT EXISTS `diskusiKonten` (
-  `idDiskusi` int(11) NOT NULL,
-  `konten` varchar(500) NOT NULL,
-  `waktu` datetime NOT NULL,
-  `type` enum('tanya','jawab') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `berita` (`idBerita`, `tglPostBerita`, `tglUpdateBerita`, `judulBerita`, `berita`, `idAdmin`) VALUES
+(1, '2015-06-13 12:26:27', '2015-06-13 12:26:27', 'Tersedia Kategori Baru', 'Lorem ipsum semi dollor amit, hoya-hoya. Ma ma sudah tidak tahan pa, siap belanja ada diskon besar-besaran. Gairah belanja.', 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +161,7 @@ INSERT INTO `item` (`idItem`, `tglPost`, `tglEdit`, `habisPromo`, `Judul`, `Desk
 (33, '2015-05-24 09:02:20', '2015-05-24 17:21:34', '2015-05-28 00:00:00', 'Jilbab warna murah di elzata', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan augue massa, et tristique lorem venenatis non. Proin ultrices tellus quam, id suscipit odio sodales id. Curabitur vitae diam a tellus fringilla ultricies vel sed nisl. Aenean commodo, turpis eget porttitor vulputate, lacus massa rhoncus dolor, id suscipit nisi odio vel enim. \r\nFusce egestas interdum justo, vitae euismod lacus rutrum nec. Mauris semper maximus lectus, nec tempor risus semper in. Pellentesque sed dui quam. Ves', 1, 3, 340000, 20, 11, 'aktif'),
 (34, '2015-05-24 12:09:43', '2015-06-09 10:35:46', '2015-06-30 00:00:00', 'Piyama Imut Ala Gigi', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec accumsan augue massa, et tristique lorem venenatis non. Proin ultrices tellus quam, id suscipit odio sodales id. Curabitur vitae diam a tellus fringilla ultricies vel sed nisl. Aenean commodo, turpis eget porttitor vulputate, lacus massa rhoncus dolor, id suscipit nisi odio vel enim. \r\nFusce egestas interdum justo, vitae euismod lacus rutrum nec. Mauris semper maximus lectus, nec tempor risus semper in. Pellentesque sed dui quam. Ves', 1, 3, 145000, 4, 28, 'aktif'),
 (35, '2015-06-05 21:15:50', '2015-06-05 17:03:42', '2015-06-09 00:00:00', 'qwerty`', 'loerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psumloerem psum', 6, 2, 127000, 40, 1, 'aktif'),
-(36, '2015-06-06 16:11:35', '2015-06-09 09:33:36', '2015-08-29 00:00:00', 'Potongan Harga Seragam Ala Cosplay Imut', 'mau bergaya ke Jepangan kaya para cosplayer, kini bisa kamu dapatkan dengan setengah harga saja', 1, 3, 278000, 50, 24, 'aktif'),
+(36, '2015-06-06 16:11:35', '2015-06-12 03:44:47', '2015-08-29 00:00:00', 'Potongan Harga Seragam Ala Cosplay Imut', 'mau bergaya ke Jepangan kaya para cosplayer, kini bisa kamu dapatkan dengan setengah harga saja', 1, 3, 278000, 50, 25, 'aktif'),
 (37, '2015-06-06 17:37:19', '2015-06-07 16:32:54', '2015-06-30 00:00:00', 'Diskon Spesial Ramadhan Mac Book Air Segala Type', 'Berkah ramdhan memang selalu berlimpah, kini tidak perlu lagi kamu merogoh kocek cukup dalam untuk membeli Mac Book Air.\r\nDapatkan penawaran spesial ini hanya ditoko kami, dan miliki Mac Book Air segera,', 1, 8, 13000000, 20, 14, 'aktif');
 
 -- --------------------------------------------------------
@@ -177,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `katalog` (
   `tglTambahKatalog` datetime DEFAULT NULL,
   `idToko` int(11) DEFAULT NULL,
   `katalog` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `katalog`
@@ -185,7 +183,10 @@ CREATE TABLE IF NOT EXISTS `katalog` (
 
 INSERT INTO `katalog` (`idkatalog`, `tglTambahKatalog`, `idToko`, `katalog`) VALUES
 (1, '2015-06-03 00:00:00', 1, 'berlian1.jpg'),
-(2, '2015-06-03 21:22:41', 1, 'permata1.jpg');
+(2, '2015-06-03 21:22:41', 1, 'permata1.jpg'),
+(7, '2015-06-12 10:21:00', 1, 'e36e18b95bb53e7d8ee6346b0ec31a55.jpg'),
+(8, '2015-06-12 10:21:34', 1, '4619baa17a4798a0b49906c57f6a80b5.jpg'),
+(10, '2015-06-12 10:25:59', 1, '0e5221b7a50a83f2be5383f4c5036eb7.jpg');
 
 -- --------------------------------------------------------
 
@@ -205,7 +206,7 @@ CREATE TABLE IF NOT EXISTS `kategoriItem` (
 --
 
 INSERT INTO `kategoriItem` (`idKategoriItem`, `namaKategori`, `deskripsiKategori`, `jenis`) VALUES
-(1, 'fashion', 'berbagai macam barang fashion untuk wanita maupun pria', 'barang'),
+(1, 'fashions', 'new desc of fashion', 'barang'),
 (2, 'rumah tangga', 'berbagai macam barang kebutuhan rumah tanggal bisa ditemukan dikategori ini', 'barang'),
 (5, 'elektronik dan gadget', 'elektronik dan gadget', 'barang'),
 (6, 'makanan dan minumal', 'hem makanan dan minuman pasti lezat', 'barang'),
@@ -229,7 +230,7 @@ DELIMITER ;
 CREATE TABLE IF NOT EXISTS `kategoriUsaha` (
 `idkategoriUsaha` int(11) NOT NULL,
   `namaKategoriUsaha` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `kategoriUsaha`
@@ -240,7 +241,8 @@ INSERT INTO `kategoriUsaha` (`idkategoriUsaha`, `namaKategoriUsaha`) VALUES
 (2, 'tempat makan minum'),
 (3, 'kafe'),
 (4, 'salon kecantikan'),
-(5, 'bengkel kendaraan');
+(5, 'bengkel kendaraan'),
+(7, 'oleh-oleh');
 
 -- --------------------------------------------------------
 
@@ -312,7 +314,7 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
 --
 
 INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `idcard`, `status`) VALUES
-(1, '2015-05-01 05:22:35', '15-06-09 15:32:08', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
+(1, '2015-05-01 05:22:35', '15-06-12 23:16:42', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active'),
 (11, '2015-05-29 21:24:33', '15-06-10 08:36:52', 'Yusuf Akhsan Hidayat', '0812345678', 'yusuftwenty@gmail.com', 'Jalan Lele 1 Maguwoharjo, Depok, Sleman', 'yusuf', 'ac43724f16e9241d990427ab7c8f4228', 'a649a15faf59713a7992af3a45cd6895.png', 'active'),
 (12, '2015-05-30 23:31:24', '2015-05-30 23:31:24', 'Alvin Indra Cahya', '0812345', 'alvin.i@students.amikom.ac.id', 'Yogyakarta', 'alvin', '4f89858774e2187568d02e0541dee1b5', '4c52f98dd792fc2912bd81b171e7dcc1.png', 'active'),
 (15, '2015-06-01 22:27:00', '15-06-01 22:41:13', 'qulub', '081997946977', 'mudaw.qulub@gmail.com', 'jakarta', 'qulub', '1f1b49c0a9e8e356faa2e476edef5f7f', '4d5e556ac02e59a112b03126d2a59c3e.jpg', 'active'),
@@ -329,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `SubKategoriItem` (
 `idSubKategori` int(11) NOT NULL,
   `idKategoriItem` int(11) NOT NULL,
   `namaSubKategori` varchar(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `SubKategoriItem`
@@ -341,11 +343,12 @@ INSERT INTO `SubKategoriItem` (`idSubKategori`, `idKategoriItem`, `namaSubKatego
 (3, 1, 'pakaian'),
 (4, 2, 'semua perlengkapan rumah tangga'),
 (5, 1, 'perhiasan'),
-(8, 5, 'semua elektronik dan gadget'),
+(8, 5, 'semua gadgets'),
 (9, 6, 'semua hem makanan dan minuman pasti lezat'),
 (10, 7, 'semua Furniture'),
 (11, 7, 'meja'),
-(12, 7, 'kursi');
+(12, 7, 'kursi'),
+(13, 7, 'lemari');
 
 -- --------------------------------------------------------
 
@@ -362,15 +365,15 @@ CREATE TABLE IF NOT EXISTS `tiket` (
   `tglPostTiket` datetime DEFAULT NULL,
   `tglUpdateTiket` datetime DEFAULT NULL,
   `tipeTiket` enum('cs','biling','teknis') DEFAULT NULL,
-  `status` enum('open','clossed') DEFAULT NULL
+  `statusTiket` enum('open','clossed') DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tiket`
 --
 
-INSERT INTO `tiket` (`idtiket`, `judulTiket`, `isiTiket`, `idPemilik`, `dibaca`, `tglPostTiket`, `tglUpdateTiket`, `tipeTiket`, `status`) VALUES
-(1, 'Apakah saya bisa memiliki 2 buah toko untuk satu akun', 'em ipsum semi dolor amet, oma ti samape balakula hajar kuit kutilmu bauk sekali. Tapi aku lega kentutmu lebih bau, untuk semua disini suka bau kentut.', 1, '0', '2015-06-09 08:54:05', '2015-06-09 16:09:23', 'cs', 'open'),
+INSERT INTO `tiket` (`idtiket`, `judulTiket`, `isiTiket`, `idPemilik`, `dibaca`, `tglPostTiket`, `tglUpdateTiket`, `tipeTiket`, `statusTiket`) VALUES
+(1, 'Apakah saya bisa memiliki 2 buah toko untuk satu akun', 'em ipsum semi dolor amet, oma ti samape balakula hajar kuit kutilmu bauk sekali. Tapi aku lega kentutmu lebih bau, untuk semua disini suka bau kentut.', 1, '0', '2015-06-09 08:54:05', '2015-06-12 23:32:09', 'cs', 'open'),
 (2, 'Menghapus Akun', 'Saya ingin menghapus akun saya di GejayanStore, bagaimana caranya ?', 1, '0', '2015-06-09 10:58:01', '2015-06-09 17:08:23', 'cs', 'clossed');
 
 -- --------------------------------------------------------
@@ -473,16 +476,10 @@ ALTER TABLE `balasanTiket`
  ADD PRIMARY KEY (`idbalasanTiket`), ADD KEY `fk_balasanTiket_1_idx` (`idTiket`), ADD KEY `fk_balasanTiket_2_idx` (`idAdmin`), ADD KEY `fk_balasanTiket_3_idx` (`idPemilik`);
 
 --
--- Indexes for table `Diskusi`
+-- Indexes for table `berita`
 --
-ALTER TABLE `Diskusi`
- ADD PRIMARY KEY (`idDiskusi`), ADD KEY `idBarang` (`idItem`,`idPelanggan`), ADD KEY `idPelanggan` (`idPelanggan`);
-
---
--- Indexes for table `diskusiKonten`
---
-ALTER TABLE `diskusiKonten`
- ADD KEY `idDiskusi` (`idDiskusi`);
+ALTER TABLE `berita`
+ ADD PRIMARY KEY (`idBerita`), ADD KEY `fk_berita_1_idx` (`idAdmin`);
 
 --
 -- Indexes for table `gambar`
@@ -575,12 +572,12 @@ MODIFY `idAdmin` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `balasanTiket`
 --
 ALTER TABLE `balasanTiket`
-MODIFY `idbalasanTiket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `idbalasanTiket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT for table `Diskusi`
+-- AUTO_INCREMENT for table `berita`
 --
-ALTER TABLE `Diskusi`
-MODIFY `idDiskusi` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `berita`
+MODIFY `idBerita` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `gambar`
 --
@@ -595,7 +592,7 @@ MODIFY `idItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
 -- AUTO_INCREMENT for table `katalog`
 --
 ALTER TABLE `katalog`
-MODIFY `idkatalog` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `idkatalog` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `kategoriItem`
 --
@@ -605,7 +602,7 @@ MODIFY `idKategoriItem` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `kategoriUsaha`
 --
 ALTER TABLE `kategoriUsaha`
-MODIFY `idkategoriUsaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+MODIFY `idkategoriUsaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `konfirmasiPembayaran`
 --
@@ -625,7 +622,7 @@ MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
 ALTER TABLE `SubKategoriItem`
-MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `idSubKategori` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tiket`
 --
@@ -649,17 +646,10 @@ ADD CONSTRAINT `fk_balasanTiket_2` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`
 ADD CONSTRAINT `fk_balasanTiket_3` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `Diskusi`
+-- Constraints for table `berita`
 --
-ALTER TABLE `Diskusi`
-ADD CONSTRAINT `Diskusi_ibfk_1` FOREIGN KEY (`idItem`) REFERENCES `item` (`idItem`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `Diskusi_ibfk_2` FOREIGN KEY (`idPelanggan`) REFERENCES `pelanggan` (`idPelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `diskusiKonten`
---
-ALTER TABLE `diskusiKonten`
-ADD CONSTRAINT `diskusiKonten_ibfk_1` FOREIGN KEY (`idDiskusi`) REFERENCES `Diskusi` (`idDiskusi`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `berita`
+ADD CONSTRAINT `fk_berita_1` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`idAdmin`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `gambar`

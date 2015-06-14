@@ -38,12 +38,12 @@
                                 <div class="col-xs-3">
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">0</div>
-                                    <div>Tiket Belum Terbalas</div>
+                                    <div class="huge"><?php echo $tiketbelumterbaca; ?></div>
+                                    <div>Tiket Belum Terbaca</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="<?php echo site_url('admin/transaksi');?>">
+                        <a href="<?php echo site_url('admin/tiket');?>">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
