@@ -126,7 +126,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                   foreach($categories as $c):?>
                   <li><a href="<?php echo site_url('produk/kategori/'.str_replace(' ','-', $c['namaKategori']))?>"><?php echo $c['namaKategori']?></a></li> |
                <?php endforeach;?>
-               <li class="active"><a href="<?php echo site_url('kategori');?>">Semua</a></li>
+                  <li class="active"><a href="<?php echo site_url('berita');?>">Berita</a></li> |
+                  <li class="active"><a href="<?php echo site_url('kategori');?>">Semua</a></li>
             </ul>
          </div>
          <div class="top-nav">

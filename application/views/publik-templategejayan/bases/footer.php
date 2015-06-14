@@ -35,14 +35,11 @@
                 </div>
                 <div class="grid1_of_4">
                     <ul class="f_nav">
-                        <li><a href="">alexis Hudson</a></li>
-                        <li><a href="">american apparel</a></li>
-                        <li><a href="">ben sherman</a></li>
-                        <li><a href="">big buddha</a></li>
-                        <li><a href="">channel</a></li>
-                        <li><a href="">christian audigier</a></li>
-                        <li><a href="">coach</a></li>
-                        <li><a href="">cole haan</a></li>
+                        <li><a href="<?php echo site_url('register/toko')?>">Daftarkan Toko</a></li>
+                        <li><a href="<?php echo site_url('produk/semua')?>">Promo</a></li>
+                        <li><a href="<?php echo site_url('toko/semua')?>">Toko</a></li>
+                        <li><a href="<?php echo site_url('kategori')?>">Kategori Promo</a></li>
+                        <li><a href="<?php echo site_url('berita')?>">Berita</a></li>
                     </ul>
                 </div>
                 <div class="clear"></div>

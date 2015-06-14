@@ -16,9 +16,10 @@ class M_berita extends CI_Model
 		return $this->db->get('berita');
 	}
 	#READ BERITA
-	public function single()
+	public function single($id)
 	{
-
+		$this->db->where('idBerita',$id);
+		return $this->db->get('berita')->row_array();
 	}
 	#------------------------------#
 	#EDIT#

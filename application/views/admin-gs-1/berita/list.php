@@ -17,7 +17,7 @@ $(document).ready(function(){
         <p>Total : <?php echo $count;?></p>
       </div><!-- /.col-lg-6 -->
       <div class="col-lg-6">
-        <span style="float:right">...</span>
+        <span style="float:right"></span>
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
     <div class="row">
@@ -26,7 +26,6 @@ $(document).ready(function(){
         <!-- BERITA LIST -->
         <table class="table table-striped">
         <tr>
-          <th>Id Berita</th>
           <th>Judul</th>
           <th>Tgl Post</th>
           <th>Tgl Update</th>
@@ -35,14 +34,13 @@ $(document).ready(function(){
         </tr>  
         <?php foreach($beritas as $berita):?>
           <tr>
-            <td><?php echo $berita['idBerita'];?></td>
             <td><?php echo $berita['judulBerita'];?></td>
             <td><?php echo $berita['tglPostBerita'];?></td>
             <td><?php echo $berita['tglUpdateBerita'];?></td>
             <td><?php echo $berita['userName'];?></td>
             <td>
-            <a class="btn btn-default btn-xs" href="">edit</a>
-            <a onclick="return confirm('anda yakin')" class="btn btn-danger btn-xs" href="">hapus</a>
+            <a class="btn btn-default btn-xs" href="<?php echo site_url('admin/berita/edit/'.$berita['idBerita'])?>">edit</a>
+            <a onclick="return confirm('anda yakin')" class="btn btn-danger btn-xs" href="<?php echo site_url('admin/berita/hapus/'.$berita['idBerita'])?>">hapus</a>
             </td>
           </tr>
         <?php endforeach;?>

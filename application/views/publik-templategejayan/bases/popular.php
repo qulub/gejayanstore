@@ -21,7 +21,7 @@
                <img class="lazyOwl" data-src="<?php echo $pp;?>" alt="<?php echo $p['judul']?>">
             </div>
             <div class="cau_left">
-               <h4><a href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['judul']))?>"><?php echo $p['judul']?></a></h4>
+               <h4><a href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['judul']))?>"><?php echo substr($p['judul'],0,20);?>...</a></h4>
                <a href="<?php echo site_url('produk/v/'.$p['idItem'].'/'.str_replace(' ','-',$p['judul']))?>" class="btn">selengkapnya</a>
             </div>
          </div>
