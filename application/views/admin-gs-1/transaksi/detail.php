@@ -55,7 +55,7 @@
             <table class="table">
             <?php foreach($konfirmasi->result_array() as $k):?>
                <tr>
-                  <td><a class="btn btn-danger btn-xs" href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                  <td><a class="btn btn-danger btn-xs" href="<?php echo site_url('');?>"><span class="glyphicon glyphicon-trash"></span></a></td>
                   <td><?php echo $k['tglKonfirmasi'] ?></td>
                     <td><?php echo $k['tujuanBank'] ?></td>
                     <td><?php echo $k['dariBank'] ?> norek <?php echo $k['noRekening'];?> a/n <?php echo $k['nama'];?></td>
