@@ -35,12 +35,14 @@ $(document).ready(function(){
             <tr><th>Alamat</th><td><?php echo $penjual['alamat'];?></td></tr>
             <tr><th>Tanggal Register</th><td><?php echo $penjual['tglRegister'];?></td></tr>
             <tr><th>Login Terakhir</th><td><?php echo $penjual['updateData'];?></td></tr>
+            <tr><th>Id Card</th><td><?php if(!empty($penjual['idcard'])){echo '<a target="window" href="'.base_url('resource/images/idcard/'.$penjual['idcard']).'">cek idcard</a>';}else{echo '<p>belum upload idcard</p>';}?></td></tr>
          </table>
       </div>
       <div class="col-md-6">
          <h4><span class="glyphicon glyphicon-home"></span> Data Toko</h4><br/>
          <?php if (empty($toko)){echo '<strong>belum punya toko</strong>';}else?>
          <?php {?>
+            <!-- <?php print_r($toko);?> -->
             <table class="table">
                <tr><th>Id Toko</th><td><?php echo $toko['idToko'];?></td></tr>
                <tr><th>Nama Toko</th><td><a href="<?php echo site_url('toko/v/'.$toko["idToko"].'/'.$toko["namaToko"]);?>" target="_blank"><?php echo $toko['namaToko'];?></a></td></tr>
@@ -48,6 +50,9 @@ $(document).ready(function(){
                <tr><th>Jam Buka</th><td><?php echo $toko['jamBuka'];?></td></tr>
                <tr><th>Jam Tutup</th><td><?php echo $toko['jamTutup'];?></td></tr>
                <tr><th>No Telp</th><td><?php echo $toko['telp'];?></td></tr>
+               <tr><th>TDP</th><td><?php if(empty($toko['tdp'])){echo 'belum upload TDP';}else{echo '<a target="window" href="'.base_url('resource/images/tdp/'.$toko['tdp']).'">cek surat</a>';}?></td></tr>
+               <tr><th>SIUP</th><td><?php if(empty($toko['siup'])){echo 'belum upload SIUP';}else{echo '<a target="window" href="'.base_url('resource/images/siup/'.$toko['siup']).'">cek surat</a>';}?></td></tr>
+               <tr><th>SIG</th><td><?php if(empty($toko['sig'])){echo 'belum upload SIG';}else{echo '<a target="window" href="'.base_url('resource/images/sig/'.$toko['sig']).'">cek surat</a>';}?></td></tr>
             </table>
             <?php }?>
          </div>
