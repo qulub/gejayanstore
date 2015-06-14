@@ -81,12 +81,17 @@ class Base extends CI_Controller
 	/*
 	* LAIN LAIN
 	*/
+	//test emmail
+	public function testemail()
+	{
+		$this->sendemail('yusuf.hi@students.amikom.ac.id','judul','topik','isi pesan');
+	}
 	//send message
 	public function sendemail($destination,$subject,$topic,$body)
 	{
 		$url = 'https://api.sendgrid.com/';
 		$user = 'yussanamikom';
-		$pass = 'Rahasia26011993';
+		$pass = 'Rahasia20yussan';
 		$params = array(
 		    'api_user'  => $user,
 		    'api_key'   => $pass,
@@ -496,6 +501,6 @@ class Base extends CI_Controller
 		curl_close($session);
 		// print everything out
 		// $reponse = json_decode($response);
-		// echo $response;
+		echo $response;
 	}
 }
