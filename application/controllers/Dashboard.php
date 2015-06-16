@@ -20,6 +20,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 		$Data = array
 		(
 			'sisa'=>$this->sisaSlot($idpemilik),
+			'masaAktif'=>$this->M_toko->masaAktif($idpemilik),//mendapatkan masa aktif toko
 			'title'=>'Dashboard',
 			'toko'=>$this->M_toko->tokoByIdPemilik($idpemilik)->row_array(),
 			'script'=>'$("#dashboard").addClass("active")',

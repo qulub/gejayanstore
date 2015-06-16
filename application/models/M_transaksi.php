@@ -43,5 +43,25 @@ class M_transaksi extends CI_Model
 		$this->db->where('idTransaksi',$idtransaksi);
 		return $this->db->update('transaksi',array('status'=>$status));//update status
 	}
+	//total n jumlah transaksi
+	public function totalJumlahTransaksi($bln,$thn)
+	{
+		if(empty($transaksi))$transaksi=0;
+		//SQL
+		$this->db->where('MONTH(tglTransaksi) = '.$bln);
+		$this->db->where('YEAR(tglTransaksi) = '.$thn);
+		$transaksi = $this->db->count_all_results('transaksi');
+		//get total rupiah
+		$this->db->where('MONTH(tglTransaksi) = '.$bln);
+		$this->db->where('YEAR(tglTransaksi) = '.$thn);
+		$this->db->select_sum('biaya');
+		$result = $this->db->get('transaksi')->row_array();
+		$biaya = $result['biaya'];
+		if(empty($biaya))$biaya=0;
+		//get total transaksi
+		//return
+		$v = array('biaya'=>$biaya,'transaksi'=>$transaksi);
+		return $v;
+	}
 	
 }

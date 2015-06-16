@@ -40,6 +40,13 @@ class M_toko extends CI_Model
 		$this->db->join('kategoriUsaha','kategoriUsaha.idKategoriUsaha = toko.kategoriUsaha');
 		return $this->db->get('toko');//get toko
 	}
+	//mendapatkan sisa masa aktif promo
+	public function masaAktif($idpemilik)
+	{
+		$sql = "SELECT datediff(habisMasa,current_date()) AS sisa FROM toko WHERE idPemilik = ?";
+		$query = $this->db->query($sql,$idpemilik)->row_array();
+		return $query['sisa'];
+	}
 	//get id toko
 	public function getIdToko($idpemilik)
 	{

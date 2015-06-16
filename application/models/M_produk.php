@@ -107,7 +107,7 @@ class M_produk extends CI_Model
 	//popular produk
 	public function popularProduk($limit,$offset)
 	{
-		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,
+		$sql = "SELECT item.idToko AS 'idToko',item.idItem as 'idItem',item.judul,item.deskripsi,item.harga,item.diskon,item.tglPost,item.tglEdit,views,
 		SubKategoriItem.namaSubKategori AS 'subkategori',
 		kategoriItem.namaKategori AS 'kategori',
 		toko.namaToko as 'toko'

@@ -9,7 +9,9 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 		<div class="wrap">	
 			<div class="main">
 				<div class="contact">	
-					<?php $this->load->view('publik-templategejayan/dashboard/navbar');?>
+					<?php 
+					//do date diff
+					$this->load->view('publik-templategejayan/dashboard/navbar',$masaAktif);?>
 					<div class="contact-form">
 						<?php 
 						// print_r($toko);
@@ -71,6 +73,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 			</div>
 		</div>
 	</div><!-- container -->
+	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
 	<script type="text/javascript" src="js/fliplightbox.min.js"></script>
 	<script type="text/javascript">$('body').flipLightBox()</script>
 	<div class="clear"> </div>
