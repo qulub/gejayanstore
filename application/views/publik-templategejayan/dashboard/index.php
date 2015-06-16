@@ -25,9 +25,24 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</tr>
 						</table>
 						<br/>
-						<h2>Promo Terpopuler</h2>
+						<!-- start berita -->
+						<h3 style="font-size:20px">Berita Terbaru <a href="<?php echo site_url('berita')?>">tampilkan semua berita</a></h3><br/>
+						<div style="margin:10px 0" class="grids_of_3">
+							<?php foreach($berita as $b):?>
+								<div class="dashboard-list-item grid1_of_3">
+									<a href="<?php echo site_url('berita/baca/'.$b['idBerita'].'/'.str_replace(' ', '-', $b['judulBerita']))?>">
+										<h3><?php echo $b['judulBerita'];?></h3>
+										<span class="b_btm"></span>
+									</a>
+								</div>
+							<?php endforeach; ?>
+							<div class="clear"></div>
+						</div>
+						<!-- end of berita -->
+						<br/><br/><br/>
+						<h3 style="font-size:20px">Promo Terpopuler <a href="<?php echo site_url('dashboard/promo')?>">tampilkan semua promo</a></h3><br/>
 						<!-- item -->
-						<div class="grids_of_3">
+						<div style="margin-top:10px 0" class="grids_of_3">
 							<?php foreach($popular as $p):?>
 								<div class="dashboard-list-item grid1_of_3">
 									<a href="...">
@@ -49,7 +64,6 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<div class="clear"></div>
 						</div>
 						<!-- end of item -->
-						<a href="<?php echo site_url('dashboard/promo')?>">tampilkan semua promo</a>
 						<?php } ?>
 					</div>
 					<br/>					

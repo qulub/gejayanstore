@@ -15,6 +15,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 	//index menampilkan semua promo and status
 	public function index()
 	{
+		$this->load->model('M_berita');
 		$idpemilik = $this->session->userdata('admintoko')['idPemilik'];
 		$Data = array
 		(
@@ -24,6 +25,7 @@ class Dashboard extends Base {//dashboard controller created for shop owner
 			'script'=>'$("#dashboard").addClass("active")',
 			'totalviews'=>$this->M_produk->totalPromoViews($this->session->userdata('admintoko')['idPemilik']),
 			'popular'=>$this->M_produk->promoByIdPemilik($this->session->userdata('admintoko')['idPemilik'],9,0,TRUE,'')->result_array(),
+			'berita'=>$this->M_berita->listing(3,0)->result_array()
 			);
 		return $this->basePublicView('dashboard/index',$Data);
 	}
@@ -584,7 +586,7 @@ $this->form_validation->set_rules($config);
                 'tipeTiket'=>$data['tiket']['tujuan'],//get tujuan tiket
                 'tglPostTiket'=>date('Y-m-d H:i:s'),//get now
                 'dibaca'=>'0',
-                'status'=>'open'
+                'statusTiket'=>'open'
                 );
 				$this->db->insert('tiket',$datainsert);
 				redirect(site_url('dashboard/tiket/riwayat'));

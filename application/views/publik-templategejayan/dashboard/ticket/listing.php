@@ -24,7 +24,7 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
           </div>
           <div class="contact-form">
             <br/>
-              <p><strong>Total Tiket  : <?php echo $tiket->num_rows();?></strong><br/>Tiket otomatis terhapus setelah lebih dari 10 slot</p>
+              <p><strong>Total Tiket  : <?php echo $tiket->num_rows();?></strong>
               <br/>
               <?php
                 $tickets = $tiket->result_array();

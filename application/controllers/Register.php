@@ -209,17 +209,29 @@ class Register extends Base {
 			$this->upload->do_upload('idcard');
 			$idcardname = $this->upload->data('file_name');//get ktp filename
 			//tdp
+			if(!empty($_FILES['tdp'])):
 			$this->upload->initialize($config['tdp']);
 			$this->upload->do_upload('tdp');
 			$tdpname = $this->upload->data('file_name');//get tdp file name
+			else:
+			$tdpname='';
+			endif;
 			//siup
+			if(!empty($_FILES['siup'])):
 			$this->upload->initialize($config['siup']);
 			$this->upload->do_upload('siup');
 			$siupname = $this->upload->data('file_name');//get siup filename
+			else:
+			$siupname='';
+			endif;
 			//sig
+			if(!empty($_FILES['sig'])):
 			$this->upload->initialize($config['sig']);
 			$this->upload->do_upload('sig');
 			$signame = $this->upload->data('file_name');//get sig filename
+			else:
+			$signame='';
+			endif;
 			$this->upload->display_errors();
 			$pemilik = $_POST['pemilik'];
 			//insert pemilik toko
