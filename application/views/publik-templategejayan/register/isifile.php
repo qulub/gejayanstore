@@ -88,11 +88,11 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 								<span><input name="logotoko" type="file" required></span>
 							</div>
 							<div>
-								<span><label>Scan TDP<br/>maks 1 MB, support jpg, png</label></span>
+								<span><label>Scan SIUP (Surat Izin Usaha Perdagangan)<br/>maks 1 MB, support jpg, png</label></span>
 								<span><input name="tdp" type="file" required></span>
 							</div>
 							<div>
-								<span><label>Scan SIUP<br/>maks 1 MB, support jpg, png</label></span>
+								<span><label>Scan TDP (Tanda Daftar Perusahaan)<br/>maks 1 MB, support jpg, png</label></span>
 								<span><input name="siup" type="file" required></span>
 							</div>
 							<div>

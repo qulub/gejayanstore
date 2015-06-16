@@ -584,7 +584,7 @@ $this->form_validation->set_rules($config);
                 'tipeTiket'=>$data['tiket']['tujuan'],//get tujuan tiket
                 'tglPostTiket'=>date('Y-m-d H:i:s'),//get now
                 'dibaca'=>'0',
-                'status'=>'open'
+                'statusTiket'=>'open'
                 );
 				$this->db->insert('tiket',$datainsert);
 				redirect(site_url('dashboard/tiket/riwayat'));
