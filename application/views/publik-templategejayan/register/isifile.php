@@ -13,19 +13,19 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							<h3><strong>Data Pemilik</strong></h3>
 							<div>
 								<span><label>Nama Lengkap <br/>sesuai KTP/Tanda Pengenal</label></span>
-								<span><input name="pemilik[nama]" type="text" class="textbox" value="<?php if(!empty($pemilik['nama']))echo $pemilik['nama'];?>"></span>
+								<span><input name="pemilik[nama]" type="text" class="textbox" value="<?php if(!empty($pemilik['nama']))echo $pemilik['nama'];?>" required></span>
 							</div>
 							<div>
-								<span><label>Nomor Kartu Tanda Pengenal (KTP / tanda pengenal lainnya)</label></span>
-								<span><input name="pemilik[noid]" type="text" class="textbox" value="<?php if(!empty($pemilik['noid']))echo $pemilik['noid'];?>"></span>
+ 								<span><label>Nomor Kartu Tanda Pengenal (KTP / tanda pengenal lainnya)</label></span>
+								<span><input name="pemilik[noid]" type="text" class="textbox" value="<?php if(!empty($pemilik['noid']))echo $pemilik['noid'];?>" required></span>
 							</div>
 							<div>
 								<span><label>No Telp / HP</label></span>
-								<span><input name="pemilik[notelp]" type="text" class="textbox" value="<?php if(!empty($pemilik['notelp']))echo $pemilik['notelp'];?>"></span>
+								<span><input name="pemilik[notelp]" type="text" class="textbox" value="<?php if(!empty($pemilik['notelp']))echo $pemilik['notelp'];?>" required></span>
 							</div>
 							<div>
 								<span><label>Email <br/>data username dan password untuk login akan dikirimkan disini setelah proses verifikasi data selesai</label></span>
-								<span><input name="pemilik[email]" type="text" class="textbox" value="<?php if(!empty($pemilik['email']))echo $pemilik['email'];?>" ></span>
+								<span><input name="pemilik[email]" type="text" class="textbox" value="<?php if(!empty($pemilik['email']))echo $pemilik['email'];?>" required></span>
 							</div>
 							<div>
 								<span><label>Domisili Sekarang</label></span>
@@ -62,42 +62,42 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
 							</div>
 							<div>
 								<span><label>Nomor Telepon</label></span>
-								<span><input name="usaha[telepon]" type="text" class="textbox" value="<?php if(!empty($usaha['telepon']))echo $usaha['telepon'];?>" ></span>
+								<span><input name="usaha[telepon]" type="text" class="textbox" value="<?php if(!empty($usaha['telepon']))echo $usaha['telepon'];?>" required></span>
 								
 							<div>
 								<span><label>Email (jika ada)</label></span>
-								<span><input name="usaha[email]" type="text" class="textbox" value="<?php if(!empty($usaha['email']))echo $usaha['email'];?>"></span>
+								<span><input name="usaha[email]" type="text" class="textbox" value="<?php if(!empty($usaha['email']))echo $usaha['email'];?>" required></span>
 								
 							</div>
 							<div>
 								<span><label>Jam Buka <br/>Contoh : 08:00 , penulisan 24 jam</label></span>
-								<span><input name="usaha[jambuka]" type="text" class="textbox" value="<?php if(!empty($usaha['jambuka']))echo $usaha['jambuka'];?>"></span>
+								<span><input name="usaha[jambuka]" type="text" class="textbox" value="<?php if(!empty($usaha['jambuka']))echo $usaha['jambuka'];?>" required></span>
 								
 							</div>
 							<div>
 								<span><label>Jam Tutup <br/>Contoh : 21:00 , penulisan 24 jam</label></span>
-								<span><input name="usaha[jamtutup]" type="text" class="textbox" value="<?php if(!empty($usaha['jamtutup']))echo $usaha['jamtutup'];?>"></span>
+								<span><input name="usaha[jamtutup]" type="text" class="textbox" value="<?php if(!empty($usaha['jamtutup']))echo $usaha['jamtutup'];?>" required></span>
 								
 							</div>
 							<div>
 								<span><label>Hari Libur <br/>Contoh : minggu, senin , selasa. pisahkan dengan spasi</label></span>
-								<span><input name="usaha[libur]" type="text" class="textbox" value="<?php if(!empty($usaha['libur']))echo $usaha['libur'];?>"></span>								
+								<span><input name="usaha[libur]" type="text" class="textbox" value="<?php if(!empty($usaha['libur']))echo $usaha['libur'];?>" required></span>								
 							</div>
 							<div>
 								<span><label>Logo Toko<br/>maks 1 MB, support jpg, png</label></span>
 								<span><input name="logotoko" type="file" required></span>
 							</div>
 							<div>
-								<span><label>Scan TDP<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="tdp" type="file" required></span>
+								<span><label>Scan TDP (opsional)<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="tdp" type="file"></span>
 							</div>
 							<div>
-								<span><label>Scan SIUP<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="siup" type="file" required></span>
+								<span><label>Scan SIUP (opsional)<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="siup" type="file"></span>
 							</div>
 							<div>
-								<span><label>Scan Surat Ijin Gangguan<br/>maks 1 MB, support jpg, png</label></span>
-								<span><input name="sig" type="file" required></span>
+								<span><label>Scan Surat Ijin Gangguan (opsional)<br/>maks 1 MB, support jpg, png</label></span>
+								<span><input name="sig" type="file"></span>
 							</div>
 							<?php if(!empty($error))echo $error;//if error found?>
 							<span><input type="submit" class="" value="Daftar"></span>

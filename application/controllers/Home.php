@@ -11,9 +11,11 @@ class Home extends Base {
 	}
 	public function index()
 	{	
+		$this->load->model('M_berita');
 		$Data = array 
 		(
 			'title'=>'',
+			'listberita'=>$this->M_berita->listing(3,0)->result_array(),
 			'listproduk'=>$this->M_produk->listProduk(9,0),
 			'listtoko'=>$this->M_toko->listToko(9,0),
 			);
