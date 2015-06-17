@@ -112,7 +112,13 @@
                         <div class="panel panel-green">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Transaksi Tahun 
-                                <select ng-change="statsTransaksi()"  ng-model="selectTahunTransaksi" style="  background-color:transparent;"><option value="2014" style="background-color:gray">2014</option><option value="2015" style="background-color:gray">2015</option><option value="2016" style="background-color:gray">2016</option><option value="2017" style="background-color:gray">2017</option></select>{{loader}}</h3>
+                                <select ng-change="statsTransaksi()"  ng-model="selectTahunTransaksi" style="  background-color:transparent;">
+                                    <option value="2014" style="background-color:gray">2014</option>
+                                    <option value="2015" style="background-color:gray">2015</option>
+                                    <option value="2016" style="background-color:gray">2016</option>
+                                    <option value="2017" style="background-color:gray">2017</option>
+                                </select>
+                                {{loader}}</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="bar-transaksi"></div>
@@ -122,7 +128,13 @@
                      <div ng-controller="ctrlStatsKategori" class="col-lg-4">
                         <div class="panel panel-green">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Kategori Promo Terbanyak {{loaderkategori}}</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Kategori Promo Terbanyak 
+                                <select style="  background-color:transparent;">
+                                    <option value="2015" style="background-color:gray">2015</option>
+                                    <option value="2016" style="background-color:gray">2016</option>
+                                    <option value="2017" style="background-color:gray">2017</option>
+                                </select>
+                                {{loaderkategori}}</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="donut-kategoripromo"></div>
@@ -132,7 +144,13 @@
                      <div ng-controller="ctrlStatsPromosi" class="col-lg-4">
                         <div class="panel panel-green">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Promo Terpopuler {{loaderkategori}}</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Promo Terpopuler 
+                                <select style="  background-color:transparent;">
+                                    <option value="2015" style="background-color:gray">2015</option>
+                                    <option value="2016" style="background-color:gray">2016</option>
+                                    <option value="2017" style="background-color:gray">2017</option>
+                                </select>
+                                {{loaderpromo}}</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="donut-favoritpromo"></div>
@@ -142,7 +160,13 @@
                     <div ng-controller="ctrlStatsToko" class="col-lg-4">
                         <div class="panel panel-green">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Toko Banyak Tanya {{loaderkategori}}</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o"></i> Toko Banyak Tanya 
+                                <select style="  background-color:transparent;">
+                                    <option value="2015" style="background-color:gray">2015</option>
+                                    <option value="2016" style="background-color:gray">2016</option>
+                                    <option value="2017" style="background-color:gray">2017</option>
+                                </select>
+                                {{loadertoko}}</h3>
                             </div>
                             <div class="panel-body">
                                 <div id="donut-favorittoko"></div>

@@ -91,7 +91,7 @@ class Base extends CI_Controller
 	{
 		$url = 'https://api.sendgrid.com/';
 		$user = 'yussanamikom';
-		$pass = 'Rahasia20yussan';
+		$pass = '';
 		$params = array(
 		    'api_user'  => $user,
 		    'api_key'   => $pass,
