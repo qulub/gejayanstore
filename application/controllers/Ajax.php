@@ -74,7 +74,6 @@ class Ajax extends Base {
 		$katalog = $this->M_toko->getKatalog($idToko);
 		echo $katalog;
 	}
-
 	/*
 	* ALL ABOUT ADMIN
 	*/
@@ -94,5 +93,76 @@ class Ajax extends Base {
 				# code...
 				break;
 		}
+	}
+
+	#ADMIN ONLY
+	#STATISTIC ON ADMIN
+	public function totalTransaksi()
+	{
+		$this->load->model('M_transaksi');
+		$tahun = $_GET['tahun'];
+		$stats = array();
+		for($x=1;$x<=12;$x++)://get data from all of the month
+			$data = $this->M_transaksi->totalJumlahTransaksi($x,$tahun);
+			switch ($x) {
+				case 1:$bln='Januari';break;
+				case 2:$bln='Februari';break;
+				case 3:$bln='Maret';break;
+				case 4:$bln='April';break;
+				case 5:$bln='Mei';break;
+				case 6:$bln='Juni';break;
+				case 7:$bln='Juli';break;
+				case 8:$bln='Agustus';break;
+				case 9:$bln='September';break;
+				case 10:$bln='Oktober';break;
+				case 11:$bln='November';break;
+				case 12:$bln='Desember';break;
+			}
+			array_push($stats,array('bln'=>$bln,'biaya'=>$data['biaya'],'transaksi'=>$data['transaksi']));
+		endfor;
+		$jsonstats = json_encode($stats);
+		echo $jsonstats;
+	}
+	#menampilkan semua kategori dan jumlah promo yang aktif
+	public function statsKategoriPromo()
+	{
+		$data = array();
+		$this->load->model('M_produk','M_category');
+		$kategori = $this->M_category->showCategories();
+		foreach($kategori as $k):
+			$kategori =  $k['namaKategori'];
+			$this->db->where('SubKategoriItem.idKategoriItem',$k['idKategoriItem']);
+			$this->db->join('SubKategoriItem','SubKategoriItem.idSubKategori=item.idSubKategori');
+			$total = $this->db->count_all_results('item');
+			array_push($data, array('label'=>$kategori,'value'=>$total));
+		endforeach;
+		$json = json_encode($data);
+		echo $json;
+	}
+	public function statsFavoritPromo()
+	{
+		$data = array();
+		$this->load->model('M_produk');
+		$promo = $this->M_produk->popularProduk(10,0);
+		foreach($promo as $p):
+			array_push($data, array('label'=>$p['judul'],'value'=>$p['views']));
+		endforeach;
+		$json = json_encode($data);
+		echo $json;
+	}
+	public function statsToko()
+	{
+		$data = array();
+		$this->db->limit(10,0);
+		$this->db->join('tiket','tiket.idPemilik=toko.IdPemilik');
+		$this->db->order_by('COUNT(tiket.idtiket)', 'DESC');
+		$query = $this->db->get('toko')->result_array();
+		foreach ($query as $q):
+			$this->db->where('idPemilik',$q['idPemilik']);
+			$total = $this->db->count_all_results('tiket');
+			array_push($data, array('label'=>$q['namaToko'],'value'=>$total));		
+		endforeach;
+		$json = json_encode($data);
+		echo $json;
 	}
 }

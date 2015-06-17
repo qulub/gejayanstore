@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2015 at 10:26 PM
+-- Generation Time: Jun 18, 2015 at 07:45 AM
 -- Server version: 5.6.24-0ubuntu2
 -- PHP Version: 5.6.4-4ubuntu6
 
@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS `balasanTiket` (
 --
 
 INSERT INTO `balasanTiket` (`idbalasanTiket`, `idTiket`, `isiBalasanTiket`, `dibacaBalasan`, `tglBalasanTiketPost`, `idAdmin`, `idPemilik`) VALUES
-(1, 1, 'saat ini fasilitas hapus belum tersedia, tapi kami bisa banned akun anda agar tidak dibaca oleh pengguna lain.', '0', '2015-05-09 11:03:22', 1, NULL),
-(3, 1, 'ya sudah lah', '0', '2015-06-09 14:00:00', NULL, 1),
-(8, 1, 'its working\r\n', '', '2015-06-12 23:13:09', 1, NULL),
-(9, 1, 'wajahmu ayu', '', '2015-06-12 23:31:50', NULL, NULL),
-(10, 1, 'wajahmu ayu', '', '2015-06-12 23:32:09', NULL, NULL),
+(1, 1, 'saat ini fasilitas hapus belum tersedia, tapi kami bisa banned akun anda agar tidak dibaca oleh pengguna lain.', '1', '2015-05-09 11:03:22', 1, NULL),
+(3, 1, 'ya sudah lah', '1', '2015-06-09 14:00:00', NULL, 1),
+(8, 1, 'its working\r\n', '1', '2015-06-12 23:13:09', 1, NULL),
+(9, 1, 'wajahmu ayu', '1', '2015-06-12 23:31:50', NULL, NULL),
+(10, 1, 'wajahmu ayu', '1', '2015-06-12 23:32:09', NULL, NULL),
 (11, 2, 'jangan mas, jangan di apus', '', '2015-06-14 20:15:05', 1, NULL);
 
 --
@@ -259,21 +259,6 @@ CREATE TABLE IF NOT EXISTS `konfirmasiPembayaran` (
   `balasan` varchar(300) DEFAULT NULL,
   `dilihatAdmin` enum('0','1') DEFAULT NULL,
   `dilihatUser` enum('0','1') DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pelanggan`
---
-
-CREATE TABLE IF NOT EXISTS `pelanggan` (
-`idPelanggan` int(11) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `telp` varchar(15) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `username` varchar(30) NOT NULL,
-  `password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -294,14 +279,15 @@ CREATE TABLE IF NOT EXISTS `pemilikToko` (
   `password` text,
   `idcard` varchar(45) DEFAULT NULL,
   `status` enum('active','banned','menunggu') NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pemilikToko`
 --
 
 INSERT INTO `pemilikToko` (`idPemilik`, `tglRegister`, `lastLogin`, `namaPemilik`, `telp`, `email`, `alamat`, `userName`, `password`, `idcard`, `status`) VALUES
-(1, '2015-05-01 05:22:35', '15-06-14 20:15:11', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', NULL, 'active');
+(1, '2015-05-01 05:22:35', '15-06-18 05:41:09', 'Yusuf Akhsan Hidayati', '085645777298', 'yusuf@kompetisiindonesia.com', 'Jl Lele 1 Sleman Yogyakarta', 'yussan', 'ac43724f16e9241d990427ab7c8f4228', 'avatar5318762_3.gif', 'active'),
+(21, '2015-06-14 22:41:01', '2015-06-14 22:41:01', 'Yusuf Amikom', '081234', 'yusuf.hi@students.amikom.ac.id', 'yogyakarta', NULL, NULL, 'avatar5318762_3.gif', 'menunggu');
 
 -- --------------------------------------------------------
 
@@ -355,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `tiket` (
 --
 
 INSERT INTO `tiket` (`idtiket`, `judulTiket`, `isiTiket`, `idPemilik`, `dibaca`, `tglPostTiket`, `tglUpdateTiket`, `tipeTiket`, `statusTiket`) VALUES
-(1, 'Apakah saya bisa memiliki 2 buah toko untuk satu akun', 'em ipsum semi dolor amet, oma ti samape balakula hajar kuit kutilmu bauk sekali. Tapi aku lega kentutmu lebih bau, untuk semua disini suka bau kentut.', 1, '0', '2015-06-09 08:54:05', '2015-06-12 23:32:09', 'cs', 'open'),
+(1, 'Apakah saya bisa memiliki 2 buah toko untuk satu akun', 'em ipsum semi dolor amet, oma ti samape balakula hajar kuit kutilmu bauk sekali. Tapi aku lega kentutmu lebih bau, untuk semua disini suka bau kentut.', 1, '1', '2015-06-09 08:54:05', '2015-06-12 23:32:09', 'cs', 'open'),
 (2, 'Menghapus Akun', 'Saya ingin menghapus akun saya di GejayanStore, bagaimana caranya ?', 1, '0', '2015-06-09 10:58:01', '2015-06-14 20:15:05', 'cs', 'clossed');
 
 -- --------------------------------------------------------
@@ -384,26 +370,15 @@ CREATE TABLE IF NOT EXISTS `toko` (
   `tdp` varchar(45) DEFAULT NULL,
   `siup` varchar(45) DEFAULT NULL,
   `sig` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `toko`
 --
 
 INSERT INTO `toko` (`idToko`, `idPemilik`, `habisMasa`, `namaToko`, `alamatToko`, `koordinat`, `avatar`, `jamBuka`, `jamTutup`, `telp`, `emailToko`, `tentangToko`, `updateData`, `libur`, `maxPromo`, `kategoriUsaha`, `tdp`, `siup`, `sig`) VALUES
-(1, 1, '2015-08-01 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', '64433e93ec47e294077a3caf594e0615.jpg', '08:00:00', '22:00:00', '085645777298', 'ma@max.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00', 'minggu', '5', 1, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tokoFavorite`
---
-
-CREATE TABLE IF NOT EXISTS `tokoFavorite` (
-  `idPelanggan` int(11) NOT NULL,
-  `idToko` int(11) NOT NULL,
-  `rating` smallint(6) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(1, 1, '2015-08-01 00:00:00', 'Yussan Luxury', 'Jl Gejayan 23A', '', '64433e93ec47e294077a3caf594e0615.jpg', '08:00:00', '22:00:00', '085645777298', 'ma@max.com', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of\r\n\r\nletters, as opposed to using ''Content here, content here'', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for ''lorem ipsum'' will uncover many web sites still in their infancy. \r\n\r\nVarious versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).', '2015-04-12 00:00:00', 'minggu', '5', 1, NULL, NULL, NULL),
+(16, 21, '0000-00-00 00:00:00', 'Berdikari', 'Jl. Gejayan No 13 , Kabuaten Sleman, Daerah Istimewa Yogyakarta', '', 'adfafbb30d302ea5c507c21aed37b3e5.jpg', '08:00:00', '22:00:00', '0212345', 'berdikari@gmail.com', 'pusat oleh - oleh khas Jogja', '2015-06-14 22:41:01', 'minggu', '0', 7, 'adfafbb30d302ea5c507c21aed37b3e5.jpg', 'adfafbb30d302ea5c507c21aed37b3e5.jpg', 'adfafbb30d302ea5c507c21aed37b3e5.jpg');
 
 -- --------------------------------------------------------
 
@@ -487,12 +462,6 @@ ALTER TABLE `konfirmasiPembayaran`
  ADD PRIMARY KEY (`idkonfirmasiPembayaran`), ADD KEY `fk_konfirmasiPembayaran_transaksi_idx` (`idTransaksi`);
 
 --
--- Indexes for table `pelanggan`
---
-ALTER TABLE `pelanggan`
- ADD PRIMARY KEY (`idPelanggan`), ADD UNIQUE KEY `email` (`email`), ADD UNIQUE KEY `username` (`username`);
-
---
 -- Indexes for table `pemilikToko`
 --
 ALTER TABLE `pemilikToko`
@@ -515,12 +484,6 @@ ALTER TABLE `tiket`
 --
 ALTER TABLE `toko`
  ADD PRIMARY KEY (`idToko`), ADD UNIQUE KEY `namaToko` (`namaToko`), ADD KEY `idPemilik` (`idPemilik`), ADD KEY `fk_toko_1_idx` (`kategoriUsaha`);
-
---
--- Indexes for table `tokoFavorite`
---
-ALTER TABLE `tokoFavorite`
- ADD KEY `idToko` (`idToko`), ADD KEY `idPelanggan` (`idPelanggan`);
 
 --
 -- Indexes for table `transaksi`
@@ -576,17 +539,12 @@ MODIFY `idkategoriUsaha` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 -- AUTO_INCREMENT for table `konfirmasiPembayaran`
 --
 ALTER TABLE `konfirmasiPembayaran`
-MODIFY `idkonfirmasiPembayaran` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `pelanggan`
---
-ALTER TABLE `pelanggan`
-MODIFY `idPelanggan` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `idkonfirmasiPembayaran` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pemilikToko`
 --
 ALTER TABLE `pemilikToko`
-MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
+MODIFY `idPemilik` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `SubKategoriItem`
 --
@@ -601,7 +559,7 @@ MODIFY `idtiket` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- Constraints for dumped tables
 --
@@ -610,9 +568,9 @@ MODIFY `idToko` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 -- Constraints for table `balasanTiket`
 --
 ALTER TABLE `balasanTiket`
-ADD CONSTRAINT `fk_balasanTiket_1` FOREIGN KEY (`idTiket`) REFERENCES `tiket` (`idtiket`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_balasanTiket_2` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`idAdmin`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-ADD CONSTRAINT `fk_balasanTiket_3` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+ADD CONSTRAINT `fk_balasanTiket_1` FOREIGN KEY (`idTiket`) REFERENCES `tiket` (`idtiket`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_balasanTiket_2` FOREIGN KEY (`idAdmin`) REFERENCES `admin` (`idAdmin`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `fk_balasanTiket_3` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `berita`
@@ -663,13 +621,6 @@ ADD CONSTRAINT `fk_tiket_1` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (
 ALTER TABLE `toko`
 ADD CONSTRAINT `fk_kategoriUsaha` FOREIGN KEY (`kategoriUsaha`) REFERENCES `kategoriUsaha` (`idkategoriUsaha`) ON DELETE SET NULL ON UPDATE CASCADE,
 ADD CONSTRAINT `toko_ibfk_2` FOREIGN KEY (`idPemilik`) REFERENCES `pemilikToko` (`idPemilik`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tokoFavorite`
---
-ALTER TABLE `tokoFavorite`
-ADD CONSTRAINT `tokoFavorite_ibfk_1` FOREIGN KEY (`idToko`) REFERENCES `toko` (`idToko`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `tokoFavorite_ibfk_2` FOREIGN KEY (`idPelanggan`) REFERENCES `pelanggan` (`idPelanggan`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `transaksi`

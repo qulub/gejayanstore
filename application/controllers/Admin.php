@@ -573,6 +573,7 @@ public function actionpromo()
   {
     $this->load->model('M_ticket');
     $id = $this->uri->segment(3);
+    //ubah status menjadi terbaca
   $ticket = $this->M_ticket->readTicket($id);//get ticket data
   $comments = $this->M_ticket->comments($id);//get comment ticket
   $Data = array(
