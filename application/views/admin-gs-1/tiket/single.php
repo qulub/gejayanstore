@@ -18,7 +18,17 @@ $(document).ready(function(){
         <h3 style="margin:0"><?php echo $title;?></h3>
       </div><!-- /.col-lg-6 -->
       <div class="col-lg-6">
-        <span style="float:right">...</span>
+        <span style="float:right">
+        <?php
+        $status = $ticket['statusTiket'];
+        echo 'status : <strong>'.$status.'</strong> ';
+        if ($status == 'open') {//action to close ticket
+          echo '<a href="'.site_url('base/tiketaction?act=clossed&id='.$ticket['idtiket']).'" class="btn btn-danger">Tutup Tiket</a>';
+        }else{ //action to close ticket
+           echo '<a href="'.site_url('base/tiketaction?act=open&id='.$ticket['idtiket']).'" class="btn btn-primary">Buka Tiket</a>';
+        }
+        ?>
+        </span>
       </div><!-- /.col-lg-6 -->
     </div><!-- /.row -->
     <div class="row">

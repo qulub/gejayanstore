@@ -17,8 +17,17 @@ class M_ticket extends CI_Model
     #TICKET BY ID TICKET
     public function readTicket($idticket)
     {
+        $this->tiketTerbaca($idticket);
         $this->db->where('idtiket',$idticket);
         return $this->db->get('tiket')->row_array();
+    }
+    #TICKET IS READED
+    public function tiketTerbaca($idticket)
+    {
+        $this->db->where('idtiket',$idticket);
+        $this->db->update('balasanTiket',array('dibacaBalasan'=>'1'));
+        $this->db->where('idtiket',$idticket);
+        $this->db->update('tiket',array('dibaca'=>'1'));
     }
     #GET ALL COMMENTS ORDER BY DATE ASC
     public function comments($idticket)

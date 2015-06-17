@@ -47,7 +47,15 @@ if(!empty($script))echo '<script>$(document).ready(function(){'.$script.'});</sc
                 <tr>
                   <td><strong>Status </strong></td>
                   <td>
-                    <?php if($ticket['statusTiket']=='open'){$color="green";}else{$color="red";};?><span style="color:<?php echo $color;?>"><?php echo $ticket['statusTiket'];?>
+                    <?php if($ticket['statusTiket']=='open'){$color="green";}else{$color="red";};?><span style="color:<?php echo $color;?>"><?php echo $ticket['statusTiket'].' ';?>
+                    <?php
+                    $status = $ticket['statusTiket'];
+                    if ($status == 'open') {//action to close ticket
+                      echo '<a href="'.site_url('base/tiketaction?act=clossed&id='.$ticket['idtiket']).'" class="btn btn-danger">Tutup Tiket</a>';
+                    }else{ //action to close ticket
+                       echo '<a href="'.site_url('base/tiketaction?act=open&id='.$ticket['idtiket']).'" class="btn btn-primary">Buka Tiket</a>';
+                    }
+                    ?>
                     </td>
                   </tr>
                 </table>

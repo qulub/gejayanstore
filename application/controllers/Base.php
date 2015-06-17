@@ -81,6 +81,15 @@ class Base extends CI_Controller
 	/*
 	* LAIN LAIN
 	*/
+	//aksi untuk tiket
+	public function tiketaction()
+	{
+		$action = $_GET['act'];
+		$idtiket = $_GET['id'];
+		$this->db->where('idtiket',$idtiket);
+		$this->db->update('tiket',array('statusTiket'=>$action));
+		redirect($this->agent->referrer());
+	}
 	//test emmail
 	public function testemail()
 	{
