@@ -7,9 +7,9 @@ class M_category extends CI_Model
 		//Do your magic here
 	}
 	//show all categori
-	public function showCategories($limit)
+	public function showCategories($limit='')
 	{
-		$this->db->limit($limit,0);
+		if(!empty($limit))$this->db->limit($limit,0);
 		$query = $this->db->get('kategoriItem');
 		return $query->result_array();
 	}
