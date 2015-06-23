@@ -427,7 +427,7 @@ public function actionpromo()
         break;
         case 'addsubkat':
         $this->db->insert('SubKategoriItem',array('idKategoriItem'=>$_POST['mainkat'],'namaSubKategori'=>$_POST['subkat']));
-        redirect($this->agent->referrer());
+        redirect(site_url('admin/kategori/barang/'.$_POST['mainkat']));
         break;
         case 'delmainkat';
         $this->db->where('idKategoriItem',$_GET['id']);
