@@ -33,12 +33,12 @@ class M_admin extends CI_Model
         switch ($type) {
             case 'tickets'://UNREAD TICKET
             $this->db->where('dibaca','0');
-            $count = $this->db->count_all('tiket');
+            $count = $this->db->count_all_results('tiket');
             break;
             case 'comments'://UNREAD TICKET
             $this->db->where('idAdmin',null);
             $this->db->where('dibacaBalasan','0');
-            $count = $this->db->count_all('balasanTiket');
+            $count = $this->db->count_all_results('balasanTiket');
             break;
             default:
             $count = $this->M_admin->unreadTicket('tickets');

@@ -427,7 +427,7 @@ public function actionpromo()
         break;
         case 'addsubkat':
         $this->db->insert('SubKategoriItem',array('idKategoriItem'=>$_POST['mainkat'],'namaSubKategori'=>$_POST['subkat']));
-        redirect($this->agent->referrer());
+        redirect(site_url('admin/kategori/barang/'.$_POST['mainkat']));
         break;
         case 'delmainkat';
         $this->db->where('idKategoriItem',$_GET['id']);
@@ -573,6 +573,7 @@ public function actionpromo()
   {
     $this->load->model('M_ticket');
     $id = $this->uri->segment(3);
+    //ubah status menjadi terbaca
   $ticket = $this->M_ticket->readTicket($id);//get ticket data
   $comments = $this->M_ticket->comments($id);//get comment ticket
   $Data = array(
