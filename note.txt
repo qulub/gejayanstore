@@ -1,5 +1,5 @@
 REVISI :
-surat dibuat opsional, tanpa upload bisa daftar, verfikasi berdasarkan secara bukti fisik (masuk akal). [SOLVED]
-tiket submission, selalu ada (jangan dihapus).[SOLVED] + pagination
-berita homepage (3) lokasi setelah item favorit, dan dashboard (1). [solved]
-akun tidak otomatis banned aja, jangan dihapus...[solved]
+1. action set banned promo pada fitur admin website belum aktif
+2. tab 'tentang toko' pada halaman detail promo belum sinkron dengan detail toko
+3. bagian olah data penjual, waktu toko dibanned, toko tidak akan muncul, tapi promonya masih aktif. jadi perbaikannya promonya juga dibuat tidak muncul.
+4. print out detail transaksi
